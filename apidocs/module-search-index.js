@@ -1,0 +1,1 @@
+moduleSearchIndex = [{"l":"core.java.helper"}];updateSearchResults();
