@@ -93,7 +93,11 @@ Pine Java Core is a basic module is included utils, helpers, abstracts and the o
 1. [Install google check style plugin](https://plugins.jetbrains.com/plugin/1065-checkstyle-idea/versions)
 2. Add customized checkstyle.xml to _**setting/preferences > Tools > Checkstyle > Configuration File**_
    
-<div style="text-align:center"><img height="300" src="https://github.com/saman-oss/pine-java-core/blob/main/docs/idea-checkstyle-001.png" width="300"/></div>
+++++
+<p align="center">
+<img height="300" src="https://github.com/saman-oss/pine-java-core/blob/main/docs/idea-checkstyle-001.png" width="300"/>
+</p>
+++++
 
 3. Import customized checkstyle.xml to _**setting/preferences > Editor > Code Style > Schema**_
 
