@@ -1,0 +1,15 @@
+@startuml
+skinparam shadowing false
+skinparam linetype polyline
+skinparam linetype ortho
+rectangle "Pine Framework" as pineFramework {
+
+    component "Core" as core
+    component "Core Implementation" as coreImpl
+    component "Product" as product
+
+    coreImpl .up.> core
+    product .up.> core
+    product .up.> coreImpl
+}
+@enduml

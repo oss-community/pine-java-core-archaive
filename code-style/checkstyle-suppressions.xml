@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<!DOCTYPE suppressions PUBLIC
+        "-//Puppy Crawl//DTD Suppressions 1.2//EN"
+        "http://checkstyle.sourceforge.net/dtds/suppressions_1_2.dtd">
+<suppressions>
+    <!--
+      Skip license check for Java files:
+      XXX module does not use the same license.
+     -->
+    <suppress checks="Regexp" files=".+\.(?:java)$"/>
+</suppressions>

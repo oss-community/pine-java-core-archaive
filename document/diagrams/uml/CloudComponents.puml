@@ -1,0 +1,8 @@
+@startuml
+skinparam shadowing false
+rectangle "Cloud" as cloud {
+    component "Config Server" as configServer
+    component "Service Registration and Discovery" as serviceRegistry
+    component "Gateway" as gateway
+}
+@enduml

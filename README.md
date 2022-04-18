@@ -84,18 +84,46 @@ Pine Java Core is a basic module is included utils, helpers, abstracts and the o
 
 ### Install SonarQube
 
+#### SonarQube
+
+[download sonarqube](https://www.sonarqube.org/downloads/)
+
+- Linux: bin/linux-x86-64/sonar.sh start
+- macOS: bin/macosx-universal-64/sonar.sh start
+- Windows: bin/windows-x86-64/StartSonar.bat
+
+Browse SonarQube at http://localhost:9000.
+
+- username: admin
+- password: admin
+
+Generate token at _**administration > security > users > Tokens**_
+
+Add environment variable.
+setx /M SONAR_TOKEN generated-token
+setx /M SONAR_TOKEN sonarqube-url (in localhost is http://localhost:9000)
+
+
+#### Sonar Scanner
+
+[download sonar scanner cli](https://binaries.sonarsource.com/?prefix=Distribution/sonar-scanner-cli/)
+
 ## IDE Setting
 
 ### Intellij IDEA
 
 #### checkstyle
 
-1. [Install google check style plugin](https://plugins.jetbrains.com/plugin/1065-checkstyle-idea/versions)
-2. Add customized checkstyle.xml to _**setting/preferences > Tools > Checkstyle > Configuration File**_
-   ![](https://github.com/saman-oss/pine-java-core/doc/idea-checkstyle-001.png)
-3. Import customized checkstyle.xml to _**setting/preferences > Editor > Code Style > Schema**_
-   ![](https://github.com/saman-oss/pine-java-core/doc/idea-checkstyle-002.png)
+1. [install google check style plugin](https://plugins.jetbrains.com/plugin/1065-checkstyle-idea/versions)
+2. add customized checkstyle.xml to _**setting/preferences > Tools > Checkstyle > Configuration File**_
 
+<p align="center">   
+<img height="300" src="https://github.com/saman-oss/pine-java-core/blob/main/docs/idea-checkstyle-001.png" width="300"/>
+</p>
+3. import customized checkstyle.xml to _**setting/preferences > Editor > Code Style > Schema**_
+<p align="center">
+<img height="300" src="https://github.com/saman-oss/pine-java-core/blob/main/docs/idea-checkstyle-002.png" width="300"/>
+</p>
 #### Test Coverage
 
 1. Click on _**Navigate > Search Everywhere**_, then type `Registry...`.
@@ -107,7 +135,7 @@ Pine Java Core is a basic module is included utils, helpers, abstracts and the o
 
 ## Build and Test
 
-`mvn clean package`
+`mvn clean package checkstyle:check site:site site:stage scm-publish:publish-scm`
 
 ## Build and Install
 

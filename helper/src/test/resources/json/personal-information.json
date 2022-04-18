@@ -1,0 +1,16 @@
+{
+  "name": "Saman Alishirishahrbabak",
+  "age": 35,
+  "address": {
+    "city": "Tehran",
+    "zipCode": 12345
+  },
+  "languages": [
+    "C",
+    "C++",
+    "Java",
+    "Python",
+    "Go",
+    "JS"
+  ]
+}

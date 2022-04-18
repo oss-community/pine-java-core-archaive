@@ -1,0 +1,36 @@
+@startuml
+skinparam shadowing false
+skinparam linetype polyline
+skinparam linetype ortho
+
+rectangle "Product Component Template" as productComponent {
+    component "Component" as comp
+
+    together {
+        component "Business" as business
+        component "Model" as model
+        component "Exposer" as exposer
+    }
+
+    together {
+        component "Business" as business
+        component "Model" as model
+        component "Exposer" as exposer
+        component "Document" as document
+        component "Test" as test
+    }
+
+    comp *-down- test
+    comp *-down- document
+    comp *-right- exposer
+    comp *- business
+    comp *- model
+
+
+    business ..> model
+    exposer ..> business
+
+    comp .up.> core
+}
+
+@enduml

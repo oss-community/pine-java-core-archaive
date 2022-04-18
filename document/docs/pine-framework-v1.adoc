@@ -1,0 +1,56 @@
+= Pine Framework
+
+Pine framework has a big mission, and it is, write business once independent of tools, framework, database, application server,... then use the implemented business into different architecture or structure.
+
+The framework comprised three main part as follows:
+
+* Core component
+* Core implementation component (like JEE, Spring, ...)
+* Product component
+
+====
+.Pine Framework components
+image::/images/PineComponents.png[200,300,align="center"]
+====
+
+== 1. Core Component
+
+Core component is a basic component so that other productions and the specific implementations must be implement that, so they depend on the Core component indeed *Core component is a main component*.
+
+It included the other components and all of them are written with pure Java language.
+It is an abstract component, means it has provided facilities, abstraction, utilities, ... in order to develop productions as much as soon.
+
+Core components are as follows:
+
+* Data Model
+* Helper
+* Contract
+* Business
+* Test
+* I18n
+* Document
+
+====
+.Core components
+image::/images/CoreComponents.png[align="center"]
+====
+
+The Core component can support four environments, and they are as follows:
+
+* Development
+* Test
+* UAT
+* Production
+
+
+
+
+
+
+
+
+
+
+
+
+
