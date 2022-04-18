@@ -13,7 +13,7 @@ Pine Java Core is a basic module is included utils, helpers, abstracts and the o
 - Java 8
 - Maven 3
 - Git
-- SonarQube
+- [SonarQube]()
 
 ### Install Java
 
@@ -100,9 +100,12 @@ Browse SonarQube at http://localhost:9000.
 Generate token at _**administration > security > users > Tokens**_
 
 Add environment variable.
-setx /M SONAR_TOKEN generated-token
-setx /M SONAR_TOKEN sonarqube-url (in localhost is http://localhost:9000)
 
+**Windows**
+- setx /M SONAR_TOKEN generated-token 
+- setx /M SONAR_TOKEN sonarqube-url (in localhost is http://localhost:9000)
+
+**Linux**
 
 #### Sonar Scanner
 
