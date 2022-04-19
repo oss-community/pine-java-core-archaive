@@ -18,12 +18,13 @@
 package com.pineframework.core.helper;
 
 import static com.pineframework.core.helper.I18nUtils.I18N_LOCALE;
-import static com.pineframework.core.helper.I18nUtils.i18nByBundle;
-import static com.pineframework.core.helper.I18nUtils.i18nsByBundle;
+import static com.pineframework.core.helper.I18nUtils.i18n;
+import static com.pineframework.core.helper.I18nUtils.i18ns;
 import static com.pineframework.core.helper.TestEnvironmentConfig.EN_US_LOCALE;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -40,12 +41,16 @@ import org.junit.jupiter.api.Test;
 class I18nUtilsTest extends AbstractUtilsTest {
 
   @Test
-  @DisplayName("get message")
+  @DisplayName("getting message")
   void i18n_IfKeyIsValid_ShouldReturnMessage() {
-    var result = i18nByBundle("test_i18n", "test.key");
+    //Given
+    var givenKey = "test.key";
 
+    //When
+    var result = i18n(givenKey);
+
+    //Then
     assertNotNull(result);
-
     SystemUtils.getEnv(I18N_LOCALE).ifPresent(locale -> {
       switch (locale) {
         case "en_US" -> assertEquals("message", result);
@@ -56,12 +61,67 @@ class I18nUtilsTest extends AbstractUtilsTest {
   }
 
   @Test
-  @DisplayName("get message")
+  @DisplayName("getting message")
   void i18ns_IfKeyIsValid_ShouldReturnMessage() {
-    var result = i18nsByBundle("test_i18n", "test.key.list", ",", new Object[][] {});
+    //Given
+    var givenKey = "test.key.list";
+    var givenSplitter = ",";
+    var givenParams = new Object[][] {};
 
+    //Expectation
+    var expectedMessageNo = 2;
+
+    //When
+    var result = i18ns(givenKey, givenSplitter, givenParams);
+
+    //Then
     assertNotNull(result);
-    assertEquals(2, result.length);
+    assertEquals(expectedMessageNo, result.length);
+    SystemUtils.getEnv(I18N_LOCALE).ifPresent(locale -> {
+      switch (locale) {
+        case EN_US_LOCALE -> assertThat(result).containsExactly("message1", "message2");
+        case "fa_IR" -> assertThat(result).containsExactly("پیام1", "پیام2");
+        default -> System.out.printf("unknown locale %s", locale);
+      }
+    });
+  }
+
+  @Test
+  @DisplayName("getting message")
+  void i18ns_IfKeyIsNotValid_ShouldReturnEmptyArray() {
+    //Given
+    var givenKey = "test.key.invalidList";
+    var givenSplitter = ",";
+    var givenParams = new Object[][] {};
+
+    //Expectation
+    var expectedMessageNo = 0;
+
+    //When
+    var result = i18ns(givenKey, givenSplitter, givenParams);
+
+    //Then
+    assertNotNull(result);
+    assertEquals(expectedMessageNo, result.length);
+  }
+
+  @Test
+  @DisplayName("getting message")
+  void i18ns_IfKeyIsValidAndNeedParams_ShouldReturnMessage() {
+    //Given
+    var givenKey = "test.key.list-with-param";
+    var givenSplitter = ",";
+    var givenParams = new Object[][] {{1}, {"2"}};
+
+    //Expectation
+    var expectedMessageNo = 2;
+
+    //When
+    var result = i18ns(givenKey, givenSplitter, givenParams);
+
+    //Then
+    assertNotNull(result);
+    assertEquals(expectedMessageNo, result.length);
 
     SystemUtils.getEnv(I18N_LOCALE).ifPresent(locale -> {
       switch (locale) {
@@ -73,19 +133,22 @@ class I18nUtilsTest extends AbstractUtilsTest {
   }
 
   @Test
-  @DisplayName("get message")
-  void i18ns_IfKeyIsValidAndNeedParams_ShouldReturnMessage() {
-    var result = i18nsByBundle("test_i18n", "test.key.list-with-param", ",", new Object[][] {{1}, {"2"}});
+  @DisplayName("getting message")
+  void i18ns_IfParametersNoIsNotEqualsToMessageNo_ShouldThrowIllegalArgumentException() {
+    //Given
+    var givenKey = "test.key.list-with-param";
+    var givenSplitter = ",";
+    var givenParams = new Object[][] {{1}, {"2"}, {"dummy"}};
 
-    assertNotNull(result);
-    assertEquals(2, result.length);
+    //Expectation
+    var expectedException = IllegalArgumentException.class;
+    var expectedExceptionMessage = "parameters rows is not equals to messages number";
 
-    SystemUtils.getEnv(I18N_LOCALE).ifPresent(locale -> {
-      switch (locale) {
-        case EN_US_LOCALE -> assertThat(result).containsExactly("message1", "message2");
-        case "fa_IR" -> assertThat(result).containsExactly("پیام1", "پیام2");
-        default -> System.out.printf("unknown locale %s", locale);
-      }
-    });
+    //When
+    var result = assertThrows(expectedException, () -> i18ns(givenKey, givenSplitter, givenParams));
+
+    //Then
+    assertEquals(expectedExceptionMessage, result.getMessage());
   }
+
 }

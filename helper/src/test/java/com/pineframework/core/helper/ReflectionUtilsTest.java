@@ -711,7 +711,6 @@ class ReflectionUtilsTest extends AbstractUtilsTest {
     var result = contain(givenType, givenFieldName);
 
     // Then
-    assertNotNull(result);
     assertTrue(result);
   }
 
@@ -726,7 +725,6 @@ class ReflectionUtilsTest extends AbstractUtilsTest {
     var result = contain(givenType, givenFieldName);
 
     // Then
-    assertNotNull(result);
     assertFalse(result);
   }
 

@@ -347,7 +347,7 @@ class DateUtilsTest extends AbstractUtilsTest {
   @DisplayName("converting a time (HH:mm:ss) to second if time has invalid format")
   void toSecond_IfTimeHasInvalidFormat_ShouldReturnIllegalArgumentException() {
     //Given
-    var givenTime = "01::01";
+    var givenTime = "01:01:";
 
     //Expectation
     var expectedException = IllegalArgumentException.class;
@@ -970,6 +970,7 @@ class DateUtilsTest extends AbstractUtilsTest {
     assertEquals(expectedDate.getMonthValue(), result.getMonthValue());
     assertEquals(expectedDate.getDayOfMonth(), result.getDayOfMonth());
   }
+
 
   @Test
   @DisplayName("getting current datetime if ID is null")

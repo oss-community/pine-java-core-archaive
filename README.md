@@ -86,13 +86,14 @@ Pine Java Core is a basic module is included utils, helpers, abstracts and the o
 
 #### SonarQube
 
-[download sonarqube](https://www.sonarqube.org/downloads/)
+[download sonarqube](https://www.sonarqube.org/downloads/) then extract it.
+
+In the extracted path execute the following command.
 
 - Linux: bin/linux-x86-64/sonar.sh start
-- macOS: bin/macosx-universal-64/sonar.sh start
 - Windows: bin/windows-x86-64/StartSonar.bat
 
-Browse SonarQube at http://localhost:9000.
+Browse SonarQube for localhost installation at http://localhost:9000.
 
 - username: admin
 - password: admin
@@ -102,14 +103,29 @@ Generate token at _**administration > security > users > Tokens**_
 Add environment variable.
 
 **Windows**
-- setx /M SONAR_TOKEN generated-token 
-- setx /M SONAR_TOKEN sonarqube-url (in localhost is http://localhost:9000)
+
+- setx /M SONAR_TOKEN generated-token
+- setx /M SONAR_URL sonarqube-url
 
 **Linux**
 
+- echo "export SONAR_TOKEN=generated-token" >> /home/user-name/.bashrc
+- echo "export SONAR_URL=sonarqube-url" >> /home/user-name/.bashrc
+
 #### Sonar Scanner
 
-[download sonar scanner cli](https://binaries.sonarsource.com/?prefix=Distribution/sonar-scanner-cli/)
+[download sonar scanner cli](https://binaries.sonarsource.com/?prefix=Distribution/sonar-scanner-cli/) then extract it.
+
+**Windows**
+
+- set SONAR_SCANNER_HOME=extracted path
+- setx /M PATH "%PATH%;%SONAR_SCANNER_HOME%\bin"
+
+**Linux**
+
+- echo "export SONAR_SCANNER_HOME=extracted path" >> /home/user-name/.bashrc
+- sed -i 's/$PATH/$SONAR_SCANNER_HOME\/bin:$PATH/g' .bashrc
+- source ~/.bashrc
 
 ## IDE Setting
 
@@ -127,6 +143,7 @@ Add environment variable.
 <p align="center">
 <img height="300" src="https://github.com/saman-oss/pine-java-core/blob/main/docs/idea-checkstyle-002.png" width="300"/>
 </p>
+
 #### Test Coverage
 
 1. Click on _**Navigate > Search Everywhere**_, then type `Registry...`.

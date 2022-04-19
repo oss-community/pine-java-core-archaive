@@ -17,18 +17,21 @@
 
 package com.pineframework.core.helper;
 
+import static com.pineframework.core.helper.I18nUtils.i18n;
 import static com.pineframework.core.helper.JdbcUtils.createSpliterator;
 import static com.pineframework.core.helper.TestEnvironmentConfig.TEST_DB;
 import static java.util.stream.Collectors.toList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import io.vavr.control.Try;
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.util.NoSuchElementException;
 import java.util.function.Function;
 import java.util.stream.StreamSupport;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -43,21 +46,21 @@ import org.junit.jupiter.api.Test;
 @DisplayName("Jdbc Utils Tests")
 class JdbcUtilsTest extends AbstractUtilsTest {
 
-  private Connection connection;
+  private static Connection connection;
 
-  @BeforeEach
-  void openConnection() {
+  @BeforeAll
+  static void openConnection() {
     connection = TEST_DB.createH2Connection(JdbcUtilsTest.class.getSimpleName());
     TEST_DB.executeSqlFile(connection, "sql/test-db.sql");
   }
 
-  @AfterEach
-  void closeConnection() {
+  @AfterAll
+  static void closeConnection() {
     TEST_DB.close(connection);
   }
 
   @Test
-  @DisplayName("execute SQL query")
+  @DisplayName("execute SQL query if there is at least one tuple")
   void createSpliterator_IfParameterIsValid_ShouldReturnListOfTuples() {
     //Given
     var givenQuery = "SELECT * FROM TEST_T";
@@ -99,6 +102,22 @@ class JdbcUtilsTest extends AbstractUtilsTest {
     assertEquals(3, tuple3.intNumber);
   }
 
+  @Test
+  @DisplayName("execute SQL query if there is no tuple")
+  void createSpliterator_IfThereIsNoTuple_ShouldReturnNoSuchElementException() {
+    //Given
+    ResultSet givenResultSet = null;
+
+    //Expectation
+    var expectedException = NoSuchElementException.class;
+
+    //When
+    ResultSetIterator iterator = new ResultSetIterator(givenResultSet);
+    var result = assertThrows(expectedException, iterator::next);
+
+    //Then
+    assertEquals(i18n("error.validation.can.not.find", i18n("parameter.name.element")), result.getMessage());
+  }
 
   static class TestData {
     Integer id;

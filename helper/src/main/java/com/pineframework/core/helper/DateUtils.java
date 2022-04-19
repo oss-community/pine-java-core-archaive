@@ -61,10 +61,8 @@ import java.util.stream.Stream;
  *   <li>{@link #toDate(LocalDate, String, Locale)}</li>
  *   <li>{@link #changeZone(LocalDateTime, ZoneId, ZoneId)}</li>
  *   <li>{@link #changeZone(LocalDate, ZoneId, ZoneId)}</li>
- *   <li>{@link #changeZone(LocalTime, ZoneId, ZoneId)}</li>
  *   <li>{@link #changeZoneRightNow(LocalDate, ZoneId, ZoneId)}</li>
  *   <li>{@link #plus(LocalDate, int, int, int, String, Locale)}</li>
- *   <li>{@link #getDayDifference(LocalTime, ZoneId, LocalTime, ZoneId)}</li>
  *   <li>{@link #getCurrentDateTime(String, Locale, ZoneId)} </li>
  *   <li>{@link #convertCalendar(LocalDateTime, String, Locale, ZoneId, String, Locale, ZoneId)}</li>
  *   <li>{@link #convertCalendar(LocalDate, String, Locale, ZoneId, String, Locale, ZoneId)}</li>
@@ -85,7 +83,7 @@ public final class DateUtils {
    * There are two default profiles, Persian and the other one is Gregorian.
    * </p>
    */
-  public static final Map<String, ResourceBundle> PROFILES;
+  private static final Map<String, ResourceBundle> PROFILES;
 
   static {
     var path = Try.of(() -> new File("src/main/resources")).get();
@@ -300,23 +298,6 @@ public final class DateUtils {
   }
 
   /**
-   * The {@code changeZone} method changes the time zone of {@link LocalTime}.
-   *
-   * @param time        {@link LocalTime}
-   * @param currentZone {@link ZoneId}
-   * @param nextZone    {@link ZoneId}
-   * @return {@link LocalTime}
-   * @throws IllegalArgumentException if any parameter is {@code null}
-   */
-  private static LocalTime changeZone(LocalTime time, ZoneId currentZone, ZoneId nextZone) {
-    requireNonNull(time, i18n("error.validation.should.not.be.null", i18n("parameter.name.time")));
-    requireNonNull(currentZone, i18n("error.validation.should.not.be.null", i18n("parameter.name.zone")));
-    requireNonNull(nextZone, i18n("error.validation.should.not.be.null", i18n("parameter.name.zone")));
-
-    return time.atDate(LocalDate.now(currentZone)).atZone(currentZone).withZoneSameInstant(nextZone).toLocalTime();
-  }
-
-  /**
    * The {@code changeZone} method changes the time zone of {@link LocalDate} at right now.
    *
    * @param date     {@link LocalDate}
@@ -359,36 +340,6 @@ public final class DateUtils {
     dateFormat.setNumberFormat(NumberFormat.getNumberInstance());
 
     return LocalDate.parse(dateFormat.format(calendar.getTime()), ofPattern("yyyy-MM-dd"));
-  }
-
-  /**
-   * The {@code getDayDifference} method calculates the day difference between
-   * two time zones in a specific time.
-   *
-   * @param currentTime {@link LocalTime}
-   * @param currentZone {@link ZoneId}
-   * @param nextTime    {@link LocalTime}
-   * @param nextZone    {@link ZoneId}
-   * @return day as an {@code int} value
-   * @throws IllegalArgumentException if any parameter is {@code null} or empty
-   */
-  public static int getDayDifference(LocalTime currentTime, ZoneId currentZone, LocalTime nextTime, ZoneId nextZone) {
-    requireNonNull(currentTime, i18n("error.validation.should.not.be.null", i18n("parameter.name.time")));
-    requireNonNull(currentZone, i18n("error.validation.should.not.be.null", i18n("parameter.name.zone")));
-    requireNonNull(nextTime, i18n("error.validation.should.not.be.null", i18n("parameter.name.time")));
-    requireNonNull(nextZone, i18n("error.validation.should.not.be.null", i18n("parameter.name.zone")));
-
-    var currentOffset = calculateOffset(ZoneId.of("UTC"), currentZone);
-    var nextOffset = calculateOffset(ZoneId.of("UTC"), nextZone);
-    int offsetDiff = toSecond(nextOffset) - toSecond(currentOffset);
-
-    LocalTime time = LocalTime.ofSecondOfDay(Math.abs(offsetDiff));
-
-    return switch (getSignChar(offsetDiff)) {
-      case POSITIVE -> nextTime.isBefore(time) && currentTime.isAfter(LocalTime.MIDNIGHT.minusSeconds(time.toSecondOfDay())) ? 1 : 0;
-      case NEGATIVE -> currentTime.isBefore(time) && nextTime.isAfter(LocalTime.MIDNIGHT.minusSeconds(time.toSecondOfDay())) ? -1 : 0;
-      default -> 0;
-    };
   }
 
   /**

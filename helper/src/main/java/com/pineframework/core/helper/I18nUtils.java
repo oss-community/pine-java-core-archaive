@@ -27,6 +27,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.stream.IntStream;
 
@@ -89,7 +90,20 @@ public final class I18nUtils {
   public static String i18n(String key, Object... params) {
     requireNonEmptyOrNull(key, "key is empty or null");
 
-    return i18nByBundle("i18n", key, params);
+    var message = i18nByBundle("i18n", key, params);
+
+    if (message.isBlank()) {
+      Optional<String> keyOptional = bundles.entrySet().stream()
+          .filter(entry -> entry.getValue().containsKey(key))
+          .map(Map.Entry::getKey)
+          .findFirst();
+
+      if (keyOptional.isPresent()) {
+        message = i18nByBundle(keyOptional.get(), key, params);
+      }
+    }
+
+    return message;
   }
 
   /**
@@ -119,7 +133,20 @@ public final class I18nUtils {
     requireNonEmptyOrNull(key, "key is empty or null");
     requireNonEmptyOrNull(splitter, "splitter is empty or null");
 
-    return i18nsByBundle("i18n", key, splitter, params);
+    String[] messages = i18nsByBundle("i18n", key, splitter, params);
+
+    if (messages.length == 0) {
+      Optional<String> keyOptional = bundles.entrySet().stream()
+          .filter(entry -> entry.getValue().containsKey(key))
+          .map(Map.Entry::getKey)
+          .findFirst();
+
+      if (keyOptional.isPresent()) {
+        messages = i18nsByBundle(keyOptional.get(), key, splitter, params);
+      }
+    }
+
+    return messages;
   }
 
   /**

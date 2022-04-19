@@ -86,6 +86,7 @@ limitations under the License.
 
         <sonar.host.url>${env.SONAR_URL}</sonar.host.url>
         <sonar.login>${env.SONAR_TOKEN}</sonar.login>
+        <sonar.projectKey>${project.artifactId}</sonar.projectKey>
     </properties>
     <modules>
         <module>helper</module>

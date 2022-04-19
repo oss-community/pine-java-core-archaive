@@ -17,11 +17,13 @@
 
 package com.pineframework.core.helper;
 
+import static com.pineframework.core.helper.I18nUtils.i18n;
 import static java.lang.Boolean.FALSE;
 
 import io.vavr.control.Try;
 import java.sql.ResultSet;
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 /**
  * The {@link ResultSetIterator} class converts a {@link ResultSet} to an {@link Iterator}.
@@ -38,7 +40,11 @@ public record ResultSetIterator(ResultSet rs) implements Iterator<ResultSet> {
   }
 
   @Override
-  public ResultSet next() {
+  public ResultSet next() throws NoSuchElementException {
+    if (rs == null) {
+      throw new NoSuchElementException(i18n("error.validation.can.not.find", i18n("parameter.name.element")));
+    }
+
     return rs;
   }
 }

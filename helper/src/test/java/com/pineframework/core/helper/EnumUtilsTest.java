@@ -55,8 +55,10 @@ class EnumUtilsTest extends AbstractUtilsTest {
     //Then
     assertNotNull(result);
     assertTrue(result.isPresent());
-    assertEquals(expectedEnum.key, result.get().key);
-    assertEquals(expectedEnum.value, result.get().value);
+    result.ifPresent(e -> {
+      assertEquals(expectedEnum.key, e.key);
+      assertEquals(expectedEnum.value, e.value);
+    });
   }
 
   @Test
@@ -64,7 +66,7 @@ class EnumUtilsTest extends AbstractUtilsTest {
   void findEnumByPredicate_IfFilterIsNotAcceptable_ShouldReturnAnEmptyOptional() {
     //Given
     var givenEnumType = TestEnum.class;
-    Predicate<TestEnum> givenPredicate = instance -> Objects.equals(instance.key, 0);
+    Predicate<TestEnum> givenPredicate = instance -> Objects.equals(instance.key, -1);
 
     //When
     var result = findEnumByFilter(givenEnumType, givenPredicate);
@@ -75,7 +77,11 @@ class EnumUtilsTest extends AbstractUtilsTest {
   }
 
   enum TestEnum {
-    TEST_1(1, "test_1"), TEST_2(2, "test_2"), TEST_3(3, "test_3");
+    TEST_1(1, "test_1"),
+    TEST_2(2, "test_2"),
+    TEST_3(3, "test_3"),
+    DEFAULT(0, "default"),
+    ;
 
     private final Integer key;
     private final String value;

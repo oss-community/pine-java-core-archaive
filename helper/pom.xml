@@ -26,7 +26,7 @@ limitations under the License.
     <groupId>com.pineframework.core</groupId>
     <artifactId>helper</artifactId>
     <version>1.0.0-SNAPSHOT</version>
-    <name>Pine Java Core -> Helper</name>
+    <name>Helper</name>
     <description>
         Helper component is included helpers and utilities class.
     </description>

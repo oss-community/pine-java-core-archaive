@@ -302,7 +302,7 @@ public final class ReflectionUtils {
    * @return {@link Boolean}
    * @throws IllegalArgumentException if any parameter is {@code null} or empty
    */
-  public static Boolean contain(Class<?> type, String fieldName) {
+  public static boolean contain(Class<?> type, String fieldName) {
     requireNonNull(type, i18n("error.validation.should.not.be.null", i18n("parameter.name.type")));
     requireNonEmptyOrNull(fieldName, i18n("error.validation.should.not.be.emptyOrNull", i18n("parameter.name.fieldName")));
 
@@ -380,15 +380,15 @@ public final class ReflectionUtils {
     private static final Map<Class<?>, Function<Object, Object>> CONVERTERS = new HashMap<>();
 
     static {
-      CONVERTERS.put(Integer.class, (o) -> Integer.valueOf(String.valueOf(o)));
-      CONVERTERS.put(Long.class, (o) -> Long.valueOf(String.valueOf(o)));
-      CONVERTERS.put(Float.class, (o) -> Float.valueOf(String.valueOf(o)));
-      CONVERTERS.put(Double.class, (o) -> Double.valueOf(String.valueOf(o)));
+      CONVERTERS.put(Integer.class, o -> Integer.valueOf(String.valueOf(o)));
+      CONVERTERS.put(Long.class, o -> Long.valueOf(String.valueOf(o)));
+      CONVERTERS.put(Float.class, o -> Float.valueOf(String.valueOf(o)));
+      CONVERTERS.put(Double.class, o -> Double.valueOf(String.valueOf(o)));
       CONVERTERS.put(String.class, String::valueOf);
-      CONVERTERS.put(Boolean.class, (o) -> Boolean.valueOf(String.valueOf(o)));
-      CONVERTERS.put(LocalDateTime.class, (o) -> LocalDateTime.parse(String.valueOf(o), ofPattern("yyyy-MM-dd'T'HH:mm:ss")));
-      CONVERTERS.put(LocalDate.class, (o) -> LocalDate.parse(String.valueOf(o), ofPattern("yyyy-MM-dd")));
-      CONVERTERS.put(LocalTime.class, (o) -> LocalTime.parse(String.valueOf(o), ofPattern("HH:mm:ss")));
+      CONVERTERS.put(Boolean.class, o -> Boolean.valueOf(String.valueOf(o)));
+      CONVERTERS.put(LocalDateTime.class, o -> LocalDateTime.parse(String.valueOf(o), ofPattern("yyyy-MM-dd'T'HH:mm:ss")));
+      CONVERTERS.put(LocalDate.class, o -> LocalDate.parse(String.valueOf(o), ofPattern("yyyy-MM-dd")));
+      CONVERTERS.put(LocalTime.class, o -> LocalTime.parse(String.valueOf(o), ofPattern("HH:mm:ss")));
     }
   }
 }

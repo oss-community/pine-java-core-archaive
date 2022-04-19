@@ -24,6 +24,7 @@ import static java.sql.DriverManager.getConnection;
 
 import io.vavr.control.Try;
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.util.Spliterator;
 import org.slf4j.Logger;
@@ -33,7 +34,7 @@ import org.slf4j.Logger;
  * <ul>
  *   <li>{@link #createSpliterator(ResultSet)}</li>
  *   <li>{@link H2#makeH2ConnectionString(String, String)}</li>
- *   <li>{@link H2#createInMemoryH2Connection(String)}</li>
+ *   <li>{@link H2#createInMemoryH2Connection(String, String)}</li>
  * </ul>
  *
  * @author Saman Alishirishahrbabak
@@ -71,8 +72,6 @@ public final class JdbcUtils {
    * @since 2022-01-01
    */
   public interface H2 {
-    String H2_DRIVER = "org.h2.Driver";
-
     String H2_TYPE_MEM = "mem";
 
     String H2_DEFAULT_USER = "sa";
@@ -83,7 +82,7 @@ public final class JdbcUtils {
      * The {@code createH2Connection} creates a new {@link Connection}.
      *
      * @param name   database name
-     * @param passwd
+     * @param passwd password of database username
      * @return H2 {@link Connection}
      * @throws IllegalArgumentException if any parameter is {@code null} or empty
      */
@@ -91,7 +90,7 @@ public final class JdbcUtils {
       requireNonEmptyOrNull(name, i18n("error.validation.should.not.be.emptyOrNull", i18n("parameter.name.name")));
 
       return Try.of(() -> {
-        Class.forName(H2_DRIVER);
+        DriverManager.registerDriver(new org.h2.Driver());
         return getConnection(makeH2ConnectionString(H2_TYPE_MEM, name), H2_DEFAULT_USER, passwd);
       }).onFailure(exception -> LOGGER.error(exception.getMessage())).get();
     }
@@ -121,7 +120,6 @@ public final class JdbcUtils {
    * @since 2022-01-01
    */
   public interface Oracle {
-    String ORACLE_DRIVER = "oracle.jdbc.OracleDriver";
 
     /**
      * The {@code createThinConnection} creates a new {@link Connection}.
@@ -137,7 +135,7 @@ public final class JdbcUtils {
       requireNonEmptyOrNull(name, i18n("error.validation.should.not.be.emptyOrNull", i18n("parameter.name.name")));
 
       return Try.of(() -> {
-        Class.forName(ORACLE_DRIVER);
+        DriverManager.registerDriver(new oracle.jdbc.OracleDriver());
         return getConnection(makeThinConnectionString(host, name, username, passwd));
       }).onFailure(exception -> LOGGER.error(exception.getMessage())).get();
     }
