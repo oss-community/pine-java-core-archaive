@@ -83,7 +83,7 @@ public record SqlFileHelper(Connection connection) {
     requireNonNull(sqlFile, i18n("error.validation.should.not.be.null", i18n("parameter.name.sqlFile")));
 
     return withResources(connection::createStatement)
-        .of(statement -> executeQueries(sqlFile, statement))
+        .of(statement -> execute(sqlFile, statement))
         .get();
   }
 
@@ -95,19 +95,29 @@ public record SqlFileHelper(Connection connection) {
    *
    * @param sqlFile   {@link Path}
    * @param statement {@link Statement}
-   * @return {@link Boolean}
+   * @return {@code boolean}
    * @throws NullPointerException if any parameter is {@code null}
    */
-  private Boolean executeQueries(Path sqlFile, Statement statement) {
+  private boolean execute(Path sqlFile, Statement statement) {
     requireNonNull(sqlFile, i18n("error.validation.should.not.be.null", i18n("parameter.name.sqlFile")));
     requireNonNull(statement, i18n("error.validation.should.not.be.null", i18n("parameter.name.statement")));
 
     return stream(readParts(sqlFile, SEPARATOR))
-        .map(query ->
-            Try.of(() -> statement.execute(query.trim()))
-                .onFailure(exception -> LOGGER.error(exception.getMessage()))
-                .isSuccess())
+        .map(query -> isSuccess(statement, query))
         .allMatch(result -> result == TRUE);
+  }
+
+  /**
+   * The {@code isSuccess} methods check whether query is executed successful or no.
+   *
+   * @param statement {@link Statement}
+   * @param query SQL
+   * @return {@code boolean}
+   */
+  private boolean isSuccess(Statement statement, String query) {
+    return Try.of(() -> statement.execute(query.trim()))
+        .onFailure(e -> LOGGER.error(e.getMessage()))
+        .isSuccess();
   }
 
 }
