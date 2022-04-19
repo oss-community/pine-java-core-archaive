@@ -111,7 +111,7 @@ public record SqlFileHelper(Connection connection) {
    * The {@code isSuccess} methods check whether query is executed successful or no.
    *
    * @param statement {@link Statement}
-   * @param query SQL
+   * @param query     SQL
    * @return {@code boolean}
    */
   private boolean isSuccess(Statement statement, String query) {
