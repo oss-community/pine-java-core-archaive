@@ -23,6 +23,9 @@ import static com.pineframework.core.helper.TestEnvironmentConfig.EN_US_LOCALE;
 
 import io.vavr.CheckedRunnable;
 import io.vavr.control.Try;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
 import org.junit.jupiter.api.BeforeAll;
 import org.slf4j.Logger;
 
@@ -62,6 +65,15 @@ public abstract class AbstractUtilsTest {
 
   protected void logInfo(String str) {
     logger.info("info: {}", str);
+  }
+
+  protected void logArray(byte... bytes) {
+    String string = IntStream.range(0, bytes.length)
+        .mapToObj(i -> bytes[i])
+        .map(o -> "[" + o + "]")
+        .collect(Collectors.joining(" "));
+
+    logger.info("info: {}", string);
   }
 
   protected void logError(String str) {

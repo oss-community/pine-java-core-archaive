@@ -179,12 +179,13 @@ class FileUtilsTest extends AbstractUtilsTest {
     var givenPath = toFullPath(Paths.get("txt/greeting.txt"));
 
     //Expectation
-    var expectedContent = "Hello\nGoodbye".getBytes();
+    var expectedContent = "Hello\nGoodbye".getBytes(UTF_8);
 
     //When
     var result = readContentAsByteArray(givenPath);
 
-    logInfo(new String(result));
+    logArray(expectedContent);
+    logArray(result);
 
     //Then
     assertNotNull(result);
@@ -213,7 +214,7 @@ class FileUtilsTest extends AbstractUtilsTest {
     var givenPath = toFullPath(Paths.get("txt/greeting.txt"));
 
     //Expectation
-    var expectedContent = new String("Hello\nGoodbye".getBytes(), UTF_8);
+    var expectedContent = "Hello\nGoodbye";
 
     //When
     var result = readContentAsString(givenPath);
@@ -246,7 +247,7 @@ class FileUtilsTest extends AbstractUtilsTest {
     var givenSeparator = "\n";
 
     //Expectation
-    var expectedContent = new String[] {new String("Hello".getBytes(), UTF_8), new String("Goodbye".getBytes(), UTF_8)};
+    var expectedContent = new String[] {"Hello", "Goodbye"};
 
     //When
     var result = readParts(givenPath, givenSeparator);
