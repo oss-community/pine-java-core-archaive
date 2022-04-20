@@ -61,7 +61,7 @@ limitations under the License.
         </site>
     </distributionManagement>
     <scm>
-        <url>https://github.com/saman-oss/pine-java-core</url>
+        <url>https://github.com/saman-oss/pine-java-core/tree/main/</url>
         <connection>scm:git:https://github.com/saman-oss/pine-java-core.git</connection>
         <developerConnection>scm:git:git@github.com:saman-oss/pine-java-core.git</developerConnection>
     </scm>
