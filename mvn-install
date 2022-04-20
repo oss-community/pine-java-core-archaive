@@ -1,1 +1,4 @@
+clear
 mvn clean install -DskipTests=true
+
+

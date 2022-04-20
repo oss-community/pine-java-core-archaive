@@ -38,10 +38,6 @@ limitations under the License.
             </roles>
         </developer>
     </developers>
-    <issueManagement>
-        <url>https://github.com/saman-oss/pine-java-core/issues</url>
-        <system>GitHub Issues</system>
-    </issueManagement>
     <licenses>
         <license>
             <name>Apache License</name>
@@ -54,11 +50,20 @@ limitations under the License.
             <distribution>repo</distribution>
         </license>
     </licenses>
+    <issueManagement>
+        <url>https://github.com/saman-oss/pine-java-core/issues</url>
+        <system>GitHub Issues</system>
+    </issueManagement>
     <distributionManagement>
         <site>
             <id>github</id>
             <url>scm:git:https://github.com/saman-oss/pine-java-core.git</url>
         </site>
+        <snapshotRepository>
+            <id>snapshots</id>
+            <name>pine-core-java-snapshots</name>
+            <url>http://localhost:8082/artifactory/libs-snapshot</url>
+        </snapshotRepository>
     </distributionManagement>
     <scm>
         <url>https://github.com/saman-oss/pine-java-core/tree/main/</url>
@@ -87,6 +92,8 @@ limitations under the License.
         <sonar.host.url>${env.SONAR_URL}</sonar.host.url>
         <sonar.login>${env.SONAR_TOKEN}</sonar.login>
         <sonar.projectKey>${project.artifactId}</sonar.projectKey>
+        <artifactory.username>${env.ARTIFACTORY_USERNAME}</artifactory.username>
+        <artifactory.password>${env.ARTIFACTORY_PASSWORD}</artifactory.password>
     </properties>
     <modules>
         <module>helper</module>
@@ -295,6 +302,14 @@ limitations under the License.
                 </executions>
             </plugin>
             <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-scm-publish-plugin</artifactId>
+                <version>3.1.0</version>
+                <configuration>
+                    <scmBranch>site</scmBranch>
+                </configuration>
+            </plugin>
+            <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>license-maven-plugin</artifactId>
                 <version>2.0.0</version>
@@ -313,12 +328,41 @@ limitations under the License.
                 </executions>
             </plugin>
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-scm-publish-plugin</artifactId>
-                <version>3.1.0</version>
-                <configuration>
-                    <scmBranch>site</scmBranch>
-                </configuration>
+                <groupId>org.jfrog.buildinfo</groupId>
+                <artifactId>artifactory-maven-plugin</artifactId>
+                <version>3.2.3</version>
+                <executions>
+                    <execution>
+                        <id>build-info</id>
+                        <goals>
+                            <goal>publish</goal>
+                        </goals>
+                        <configuration>
+                            <deployProperties>
+                                <gradle>awesome</gradle>
+                            </deployProperties>
+                            <artifactory>
+                                <includeEnvVars>true</includeEnvVars>
+                                <envVarsExcludePatterns>*password*,*secret*,*key*,*token*,*passphrase*
+                                </envVarsExcludePatterns>
+                                <timeoutSec>60</timeoutSec>
+                            </artifactory>
+                            <publisher>
+                                <contextUrl>http://localhost:8082/artifactory</contextUrl>
+                                <username>${artifactory.username}</username>
+                                <password>${artifactory.password}</password>
+                                <excludePatterns>*-tests.jar</excludePatterns>
+                                <repoKey>libs-release-local</repoKey>
+                                <snapshotRepoKey>libs-snapshot-local</snapshotRepoKey>
+                            </publisher>
+                            <buildInfo>
+                                <buildName>pine-core-java</buildName>
+                                <buildNumber>${version}</buildNumber>
+                                <buildUrl>https://github.com/saman-oss/pine-java-core</buildUrl>
+                            </buildInfo>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
