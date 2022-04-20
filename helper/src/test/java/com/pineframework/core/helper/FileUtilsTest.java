@@ -184,6 +184,8 @@ class FileUtilsTest extends AbstractUtilsTest {
     //When
     var result = readContentAsByteArray(givenPath);
 
+    logInfo(new String(result));
+
     //Then
     assertNotNull(result);
     assertTrue(result.length > 0);
@@ -206,7 +208,7 @@ class FileUtilsTest extends AbstractUtilsTest {
 
   @Test
   @DisplayName("reading a file with content as a string")
-  void readContentAsString_IfFileIsEmpty_ShouldReturnString() {
+  void readContentAsString_IfFileIsNotEmpty_ShouldReturnString() {
     //Given
     var givenPath = toFullPath(Paths.get("txt/greeting.txt"));
 
