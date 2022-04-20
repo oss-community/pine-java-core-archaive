@@ -1,0 +1,7 @@
+<settings>
+    <pluginGroups>
+        <pluginGroup>org.sonarsource.scanner.maven</pluginGroup>
+        <pluginGroup>org.asciidoctor</pluginGroup>
+        <pluginGroup>com.github.jeluard</pluginGroup>
+    </pluginGroups>
+</settings>
