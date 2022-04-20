@@ -28,6 +28,7 @@ import static com.pineframework.core.helper.FileUtils.toPath;
 import static com.pineframework.core.helper.FileUtils.toUri;
 import static com.pineframework.core.helper.FileUtils.toUrl;
 import static com.pineframework.core.helper.FileUtils.walkThrowPackage;
+import static java.nio.charset.StandardCharsets.UTF_8;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -178,7 +179,7 @@ class FileUtilsTest extends AbstractUtilsTest {
     var givenPath = toFullPath(Paths.get("txt/greeting.txt"));
 
     //Expectation
-    var expectedContent = "Hello\nGoodbye";
+    var expectedContent = "Hello\nGoodbye".getBytes();
 
     //When
     var result = readContentAsByteArray(givenPath);
@@ -186,7 +187,7 @@ class FileUtilsTest extends AbstractUtilsTest {
     //Then
     assertNotNull(result);
     assertTrue(result.length > 0);
-    assertEquals(expectedContent, new String(result));
+    assertArrayEquals(expectedContent, result);
   }
 
   @Test
@@ -210,7 +211,7 @@ class FileUtilsTest extends AbstractUtilsTest {
     var givenPath = toFullPath(Paths.get("txt/greeting.txt"));
 
     //Expectation
-    var expectedContent = "Hello\nGoodbye";
+    var expectedContent = new String("Hello\nGoodbye".getBytes(), UTF_8);
 
     //When
     var result = readContentAsString(givenPath);
@@ -243,7 +244,7 @@ class FileUtilsTest extends AbstractUtilsTest {
     var givenSeparator = "\n";
 
     //Expectation
-    var expectedContent = new String[] {"Hello", "Goodbye"};
+    var expectedContent = new String[] {new String("Hello".getBytes(), UTF_8), new String("Goodbye".getBytes(), UTF_8)};
 
     //When
     var result = readParts(givenPath, givenSeparator);

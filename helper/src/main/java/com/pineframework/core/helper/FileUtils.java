@@ -21,6 +21,7 @@ import static com.pineframework.core.helper.I18nUtils.i18n;
 import static com.pineframework.core.helper.validator.ObjectValidator.requireNonNull;
 import static com.pineframework.core.helper.validator.StringValidator.requireNonEmptyOrNull;
 import static java.lang.Thread.currentThread;
+import static java.nio.charset.StandardCharsets.UTF_8;
 
 import io.vavr.control.Try;
 import java.io.File;
@@ -166,7 +167,7 @@ public final class FileUtils {
   public static String readContentAsString(Path path) {
     requireNonNull(path, i18n("error.validation.should.not.be.null", i18n("parameter.name.path")));
 
-    return Try.of(() -> Files.readString(path)).get();
+    return Try.of(() -> Files.readString(path, UTF_8)).get();
   }
 
   /**
@@ -181,7 +182,7 @@ public final class FileUtils {
     requireNonNull(path, i18n("error.validation.should.not.be.null", i18n("parameter.name.path")));
     requireNonEmptyOrNull(separator, i18n("error.validation.should.not.be.emptyOrNull", i18n("parameter.name.separator")));
 
-    return Try.of(() -> Files.readString(path).split(separator)).get();
+    return Try.of(() -> Files.readString(path, UTF_8).split(separator)).get();
   }
 
   /**
