@@ -6,7 +6,9 @@ pipeline {
         stage('log version') {
           steps {
             sh '''java -version
+
 mvn --version
+
 git --version'''
           }
         }
@@ -17,7 +19,7 @@ git --version'''
           }
         }
 
-        stage('') {
+        stage('error') {
           steps {
             fileExists 'settings.xml'
           }
