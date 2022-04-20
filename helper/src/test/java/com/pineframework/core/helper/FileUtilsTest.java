@@ -184,9 +184,6 @@ class FileUtilsTest extends AbstractUtilsTest {
     //When
     var result = readContentAsByteArray(givenPath);
 
-    logArray(expectedContent);
-    logArray(result);
-
     //Then
     assertNotNull(result);
     assertTrue(result.length > 0);

@@ -28,6 +28,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.net.URI;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -154,7 +155,7 @@ public final class FileUtils {
   public static byte[] readContentAsByteArray(Path path) {
     requireNonNull(path, i18n("error.validation.should.not.be.null", i18n("parameter.name.path")));
 
-    return Try.of(() -> Files.readAllBytes(path)).get();
+    return Try.of(() -> Files.readString(path).replace("\r", "").getBytes(UTF_8)).get();
   }
 
   /**
@@ -167,7 +168,7 @@ public final class FileUtils {
   public static String readContentAsString(Path path) {
     requireNonNull(path, i18n("error.validation.should.not.be.null", i18n("parameter.name.path")));
 
-    return Try.of(() -> Files.readString(path, UTF_8)).get();
+    return Try.of(() -> Files.readString(path, UTF_8).replace("\r", "")).get();
   }
 
   /**
@@ -182,7 +183,7 @@ public final class FileUtils {
     requireNonNull(path, i18n("error.validation.should.not.be.null", i18n("parameter.name.path")));
     requireNonEmptyOrNull(separator, i18n("error.validation.should.not.be.emptyOrNull", i18n("parameter.name.separator")));
 
-    return Try.of(() -> Files.readString(path, UTF_8).split(separator)).get();
+    return Try.of(() -> Files.readString(path, UTF_8).replace("\r", "").split(separator)).get();
   }
 
   /**
