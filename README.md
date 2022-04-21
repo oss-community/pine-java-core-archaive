@@ -20,29 +20,29 @@ The framework comprised three main part as follows:
 - **[1 Pine Java Core](#1-Pine-Java-Core)**
 - **[2 Tools](#2-Tools)**
   - **[2.1 Java](#2.1-Java)**
-     - **[2.1.1 Windows](README.md#2.1.1-Windows)**
-     - **[2.1.2 Linux](README.md#2.1.2-Linux)**
-     - **[2.1.3 Test Java](README.md#2.1.3-Test-Java)**
-  - **[2.2 Maven](README.md#2.2-Maven)**
-     - **[2.2.1 Windows](README.md#2.2.1-Windows)**
-     - **[2.2.2 Linux](README.md#2.2.2-Linux)**
-     - **[2.2.3 Test Maven](README.md#2.2.3-Test-Maven)**
-  - **[Git](README.md#Git)**
-     - **[Windows](README.md#Windows)**
-     - **[Linux](README.md#Linux)**
-     - **[Test Git](README.md#Test git)**
-  - **[SonarQube](README.md#Sonarqube)**
-     - **[Sonarqube Server](README.md#Sonarqube Server)**
-     - **[Sonar Scanner](README.md#Sonar Scanner)**
-  - **[Jenkins](README.md#Jenkins)**
-  - **[JFrog](README.md#JFrog)**
-  - **[IDE Setting](README.md#IDE Setting)**
-     - **[Intellij IDEA](README.md#Intellij IDEA)**
-     - **[Checkstyle](README.md#Checkstyle)**
-     - **[Test Coverage](README.md#Test Coverage)**
-- **[Pipeline](README.md#<red>3.-Pipeline</red>)**
-- **[Build](README.md#<red>4.-Build</red>)**
-- **[Install](README.md#<red>5.-Install</red>)**
+     - **[2.1.1 Windows](#2.1.1-Windows)**
+     - **[2.1.2 Linux](#2.1.2-Linux)**
+     - **[2.1.3 Test Java](#2.1.3-Test-Java)**
+  - **[2.2 Maven](#2.2-Maven)**
+     - **[2.2.1 Windows](#2.2.1-Windows)**
+     - **[2.2.2 Linux](#2.2.2-Linux)**
+     - **[2.2.3 Test Maven](#2.2.3-Test-Maven)**
+  - **[Git](#Git)**
+     - **[Windows](#Windows)**
+     - **[Linux](#Linux)**
+     - **[Test Git](#Test git)**
+  - **[SonarQube](#Sonarqube)**
+     - **[Sonarqube Server](#Sonarqube Server)**
+     - **[Sonar Scanner](#Sonar Scanner)**
+  - **[Jenkins](#Jenkins)**
+  - **[JFrog](#JFrog)**
+  - **[IDE Setting](#IDE Setting)**
+     - **[Intellij IDEA](#Intellij IDEA)**
+     - **[Checkstyle](#Checkstyle)**
+     - **[Test Coverage](#Test Coverage)**
+- **[Pipeline](#<red>3.-Pipeline</red>)**
+- **[Build](#<red>4.-Build</red>)**
+- **[Install](#<red>5.-Install</red>)**
 
 
 ## <red>1 Pine Java Core</red>
@@ -54,9 +54,9 @@ The framework comprised three main part as follows:
 - helper
 - document
 
-## 2 Tools
+## <red>2 Tools</red>
 
-### 2.1 Java
+### <blue>2.1 Java</blue>
 
 #### 2.1.1 Windows
 
@@ -82,7 +82,7 @@ The framework comprised three main part as follows:
 
 `java -version`
 
-### 2.2 Maven
+### <blue>2.2 Maven</blue>
 
 #### 2.2.1 Windows
 
@@ -235,4 +235,4 @@ then add environment variable.
 `mvn clean install -DskipTests=true`
 
 
-[Top](README.md#<p align="center"><black>Pine Framework</black></p>)
+[Top](#<p align="center"><black>Pine Framework</black></p>)
