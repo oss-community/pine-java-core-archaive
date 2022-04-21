@@ -15,7 +15,7 @@ The framework comprised three main part as follows:
 - core implementation component (like JEE, Spring, ...)
 - product component
 
-# <p align="center"><black>Table of content</black></p>
+## <p align="center"><black>Table of content</black></p>
 
 - **[1 Pine Java Core](#1-Pine-Java-Core)**
 - **[2 Tools](#2-Tools)**
@@ -45,7 +45,7 @@ The framework comprised three main part as follows:
 - **[Install](#5-Install)**
 
 
-## <red>1 Pine Java Core</red>
+## <p><red>1 Pine Java Core</red></p>
 
   Pine Java Core is a basic module is included utils, helpers, abstracts and the other basic facilities.
 
