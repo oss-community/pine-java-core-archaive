@@ -27,10 +27,10 @@ The framework comprised three main part as follows:
      - **[2-2-1 Windows](#2-2-1-Windows)**
      - **[2-2-2 Linux](#2-2-2-Linux)**
      - **[2-2-3 Test Maven](#2-2-3-Test-Maven)**
-  - **[Git](#Git)**
-     - **[Windows](#Windows)**
-     - **[Linux](#Linux)**
-     - **[Test Git](#Test git)**
+  - **[2-3 Git](#Git)**
+     - **[2-3-1 Windows](#Windows)**
+     - **[2-3-2 Linux](#Linux)**
+     - **[2-3-3 Test Git](#Test git)**
   - **[SonarQube](#Sonarqube)**
      - **[Sonarqube Server](#Sonarqube Server)**
      - **[Sonar Scanner](#Sonar Scanner)**
@@ -108,18 +108,18 @@ The framework comprised three main part as follows:
 
 `mvn -version`
 
-### Git
+### 2-3 Git
 
-#### Windows
+#### 2-3-1 Windows
 
 1. [download Git installer](https://git-scm.com/download/win)
 2. install setup
 
-#### Linux
+#### 2-3-2 Linux
 
 [how to download and install](https://git-scm.com/download/linux)
 
-#### Test Git
+#### 2-3-3 Test Git
 
 `git --version`
 
