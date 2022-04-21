@@ -19,27 +19,27 @@ The framework comprised three main part as follows:
 
 - **[1 Pine Java Core](#1-Pine-Java-Core)**
 - **[2 Tools](#2-Tools)**
-  - **[2.1 Java](#2-1-Java)**
-     - **[2.1.1 Windows](#2-1-1-Windows)**
-     - **[2.1.2 Linux](#2-1-2-Linux)**
-     - **[2.1.3 Test Java](#2-1-3-Test-Java)**
-  - **[2.2 Maven](#2.2-Maven)**
-     - **[2.2.1 Windows](#2.2.1-Windows)**
-     - **[2.2.2 Linux](#2.2.2-Linux)**
-     - **[2.2.3 Test Maven](#2.2.3-Test-Maven)**
-  - **[Git](#Git)**
-     - **[Windows](#Windows)**
-     - **[Linux](#Linux)**
-     - **[Test Git](#Test git)**
-  - **[SonarQube](#Sonarqube)**
-     - **[Sonarqube Server](#Sonarqube Server)**
-     - **[Sonar Scanner](#Sonar Scanner)**
-  - **[Jenkins](#Jenkins)**
-  - **[JFrog](#JFrog)**
-  - **[IDE Setting](#IDE Setting)**
-     - **[Intellij IDEA](#Intellij IDEA)**
-     - **[Checkstyle](#Checkstyle)**
-     - **[Test Coverage](#Test Coverage)**
+- **[2.1 Java](#2.1-Java)**
+- **[2.1.1 Windows](#2.1.1-Windows)**
+- **[2.1.2 Linux](#2.1.2-Linux)**
+- **[2.1.3 Test Java](#2.1.3-Test-Java)**
+- **[2.2 Maven](#2.2-Maven)**
+- **[2.2.1 Windows](#2.2.1-Windows)**
+- **[2.2.2 Linux](#2.2.2-Linux)**
+- **[2.2.3 Test Maven](#2.2.3-Test-Maven)**
+- **[Git](#Git)**
+   - **[Windows](#Windows)**
+   - **[Linux](#Linux)**
+   - **[Test Git](#Test git)**
+   - **[SonarQube](#Sonarqube)**
+      - **[Sonarqube Server](#Sonarqube Server)**
+      - **[Sonar Scanner](#Sonar Scanner)**
+   - **[Jenkins](#Jenkins)**
+   - **[JFrog](#JFrog)**
+   - **[IDE Setting](#IDE Setting)**
+      - **[Intellij IDEA](#Intellij IDEA)**
+      - **[Checkstyle](#Checkstyle)**
+      - **[Test Coverage](#Test Coverage)**
 - **[Pipeline](#<red>3.-Pipeline</red>)**
 - **[Build](#<red>4.-Build</red>)**
 - **[Install](#<red>5.-Install</red>)**
