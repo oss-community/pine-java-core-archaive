@@ -1,41 +1,73 @@
-# Pine Framework
+<style>
+red { color: Crimson }
+blue { color: Royalblue }
+black { color: Black }
+</style>
+
+# <p align="center"><black>Pine Framework</black></p>
 
 Pine Framework is framework based on Java language.
+Pine framework has a big mission, and it is, write business once independent of tools, framework, database, application server,... then use the implemented business into different architecture or structure.
 
-## Pine Java Core
+The framework comprised three main part as follows:
 
-Pine Java Core is a basic module is included utils, helpers, abstracts and the other basic facilities.
+- core components 
+- core implementation component (like JEE, Spring, ...)
+- product component
 
-Pine Core Java has modules as follows.
+# <p align="center"><black>Table of content</black></p>
+
+- **[1. Pine Java Core](README.md#<red>1 Pine Java Core</red>)**
+- **[2. Tools](README.md#<red>2 Tools</red>)**
+  - **[2.1 Java](README.md#<blue>2.1 Java</blue>)**
+     - **[2.1.1 Windows](README.md#2.1.1 Windows)**
+     - **[2.1.2 Linux](README.md#2.1.2 Linux)**
+     - **[2.1.3 Test Java](README.md#2.1.3 Test Java)**
+  - **[2.2 Maven](README.md#<blue>2.2 Maven</blue>)**
+     - **[2.2.1 Windows](README.md#2.2.1 Windows)**
+     - **[2.2.2 Linux](README.md#2.2.2 Linux)**
+     - **[2.2.3 Test Maven](README.md#2.2.3 Test Maven)**
+  - **[Git](README.md#Git)**
+     - **[Windows](README.md#Windows)**
+     - **[Linux](README.md#Linux)**
+     - **[Test Git](README.md#Test git)**
+  - **[SonarQube](README.md#Sonarqube)**
+     - **[Sonarqube Server](README.md#Sonarqube Server)**
+     - **[Sonar Scanner](README.md#Sonar Scanner)**
+  - **[Jenkins](README.md#Jenkins)**
+  - **[JFrog](README.md#JFrog)**
+  - **[IDE Setting](README.md#IDE Setting)**
+     - **[Intellij IDEA](README.md#Intellij IDEA)**
+     - **[Checkstyle](README.md#Checkstyle)**
+     - **[Test Coverage](README.md#Test Coverage)**
+- **[Pipeline](README.md#<red>3.-Pipeline</red>)**
+- **[Build](README.md#<red>4.-Build</red>)**
+- **[Install](README.md#<red>5.-Install</red>)**
+
+
+## <red>1 Pine Java Core</red>
+
+  Pine Java Core is a basic module is included utils, helpers, abstracts and the other basic facilities.
+
+  Pine Core Java has modules as follows.
 
 - helper
 - document
 
-* TOC
-  {:toc}
-## Prerequisites
+## <red>2 Tools</red>
 
-- [Java 17](README.md#Java)
-- [Maven 3](README.md#Maven)
-- [Git](README.md#Git)
-- [SonarQube](README.md#Sonarqube)
-- [Jenkins](README.md#Jenkins)
-- [JFrog](README.md#JFrog)
-- [IDE Setting](README.md#IDE Setting)
-- [Pipeline](README.md#Pipeline)
+### <blue>2.1 Java</blue>
 
-### Java
-
-#### Windows
+#### 2.1.1 Windows
 
 1. [download Java 17 in zip format](https://www.oracle.com/java/technologies/downloads/#jdk17-windows)
-2. (optional) `mkdir C:\sdk`
-3. (optional) extract zip file to C:\sdk and rename it to jdk-17
+2. `mkdir C:\sdk`
+3.  extract zip file to C:\sdk and rename it to jdk-17
 4. `set JAVA_HOME=C:\sdk\jdk-17`
 5. `setx /M JAVA_HOME "%JAVA_HOME%"`
 6. `setx /M PATH "%PATH%;%JAVA_HOME%\bin"`
 
-#### Linux
+#### 2.1.2 Linux
 
 1. [download Java 17 in tar.gz format](https://www.oracle.com/java/technologies/downloads/#jdk17-linux)
 2. `sudo chown user-name /opt/`
@@ -46,22 +78,22 @@ Pine Core Java has modules as follows.
 7. `sed -i 's/$PATH/$JAVA_HOME\/bin:$PATH/g' .bashrc `
 8. `source ~/.bashrc`
 
-#### Test Java
+#### 2.1.3 Test Java
 
 `java -version`
 
-### Maven
+### <blue>2.2 Maven</blue>
 
-#### Windows
+#### 2.2.1 Windows
 
 1. [download Maven in zip format](https://maven.apache.org/download.cgi)
-2. (optional) `mkdir C:\sdk`
-3. (optional) extract zip file to C:\sdk and rename it to maven
+2. `mkdir C:\sdk`
+3. extract zip file to C:\sdk and rename it to maven
 4. `set M2_HOME=C:\sdk\maven`
 5. `setx /M M2_HOME "%M2_HOME%"`
 6. `setx /M PATH "%PATH%;%M2_HOME%\bin"`
 
-#### Linux
+#### 2.2.2 Linux
 
 1. [download Maven in tar.gz format](https://maven.apache.org/download.cgi)
 2. `sudo chown user-name /opt/`
@@ -72,7 +104,7 @@ Pine Core Java has modules as follows.
 7. `sed -i 's/$PATH/M2_HOME\/bin:$PATH/g' .bashrc `
 8. `source ~/.bashrc`
 
-#### Test Maven
+#### 2.2.3 Test Maven
 
 `mvn -version`
 
@@ -163,7 +195,7 @@ then add environment variable.
 
 ### Intellij IDEA
 
-#### checkstyle
+#### Checkstyle
 
 1. [install google check style plugin](https://plugins.jetbrains.com/plugin/1065-checkstyle-idea/versions)
 2. add customized checkstyle.xml to _**setting/preferences > Tools > Checkstyle > Configuration File**_
@@ -186,12 +218,21 @@ then add environment variable.
     - idea.coverage.test.tracking.enable
     - idea.coverage.tracing.enable
 
-### Pipeline
+## <red>3 Pipeline</red>
 
-## Build and Test
+## <red>4 Build</red>
 
-`mvn clean package checkstyle:check site:site site:stage scm-publish:publish-scm`
+- `mvn clean package -DskipTests=true -s settings.xml`
+- `mvn test -s settings.xml`
+- `mvn checkstyle:check -s settings.xml`
+- `mvn site:site site:stage -s settings.xml`
+- `mvn scm-publish:publish-scm -s settings.xml`
+- `mvn sonar:sonar -s settings.xml`
+- `mvn deploy -s settings.xml`
 
-## Build and Install
+## <red>5 Install</red>
 
 `mvn clean install -DskipTests=true`
+
+
+[Top](README.md#<p align="center"><black>Pine Framework</black></p>)
