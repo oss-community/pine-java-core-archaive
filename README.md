@@ -19,30 +19,30 @@ The framework comprised three main part as follows:
 
 - **[1 Pine Java Core](#1-Pine-Java-Core)**
 - **[2 Tools](#2-Tools)**
-- **[2.1 Java](#2.1-Java)**
-- **[2.1.1 Windows](#2.1.1-Windows)**
-- **[2.1.2 Linux](#2.1.2-Linux)**
-- **[2.1.3 Test Java](#2.1.3-Test-Java)**
-- **[2.2 Maven](#2.2-Maven)**
-- **[2.2.1 Windows](#2.2.1-Windows)**
-- **[2.2.2 Linux](#2.2.2-Linux)**
-- **[2.2.3 Test Maven](#2.2.3-Test-Maven)**
-- **[Git](#Git)**
-   - **[Windows](#Windows)**
-   - **[Linux](#Linux)**
-   - **[Test Git](#Test git)**
-   - **[SonarQube](#Sonarqube)**
-      - **[Sonarqube Server](#Sonarqube Server)**
-      - **[Sonar Scanner](#Sonar Scanner)**
-   - **[Jenkins](#Jenkins)**
-   - **[JFrog](#JFrog)**
-   - **[IDE Setting](#IDE Setting)**
-      - **[Intellij IDEA](#Intellij IDEA)**
-      - **[Checkstyle](#Checkstyle)**
-      - **[Test Coverage](#Test Coverage)**
-- **[Pipeline](#<red>3.-Pipeline</red>)**
-- **[Build](#<red>4.-Build</red>)**
-- **[Install](#<red>5.-Install</red>)**
+  - **[2-1 Java](#2-1-Java)**
+     - **[2-1-1 Windows](#2-1-1-Windows)**
+     - **[2-1-2 Linux](#2-1-2-Linux)**
+     - **[2-1-3 Test Java](#2-1-3-Test-Java)**
+  - **[2-2 Maven](#2-2-Maven)**
+     - **[2-2-1 Windows](#2-2-1-Windows)**
+     - **[2-2-2 Linux](#2-2-2-Linux)**
+     - **[2-2-3 Test Maven](#2-2-3-Test-Maven)**
+  - **[Git](#Git)**
+     - **[Windows](#Windows)**
+     - **[Linux](#Linux)**
+     - **[Test Git](#Test git)**
+  - **[SonarQube](#Sonarqube)**
+     - **[Sonarqube Server](#Sonarqube Server)**
+     - **[Sonar Scanner](#Sonar Scanner)**
+  - **[Jenkins](#Jenkins)**
+  - **[JFrog](#JFrog)**
+  - **[IDE Setting](#IDE Setting)**
+     - **[Intellij IDEA](#Intellij IDEA)**
+     - **[Checkstyle](#Checkstyle)**
+     - **[Test Coverage](#Test Coverage)**
+- **[Pipeline](#3-Pipeline)**
+- **[Build](#4-Build)**
+- **[Install](#5-Install)**
 
 
 ## <red>1 Pine Java Core</red>
@@ -56,9 +56,9 @@ The framework comprised three main part as follows:
 
 ## <red>2 Tools</red>
 
-### <blue>2.1 Java</blue>
+### <blue>2-1 Java</blue>
 
-#### 2.1.1 Windows
+#### 2-1-1 Windows
 
 1. [download Java 17 in zip format](https://www.oracle.com/java/technologies/downloads/#jdk17-windows)
 2. `mkdir C:\sdk`
@@ -67,7 +67,7 @@ The framework comprised three main part as follows:
 5. `setx /M JAVA_HOME "%JAVA_HOME%"`
 6. `setx /M PATH "%PATH%;%JAVA_HOME%\bin"`
 
-#### 2.1.2 Linux
+#### 2-1-2 Linux
 
 1. [download Java 17 in tar.gz format](https://www.oracle.com/java/technologies/downloads/#jdk17-linux)
 2. `sudo chown user-name /opt/`
@@ -78,13 +78,13 @@ The framework comprised three main part as follows:
 7. `sed -i 's/$PATH/$JAVA_HOME\/bin:$PATH/g' .bashrc `
 8. `source ~/.bashrc`
 
-#### 2.1.3 Test Java
+#### 2-1-3 Test Java
 
 `java -version`
 
-### <blue>2.2 Maven</blue>
+### <blue>2-2 Maven</blue>
 
-#### 2.2.1 Windows
+#### 2-2-1 Windows
 
 1. [download Maven in zip format](https://maven.apache.org/download.cgi)
 2. `mkdir C:\sdk`
@@ -93,7 +93,7 @@ The framework comprised three main part as follows:
 5. `setx /M M2_HOME "%M2_HOME%"`
 6. `setx /M PATH "%PATH%;%M2_HOME%\bin"`
 
-#### 2.2.2 Linux
+#### 2-2-2 Linux
 
 1. [download Maven in tar.gz format](https://maven.apache.org/download.cgi)
 2. `sudo chown user-name /opt/`
@@ -104,7 +104,7 @@ The framework comprised three main part as follows:
 7. `sed -i 's/$PATH/M2_HOME\/bin:$PATH/g' .bashrc `
 8. `source ~/.bashrc`
 
-#### 2.2.3 Test Maven
+#### 2-2-3 Test Maven
 
 `mvn -version`
 
