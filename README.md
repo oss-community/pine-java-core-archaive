@@ -27,10 +27,10 @@ The framework comprised three main part as follows:
      - **[2-2-1 Windows](#2-2-1-Windows)**
      - **[2-2-2 Linux](#2-2-2-Linux)**
      - **[2-2-3 Test Maven](#2-2-3-Test-Maven)**
-  - **[2-3 Git](#Git)**
-     - **[2-3-1 Windows](#Windows)**
-     - **[2-3-2 Linux](#Linux)**
-     - **[2-3-3 Test Git](#Test git)**
+  - **[2-3 Git](#2-3-Git)**
+     - **[2-3-1 Windows](#2-3-1-Windows)**
+     - **[2-3-2 Linux](#2-3-2-Linux)**
+     - **[2-3-3 Test Git](#2-3-3-Test-git)**
   - **[SonarQube](#Sonarqube)**
      - **[Sonarqube Server](#Sonarqube Server)**
      - **[Sonar Scanner](#Sonar Scanner)**
