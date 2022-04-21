@@ -6,20 +6,25 @@ Pine Framework is framework based on Java language.
 
 Pine Java Core is a basic module is included utils, helpers, abstracts and the other basic facilities.
 
-- Pine Helper
+Pine Core Java has modules as follows.
 
+- helper
+- document
+
+* TOC
+  {:toc}
 ## Prerequisites
 
-- Java 8
-- Maven 3
-- Git
-- SonarQube
-- Jenkins
-- JFrog
-- IDE Setting
-- Pipeline
+- [Java 17](README.md#Java)
+- [Maven 3](README.md#Maven)
+- [Git](README.md#Git)
+- [SonarQube](README.md#Sonarqube)
+- [Jenkins](README.md#Jenkins)
+- [JFrog](README.md#JFrog)
+- [IDE Setting](README.md#IDE Setting)
+- [Pipeline](README.md#Pipeline)
 
-### Install Java
+### Java
 
 #### Windows
 
@@ -45,7 +50,7 @@ Pine Java Core is a basic module is included utils, helpers, abstracts and the o
 
 `java -version`
 
-### Install Maven
+### Maven
 
 #### Windows
 
@@ -71,7 +76,7 @@ Pine Java Core is a basic module is included utils, helpers, abstracts and the o
 
 `mvn -version`
 
-### Install Git
+### Git
 
 #### Windows
 
@@ -86,9 +91,9 @@ Pine Java Core is a basic module is included utils, helpers, abstracts and the o
 
 `git --version`
 
-### Install SonarQube
+### Sonarqube
 
-#### SonarQube
+#### Sonarqube Server
 
 1. [download sonarqube](https://www.sonarqube.org/downloads/) then extract it.
 2. In the extracted path execute the following command.
