@@ -19,10 +19,10 @@ The framework comprised three main part as follows:
 
 - **[1 Pine Java Core](#1-Pine-Java-Core)**
 - **[2 Tools](#2-Tools)**
-  - **[2.1 Java](#2.1-Java)**
-     - **[2.1.1 Windows](#2.1.1-Windows)**
-     - **[2.1.2 Linux](#2.1.2-Linux)**
-     - **[2.1.3 Test Java](#2.1.3-Test-Java)**
+  - **[2.1 Java](#2-1-Java)**
+     - **[2.1.1 Windows](#2-1-1-Windows)**
+     - **[2.1.2 Linux](#2-1-2-Linux)**
+     - **[2.1.3 Test Java](#2-1-3-Test-Java)**
   - **[2.2 Maven](#2.2-Maven)**
      - **[2.2.1 Windows](#2.2.1-Windows)**
      - **[2.2.2 Linux](#2.2.2-Linux)**
