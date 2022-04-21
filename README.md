@@ -24,9 +24,9 @@ The framework comprised three main part as follows:
      - **[2.1.2 Linux](#2.1.2-Linux)**
      - **[2.1.3 Test Java](#2.1.3-Test-Java)**
   - **[2.2 Maven](#2.2-Maven)**
-     - **[2.2.1 Windows](#2.2.1-Windows)**
-     - **[2.2.2 Linux](#2.2.2-Linux)**
-     - **[2.2.3 Test Maven](#2.2.3-Test-Maven)**
+     - **[2.2.1 Windows](#2.2.1 Windows)**
+     - **[2.2.2 Linux](#2.2.2 Linux)**
+     - **[2.2.3 Test Maven](#2.2.3 Test-Maven)**
   - **[Git](README.md#Git)**
      - **[Windows](README.md#Windows)**
      - **[Linux](README.md#Linux)**
