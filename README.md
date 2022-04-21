@@ -17,16 +17,16 @@ The framework comprised three main part as follows:
 
 # <p align="center"><black>Table of content</black></p>
 
-- **[1. Pine Java Core](README.md#<red>1 Pine Java Core</red>)**
-- **[2. Tools](README.md#<red>2 Tools</red>)**
-  - **[2.1 Java](README.md#<blue>2.1 Java</blue>)**
-     - **[2.1.1 Windows](README.md#2.1.1 Windows)**
-     - **[2.1.2 Linux](README.md#2.1.2 Linux)**
-     - **[2.1.3 Test Java](README.md#2.1.3 Test Java)**
-  - **[2.2 Maven](README.md#<blue>2.2 Maven</blue>)**
-     - **[2.2.1 Windows](README.md#2.2.1 Windows)**
-     - **[2.2.2 Linux](README.md#2.2.2 Linux)**
-     - **[2.2.3 Test Maven](README.md#2.2.3 Test Maven)**
+- **[1 Pine Java Core](README.md#1-Pine-Java-Core)**
+- **[2 Tools](README.md#2-Tools)**
+  - **[2.1 Java](README.md#2.1-Java)**
+     - **[2.1.1 Windows](README.md#2.1.1-Windows)**
+     - **[2.1.2 Linux](README.md#2.1.2-Linux)**
+     - **[2.1.3 Test Java](README.md#2.1.3-Test-Java)**
+  - **[2.2 Maven](README.md#2.2-Maven)**
+     - **[2.2.1 Windows](README.md#2.2.1-Windows)**
+     - **[2.2.2 Linux](README.md#2.2.2-Linux)**
+     - **[2.2.3 Test Maven](README.md#2.2.3-Test-Maven)**
   - **[Git](README.md#Git)**
      - **[Windows](README.md#Windows)**
      - **[Linux](README.md#Linux)**
