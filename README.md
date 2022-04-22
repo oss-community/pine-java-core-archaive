@@ -247,11 +247,11 @@ source ~/.bashrc
    - insert script path (default is Jenkinsfile)
 <p align="center"><img height="300" width="700" src="https://github.com/saman-oss/pine-java-core/blob/main/docs/pipeline-4.png"/></p>
 
-click on the save button to see the pipeline dashboard.
+5. click on the save button to see the pipeline dashboard.
 <p align="center"><img height="300" width="700" src="https://github.com/saman-oss/pine-java-core/blob/main/docs/pipeline-4-1.png"/></p>
 
 
-5. click on Build Now menu
+6. click on Build Now menu
 <p align="center"><img height="300" width="700" src="https://github.com/saman-oss/pine-java-core/blob/main/docs/pipeline-5.png"/></p>
 
 ---
