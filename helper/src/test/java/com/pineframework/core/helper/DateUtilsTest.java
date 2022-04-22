@@ -104,9 +104,9 @@ class DateUtilsTest extends AbstractUtilsTest {
   @DisplayName("creating date format if id is empty")
   void createFormat_IfIdIsEmpty_ShouldThrowIllegalArgumentException() {
     //Given
-    String givenId = "";
+    var givenId = "";
     var givenLocale = new Locale("dummy");
-    String givenPattern = "dummy";
+    var givenPattern = "dummy";
 
     //Expectation
     var expectedException = IllegalArgumentException.class;

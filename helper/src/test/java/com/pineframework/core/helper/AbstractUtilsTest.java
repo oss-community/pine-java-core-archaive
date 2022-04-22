@@ -67,7 +67,7 @@ public abstract class AbstractUtilsTest {
   }
 
   protected void logArray(byte... bytes) {
-    String string = IntStream.range(0, bytes.length)
+    var string = IntStream.range(0, bytes.length)
         .mapToObj(i -> bytes[i])
         .map(o -> "[" + o + "]")
         .collect(Collectors.joining(" "));

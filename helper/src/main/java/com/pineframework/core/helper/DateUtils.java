@@ -208,7 +208,7 @@ public final class DateUtils {
       throw new IllegalArgumentException(i18n("error.validation.is.not.valid", i18n("parameter.name.format"), i18n("parameter.name.time")));
     });
 
-    String[] timeParts = time.split(":");
+    var timeParts = time.split(":");
 
     var sign = getSign(timeParts[0]);
 
@@ -234,9 +234,9 @@ public final class DateUtils {
     requireNonEmptyOrNull(id, i18n("error.validation.should.not.be.emptyOrNull", i18n("parameter.name.id")));
     requireNonNull(locale, i18n("error.validation.should.not.be.null", i18n("parameter.name.locale")));
 
-    Calendar calendar = Calendar.getInstance(forLocale(id, locale));
-    calendar.set(dateTime.getYear(), dateTime.getMonthValue() - 1, dateTime.getDayOfMonth(), dateTime.getHour(), dateTime.getMinute(),
-        dateTime.getSecond());
+    var calendar = Calendar.getInstance(forLocale(id, locale));
+    calendar.set(dateTime.getYear(), dateTime.getMonthValue() - 1, dateTime.getDayOfMonth(),
+        dateTime.getHour(), dateTime.getMinute(), dateTime.getSecond());
 
     return calendar.getTime();
   }
@@ -256,7 +256,7 @@ public final class DateUtils {
     requireNonEmptyOrNull(id, i18n("error.validation.should.not.be.emptyOrNull", i18n("parameter.name.id")));
     requireNonNull(locale, i18n("error.validation.should.not.be.null", i18n("parameter.name.locale")));
 
-    Calendar calendar = Calendar.getInstance(forLocale(id, locale));
+    var calendar = Calendar.getInstance(forLocale(id, locale));
     calendar.set(date.getYear(), date.getMonthValue() - 1, date.getDayOfMonth());
 
     return calendar.getTime();
@@ -330,13 +330,13 @@ public final class DateUtils {
     requireNonEmptyOrNull(id, i18n("error.validation.should.not.be.emptyOrNull", i18n("parameter.name.id")));
     requireNonNull(locale, i18n("error.validation.should.not.be.null", i18n("parameter.name.locale")));
 
-    Calendar calendar = Calendar.getInstance(forLocale(id, locale));
+    var calendar = Calendar.getInstance(forLocale(id, locale));
     calendar.set(date.getYear(), date.getMonthValue() - 1, date.getDayOfMonth());
     calendar.add(Calendar.YEAR, years);
     calendar.add(Calendar.MONTH, months);
     calendar.add(Calendar.DATE, days);
 
-    SimpleDateFormat dateFormat = createFormat(id, locale, "yyyy-MM-dd");
+    var dateFormat = createFormat(id, locale, "yyyy-MM-dd");
     dateFormat.setNumberFormat(NumberFormat.getNumberInstance());
 
     return LocalDate.parse(dateFormat.format(calendar.getTime()), ofPattern("yyyy-MM-dd"));
@@ -361,9 +361,9 @@ public final class DateUtils {
 
     var currentOffset = calculateOffset(LocalDateTime.of(date, currentTime), ZoneId.of("UTC"), currentZone);
     var nextOffset = calculateOffset(LocalDateTime.of(date, nextTime), ZoneId.of("UTC"), nextZone);
-    int offsetDiff = toSecond(nextOffset) - toSecond(currentOffset);
+    var offsetDiff = toSecond(nextOffset) - toSecond(currentOffset);
 
-    LocalTime time = LocalTime.ofSecondOfDay(Math.abs(offsetDiff));
+    var time = LocalTime.ofSecondOfDay(Math.abs(offsetDiff));
 
     return switch (getSignChar(offsetDiff)) {
       case POSITIVE -> nextTime.isBefore(time) && currentTime.isAfter(LocalTime.MIDNIGHT.minusSeconds(time.toSecondOfDay())) ? 1 : 0;
@@ -460,7 +460,7 @@ public final class DateUtils {
     var nextTime = changeZone(LocalDateTime.of(currentDate, currentTime), currentZone, nextZone).toLocalTime();
     var nextDate = convertCalendar(currentDateTime.toLocalDate(), currentId, currentLocale, currentZone, nextId, nextLocale, nextZone)._1;
 
-    int dayDifference = getDayDifference(currentDate, currentTime, currentZone, nextTime, nextZone);
+    var dayDifference = getDayDifference(currentDate, currentTime, currentZone, nextTime, nextZone);
     currentDate = plus(currentDateTime.toLocalDate(), 0, 0, dayDifference, currentId, currentLocale);
     nextDate = plus(nextDate, 0, 0, dayDifference, nextId, nextLocale);
 

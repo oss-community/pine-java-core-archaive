@@ -66,7 +66,7 @@ class JdbcUtilsTest extends AbstractUtilsTest {
     var givenQuery = "SELECT * FROM TEST_T";
 
     //Expectation
-    int expectedSize = 3;
+    var expectedSize = 3;
 
     //When
     var result = Try.of(() -> {
@@ -112,7 +112,7 @@ class JdbcUtilsTest extends AbstractUtilsTest {
     var expectedException = NoSuchElementException.class;
 
     //When
-    ResultSetIterator iterator = new ResultSetIterator(givenResultSet);
+    var iterator = new ResultSetIterator(givenResultSet);
     var result = assertThrows(expectedException, iterator::next);
 
     //Then

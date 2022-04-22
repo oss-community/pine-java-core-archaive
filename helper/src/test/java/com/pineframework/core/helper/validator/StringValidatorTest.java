@@ -119,7 +119,7 @@ class StringValidatorTest extends AbstractUtilsTest {
   @DisplayName("validating string emptiness if it is empty")
   void requireNotEmpty_WhenInputIsEmpty_ShouldThrowIllegalArgumentException() {
     //Given
-    String givenString = "";
+    var givenString = "";
 
     //Expectation
     var expectedException = IllegalArgumentException.class;
