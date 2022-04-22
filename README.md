@@ -227,8 +227,28 @@ source ~/.bashrc
 
 # <span style="color: Crimson">3 Pipeline</span>
 
-Install BlueOcean plugin for [Jenkins](#2-5-Jenkins) and connect it to the Github repository.
-After connecting, create a new pipeline by 
+1. click on New Item menu in dashboard of [Jenkins](#2-5-Jenkins)
+<p align="center"><img height="300" src="https://github.com/saman-oss/pine-java-core/blob/main/docs/pipeline-1.png" width="300"/></p>
+
+2. select Pipeline and then OK.
+<p align="center"><img height="300" src="https://github.com/saman-oss/pine-java-core/blob/main/docs/pipeline-2.png" width="300"/></p>
+
+3. in the configuration page check GitHub project item and insert the url of the project.
+<p align="center"><img height="300" src="https://github.com/saman-oss/pine-java-core/blob/main/docs/pipeline-3.png" width="300"/></p>
+
+4. in Advanced Project Options section select Pipeline script from SCM as pipeline definition.
+   - select Git as a SCM
+   - insert repository url
+   - add credentials
+   - choose branch
+   - insert script path (default is Jenkinsfile)
+<p align="center"><img height="300" src="https://github.com/saman-oss/pine-java-core/blob/main/docs/pipeline-4.png" width="300"/></p>
+
+click on the save button to see the pipeline dashboard.
+<p align="center"><img height="300" src="https://github.com/saman-oss/pine-java-core/blob/main/docs/pipeline-4-1.png" width="300"/></p>
+
+5. click on Build Now menu
+<p align="center"><img height="300" src="https://github.com/saman-oss/pine-java-core/blob/main/docs/pipeline-5.png" width="300"/></p>
 
 ---
 
