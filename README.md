@@ -256,7 +256,7 @@ tunnels:
 <p align="center"><img height="300" width="700" src="https://github.com/saman-oss/pine-java-core/blob/main/docs/pipeline-1.png"/></p>
 
 
-2. select Pipeline and then OK.
+2. select Multibranch Pipeline and then OK.
 <p align="center"><img height="300" width="700" src="https://github.com/saman-oss/pine-java-core/blob/main/docs/pipeline-2.png"/></p>
 
 
