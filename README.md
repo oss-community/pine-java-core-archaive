@@ -1,9 +1,3 @@
-<style>
-red { color: Crimson }
-blue { color: Royalblue }
-black { color: Black }
-</style>
-
 # <p align="center" style="color: red;">Pine Framework</p>
 
 Pine Framework is framework based on Java language.
@@ -55,9 +49,9 @@ The framework comprised three main part as follows:
 - helper
 - document
 
-## <red>2 Tools</red>
+## 2 Tools
 
-### <blue>2-1 Java</blue>
+### 2-1 Java
 
 #### 2-1-1 Windows
 
@@ -83,7 +77,7 @@ The framework comprised three main part as follows:
 
 `java -version`
 
-### <blue>2-2 Maven</blue>
+### 2-2 Maven
 
 #### 2-2-1 Windows
 
@@ -219,9 +213,9 @@ then add environment variable.
     - idea.coverage.test.tracking.enable
     - idea.coverage.tracing.enable
 
-## <red>3 Pipeline</red>
+## 3 Pipeline
 
-## <red>4 Build</red>
+## 4 Build
 
 - `mvn clean package -DskipTests=true -s settings.xml`
 - `mvn test -s settings.xml`
@@ -231,7 +225,7 @@ then add environment variable.
 - `mvn sonar:sonar -s settings.xml`
 - `mvn deploy -s settings.xml`
 
-## <red>5 Install</red>
+## 5 Install
 
 `mvn clean install -DskipTests=true`
 
