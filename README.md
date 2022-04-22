@@ -260,7 +260,7 @@ tunnels:
 <p align="center"><img height="300" width="700" src="https://github.com/saman-oss/pine-java-core/blob/main/docs/pipeline-2.png"/></p>
 
 
-3. in the configuration page check GitHub project item and insert the url of the project.
+3. in the configuration page check `GitHub hook trigger for GITScm polling` item and insert the url of the project.
 <p align="center"><img height="300" width="700" src="https://github.com/saman-oss/pine-java-core/blob/main/docs/pipeline-3.png"/></p>
 
 
@@ -283,7 +283,7 @@ tunnels:
 ## <span style="color: RoyalBlue">3-1 Add Trigger from GitHub to jenkins</span>
 
 1. add webhook to your GitHub repository
-2. check GitHub hook trigger for GITScm polling in jenkins pipeline configuration
+2. check `GitHub hook trigger for GITScm polling` in jenkins pipeline configuration
 
 ---
 
