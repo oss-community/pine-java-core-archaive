@@ -33,7 +33,9 @@ The framework comprised three main part as follows:
     - **[2-6 JFrog](#2-6-JFrog)**
     - **[2-7 IDE Setting](#2-7-IDE-Setting)**
         - **[2-7-1 Intellij IDEA](#2-7-1-Intellij-IDEA)**
+    - **[2-8 Ngrok](#2-8-Ngrok)**
 - **[3 Pipeline](#3-Pipeline)**
+    - **[3-1 Add Trigger from GitHub to jenkins](#3-1-Add-Trigger-from-GitHub-to-jenkins)**
 - **[4 Build](#4-Build)**
 - **[5 Install](#5-Install)**
 
@@ -168,7 +170,7 @@ echo "export SONAR_SCANNER_HOME=extracted path" >> /home/user-name/.bashrc
 sed -i 's/$PATH/$SONAR_SCANNER_HOME\/bin:$PATH/g' .bashrc
 source ~/.bashrc
 ```
-## 2-5 Jenkins
+## <span style="color: RoyalBlue">2-5 Jenkins</span>
 
 1. [download jenkins as war file](https://www.jenkins.io/download/)
 2. `java -jar jenkins.war --httpPort=9090`
@@ -176,7 +178,7 @@ source ~/.bashrc
     - username: admin
     - password: look at the console
 
-## 2-6 JFrog
+## <span style="color: RoyalBlue">2-6 JFrog</span>
 
 1. [download Jfrog](https://jfrog.com/download-jfrog-platform/) and extract it
 2. in the extracted path execute the following command
@@ -200,7 +202,7 @@ echo "export JFROG_HOME=extracted path" >> /home/user-name/.bashrc
 source ~/.bashrc
 ```
 
-## 2-7 IDE Setting
+## <span style="color: RoyalBlue">2-7 IDE Setting</span>
 
 ### 2-7-1 Intellij IDEA
 
@@ -222,6 +224,29 @@ source ~/.bashrc
     - idea.coverage.new.sampling.enable
     - idea.coverage.test.tracking.enable
     - idea.coverage.tracing.enable
+
+
+## <span style="color: RoyalBlue">2-8 Ngrok</span>
+1. [go to Ngrok website](https://dashboard.ngrok.com/)
+2. create an account
+3. download ngrok
+4. add ngrok to system path
+5. add token `ngrok config add-authtoken <token>`
+6. define tunnel like the following example
+```
+tunnels:
+  first-app:
+    addr: 9090
+    proto: http
+  second-app:
+    addr: 8082
+    proto: http
+  third-app:
+    addr: 9000
+    proto: http
+```
+7. `ngrok start --all`
+8. brows http://127.0.0.1:4040
 
 ---
 
@@ -254,6 +279,11 @@ source ~/.bashrc
 6. click on Build Now menu
 <p align="center"><img height="300" width="700" src="https://github.com/saman-oss/pine-java-core/blob/main/docs/pipeline-5.png"/></p>
 
+
+## <span style="color: RoyalBlue">3-1 Add Trigger from GitHub to jenkins</span>
+
+1. add webhook to your GitHub repository
+2. check GitHub hook trigger for GITScm polling in jenkins pipeline configuration
 ---
 
 # <span style="color: Crimson">4 Build</span>
