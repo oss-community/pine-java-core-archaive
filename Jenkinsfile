@@ -1,9 +1,10 @@
 pipeline {
   agent any
+
   stages {
-    stage('log version') {
+    stage('Logging and Verifying') {
       parallel {
-        stage('log version') {
+        stage('Logging Version') {
           steps {
             bat 'java -version'
             bat 'mvn --version'
@@ -11,13 +12,13 @@ pipeline {
           }
         }
 
-        stage('verify pom') {
+        stage('Verifying POM') {
           steps {
             fileExists 'pom.xml'
           }
         }
 
-        stage('verify settings.xml') {
+        stage('Verifying Maven Settings') {
           steps {
             fileExists 'settings.xml'
           }
@@ -26,27 +27,27 @@ pipeline {
       }
     }
 
-    stage('build') {
+    stage('Build') {
       steps {
         bat 'mvn clean package -DskipTests=true -s settings.xml'
       }
     }
 
-    stage('test') {
+    stage('Test') {
       steps {
         bat 'mvn test -s settings.xml'
       }
     }
 
-    stage('check style') {
+    stage('Clean Code') {
       parallel {
-        stage('check style') {
+        stage('Check Style') {
           steps {
             bat 'mvn checkstyle:check -s settings.xml'
           }
         }
 
-        stage('sonar') {
+        stage('Sonar') {
           steps {
             bat 'mvn sonar:sonar -s settings.xml'
           }
@@ -55,19 +56,19 @@ pipeline {
       }
     }
 
-    stage('site') {
+    stage('Making Site') {
       steps {
         bat 'mvn site:site site:stage -s settings.xml'
       }
     }
 
-    stage('publish site') {
+    stage('Publishing Site') {
       steps {
         bat 'mvn scm-publish:publish-scm -s settings.xml'
       }
     }
 
-    stage('deploy to JFrog artifactory') {
+    stage('Deploying to Artifactory') {
       steps {
         bat 'mvn deploy -s settings.xml'
       }

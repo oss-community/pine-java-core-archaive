@@ -227,6 +227,9 @@ source ~/.bashrc
 
 # <span style="color: Crimson">3 Pipeline</span>
 
+Install BlueOcean plugin for [Jenkins](#2-5-Jenkins) and connect it to the Github repository.
+After connecting, create a new pipeline by 
+
 ---
 
 # <span style="color: Crimson">4 Build</span>
@@ -249,4 +252,4 @@ source ~/.bashrc
 mvn clean install -DskipTests=true
 ```
 
-[Top](#Pine-Framework)
+#### <p align="center"> [Top](#Pine-Framework) </p>
