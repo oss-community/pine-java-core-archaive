@@ -48,7 +48,7 @@ The framework comprised three main part as follows:
 ## <span style="color: Crimson">1 Pine Java Core</span>
 
 
-  Pine Java Core is a basic module is included utils, helpers, abstracts and the other basic facilities.
+  Pine Java Core is a <span style="color: Crimson">basic</span> module is included utils, helpers, abstracts and the other basic facilities.
 
   Pine Core Java has modules as follows.
 
