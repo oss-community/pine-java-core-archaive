@@ -230,11 +230,14 @@ source ~/.bashrc
 1. click on New Item menu in dashboard of [Jenkins](#2-5-Jenkins)
 <p align="center"><img height="500" width="800" src="https://github.com/saman-oss/pine-java-core/blob/main/docs/pipeline-1.png"/></p>
 
+
 2. select Pipeline and then OK.
 <p align="center"><img height="500" width="800" src="https://github.com/saman-oss/pine-java-core/blob/main/docs/pipeline-2.png"/></p>
 
+
 3. in the configuration page check GitHub project item and insert the url of the project.
 <p align="center"><img height="500" width="800" src="https://github.com/saman-oss/pine-java-core/blob/main/docs/pipeline-3.png" width="300"/></p>
+
 
 4. in Advanced Project Options section select Pipeline script from SCM as pipeline definition.
    - select Git as a SCM
@@ -242,10 +245,11 @@ source ~/.bashrc
    - add credentials
    - choose branch
    - insert script path (default is Jenkinsfile)
-<p align="center"><img height="500" width="800" src="https://github.com/saman-oss/pine-java-core/blob/main/docs/pipeline-4.png"/></p>
+<p align="center"><img height="400" width="800" src="https://github.com/saman-oss/pine-java-core/blob/main/docs/pipeline-4.png"/></p>
 
 click on the save button to see the pipeline dashboard.
 <p align="center"><img height="500" width="800" src="https://github.com/saman-oss/pine-java-core/blob/main/docs/pipeline-4-1.png"/></p>
+
 
 5. click on Build Now menu
 <p align="center"><img height="500" width="800" src="https://github.com/saman-oss/pine-java-core/blob/main/docs/pipeline-5.png"/></p>
