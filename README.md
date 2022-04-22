@@ -4,7 +4,7 @@ blue { color: Royalblue }
 black { color: Black }
 </style>
 
-# <p align="center">Pine Framework</p>
+# <p align="center" style="color: red;">Pine Framework</p>
 
 Pine Framework is framework based on Java language.
 Pine framework has a big mission, and it is, write business once independent of tools, framework, database, application server,... then use the implemented business into different architecture or structure.
@@ -32,14 +32,14 @@ The framework comprised three main part as follows:
      - **[2-3-2 Linux](#2-3-2-Linux)**
      - **[2-3-3 Test Git](#2-3-3-Test-git)**
   - **[SonarQube](#Sonarqube)**
-     - **[Sonarqube Server](#Sonarqube Server)**
-     - **[Sonar Scanner](#Sonar Scanner)**
+     - **[Sonarqube Server](#Sonarqube-Server)**
+     - **[Sonar Scanner](#Sonar-Scanner)**
   - **[Jenkins](#Jenkins)**
   - **[JFrog](#JFrog)**
-  - **[IDE Setting](#IDE Setting)**
-     - **[Intellij IDEA](#Intellij IDEA)**
+  - **[IDE Setting](#IDE-Setting)**
+     - **[Intellij IDEA](#Intellij-IDEA)**
      - **[Checkstyle](#Checkstyle)**
-     - **[Test Coverage](#Test Coverage)**
+     - **[Test Coverage](#Test-Coverage)**
 - **[Pipeline](#3-Pipeline)**
 - **[Build](#4-Build)**
 - **[Install](#5-Install)**
@@ -48,7 +48,7 @@ The framework comprised three main part as follows:
 ## <span style="color: Crimson">1 Pine Java Core</span>
 
 
-  Pine Java Core is a <span style="color: Crimson">basic</span> module is included utils, helpers, abstracts and the other basic facilities.
+  Pine Java Core is a basic module is included utils, helpers, abstracts and the other basic facilities.
 
   Pine Core Java has modules as follows.
 
