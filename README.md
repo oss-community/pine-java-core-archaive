@@ -4,7 +4,7 @@ blue { color: Royalblue }
 black { color: Black }
 </style>
 
-# <p align="center"><black>Pine Framework</black></p>
+# <p align="center">Pine Framework</p>
 
 Pine Framework is framework based on Java language.
 Pine framework has a big mission, and it is, write business once independent of tools, framework, database, application server,... then use the implemented business into different architecture or structure.
@@ -15,7 +15,7 @@ The framework comprised three main part as follows:
 - core implementation component (like JEE, Spring, ...)
 - product component
 
-## <p align="center"><black>Table of content</black></p>
+## <p align="center">Table of content</p>
 
 - **[1 Pine Java Core](#1-Pine-Java-Core)**
 - **[2 Tools](#2-Tools)**
@@ -44,11 +44,9 @@ The framework comprised three main part as follows:
 - **[Build](#4-Build)**
 - **[Install](#5-Install)**
 
-<p style="color: Crimson">
 
-##  1 Pine Java Core
+## <span style="color: Crimson">1 Pine Java Core</span>
 
-</p>
 
   Pine Java Core is a basic module is included utils, helpers, abstracts and the other basic facilities.
 
