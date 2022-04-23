@@ -1,0 +1,35 @@
+@startuml
+skinparam shadowing false
+skinparam linetype polyline
+skinparam linetype ortho
+!theme blueprint
+
+rectangle "Product Components Template" as productComponent {
+    component "Product" as product
+
+    together {
+        component "Exposer"     as exposer
+        component "Business"    as business
+        component "Model"       as model
+    }
+
+    together {
+        component "Exposer"     as exposer
+        component "Business"    as business
+        component "Model"       as model
+        component "Document"    as document
+        component "Test"        as test
+    }
+
+    product *-down- test
+    product *-down- document
+    product *-right- exposer
+    product *-right- business
+    product *-right- model
+
+    business ..> model
+    exposer ..> business
+
+    product .up.> Core
+}
+@enduml

@@ -10,7 +10,7 @@ The framework comprised three main part as follows:
 
 ====
 .Pine Framework components
-image::/images/PineComponents.png[200,300,align="center"]
+image::{docdir}/images/PineFramework.png[200,300,align="center"]
 ====
 
 == 1. Core Component
@@ -22,17 +22,17 @@ It is an abstract component, means it has provided facilities, abstraction, util
 
 Core components are as follows:
 
-* Data Model
+* Document
+* I18n
 * Helper
+* Data Model
 * Contract
 * Business
 * Test
-* I18n
-* Document
 
 ====
 .Core components
-image::/images/CoreComponents.png[align="center"]
+image::{docdir}/images/Core.png[align="center"]
 ====
 
 The Core component can support four environments, and they are as follows:

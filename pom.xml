@@ -357,7 +357,7 @@ limitations under the License.
                             </publisher>
                             <buildInfo>
                                 <buildName>pine-core-java</buildName>
-                                <buildNumber>${version}</buildNumber>
+                                <buildNumber>${project.version}</buildNumber>
                                 <buildUrl>https://github.com/saman-oss/pine-java-core</buildUrl>
                             </buildInfo>
                         </configuration>

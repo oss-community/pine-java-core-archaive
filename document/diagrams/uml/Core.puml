@@ -1,0 +1,19 @@
+@startuml
+skinparam shadowing false
+!theme blueprint
+rectangle "Core Component" as coreComponent {
+
+    component "I18N" as i18n
+    component "Document" as document
+    component "Data Model" as dataModel
+    component "Helper" as helper
+    component "Test" as test
+    component "Contract" as contract
+    component "Business" as business
+
+    contract ..> dataModel
+    contract ..> helper
+    business ..> contract
+    test .left.> contract
+}
+@enduml

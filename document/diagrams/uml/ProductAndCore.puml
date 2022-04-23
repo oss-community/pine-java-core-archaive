@@ -1,0 +1,46 @@
+@startuml
+skinparam shadowing false
+!theme blueprint
+
+rectangle "Pine Framework" as pineFramework {
+
+    rectangle "Core Component" as coreComponent {
+
+        component "Document"    as document
+        component "I18N"        as i18n
+        component "Helper"      as helper
+        component "Data Model"  as dataModel
+        component "Contract"    as contract
+        component "Test"        as test
+        component "Business"    as business
+
+        contract ..> dataModel
+        contract ..> helper
+        business ..> contract
+        test .left.> contract
+    }
+
+    rectangle "Product Components Template" as productComponent {
+        component "Product" as product
+
+        together {
+            component "Document"    as productDocument
+            component "Model"       as productModel
+            component "Business"    as productBusiness
+            component "Test"        as productTest
+            component "Exposer"     as productExposer
+            component "UI"          as productUI
+        }
+
+        product *-- productTest
+        product *-- productDocument
+        product *-  productExposer
+        product *-  productBusiness
+        product *-  productModel
+        product *-  productUI
+
+        productBusiness ..> business
+        productTest ..> test
+    }
+}
+@enduml

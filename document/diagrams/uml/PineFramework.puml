@@ -1,15 +1,16 @@
 @startuml
+!theme blueprint
 skinparam shadowing false
 skinparam linetype polyline
 skinparam linetype ortho
 rectangle "Pine Framework" as pineFramework {
 
     component "Core" as core
-    component "Core Implementation" as coreImpl
+    component "Core Implementation" as implementation
     component "Product" as product
 
-    coreImpl .up.> core
+    implementation .up.> core
     product .up.> core
-    product .up.> coreImpl
+    product .up.> implementation
 }
 @enduml

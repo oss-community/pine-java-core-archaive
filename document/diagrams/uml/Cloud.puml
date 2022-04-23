@@ -1,8 +1,9 @@
 @startuml
 skinparam shadowing false
+!theme blueprint
 rectangle "Cloud" as cloud {
     component "Config Server" as configServer
-    component "Service Registration and Discovery" as serviceRegistry
+    component "Service Registration and Discovery" as serviceDiscovery
     component "Gateway" as gateway
 }
 @enduml
