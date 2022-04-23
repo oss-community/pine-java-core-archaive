@@ -35,7 +35,7 @@ The framework comprised three main part as follows:
         - **[2-7-1 Intellij IDEA](#2-7-1-Intellij-IDEA)**
     - **[2-8 Ngrok](#2-8-Ngrok)**
 - **[3 Pipeline](#3-Pipeline)**
-    - **[3-1 Add Trigger from GitHub to jenkins](#3-1-Add-Trigger-from-GitHub-to-jenkins)**
+    - **[3-1 Pipeline With Trigger](#3-1-Pipeline-With-Trigger)**
 - **[4 Build](#4-Build)**
 - **[5 Install](#5-Install)**
 
@@ -57,6 +57,7 @@ Pine Core Java has modules as follows.
 ### 2-1-1 Windows
 
 [Download Java 17 in zip format.](https://www.oracle.com/java/technologies/downloads/#jdk17-windows)
+
 ```bash
 mkdir C:\sdk
 # extract zip file to C:\sdk and rename it to jdk-17
@@ -68,6 +69,7 @@ setx /M PATH "%PATH%;%JAVA_HOME%\bin"
 ### 2-1-2 Linux
 
 [Download Java 17 in tar.gz format.](https://www.oracle.com/java/technologies/downloads/#jdk17-linux)
+
 ```bash
 sudo chown user-name /opt/
 sudo chmod 765 /opt/
@@ -79,6 +81,7 @@ source ~/.bashrc
 ```
 
 ### 2-1-3 Test Java
+
 ```bash
 java -version
 ```
@@ -88,6 +91,7 @@ java -version
 ### 2-2-1 Windows
 
 [Download Maven in zip format.](https://maven.apache.org/download.cgi)
+
 ```bash
 mkdir C:\sdk
 # extract zip file to C:\sdk and rename it to maven
@@ -99,6 +103,7 @@ setx /M PATH "%PATH%;%M2_HOME%\bin"
 ### 2-2-2 Linux
 
 [Download Maven in tar.gz format.](https://maven.apache.org/download.cgi)
+
 ```bash
 sudo chown user-name /opt/
 sudo chmod 765 /opt/
@@ -110,6 +115,7 @@ source ~/.bashrc
 ```
 
 ### 2-2-3 Test Maven
+
 ```bash
 mvn -version
 ```
@@ -126,6 +132,7 @@ mvn -version
 [Guidance of how to download and install](https://git-scm.com/download/linux).
 
 ### 2-3-3 Test Git
+
 ```bash
 git --version
 ```
@@ -145,31 +152,39 @@ git --version
 Generate token at _**administration > security > users > Tokens**_ and add environment variable.
 
 #### Windows
+
 ```bash
 setx /M SONAR_TOKEN generated-token
 setx /M SONAR_URL sonarqube-url
 ```
+
 #### Linux
+
 ```bash
 echo "export SONAR_TOKEN=generated-token" >> /home/user-name/.bashrc
 echo "export SONAR_URL=sonarqube-url" >> /home/user-name/.bashrc
 ```
+
 ### 2-4-2 Sonar Scanner
 
 [Download sonar scanner cli](https://binaries.sonarsource.com/?prefix=Distribution/sonar-scanner-cli/) and extract it,
 then add the following environment variables.
 
 #### Windows
+
 ```bash
 set SONAR_SCANNER_HOME=extracted path
 setx /M PATH "%PATH%;%SONAR_SCANNER_HOME%\bin"
 ```
+
 #### Linux
+
 ```bash
 echo "export SONAR_SCANNER_HOME=extracted path" >> /home/user-name/.bashrc
 sed -i 's/$PATH/$SONAR_SCANNER_HOME\/bin:$PATH/g' .bashrc
 source ~/.bashrc
 ```
+
 ## <span style="color: RoyalBlue">2-5 Jenkins</span>
 
 1. [download jenkins as war file](https://www.jenkins.io/download/)
@@ -210,12 +225,7 @@ source ~/.bashrc
 
 1. [install google check style plugin](https://plugins.jetbrains.com/plugin/1065-checkstyle-idea/versions)
 2. add customized checkstyle.xml to _**setting/preferences > Tools > Checkstyle > Configuration File**_
-
-<p align="center"><img height="300" width="300" src="https://github.com/saman-oss/pine-java-core/blob/main/docs/idea-checkstyle-001.png"/></p>
-
 3. import customized checkstyle.xml to _**setting/preferences > Editor > Code Style > Schema**_
-
-<p align="center"><img height="300" width="300" src="https://github.com/saman-oss/pine-java-core/blob/main/docs/idea-checkstyle-002.png"/></p>
 
 #### Test Coverage
 
@@ -225,14 +235,15 @@ source ~/.bashrc
     - idea.coverage.test.tracking.enable
     - idea.coverage.tracing.enable
 
-
 ## <span style="color: RoyalBlue">2-8 Ngrok</span>
+
 1. [go to Ngrok website](https://dashboard.ngrok.com/)
 2. create an account
 3. download ngrok
 4. add ngrok to system path
 5. add token `ngrok config add-authtoken <token>`
 6. define tunnel like the following example
+
 ```
 tunnels:
   first-app:
@@ -245,6 +256,7 @@ tunnels:
     addr: 9000
     proto: http
 ```
+
 7. `ngrok start --all`
 8. brows http://127.0.0.1:4040
 
@@ -253,38 +265,29 @@ tunnels:
 # <span style="color: Crimson">3 Pipeline</span>
 
 1. click on New Item menu in dashboard of [Jenkins](#2-5-Jenkins)
-<p align="center"><img height="300" width="700" src="https://github.com/saman-oss/pine-java-core/blob/main/docs/pipeline-1.png"/></p>
-
-
-2. select Multibranch Pipeline and then OK.
-<p align="center"><img height="300" width="700" src="https://github.com/saman-oss/pine-java-core/blob/main/docs/pipeline-2.png"/></p>
-
-
+2. select Pipeline and then OK.
 3. in the configuration page check `GitHub hook trigger for GITScm polling` item and insert the url of the project.
-<p align="center"><img height="300" width="700" src="https://github.com/saman-oss/pine-java-core/blob/main/docs/pipeline-3.png"/></p>
-
-
 4. in Advanced Project Options section select Pipeline script from SCM as pipeline definition.
-   - select Git as a SCM
-   - insert repository url
-   - add credentials
-   - choose branch
-   - insert script path (default is Jenkinsfile)
-<p align="center"><img height="300" width="700" src="https://github.com/saman-oss/pine-java-core/blob/main/docs/pipeline-4.png"/></p>
-
+    - select Git as a SCM
+    - insert repository url
+    - add credentials
+    - choose branch
+    - insert script path (default is Jenkinsfile)
 5. click on the save button to see the pipeline dashboard.
-<p align="center"><img height="300" width="700" src="https://github.com/saman-oss/pine-java-core/blob/main/docs/pipeline-4-1.png"/></p>
-
-
 6. click on Build Now menu
-<p align="center"><img height="300" width="700" src="https://github.com/saman-oss/pine-java-core/blob/main/docs/pipeline-5.png"/></p>
 
+## <span style="color: RoyalBlue">3-1 Pipeline With Trigger</span>
 
-## <span style="color: RoyalBlue">3-1 Add Trigger from GitHub to jenkins</span>
-
-1. add webhook to your GitHub repository
-2. check `GitHub hook trigger for GITScm polling` in jenkins pipeline configuration
-
+1. add webhook to your GitHub repository 
+2. click on New Item menu in dashboard of [Jenkins](#2-5-Jenkins)
+3. select Multibranch Pipeline and then OK.
+4. in Branch sources section select GitHub.
+    - add credentials
+    - insert repository url
+    - choose branch strategy
+    - insert script path (default is Jenkinsfile)
+5. click on the save button to see the pipeline dashboard.
+6. click on Build Now menu
 ---
 
 # <span style="color: Crimson">4 Build</span>
