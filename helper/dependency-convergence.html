@@ -68,63 +68,29 @@
 <section>
 <h2><a name="Reactor_Dependency_Convergence"></a>Reactor Dependency Convergence</h2>
 <table border="0" class="bodyTable"><caption>
-  <b>Legend:</b>
-</caption>
-<tr class="a">
-<td><img src="images/icon_error_sml.gif" alt="[Error]" /></td>
-<td>At least one dependency has a differing version of the dependency or has SNAPSHOT dependencies.</td></tr></table><br />
-<table border="0" class="bodyTable"><caption>
   <b>Statistics:</b>
 </caption>
-<tr class="b">
+<tr class="a">
 <th>Number of modules:</th>
 <td>4</td></tr>
-<tr class="a">
+<tr class="b">
 <th>Number of dependencies (NOD):</th>
 <td>45</td></tr>
-<tr class="b">
-<th>Number of unique artifacts (NOA):</th>
-<td>47</td></tr>
 <tr class="a">
-<th>Number of version-conflicting artifacts (NOC):</th>
-<td>1</td></tr>
+<th>Number of unique artifacts (NOA):</th>
+<td>45</td></tr>
 <tr class="b">
-<th>Number of SNAPSHOT artifacts (NOS):</th>
+<th>Number of version-conflicting artifacts (NOC):</th>
 <td>0</td></tr>
 <tr class="a">
+<th>Number of SNAPSHOT artifacts (NOS):</th>
+<td>0</td></tr>
+<tr class="b">
 <th>Convergence (NOD/NOA):</th>
-<td><img src="images/icon_error_sml.gif" alt="[Error]" />&#160;<b>95 %</b></td></tr>
-<tr class="b">
+<td><img src="images/icon_success_sml.gif" alt="[Success]" />&#160;<b>100 %</b></td></tr>
+<tr class="a">
 <th>Ready for release (100% convergence and no SNAPSHOTS):</th>
-<td><img src="images/icon_error_sml.gif" alt="[Error]" />&#160;<b>Error</b><br />You do not have 100% convergence.</td></tr></table></section><section>
-<h3><a name="Dependencies_used_in_modules"></a>Dependencies used in modules</h3><section>
-<h4><a name="org.slf4j:slf4j-api"></a>org.slf4j:slf4j-api</h4>
-<table border="0" class="bodyTable">
-<tr class="a">
-<td><img src="images/icon_error_sml.gif" alt="[Error]" /></td>
-<td>
-<table border="0" class="bodyTable">
-<tr class="b">
-<td width="25%">1.7.30</td>
-<td>
-<ol style="list-style-type: decimal">
-<li>com.pineframework.core:document:jar:1.0.0-SNAPSHOT<br />\-&#160;com.tngtech.archunit:archunit-junit5:jar:0.23.1:test<br />&#160;&#160;&#160;\-&#160;com.tngtech.archunit:archunit-junit5-api:jar:0.23.1:test<br />&#160;&#160;&#160;&#160;&#160;&#160;\-&#160;com.tngtech.archunit:archunit:jar:0.23.1:test<br />&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;\-&#160;(org.slf4j:slf4j-api:jar:1.7.30:test - omitted for conflict with 1.7.36)<br /></li><br />
-<li>com.pineframework.core:helper:jar:1.0.0-SNAPSHOT<br />\-&#160;com.tngtech.archunit:archunit-junit5:jar:0.23.1:test<br />&#160;&#160;&#160;\-&#160;com.tngtech.archunit:archunit-junit5-api:jar:0.23.1:test<br />&#160;&#160;&#160;&#160;&#160;&#160;\-&#160;com.tngtech.archunit:archunit:jar:0.23.1:test<br />&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;\-&#160;(org.slf4j:slf4j-api:jar:1.7.30:test - omitted for conflict with 1.7.36)<br /></li><br />
-<li>com.pineframework.core:i18n:jar:1.0.0-SNAPSHOT<br />\-&#160;com.tngtech.archunit:archunit-junit5:jar:0.23.1:test<br />&#160;&#160;&#160;\-&#160;com.tngtech.archunit:archunit-junit5-api:jar:0.23.1:test<br />&#160;&#160;&#160;&#160;&#160;&#160;\-&#160;com.tngtech.archunit:archunit:jar:0.23.1:test<br />&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;\-&#160;(org.slf4j:slf4j-api:jar:1.7.30:test - omitted for conflict with 1.7.36)<br /></li><br />
-<li>com.pineframework.core:pine-java-core:pom:1.0.0-SNAPSHOT<br />\-&#160;com.tngtech.archunit:archunit-junit5:jar:0.23.1:test<br />&#160;&#160;&#160;\-&#160;com.tngtech.archunit:archunit-junit5-api:jar:0.23.1:test<br />&#160;&#160;&#160;&#160;&#160;&#160;\-&#160;com.tngtech.archunit:archunit:jar:0.23.1:test<br />&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;\-&#160;(org.slf4j:slf4j-api:jar:1.7.30:test - omitted for conflict with 1.7.36)<br /></li><br /></ol></td></tr>
-<tr class="a">
-<td width="25%">1.7.32</td>
-<td>
-<ol style="list-style-type: decimal">
-<li>com.pineframework.core:helper:jar:1.0.0-SNAPSHOT<br />\-&#160;org.reflections:reflections:jar:0.10.2:compile<br />&#160;&#160;&#160;\-&#160;(org.slf4j:slf4j-api:jar:1.7.32:compile - omitted for conflict with 1.7.36)<br /></li><br /></ol></td></tr>
-<tr class="b">
-<td width="25%">1.7.36</td>
-<td>
-<ol style="list-style-type: decimal">
-<li>com.pineframework.core:document:jar:1.0.0-SNAPSHOT<br />+-&#160;org.slf4j:slf4j-api:jar:1.7.36:compile<br />\-&#160;org.slf4j:slf4j-reload4j:jar:1.7.36:test<br />&#160;&#160;&#160;\-&#160;(org.slf4j:slf4j-api:jar:1.7.36:test - omitted for duplicate)<br /></li><br />
-<li>com.pineframework.core:helper:jar:1.0.0-SNAPSHOT<br />+-&#160;org.slf4j:slf4j-api:jar:1.7.36:compile<br />\-&#160;org.slf4j:slf4j-reload4j:jar:1.7.36:test<br />&#160;&#160;&#160;\-&#160;(org.slf4j:slf4j-api:jar:1.7.36:test - omitted for duplicate)<br /></li><br />
-<li>com.pineframework.core:i18n:jar:1.0.0-SNAPSHOT<br />+-&#160;org.slf4j:slf4j-api:jar:1.7.36:compile<br />\-&#160;org.slf4j:slf4j-reload4j:jar:1.7.36:test<br />&#160;&#160;&#160;\-&#160;(org.slf4j:slf4j-api:jar:1.7.36:test - omitted for duplicate)<br /></li><br />
-<li>com.pineframework.core:pine-java-core:pom:1.0.0-SNAPSHOT<br />+-&#160;org.slf4j:slf4j-api:jar:1.7.36:compile<br />\-&#160;org.slf4j:slf4j-reload4j:jar:1.7.36:test<br />&#160;&#160;&#160;\-&#160;(org.slf4j:slf4j-api:jar:1.7.36:test - omitted for duplicate)<br /></li><br /></ol></td></tr></table></td></tr></table></section></section>
+<td><img src="images/icon_success_sml.gif" alt="[Success]" />&#160;<b>Success</b></td></tr></table></section>
       </div>
     </div>
     <div class="clear">
