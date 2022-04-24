@@ -1,1 +1,0 @@
-packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"com.pineframework.core.helper"},{"l":"com.pineframework.core.helper.noneemptypackage"},{"l":"com.pineframework.core.helper.validator"}];updateSearchResults();
