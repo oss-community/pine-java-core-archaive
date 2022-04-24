@@ -29,7 +29,7 @@ pipeline {
 
     stage('Build') {
       steps {
-        bat 'mvn clean package -DskipTests=true -s settings.xml'
+        bat 'mvn clean package -DskipTests=true -s settings.xml -P source,javadoc,license'
       }
     }
 
@@ -43,13 +43,13 @@ pipeline {
       parallel {
         stage('Check Style') {
           steps {
-            bat 'mvn checkstyle:check -s settings.xml'
+            bat 'mvn checkstyle:check -s settings.xml -P checkstyle'
           }
         }
 
         stage('Sonar') {
           steps {
-            bat 'mvn sonar:sonar -s settings.xml'
+            bat 'mvn sonar:sonar -s settings.xml -P sonar'
           }
         }
 
@@ -58,19 +58,19 @@ pipeline {
 
     stage('Making Site') {
       steps {
-        bat 'mvn site:site site:stage -s settings.xml'
+        bat 'mvn site:site site:stage -s settings.xml -P site,javadoc,changelog,test-report'
       }
     }
 
     stage('Publishing Site') {
       steps {
-        bat 'mvn scm-publish:publish-scm -s settings.xml'
+        bat 'mvn scm-publish:publish-scm -s settings.xml -P publish'
       }
     }
 
     stage('Deploying to Artifactory') {
       steps {
-        bat 'mvn deploy -s settings.xml'
+        bat 'mvn deploy -s settings.xml -p artifactory'
       }
     }
 

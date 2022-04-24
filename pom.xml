@@ -28,83 +28,67 @@ limitations under the License.
         The core module is included abstract and utility modules. It provides abstractions, contracts, helpers and
         utils for end modules to get integrity, clean architecture and extendability.
     </description>
-    <developers>
-        <developer>
-            <name>Saman Alishirishahrbabak</name>
-            <email>samanalishiri@gmail.com</email>
-            <url>https://github.com/saman-oss/pine-java-core/</url>
-            <roles>
-                <role>Developer</role>
-            </roles>
-        </developer>
-    </developers>
-    <licenses>
-        <license>
-            <name>Apache License</name>
-            <url>https://github.com/saman-oss/pine-java-core/blob/main/LICENSE</url>
-            <distribution>repo</distribution>
-        </license>
-        <license>
-            <name>Notice</name>
-            <url>https://github.com/saman-oss/pine-java-core/blob/main/NOTICE</url>
-            <distribution>repo</distribution>
-        </license>
-    </licenses>
-    <issueManagement>
-        <url>https://github.com/saman-oss/pine-java-core/issues</url>
-        <system>GitHub Issues</system>
-    </issueManagement>
-    <distributionManagement>
-        <site>
-            <id>github</id>
-            <url>scm:git:https://github.com/saman-oss/pine-java-core.git</url>
-        </site>
-        <snapshotRepository>
-            <id>snapshots</id>
-            <name>pine-core-java-snapshots</name>
-            <url>http://localhost:8082/artifactory/libs-snapshot</url>
-        </snapshotRepository>
-    </distributionManagement>
-    <scm>
-        <url>https://github.com/saman-oss/pine-java-core/tree/main/</url>
-        <connection>scm:git:https://github.com/saman-oss/pine-java-core.git</connection>
-        <developerConnection>scm:git:git@github.com:saman-oss/pine-java-core.git</developerConnection>
-    </scm>
     <properties>
+        <!--maven config-->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.version>3.9.0</maven.compiler.version>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <maven.compiler.release>17</maven.compiler.release>
 
+        <!--dependencies version-->
         <javaee.version>8.0.1</javaee.version>
         <json.jackson.version>2.13.2</json.jackson.version>
         <slf4j.version>1.7.36</slf4j.version>
         <vavr.version>0.10.4</vavr.version>
         <junit.version>5.8.2</junit.version>
 
-        <asciidoctor.maven.plugin.version>2.0.0-RC.1</asciidoctor.maven.plugin.version>
-        <asciidoctorj.diagram.version>2.0.2</asciidoctorj.diagram.version>
-        <asciidoctorj.pdf.version>1.5.3</asciidoctorj.pdf.version>
-        <asciidoctorj.version>2.3.0</asciidoctorj.version>
-        <jruby.version>9.2.11.1</jruby.version>
-
-        <sonar.host.url>${env.SONAR_URL}</sonar.host.url>
-        <sonar.login>${env.SONAR_TOKEN}</sonar.login>
-        <sonar.projectKey>${project.artifactId}</sonar.projectKey>
-        <artifactory.username>${env.ARTIFACTORY_USERNAME}</artifactory.username>
-        <artifactory.password>${env.ARTIFACTORY_PASSWORD}</artifactory.password>
+        <scm.web>https://github.com/saman-oss/pine-java-core</scm.web>
+        <scm.connection>scm:git:https://github.com/saman-oss/pine-java-core.git</scm.connection>
     </properties>
+    <developers>
+        <developer>
+            <id>samanalishiri</id>
+            <name>Saman Alishirishahrbabak</name>
+            <email>samanalishiri@gmail.com</email>
+            <url>https://github.com/samanalishiri/samanalishiri</url>
+            <roles>
+                <role>developer</role>
+            </roles>
+            <properties>
+                <picUrl>${scm.web}/docs/developer/samanalishiri/pic.jpg</picUrl>
+            </properties>
+        </developer>
+    </developers>
+    <licenses>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <url>${scm.web}/blob/main/LICENSE</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+    <issueManagement>
+        <system>GitHub Issues</system>
+        <url>${scm.web}/issues</url>
+    </issueManagement>
+    <scm>
+        <url>${scm.web}</url>
+        <connection>${scm.connection}</connection>
+        <developerConnection>${scm.connection}</developerConnection>
+    </scm>
     <modules>
         <module>helper</module>
         <module>document</module>
+        <module>i18n</module>
     </modules>
     <dependencies>
+        <!--JEE begin-->
         <dependency>
             <groupId>javax</groupId>
             <artifactId>javaee-web-api</artifactId>
             <version>${javaee.version}</version>
         </dependency>
+        <!--JEE end-->
         <!--JSON begin-->
         <dependency>
             <groupId>org.glassfish</groupId>
@@ -138,14 +122,14 @@ limitations under the License.
             <artifactId>slf4j-api</artifactId>
             <version>${slf4j.version}</version>
         </dependency>
+        <!--utility end -->
+        <!--test begin-->
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-reload4j</artifactId>
-            <version>1.7.36</version>
+            <version>${slf4j.version}</version>
             <scope>test</scope>
         </dependency>
-        <!--utility end -->
-        <!--test begin-->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-engine</artifactId>
@@ -192,6 +176,12 @@ limitations under the License.
             <groupId>com.tngtech.archunit</groupId>
             <artifactId>archunit-junit5</artifactId>
             <version>0.23.1</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-api</artifactId>
+                </exclusion>
+            </exclusions>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -217,56 +207,23 @@ limitations under the License.
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-source-plugin</artifactId>
-                <version>3.2.1</version>
-                <executions>
-                    <execution>
-                        <id>attach-sources</id>
-                        <goals>
-                            <goal>jar</goal>
-                        </goals>
-                    </execution>
-                </executions>
+                <artifactId>maven-clean-plugin</artifactId>
+                <version>2.5</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-install-plugin</artifactId>
+                <version>2.4</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <version>2.7</version>
             </plugin>
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>jdepend-maven-plugin</artifactId>
                 <version>2.0</version>
-            </plugin>
-            <plugin>
-                <groupId>org.sonarsource.scanner.maven</groupId>
-                <artifactId>sonar-maven-plugin</artifactId>
-                <version>3.7.0.1746</version>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-checkstyle-plugin</artifactId>
-                <version>3.1.2</version>
-                <dependencies>
-                    <dependency>
-                        <groupId>com.puppycrawl.tools</groupId>
-                        <artifactId>checkstyle</artifactId>
-                        <version>9.3</version>
-                    </dependency>
-                </dependencies>
-                <configuration>
-                    <encoding>UTF-8</encoding>
-                    <configLocation>code-style/checkstyle.xml</configLocation>
-                    <suppressionsLocation>code-style/checkstyle-suppressions.xml</suppressionsLocation>
-                    <suppressionsFileExpression>checkstyle.suppressions.file</suppressionsFileExpression>
-                    <consoleOutput>true</consoleOutput>
-                    <failsOnError>true</failsOnError>
-                    <linkXRef>false</linkXRef>
-                </configuration>
-                <executions>
-                    <execution>
-                        <id>validate</id>
-                        <phase>validate</phase>
-                        <goals>
-                            <goal>check</goal>
-                        </goals>
-                    </execution>
-                </executions>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -280,193 +237,349 @@ limitations under the License.
                     </dependency>
                 </dependencies>
             </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-site-plugin</artifactId>
-                <version>3.10.0</version>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-javadoc-plugin</artifactId>
-                <version>3.3.2</version>
-                <configuration>
-                    <doclint>none</doclint> <!-- Turn off all checks -->
-                </configuration>
-                <executions>
-                    <execution>
-                        <id>attach-javadocs</id>
-                        <goals>
-                            <goal>jar</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-scm-publish-plugin</artifactId>
-                <version>3.1.0</version>
-                <configuration>
-                    <scmBranch>site</scmBranch>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>license-maven-plugin</artifactId>
-                <version>2.0.0</version>
-                <configuration>
-                    <excludedScopes>test</excludedScopes>
-                </configuration>
-                <executions>
-                    <execution>
-                        <id>download-licenses</id>
-                        <goals>
-                            <goal>aggregate-download-licenses</goal>
-                        </goals>
-                        <configuration>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.jfrog.buildinfo</groupId>
-                <artifactId>artifactory-maven-plugin</artifactId>
-                <version>3.2.3</version>
-                <executions>
-                    <execution>
-                        <id>build-info</id>
-                        <goals>
-                            <goal>publish</goal>
-                        </goals>
-                        <configuration>
-                            <deployProperties>
-                                <gradle>awesome</gradle>
-                            </deployProperties>
-                            <artifactory>
-                                <includeEnvVars>true</includeEnvVars>
-                                <envVarsExcludePatterns>*password*,*secret*,*key*,*token*,*passphrase*
-                                </envVarsExcludePatterns>
-                                <timeoutSec>60</timeoutSec>
-                            </artifactory>
-                            <publisher>
-                                <contextUrl>http://localhost:8082/artifactory</contextUrl>
-                                <username>${artifactory.username}</username>
-                                <password>${artifactory.password}</password>
-                                <excludePatterns>*-tests.jar</excludePatterns>
-                                <repoKey>libs-release-local</repoKey>
-                                <snapshotRepoKey>libs-snapshot-local</snapshotRepoKey>
-                            </publisher>
-                            <buildInfo>
-                                <buildName>pine-core-java</buildName>
-                                <buildNumber>${project.version}</buildNumber>
-                                <buildUrl>https://github.com/saman-oss/pine-java-core</buildUrl>
-                            </buildInfo>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
         </plugins>
     </build>
-    <reporting>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-project-info-reports-plugin</artifactId>
-                <version>3.2.2</version>
-                <reportSets>
-                    <reportSet>
-                        <reports>
-                            <report>ci-management</report>
-                            <report>dependencies</report>
-                            <report>dependency-convergence</report>
-                            <report>dependency-info</report>
-                            <report>dependency-management</report>
-                            <report>distribution-management</report>
-                            <report>help</report>
-                            <report>index</report>
-                            <report>issue-management</report>
-                            <report>licenses</report>
-                            <report>mailing-lists</report>
-                            <report>modules</report>
-                            <report>plugin-management</report>
-                            <report>plugins</report>
-                            <report>team</report>
-                            <report>scm</report>
-                            <report>summary</report>
-                        </reports>
-                    </reportSet>
-                </reportSets>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-javadoc-plugin</artifactId>
-                <version>3.3.2</version>
-                <configuration>
-                    <doclint>none</doclint>
-                </configuration>
-                <reportSets>
-                    <reportSet>
-                        <reports>
-                            <report>javadoc</report>
-                            <report>test-javadoc</report>
-                        </reports>
-                    </reportSet>
-                    <reportSet>
-                        <id>aggregate</id>
-                        <inherited>false</inherited>
-                        <reports>
-                            <report>aggregate</report>
-                        </reports>
-                    </reportSet>
-                </reportSets>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-checkstyle-plugin</artifactId>
-                <version>3.1.2</version>
-                <reportSets>
-                    <reportSet>
-                        <reports>
-                            <report>checkstyle-aggregate</report>
-                        </reports>
+    <profiles>
+        <profile>
+            <id>checkstyle</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-checkstyle-plugin</artifactId>
+                        <version>3.1.2</version>
+                        <dependencies>
+                            <dependency>
+                                <groupId>com.puppycrawl.tools</groupId>
+                                <artifactId>checkstyle</artifactId>
+                                <version>9.3</version>
+                            </dependency>
+                        </dependencies>
                         <configuration>
-                            <includeTestSourceDirectory>true</includeTestSourceDirectory>
+                            <encoding>UTF-8</encoding>
+                            <configLocation>code-style/checkstyle.xml</configLocation>
+                            <suppressionsLocation>code-style/checkstyle-suppressions.xml</suppressionsLocation>
+                            <suppressionsFileExpression>checkstyle.suppressions.file</suppressionsFileExpression>
+                            <consoleOutput>true</consoleOutput>
+                            <failsOnError>true</failsOnError>
+                            <linkXRef>false</linkXRef>
                         </configuration>
-                    </reportSet>
-                </reportSets>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-report-plugin</artifactId>
-                <version>3.0.0-M6</version>
-                <configuration>
-                    <linkXRef>false</linkXRef>
-                    <outputName>test-reports/ut</outputName>
-                </configuration>
-                <reportSets>
-                    <reportSet>
-                        <id>aggregated-unit-test-report</id>
+                        <executions>
+                            <execution>
+                                <id>validate</id>
+                                <phase>validate</phase>
+                                <goals>
+                                    <goal>check</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+            <reporting>
+                    <plugins>
+                        <plugin>
+                            <groupId>org.apache.maven.plugins</groupId>
+                            <artifactId>maven-checkstyle-plugin</artifactId>
+                            <version>3.1.2</version>
+                            <reportSets>
+                                <reportSet>
+                                    <reports>
+                                        <report>checkstyle-aggregate</report>
+                                    </reports>
+                                    <configuration>
+                                        <includeTestSourceDirectory>true</includeTestSourceDirectory>
+                                    </configuration>
+                                </reportSet>
+                            </reportSets>
+                        </plugin>
+                    </plugins>
+            </reporting>
+        </profile>
+        <profile>
+            <id>source</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-source-plugin</artifactId>
+                        <version>3.2.1</version>
+                        <executions>
+                            <execution>
+                                <id>attach-sources</id>
+                                <goals>
+                                    <goal>jar</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <id>javadoc</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-javadoc-plugin</artifactId>
+                        <version>3.3.2</version>
                         <configuration>
-                            <outputDirectory>${project.reporting.outputDirectory}/test-reports/ut</outputDirectory>
+                            <doclint>none</doclint> <!-- Turn off all checks -->
                         </configuration>
-                        <reports>
-                            <report>report-only</report>
-                        </reports>
-                    </reportSet>
-                </reportSets>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-changelog-plugin</artifactId>
-                <version>2.3</version>
-                <reportSets>
-                    <reportSet>
-                        <id>changelog</id>
-                        <reports>
-                            <report>changelog</report>
-                        </reports>
-                    </reportSet>
-                </reportSets>
-            </plugin>
-        </plugins>
-    </reporting>
+                        <executions>
+                            <execution>
+                                <id>attach-javadocs</id>
+                                <goals>
+                                    <goal>jar</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+            <reporting>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-javadoc-plugin</artifactId>
+                        <version>3.3.2</version>
+                        <configuration>
+                            <doclint>none</doclint>
+                        </configuration>
+                        <reportSets>
+                            <reportSet>
+                                <reports>
+                                    <report>javadoc</report>
+                                </reports>
+                            </reportSet>
+                            <reportSet>
+                                <id>aggregate</id>
+                                <inherited>false</inherited>
+                                <reports>
+                                    <report>aggregate</report>
+                                </reports>
+                            </reportSet>
+                        </reportSets>
+                    </plugin>
+                </plugins>
+            </reporting>
+        </profile>
+        <profile>
+            <id>license</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>license-maven-plugin</artifactId>
+                        <version>2.0.0</version>
+                        <configuration>
+                            <excludedScopes>test</excludedScopes>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>download-licenses</id>
+                                <goals>
+                                    <goal>aggregate-download-licenses</goal>
+                                </goals>
+                                <configuration>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <id>changelog</id>
+            <reporting>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-changelog-plugin</artifactId>
+                        <version>2.3</version>
+                        <reportSets>
+                            <reportSet>
+                                <id>changelog</id>
+                                <reports>
+                                    <report>changelog</report>
+                                </reports>
+                            </reportSet>
+                        </reportSets>
+                    </plugin>
+                </plugins>
+            </reporting>
+        </profile>
+        <profile>
+            <id>test-report</id>
+            <reporting>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-surefire-report-plugin</artifactId>
+                        <version>3.0.0-M6</version>
+                        <configuration>
+                            <linkXRef>false</linkXRef>
+                            <outputName>test-reports/ut</outputName>
+                        </configuration>
+                        <reportSets>
+                            <reportSet>
+                                <id>aggregated-unit-test-report</id>
+                                <configuration>
+                                    <outputDirectory>${project.reporting.outputDirectory}/test-reports/ut</outputDirectory>
+                                </configuration>
+                                <reports>
+                                    <report>report-only</report>
+                                </reports>
+                            </reportSet>
+                        </reportSets>
+                    </plugin>
+                </plugins>
+            </reporting>
+        </profile>
+        <profile>
+            <id>site</id>
+            <distributionManagement>
+            <site>
+                <id>github.com</id>
+                <url>${scm.connection}</url>
+            </site>
+            </distributionManagement>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-site-plugin</artifactId>
+                        <version>3.10.0</version>
+                    </plugin>
+                </plugins>
+            </build>
+            <reporting>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-project-info-reports-plugin</artifactId>
+                        <version>3.2.2</version>
+                        <reportSets>
+                            <reportSet>
+                                <reports>
+                                    <report>ci-management</report>
+                                    <report>dependencies</report>
+                                    <report>dependency-convergence</report>
+                                    <report>dependency-info</report>
+                                    <report>dependency-management</report>
+                                    <report>distribution-management</report>
+                                    <report>help</report>
+                                    <report>index</report>
+                                    <report>issue-management</report>
+                                    <report>licenses</report>
+                                    <report>mailing-lists</report>
+                                    <report>modules</report>
+                                    <report>plugin-management</report>
+                                    <report>plugins</report>
+                                    <report>team</report>
+                                    <report>scm</report>
+                                    <report>summary</report>
+                                </reports>
+                            </reportSet>
+                        </reportSets>
+                    </plugin>
+                </plugins>
+            </reporting>
+        </profile>
+        <profile>
+            <id>publish</id>
+            <distributionManagement>
+                <site>
+                    <id>github.com</id>
+                    <url>${scm.connection}</url>
+                </site>
+            </distributionManagement>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-scm-publish-plugin</artifactId>
+                        <version>3.1.0</version>
+                        <configuration>
+                            <scmBranch>site</scmBranch>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <id>sonar</id>
+            <properties>
+                <sonar.host.url>${env.SONAR_URL}</sonar.host.url>
+                <sonar.login>${env.SONAR_TOKEN}</sonar.login>
+                <sonar.projectKey>${project.artifactId}</sonar.projectKey>
+            </properties>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.sonarsource.scanner.maven</groupId>
+                        <artifactId>sonar-maven-plugin</artifactId>
+                        <version>3.7.0.1746</version>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <id>artifactory</id>
+            <properties>
+                <artifactory.username>${env.ARTIFACTORY_USERNAME}</artifactory.username>
+                <artifactory.password>${env.ARTIFACTORY_PASSWORD}</artifactory.password>
+                <artifactory.snapshot.url>${env.ARTIFACTORY_SNAPSHOT_URL}}</artifactory.snapshot.url>
+            </properties>
+            <distributionManagement>
+                <snapshotRepository>
+                    <id>snapshots</id>
+                    <name>pine-core-java-snapshots</name>
+                    <url>${artifactory.snapshot.url}</url>
+                </snapshotRepository>
+            </distributionManagement>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.jfrog.buildinfo</groupId>
+                        <artifactId>artifactory-maven-plugin</artifactId>
+                        <version>3.2.3</version>
+                        <executions>
+                            <execution>
+                                <id>build-info</id>
+                                <goals>
+                                    <goal>publish</goal>
+                                </goals>
+                                <configuration>
+                                    <deployProperties>
+                                        <gradle>awesome</gradle>
+                                    </deployProperties>
+                                    <artifactory>
+                                        <includeEnvVars>true</includeEnvVars>
+                                        <envVarsExcludePatterns>*password*,*secret*,*key*,*token*,*passphrase*
+                                        </envVarsExcludePatterns>
+                                        <timeoutSec>60</timeoutSec>
+                                    </artifactory>
+                                    <publisher>
+                                        <contextUrl>http://localhost:8082/artifactory</contextUrl>
+                                        <username>${artifactory.username}</username>
+                                        <password>${artifactory.password}</password>
+                                        <excludePatterns>*-tests.jar</excludePatterns>
+                                        <repoKey>libs-release-local</repoKey>
+                                        <snapshotRepoKey>libs-snapshot-local</snapshotRepoKey>
+                                    </publisher>
+                                    <buildInfo>
+                                        <buildName>pine-core-java</buildName>
+                                        <buildNumber>${project.version}</buildNumber>
+                                        <buildUrl>${scm.web}</buildUrl>
+                                    </buildInfo>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 </project>

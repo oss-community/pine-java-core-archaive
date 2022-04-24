@@ -123,7 +123,7 @@ public final class OracleJdbcUtils {
   /**
    * The {@code isListenerExist} method {@code USER_CHANGE_NOTIFICATION_REGS} table
    * and returns {@code true} if there is a listener belong to the table, otherwise
-   * it returns {@code false}
+   * it returns {@code false}.
    *
    * @param connection {@link Connection}
    * @param tableName  name of table

@@ -39,21 +39,26 @@ limitations under the License.
             </roles>
         </developer>
     </developers>
+    <licenses>
+        <license>
+            <name>Apache License</name>
+            <url>${source.repository.url}/blob/main/LICENSE</url>
+            <distribution>repo</distribution>
+        </license>
+        <license>
+            <name>Notice</name>
+            <url>${source.repository.url}/blob/main/NOTICE</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+    <issueManagement>
+        <url>${scm.web}/issues</url>
+        <system>GitHub Issues</system>
+    </issueManagement>
     <properties>
         <ojdbc.version>12.2.0.1</ojdbc.version>
         <h2.version>2.1.210</h2.version>
     </properties>
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>org.testcontainers</groupId>
-                <artifactId>testcontainers-bom</artifactId>
-                <version>1.16.3</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
     <dependencies>
         <!--jdbc driver begin-->
         <dependency>
@@ -84,15 +89,14 @@ limitations under the License.
             <groupId>org.reflections</groupId>
             <artifactId>reflections</artifactId>
             <version>0.10.2</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-api</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <!--utility end-->
-        <!--test begin-->
-        <dependency>
-            <groupId>org.testcontainers</groupId>
-            <artifactId>junit-jupiter</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <!--test end-->
     </dependencies>
     <build>
         <plugins>
