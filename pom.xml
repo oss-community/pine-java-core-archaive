@@ -56,7 +56,7 @@ limitations under the License.
                 <role>developer</role>
             </roles>
             <properties>
-                <picUrl>${scm.web}/docs/developer/samanalishiri/pic.jpg</picUrl>
+                <picUrl>${scm.web}/blob/main/docs/developer/samanalishiri/pic.jpg</picUrl>
             </properties>
         </developer>
     </developers>

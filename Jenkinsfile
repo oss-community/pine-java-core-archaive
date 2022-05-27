@@ -6,9 +6,9 @@ pipeline {
       parallel {
         stage('Logging Version') {
           steps {
-            bat 'java -version'
-            bat 'mvn --version'
-            bat 'git --version'
+            sh 'java -version'
+            sh 'mvn --version'
+            sh 'git --version'
           }
         }
 
@@ -29,13 +29,13 @@ pipeline {
 
     stage('Build') {
       steps {
-        bat 'mvn clean package -DskipTests=true -s settings.xml -P source,javadoc,license'
+        sh 'mvn clean package -DskipTests=true -s settings.xml -P source,javadoc,license'
       }
     }
 
     stage('Test') {
       steps {
-        bat 'mvn test -s settings.xml'
+        sh 'mvn test -s settings.xml'
       }
     }
 
@@ -43,13 +43,13 @@ pipeline {
       parallel {
         stage('Check Style') {
           steps {
-            bat 'mvn checkstyle:check -s settings.xml -P checkstyle'
+            sh 'mvn checkstyle:check -s settings.xml -P checkstyle'
           }
         }
 
         stage('Sonar') {
           steps {
-            bat 'mvn sonar:sonar -s settings.xml -P sonar'
+            sh 'mvn sonar:sonar -s settings.xml -P sonar'
           }
         }
 
@@ -58,21 +58,20 @@ pipeline {
 
     stage('Making Site') {
       steps {
-        bat 'mvn site:site site:stage -s settings.xml -P site,javadoc,changelog,test-report'
+        sh 'mvn site:site site:stage -s settings.xml -P site,javadoc,changelog,test-report'
       }
     }
 
     stage('Publishing Site') {
       steps {
-        bat 'mvn scm-publish:publish-scm -s settings.xml -P publish'
+        sh 'mvn scm-publish:publish-scm -s settings.xml -P publish'
       }
     }
 
     stage('Deploying to Artifactory') {
       steps {
-        bat 'mvn deploy -s settings.xml -p artifactory'
+        sh 'mvn deploy -s settings.xml -P artifactory'
       }
     }
-
   }
 }
