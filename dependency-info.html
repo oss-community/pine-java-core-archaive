@@ -9,7 +9,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="generator" content="Apache Maven Doxia Site Renderer 1.11.1" />
-    <title>I18N &#x2013; Dependency Information</title>
+    <title>Pine Java Core &#x2013; Dependency Information</title>
     <link rel="stylesheet" href="./css/maven-base.css" />
     <link rel="stylesheet" href="./css/maven-theme.css" />
     <link rel="stylesheet" href="./css/site.css" />
@@ -17,7 +17,7 @@
   </head>
   <body class="composite">
     <div id="banner">
-<div id="bannerLeft">I18N
+<div id="bannerLeft">Pine Java Core
 </div>
       <div class="clear">
         <hr/>
@@ -28,16 +28,18 @@
         <span id="publishDate">Last Published: 2022-06-07</span>
            | <span id="projectVersion">Version: 1.0.0-SNAPSHOT</span>
       </div>
-      <div class="xright"><a href="${project.url}" title="I18N">I18N</a>      </div>
+      <div class="xright"><a href="${project.url}" title="Pine Java Core">Pine Java Core</a>      </div>
       <div class="clear">
         <hr/>
       </div>
     </div>
     <div id="leftColumn">
       <div id="navcolumn">
-       <h5>Parent Project</h5>
+       <h5>Modules</h5>
     <ul>
-     <li class="none"><a href="index.html" title="Pine Java Core">Pine Java Core</a></li>
+     <li class="none"><a href="helper/index.html" title="Helper">Helper</a></li>
+     <li class="none"><a href="document/index.html" title="Document">Document</a></li>
+     <li class="none"><a href="i18n/index.html" title="I18N">I18N</a></li>
     </ul>
        <h5>Project Documentation</h5>
     <ul>
@@ -50,6 +52,7 @@
        <li class="none"><a href="index.html" title="About">About</a></li>
        <li class="none"><a href="issue-management.html" title="Issue Management">Issue Management</a></li>
        <li class="none"><a href="licenses.html" title="Licenses">Licenses</a></li>
+       <li class="none"><a href="modules.html" title="Project Modules">Project Modules</a></li>
        <li class="none"><a href="plugin-management.html" title="Plugin Management">Plugin Management</a></li>
        <li class="none"><a href="plugins.html" title="Plugins">Plugins</a></li>
        <li class="none"><a href="team.html" title="Team">Team</a></li>
@@ -71,31 +74,32 @@
 <div class="source">
 <pre>&lt;dependency&gt;
   &lt;groupId&gt;com.pineframework.core&lt;/groupId&gt;
-  &lt;artifactId&gt;i18n&lt;/artifactId&gt;
+  &lt;artifactId&gt;pine-java-core&lt;/artifactId&gt;
   &lt;version&gt;1.0.0-SNAPSHOT&lt;/version&gt;
+  &lt;type&gt;pom&lt;/type&gt;
 &lt;/dependency&gt;</pre></div></section><section>
 <h3><a name="Apache_Buildr"></a>Apache Buildr</h3><a name="Apache_Buildr"></a>
 <div class="source">
-<pre>'com.pineframework.core:i18n:jar:1.0.0-SNAPSHOT'</pre></div></section><section>
+<pre>'com.pineframework.core:pine-java-core:pom:1.0.0-SNAPSHOT'</pre></div></section><section>
 <h3><a name="Apache_Ivy"></a>Apache Ivy</h3><a name="Apache_Ivy"></a>
 <div class="source">
-<pre>&lt;dependency org=&quot;com.pineframework.core&quot; name=&quot;i18n&quot; rev=&quot;1.0.0-SNAPSHOT&quot;&gt;
-  &lt;artifact name=&quot;i18n&quot; type=&quot;jar&quot; /&gt;
+<pre>&lt;dependency org=&quot;com.pineframework.core&quot; name=&quot;pine-java-core&quot; rev=&quot;1.0.0-SNAPSHOT&quot;&gt;
+  &lt;artifact name=&quot;pine-java-core&quot; type=&quot;pom&quot; /&gt;
 &lt;/dependency&gt;</pre></div></section><section>
 <h3><a name="Groovy_Grape"></a>Groovy Grape</h3><a name="Groovy_Grape"></a>
 <div class="source">
 <pre>@Grapes(
-@Grab(group='com.pineframework.core', module='i18n', version='1.0.0-SNAPSHOT')
+@Grab(group='com.pineframework.core', module='pine-java-core', version='1.0.0-SNAPSHOT')
 )</pre></div></section><section>
 <h3><a name="Gradle.2FGrails"></a>Gradle/Grails</h3><a name="Gradle.2FGrails"></a>
 <div class="source">
-<pre>compile 'com.pineframework.core:i18n:1.0.0-SNAPSHOT'</pre></div></section><section>
+<pre>compile 'com.pineframework.core:pine-java-core:1.0.0-SNAPSHOT'</pre></div></section><section>
 <h3><a name="Scala_SBT"></a>Scala SBT</h3><a name="Scala_SBT"></a>
 <div class="source">
-<pre>libraryDependencies += &quot;com.pineframework.core&quot; % &quot;i18n&quot; % &quot;1.0.0-SNAPSHOT&quot;</pre></div></section><section>
+<pre>libraryDependencies += &quot;com.pineframework.core&quot; % &quot;pine-java-core&quot; % &quot;1.0.0-SNAPSHOT&quot;</pre></div></section><section>
 <h3><a name="Leiningen"></a>Leiningen</h3><a name="Leiningen"></a>
 <div class="source">
-<pre>[com.pineframework.core/i18n &quot;1.0.0-SNAPSHOT&quot;]</pre></div></section></section>
+<pre>[com.pineframework.core/pine-java-core &quot;1.0.0-SNAPSHOT&quot;]</pre></div></section></section>
       </div>
     </div>
     <div class="clear">

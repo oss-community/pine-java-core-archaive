@@ -9,7 +9,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="generator" content="Apache Maven Doxia Site Renderer 1.11.1" />
-    <title>I18N &#x2013; Project Dependencies</title>
+    <title>Pine Java Core &#x2013; Project Dependencies</title>
     <link rel="stylesheet" href="./css/maven-base.css" />
     <link rel="stylesheet" href="./css/maven-theme.css" />
     <link rel="stylesheet" href="./css/site.css" />
@@ -17,7 +17,7 @@
   </head>
   <body class="composite">
     <div id="banner">
-<div id="bannerLeft">I18N
+<div id="bannerLeft">Pine Java Core
 </div>
       <div class="clear">
         <hr/>
@@ -28,16 +28,18 @@
         <span id="publishDate">Last Published: 2022-06-07</span>
            | <span id="projectVersion">Version: 1.0.0-SNAPSHOT</span>
       </div>
-      <div class="xright"><a href="${project.url}" title="I18N">I18N</a>      </div>
+      <div class="xright"><a href="${project.url}" title="Pine Java Core">Pine Java Core</a>      </div>
       <div class="clear">
         <hr/>
       </div>
     </div>
     <div id="leftColumn">
       <div id="navcolumn">
-       <h5>Parent Project</h5>
+       <h5>Modules</h5>
     <ul>
-     <li class="none"><a href="index.html" title="Pine Java Core">Pine Java Core</a></li>
+     <li class="none"><a href="helper/index.html" title="Helper">Helper</a></li>
+     <li class="none"><a href="document/index.html" title="Document">Document</a></li>
+     <li class="none"><a href="i18n/index.html" title="I18N">I18N</a></li>
     </ul>
        <h5>Project Documentation</h5>
     <ul>
@@ -50,6 +52,7 @@
        <li class="none"><a href="index.html" title="About">About</a></li>
        <li class="none"><a href="issue-management.html" title="Issue Management">Issue Management</a></li>
        <li class="none"><a href="licenses.html" title="Licenses">Licenses</a></li>
+       <li class="none"><a href="modules.html" title="Project Modules">Project Modules</a></li>
        <li class="none"><a href="plugin-management.html" title="Plugin Management">Plugin Management</a></li>
        <li class="none"><a href="plugins.html" title="Plugins">Plugins</a></li>
        <li class="none"><a href="team.html" title="Team">Team</a></li>
@@ -362,15 +365,15 @@
 <a name="Dependency_Tree"></a><section>
 <h3><a name="Dependency_Tree"></a>Dependency Tree</h3>
 <ul>
-<li>com.pineframework.core:i18n:jar:1.0.0-SNAPSHOT <img id="_img1" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep0', '_img1' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep0" style="display:none">
+<li>com.pineframework.core:pine-java-core:pom:1.0.0-SNAPSHOT <img id="_img1" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep0', '_img1' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep0" style="display:none">
 <table border="0" class="bodyTable">
 <tr class="a">
-<th>I18N</th></tr>
+<th>Pine Java Core</th></tr>
 <tr class="b">
 <td>
 <p><b>Description: </b>The core module is included abstract and utility modules. It provides abstractions, contracts, helpers and
         utils for end modules to get integrity, clean architecture and extendability.</p>
-<p><b>Project Licenses: </b><a href="${source.repository.url}/blob/main/LICENSE">Apache License</a>, <a href="${source.repository.url}/blob/main/NOTICE">Notice</a></p></td></tr></table></div>
+<p><b>Project Licenses: </b><a class="externalLink" href="https://github.com/saman-oss/pine-java-core/blob/main/LICENSE">Apache License, Version 2.0</a></p></td></tr></table></div>
 <ul>
 <li>javax:javaee-web-api:jar:8.0.1 (compile) <img id="_img3" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep2', '_img3' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep2" style="display:none">
 <table border="0" class="bodyTable">
@@ -733,13 +736,11 @@
 <p><b>Project Licenses: </b>No licenses are defined for this project.</p></td></tr></table></div></li></ul></li></ul></section></section><a name="Licenses"></a><section>
 <h2><a name="Licenses"></a>Licenses</h2>
 <p><b>BSD: </b>ArchUnit</p>
-<p><b>Notice: </b>I18N</p>
 <p><b>Unknown: </b>jdepend</p>
 <p><b>The Apache License, Version 2.0: </b>org.apiguardian:apiguardian-api, org.opentest4j:opentest4j</p>
-<p><b>Apache License: </b>I18N</p>
 <p><b>MIT License: </b>Cucumber CiEnvironment, Cucumber Expressions, Cucumber HTML Formatter, Cucumber Messages, Cucumber Tag Expressions, Cucumber-JVM: Core, Cucumber-JVM: Docstring, Cucumber-JVM: Gherkin, Cucumber-JVM: Gherkin Messages, Cucumber-JVM: Java 8, Cucumber-JVM: Plugin, Cucumber-JVN: DataTable, SLF4J API Module, SLF4J Reload4j Binding</p>
+<p><b>Apache License, Version 2.0: </b>AssertJ fluent assertions, Pine Java Core, TypeTools</p>
 <p><b>Eclipse Public License v2.0: </b>JUnit Jupiter API, JUnit Jupiter Engine, JUnit Jupiter Params, JUnit Platform Commons, JUnit Platform Engine API</p>
-<p><b>Apache License, Version 2.0: </b>AssertJ fluent assertions, TypeTools</p>
 <p><b>CDDL + GPLv2 with classpath exception: </b>Java Servlet API, javaee-web-api</p>
 <p><b>Dual license consisting of the CDDL v1.1 and GPL v2: </b>JSR 374 (JSON Processing) Default Provider</p>
 <p><b>New BSD License: </b>Hamcrest All</p>
