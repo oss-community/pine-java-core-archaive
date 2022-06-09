@@ -39,6 +39,7 @@ import oracle.jdbc.dcn.RowChangeDescription;
 import oracle.sql.TIMESTAMP;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
@@ -58,6 +59,7 @@ import org.junit.jupiter.params.provider.ArgumentsSource;
  * @see OracleJdbcUtils
  * @since 2022-01-01
  */
+@Disabled("Disabled until providing Oracle DB instance")
 @DisplayName("Oracle Jdbc Utils Tests")
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class OracleJdbcUtilsTest extends AbstractUtilsTest {
