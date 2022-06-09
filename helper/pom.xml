@@ -62,7 +62,7 @@ limitations under the License.
     <repositories>
         <repository>
             <id>local-repo</id>
-            <url>file://${project.basedir}${file.separator}..${file.separator}local-repo</url>
+            <url>file://${project.parent.basedir}${file.separator}local-repo</url>
         </repository>
     </repositories>
     <dependencies>
