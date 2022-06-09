@@ -3,6 +3,7 @@ pipeline {
   tools {
       maven 'M2_HOME'
       jdk 'JAVA_HOME'
+      git 'GIT_HOME'
     }
   stages {
     stage('Logging and Verifying') {
