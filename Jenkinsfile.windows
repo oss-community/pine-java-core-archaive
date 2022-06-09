@@ -13,6 +13,8 @@ pipeline {
             bat 'java -version'
             bat 'mvn --version'
             bat 'git --version'
+            bat 'git config user.email samanalishiri@gmail.com'
+            bat 'git config user.name samanalishiri'
           }
         }
 

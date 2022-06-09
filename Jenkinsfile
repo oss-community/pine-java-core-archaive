@@ -13,6 +13,8 @@ pipeline {
             sh 'java -version'
             sh 'mvn --version'
             sh 'git --version'
+            sh 'git config user.email samanalishiri@gmail.com'
+            sh 'git config user.name samanalishiri'
           }
         }
 
