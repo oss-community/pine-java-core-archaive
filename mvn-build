@@ -19,15 +19,3 @@ echo 'step [install] end'
 echo 'step [site] begin'
 mvn site:site site:stage -s settings.xml -P site,javadoc,changelog,test-report
 echo 'step [site] end'
-
-echo 'step [publish site] begin'
-mvn scm-publish:publish-scm -s settings.xml -P publish
-echo 'step [publish site] end'
-
-echo 'step [sonar] begin'
-# mvn sonar:sonar -s settings.xml -P sonar
-echo 'step [sonar] end'
-
-echo 'step [artifactory] begin'
-# mvn deploy -s settings.xml -P artifactory
-echo 'step [artifactory] end'

@@ -2,17 +2,6 @@ pipeline {
   agent any
 
   stages {
-   environment {
-     SONAR_TOKEN                        = credentials('4be54b8e21c8ab7abf1d57fcb53c9a04676ab604')
-     SONAR_URL                          = http://localhost:9000
-     ARTIFACTORY_USERNAME               = admin
-     ARTIFACTORY_PASSWORD               = credentials('AP3kkm8PXGcN4Z1zcxUDJn1nR8Z')
-     ARTIFACTORY_SNAPSHOT_URL           = http://localhost:8081/artifactory/pine-libs-snapshot
-     ARTIFACTORY_CONTEXT_URL            = http://localhost:8082/artifactory
-     ARTIFACTORY_REPOSITORY_PREFIX      = pine
-     JAVA_HOME                          = /var/jenkins_home/jdk
-     M2_HOME                            = /var/jenkins_home/maven
-    }
     stage('Logging and Verifying') {
       parallel {
         stage('Logging Version') {

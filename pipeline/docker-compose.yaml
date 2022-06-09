@@ -20,10 +20,10 @@ services:
       nofile:
         soft: 65535
         hard: 65535
-  pine-sonarqube-postgresql:
+  pine-sonarqube-db:
     image: postgres
-    container_name: pine-sonarqube-postgresql
-    hostname: pine-sonarqube-postgresql
+    container_name: pine-sonarqube-db
+    hostname: pine-sonarqube-db
     restart: always
     environment:
       POSTGRES_DB: sonar
@@ -39,46 +39,10 @@ services:
       nofile:
         soft: 32000
         hard: 40000
-  # set vm.max_map_count=262144 in /etc/sysctl.conf then do sysctl -p
-  pine-sonarqube:
-    image: sonarqube:community
-    container_name: pine-sonarqube
-    hostname: pine-sonarqube
-    privileged: true
-    user: root
-    #    command:
-    #      - /bin/bash
-    #      - -c
-    #      - |
-    #        sysctl -w vm.max_map_count=262144
-    restart: always
-    environment:
-      SONAR_JDBC_URL: jdbc:postgresql://pine-sonarqube-postgresql:5432/sonar
-      SONAR_JDBC_USERNAME: sonar
-      SONAR_JDBC_PASSWORD: sonar
-      SONAR_SEARCH_JAVAADDITIONALOPTS: "-Dbootstrap.system_call_filter=false"
-    ports:
-      - "9000:9000"
-    volumes:
-      - ~/docker_compose/sonarqube/sonarqube_data:/opt/sonarqube/data
-      - ~/docker_compose/sonarqube/sonarqube_extensions:/opt/sonarqube/extensions
-      - ~/docker_compose/sonarqube/sonarqube_logs:/opt/sonarqube/logs
-    depends_on:
-      - pine-sonarqube-postgresql
-    links:
-      - pine-sonarqube-postgresql
-    ulimits:
-      nproc: 262144
-      memlock:
-        soft: -1
-        hard: -1
-      nofile:
-        soft: 65535
-        hard: 65535
-  pine-jfrog-postgresql:
+  pine-jfrog-db:
     image: postgres
-    container_name: pine-jfrog-postgresql
-    hostname: pine-jfrog-postgresql
+    container_name: pine-jfrog-db
+    hostname: pine-jfrog-db
     restart: always
     environment:
       POSTGRES_DB: artifactory
@@ -97,6 +61,39 @@ services:
       nofile:
         soft: 65535
         hard: 65535
+  # wsl -d docker-desktop
+  # sysctl -w vm.max_map_count=262144
+  # set vm.max_map_count=262144 in /etc/sysctl.conf then execute sysctl -p
+  pine-sonarqube:
+    image: sonarqube:community
+    container_name: pine-sonarqube
+    hostname: pine-sonarqube
+    privileged: true
+    user: root
+    restart: always
+    environment:
+      SONAR_JDBC_URL: jdbc:postgresql://pine-sonarqube-db:5432/sonar
+      SONAR_JDBC_USERNAME: sonar
+      SONAR_JDBC_PASSWORD: sonar
+      SONAR_SEARCH_JAVAADDITIONALOPTS: "-Dbootstrap.system_call_filter=false"
+    ports:
+      - "9000:9000"
+    volumes:
+      - ~/docker_compose/sonarqube/sonarqube_data:/opt/sonarqube/data
+      - ~/docker_compose/sonarqube/sonarqube_extensions:/opt/sonarqube/extensions
+      - ~/docker_compose/sonarqube/sonarqube_logs:/opt/sonarqube/logs
+    depends_on:
+      - pine-sonarqube-db
+    links:
+      - pine-sonarqube-db
+    ulimits:
+      nproc: 262144
+      memlock:
+        soft: -1
+        hard: -1
+      nofile:
+        soft: 65535
+        hard: 65535
   pine-jfrog:
     image: docker.bintray.io/jfrog/artifactory-oss
     container_name: pine-jfrog
@@ -105,20 +102,16 @@ services:
     environment:
       JF_SHARED_DATABASE_TYPE: postgresql
       JF_SHARED_DATABASE_DRIVER: "org.postgresql.Driver"
-      JF_SHARED_DATABASE_URL: jdbc:postgresql://pine-jfrog-postgresql:5432/artifactory
+      JF_SHARED_DATABASE_URL: jdbc:postgresql://pine-jfrog-db:5432/artifactory
       JF_SHARED_DATABASE_USERNAME: artifactory
       JF_SHARED_DATABASE_PASSWORD: password
-      #- EXTRA_JAVA_OPTIONS=-Xms512m -Xmx4g
     ports:
       - "8082:8082"
       - "8081:8081"
-    #    volumes:
-    #      - ~/docker_compose/jfrog/var:/var/opt/jfrog/artifactory
-    #      - /etc/localtime:/etc/localtime:ro
     depends_on:
-      - pine-jfrog-postgresql
+      - pine-jfrog-db
     links:
-      - pine-jfrog-postgresql
+      - pine-jfrog-db
     ulimits:
       nproc: 262144
       memlock:
@@ -128,15 +121,3 @@ services:
         soft: 65535
         hard: 65535
 
-#volumes:
-#  sonarqube_data:
-#  sonarqube_extensions:
-#  sonarqube_logs:
-#  jfrog-postgresql:
-#    name: jfrog-postgresql
-#  jfrog-postgresql_data:
-#    name: jfrog-postgresql_data
-#  sonarqube-postgresql:
-#    name: sonarqube-postgresql
-#  sonarqube-postgresql_data:
-#    name: sonarqube-postgresql_data

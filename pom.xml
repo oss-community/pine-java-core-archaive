@@ -203,6 +203,8 @@ limitations under the License.
                     <compilerArgument>-Xlint:all</compilerArgument>
                     <showWarnings>true</showWarnings>
                     <showDeprecation>true</showDeprecation>
+                    <maxmem>4096</maxmem>
+                    <meminitial>2048</meminitial>
                 </configuration>
             </plugin>
             <plugin>
@@ -530,12 +532,14 @@ limitations under the License.
             <properties>
                 <artifactory.username>${env.ARTIFACTORY_USERNAME}</artifactory.username>
                 <artifactory.password>${env.ARTIFACTORY_PASSWORD}</artifactory.password>
-                <artifactory.snapshot.url>${env.ARTIFACTORY_SNAPSHOT_URL}}</artifactory.snapshot.url>
+                <artifactory.snapshot.url>${env.ARTIFACTORY_SNAPSHOT_URL}</artifactory.snapshot.url>
+                <artifactory.context.url>${env.ARTIFACTORY_CONTEXT_URL}</artifactory.context.url>
+                <artifactory.repository.prefix>${env.ARTIFACTORY_REPOSITORY_PREFIX}</artifactory.repository.prefix>
             </properties>
             <distributionManagement>
                 <snapshotRepository>
                     <id>snapshots</id>
-                    <name>pine-core-java-snapshots</name>
+                    <name>${artifactory.repository.prefix}-snapshots</name>
                     <url>${artifactory.snapshot.url}</url>
                 </snapshotRepository>
             </distributionManagement>
@@ -562,15 +566,15 @@ limitations under the License.
                                         <timeoutSec>60</timeoutSec>
                                     </artifactory>
                                     <publisher>
-                                        <contextUrl>http://localhost:8082/artifactory</contextUrl>
+                                        <contextUrl>${artifactory.context.url}</contextUrl>
                                         <username>${artifactory.username}</username>
                                         <password>${artifactory.password}</password>
                                         <excludePatterns>*-tests.jar</excludePatterns>
-                                        <repoKey>libs-release-local</repoKey>
-                                        <snapshotRepoKey>libs-snapshot-local</snapshotRepoKey>
+                                        <repoKey>${artifactory.repository.prefix}-libs-release-local</repoKey>
+                                        <snapshotRepoKey>${artifactory.repository.prefix}-libs-snapshot-local</snapshotRepoKey>
                                     </publisher>
                                     <buildInfo>
-                                        <buildName>pine-core-java</buildName>
+                                        <buildName>${project.artifactId}</buildName>
                                         <buildNumber>${project.version}</buildNumber>
                                         <buildUrl>${scm.web}</buildUrl>
                                     </buildInfo>

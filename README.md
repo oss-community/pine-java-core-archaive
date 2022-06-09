@@ -76,7 +76,8 @@ sudo chmod 765 /opt/
 tar -xvf ./jdk-17_linux-x64_bin.tar.gz -C /opt/
 mv jdk-17_linux-x64_bin jdk-17
 echo "export JAVA_HOME=/opt/jdk-17" >> /home/user-name/.bashrc
-sed -i 's/$PATH/$JAVA_HOME\/bin:$PATH/g' .bashrc 
+sed -i 's/$PATH/$JAVA_HOME\/bin:$PATH/g' .bashrc #redhat
+sed -i 's/PATH=/PATH=$JAVA_HOME\/bin:/' .bashrc #debian
 source ~/.bashrc
 ```
 
@@ -110,7 +111,8 @@ sudo chmod 765 /opt/
 tar -xvf ./maven*.tar.gz -C /opt/
 mv maven* maven
 echo "export M2_HOME=/opt/maven" >> /home/user-name/.bashrc
-sed -i 's/$PATH/M2_HOME\/bin:$PATH/g' .bashrc 
+sed -i 's/$PATH/M2_HOME\/bin:$PATH/g' .bashrc #redhat
+sed -i 's/PATH=/PATH=$M2_HOME\/bin:/' .bashrc #debian
 source ~/.bashrc
 ```
 
@@ -149,7 +151,7 @@ git --version
     - username: admin
     - password: admin
 
-Generate token at _**administration > security > users > Tokens**_ and add environment variable.
+Generate token at _**My Account > security > Generate Tokens**_ and add environment variable.
 
 #### Windows
 
@@ -181,14 +183,15 @@ setx /M PATH "%PATH%;%SONAR_SCANNER_HOME%\bin"
 
 ```bash
 echo "export SONAR_SCANNER_HOME=extracted path" >> /home/user-name/.bashrc
-sed -i 's/$PATH/$SONAR_SCANNER_HOME\/bin:$PATH/g' .bashrc
+sed -i 's/$PATH/$SONAR_SCANNER_HOME\/bin:$PATH/g' .bashrc #redhat
+sed -i 's/PATH=/PATH=$SONAR_SCANNER_HOME\/bin:/' .bashrc #debian
 source ~/.bashrc
 ```
 
 ## <span style="color: RoyalBlue">2-5 Jenkins</span>
 
 1. [download jenkins as war file](https://www.jenkins.io/download/)
-2. `java -jar jenkins.war --httpPort=9090`
+2. `java -jar jenkins.war --httpPort=8080`
 3. browse Jenkins for localhost installation at http://localhost:9090.
     - username: admin
     - password: look at the console
@@ -202,6 +205,9 @@ source ~/.bashrc
 3. browse JFrog for localhost installation at `http://localhost:8082/ui`.
     - username: admin
     - password: password
+4. change password at _**Administration > User Management > Users**_ 
+5. get encrypted password from _**Edit Profile**_ menu
+6. create repository by _**Quick Setup**_ menu
 
 ##### Windows
 
@@ -246,13 +252,13 @@ source ~/.bashrc
 
 ```
 tunnels:
-  first-app:
-    addr: 9090
+  jenkins:
+    addr: 8080
     proto: http
-  second-app:
+  jfrog:
     addr: 8082
     proto: http
-  third-app:
+  sonar:
     addr: 9000
     proto: http
 ```
@@ -278,7 +284,7 @@ tunnels:
 
 ## <span style="color: RoyalBlue">3-1 Pipeline With Trigger</span>
 
-1. add webhook to your GitHub repository 
+1. add webhook to your GitHub repository
 2. click on New Item menu in dashboard of [Jenkins](#2-5-Jenkins)
 3. select Multibranch Pipeline and then OK.
 4. in Branch sources section select GitHub.
@@ -288,18 +294,20 @@ tunnels:
     - insert script path (default is Jenkinsfile)
 5. click on the save button to see the pipeline dashboard.
 6. click on Build Now menu
+
 ---
 
 # <span style="color: Crimson">4 Build</span>
 
 ``` bash
-  mvn clean package -DskipTests=true -s settings.xml
-  mvn test -s settings.xml
-  mvn checkstyle:check -s settings.xml
-  mvn site:site site:stage -s settings.xml
-  mvn scm-publish:publish-scm -s settings.xml
-  mvn sonar:sonar -s settings.xml
-  mvn deploy -s settings.xml
+mvn clean package -DskipTests=true -s settings.xml -P source,javadoc,license
+mvn test -s settings.xml
+mvn checkstyle:check -s settings.xml -P checkstyle
+mvn install -DskipTests=true -s settings.xml
+mvn site:site site:stage -s settings.xml -P site,javadoc,changelog,test-report
+mvn scm-publish:publish-scm -s settings.xml -P publish
+mvn sonar:sonar -s settings.xml -P sonar
+mvn deploy -s settings.xml -P artifactory
   ```
 
 ---
