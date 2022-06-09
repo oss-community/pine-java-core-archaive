@@ -35,7 +35,6 @@ limitations under the License.
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <maven.compiler.release>17</maven.compiler.release>
-        <root.dir>${basedir}</root.dir>
 
         <!--dependencies version-->
         <javaee.version>8.0.1</javaee.version>
@@ -82,12 +81,6 @@ limitations under the License.
         <module>document</module>
         <module>i18n</module>
     </modules>
-    <repositories>
-        <repository>
-            <id>local-repo</id>
-            <url>file://${root.dir}${file.separator}local-repo</url>
-        </repository>
-    </repositories>
     <dependencies>
         <!--JEE begin-->
         <dependency>

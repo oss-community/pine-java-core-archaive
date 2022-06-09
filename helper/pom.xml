@@ -59,6 +59,12 @@ limitations under the License.
         <ojdbc.version>12.2.0.1</ojdbc.version>
         <h2.version>2.1.210</h2.version>
     </properties>
+    <repositories>
+        <repository>
+            <id>local-repo</id>
+            <url>file://${project.basedir}${file.separator}..${file.separator}local-repo</url>
+        </repository>
+    </repositories>
     <dependencies>
         <!--jdbc driver begin-->
         <dependency>
