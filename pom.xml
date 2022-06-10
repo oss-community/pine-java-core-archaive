@@ -43,8 +43,8 @@ limitations under the License.
         <vavr.version>0.10.4</vavr.version>
         <junit.version>5.8.2</junit.version>
 
-        <scm.web>https://github.com/saman-oss/pine-java-core</scm.web>
-        <scm.connection>scm:git:https://github.com/saman-oss/pine-java-core.git</scm.connection>
+        <scm.https>https://github.com/saman-oss/pine-java-core</scm.https>
+        <scm.ssh>scm:git:git://github.com/saman-oss/pine-java-core.git</scm.ssh>
     </properties>
     <developers>
         <developer>
@@ -56,7 +56,7 @@ limitations under the License.
                 <role>developer</role>
             </roles>
             <properties>
-                <picUrl>${scm.web}/blob/main/docs/developer/samanalishiri/pic.jpg</picUrl>
+                <picUrl>${scm.https}/blob/main/docs/developer/samanalishiri/pic.jpg</picUrl>
             </properties>
         </developer>
     </developers>
@@ -69,12 +69,12 @@ limitations under the License.
     </licenses>
     <issueManagement>
         <system>GitHub Issues</system>
-        <url>${scm.web}/issues</url>
+        <url>${scm.https}/issues</url>
     </issueManagement>
     <scm>
-        <url>${scm.web}</url>
-        <connection>${scm.connection}</connection>
-        <developerConnection>${scm.connection}</developerConnection>
+        <url>${scm.https}</url>
+        <connection>${scm.ssh}</connection>
+        <developerConnection>${scm.ssh}</developerConnection>
     </scm>
     <modules>
         <module>helper</module>
@@ -444,7 +444,7 @@ limitations under the License.
             <distributionManagement>
             <site>
                 <id>github.com</id>
-                <url>${scm.connection}</url>
+                <url>${scm.ssh}</url>
             </site>
             </distributionManagement>
             <build>
@@ -494,7 +494,7 @@ limitations under the License.
             <distributionManagement>
                 <site>
                     <id>github.com</id>
-                    <url>${scm.connection}</url>
+                    <url>${scm.ssh}</url>
                 </site>
             </distributionManagement>
             <build>
@@ -576,7 +576,7 @@ limitations under the License.
                                     <buildInfo>
                                         <buildName>${project.artifactId}</buildName>
                                         <buildNumber>${project.version}</buildNumber>
-                                        <buildUrl>${scm.web}</buildUrl>
+                                        <buildUrl>${scm.https}</buildUrl>
                                     </buildInfo>
                                 </configuration>
                             </execution>
