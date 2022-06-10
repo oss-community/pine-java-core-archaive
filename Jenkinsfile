@@ -15,23 +15,20 @@ pipeline {
        ARTIFACTORY_REPOSITORY_PREFIX='pine'
        JAVA_HOME='/var/jenkins_home/jdk'
        M2_HOME='/var/jenkins_home/maven'
-       GIT_TERMINAL_PROMPT='1'
       }
   stages {
-    stage('Verify and config') {
+    stage('Verify') {
       parallel {
-        stage('Logging Version') {
+        stage('Version') {
           steps {
             sh 'java -version'
             sh 'mvn --version'
             sh 'git --version'
-            sh 'git config --global user.email samanalishiri@gmail.com'
-            sh 'git config --global user.name samanalishiri'
-            sh 'git remote -v'
+            sh 'gh --version'
           }
         }
 
-        stage('Verifying POM') {
+        stage('Verifying Maven') {
           steps {
             fileExists 'pom.xml'
           }
