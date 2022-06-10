@@ -1,20 +1,33 @@
 pipeline {
   agent any
   tools {
-      maven 'M2_HOME'
-      jdk 'JAVA_HOME'
-      git 'GIT_HOME'
+      maven 'maven3'
+      jdk 'jdk17'
+      git 'default-git'
     }
+    environment {
+       SONAR_TOKEN=credentials('sonar_token')
+       SONAR_URL=http://localhost:9000
+       ARTIFACTORY_USERNAME=admin
+       ARTIFACTORY_PASSWORD=credentials('artifactory_password')
+       ARTIFACTORY_SNAPSHOT_URL=http://localhost:8081/artifactory/pine-libs-snapshot
+       ARTIFACTORY_CONTEXT_URL=http://localhost:8082/artifactory
+       ARTIFACTORY_REPOSITORY_PREFIX=pine
+       JAVA_HOME=/var/jenkins_home/jdk
+       M2_HOME=/var/jenkins_home/maven
+       GIT_TERMINAL_PROMPT=1
+      }
   stages {
-    stage('Logging and Verifying') {
+    stage('Verify and config') {
       parallel {
         stage('Logging Version') {
           steps {
             sh 'java -version'
             sh 'mvn --version'
             sh 'git --version'
-            sh 'git config user.email samanalishiri@gmail.com'
-            sh 'git config user.name samanalishiri'
+            sh 'git config --global user.email samanalishiri@gmail.com'
+            sh 'git config --global user.name samanalishiri'
+            sh 'git remote -v'
           }
         }
 
