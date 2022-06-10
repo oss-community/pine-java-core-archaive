@@ -28,13 +28,13 @@ pipeline {
           }
         }
 
-        stage('Verifying Maven') {
+        stage('Verify Maven POM') {
           steps {
             fileExists 'pom.xml'
           }
         }
 
-        stage('Verifying Maven Settings') {
+        stage('Verify Maven Settings') {
           steps {
             fileExists 'settings.xml'
           }
@@ -49,7 +49,7 @@ pipeline {
       }
     }
 
-    stage('Test') {
+    stage('Unit Test') {
       steps {
         sh 'mvn test -s settings.xml'
       }
@@ -78,13 +78,13 @@ pipeline {
       }
     }
 
-    stage('Publishing Site') {
+    stage('Publish Site') {
       steps {
         sh 'mvn scm-publish:publish-scm -s settings.xml -P publish'
       }
     }
 
-    stage('Deploying to Artifactory') {
+    stage('Deploy to Artifactory') {
       steps {
         sh 'mvn deploy -s settings.xml -P artifactory'
       }
