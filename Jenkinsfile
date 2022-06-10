@@ -25,6 +25,8 @@ pipeline {
             sh 'mvn --version'
             sh 'git --version'
             sh 'gh --version'
+            sh 'git config --global user.email samanalishiri@gmail.com'
+            sh 'git config --global user.name samanalishiri'
           }
         }
 
