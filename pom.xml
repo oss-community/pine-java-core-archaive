@@ -43,7 +43,8 @@ limitations under the License.
         <vavr.version>0.10.4</vavr.version>
         <junit.version>5.8.2</junit.version>
 
-        <scm.https>https://github.com/saman-oss/pine-java-core</scm.https>
+        <scm.url>https://github.com/saman-oss/pine-java-core</scm.url>
+        <scm.https>scm:git:https://github.com/saman-oss/pine-java-core.git</scm.https>
         <scm.ssh>scm:git:git://github.com/saman-oss/pine-java-core.git</scm.ssh>
     </properties>
     <developers>
@@ -56,7 +57,7 @@ limitations under the License.
                 <role>developer</role>
             </roles>
             <properties>
-                <picUrl>${scm.https}/blob/main/docs/developer/samanalishiri/pic.jpg</picUrl>
+                <picUrl>${scm.url}/blob/main/docs/developer/samanalishiri/pic.jpg</picUrl>
             </properties>
         </developer>
     </developers>
@@ -69,11 +70,11 @@ limitations under the License.
     </licenses>
     <issueManagement>
         <system>GitHub Issues</system>
-        <url>${scm.https}/issues</url>
+        <url>${scm.url}/issues</url>
     </issueManagement>
     <scm>
-        <url>${scm.https}</url>
-        <connection>${scm.ssh}</connection>
+        <url>${scm.url}</url>
+        <connection>${scm.https}</connection>
         <developerConnection>${scm.ssh}</developerConnection>
     </scm>
     <modules>
@@ -238,6 +239,11 @@ limitations under the License.
                         <version>${junit.version}</version>
                     </dependency>
                 </dependencies>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-scm-plugin</artifactId>
+                <version>1.13.0</version>
             </plugin>
         </plugins>
     </build>
@@ -576,7 +582,7 @@ limitations under the License.
                                     <buildInfo>
                                         <buildName>${project.artifactId}</buildName>
                                         <buildNumber>${project.version}</buildNumber>
-                                        <buildUrl>${scm.https}</buildUrl>
+                                        <buildUrl>${scm.url}</buildUrl>
                                     </buildInfo>
                                 </configuration>
                             </execution>

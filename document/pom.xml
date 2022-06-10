@@ -38,7 +38,7 @@
         </license>
     </licenses>
     <issueManagement>
-        <url>${scm.https}/issues</url>
+        <url>${scm.url}/issues</url>
         <system>GitHub Issues</system>
     </issueManagement>
     <properties>

@@ -16,7 +16,7 @@
         <developer>
             <name>Saman Alishirishahrbabak</name>
             <email>samanalishiri@gmail.com</email>
-            <url>${scm.https}/</url>
+            <url>${scm.url}/</url>
             <roles>
                 <role>Developer</role>
             </roles>
@@ -35,7 +35,7 @@
         </license>
     </licenses>
     <issueManagement>
-        <url>${scm.https}/issues</url>
+        <url>${scm.url}/issues</url>
         <system>GitHub Issues</system>
     </issueManagement>
 </project>
