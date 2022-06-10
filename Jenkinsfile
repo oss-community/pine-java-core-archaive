@@ -7,11 +7,11 @@ pipeline {
     }
     environment {
        SONAR_TOKEN=credentials('sonar_token')
-       SONAR_URL='http://localhost:9000'
+       SONAR_URL='http://pine-sonarqube:9000'
        ARTIFACTORY_USERNAME='admin'
        ARTIFACTORY_PASSWORD=credentials('artifactory_password')
-       ARTIFACTORY_SNAPSHOT_URL='http://localhost:8081/artifactory/pine-libs-snapshot'
-       ARTIFACTORY_CONTEXT_URL='http://localhost:8082/artifactory'
+       ARTIFACTORY_SNAPSHOT_URL='http://pine-jfrog:8081/artifactory/pine-libs-snapshot'
+       ARTIFACTORY_CONTEXT_URL='http://pine-jfrog:8082/artifactory'
        ARTIFACTORY_REPOSITORY_PREFIX='pine'
        JAVA_HOME='/var/jenkins_home/jdk'
        M2_HOME='/var/jenkins_home/maven'
