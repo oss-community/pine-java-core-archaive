@@ -201,7 +201,7 @@ source ~/.bashrc
 1. [download Jfrog](https://jfrog.com/download-jfrog-platform/) and extract it
 2. in the extracted path execute the following command
     - Linux: `$JFROG_HOME/artifactory/app/bin/artifactoryctl`
-    - Windows: `$JFROG_HOME\app\bin\artifactory.bat`
+    - Windows: `%JFROG_HOME%\app\bin\artifactory.bat`
 3. browse JFrog for localhost installation at `http://localhost:8082/ui`.
     - username: admin
     - password: password
@@ -285,6 +285,7 @@ tunnels:
 ## <span style="color: RoyalBlue">3-1 Pipeline With Trigger</span>
 
 1. add webhook to your GitHub repository
+   - https://jenkins-domain/github-webhook/
 2. click on New Item menu in dashboard of [Jenkins](#2-5-Jenkins)
 3. select Multibranch Pipeline and then OK.
 4. in Branch sources section select GitHub.

@@ -1,11 +1,12 @@
-# call seSONAR_TOKEN=
-# call seSONAR_URL=http://localhost:9000
+# install sonarqube, jfrog and setup github for maven site
+# call set SONAR_TOKEN=
+# call set SONAR_URL=http://localhost:9000
 #
-# call seARTIFACTORY_USERNAME=admin
-# call seARTIFACTORY_PASSWORD=
-# call seARTIFACTORY_SNAPSHOT_URL=http://localhost:8081/artifactory/pine-libs-snapshot
-# call seARTIFACTORY_CONTEXT_URL=http://localhost:8082/artifactory
-# call seARTIFACTORY_REPOSITORY_PREFIX=pine
+# call set JFROG_ARTIFACTORY_USERNAME=admin
+# call set JFROG_ARTIFACTORY_PASSWORD=
+# call set JFROG_ARTIFACTORY_SNAPSHOT_URL=http://localhost:8081/artifactory/pine-libs-snapshot
+# call set JFROG_ARTIFACTORY_CONTEXT_URL=http://localhost:8082/artifactory
+# call set JFROG_ARTIFACTORY_REPOSITORY_PREFIX=pine
 
 cls
 call echo 'step [build] begin'
@@ -36,6 +37,6 @@ call echo 'step [sonar] begin'
 call mvn sonar:sonar -s settings.xml -P sonar
 call echo 'step [sonar] end'
 
-call echo 'step [artifactory] begin'
-call mvn deploy -s settings.xml -P artifactory
-call echo 'step [artifactory] end'
+call echo 'step [jfrog artifactory] begin'
+call mvn deploy -s settings.xml -P jfrog
+call echo 'step [jfrog artifactory] end'

@@ -390,8 +390,6 @@ limitations under the License.
                                 <goals>
                                     <goal>aggregate-download-licenses</goal>
                                 </goals>
-                                <configuration>
-                                </configuration>
                             </execution>
                         </executions>
                     </plugin>
@@ -534,19 +532,19 @@ limitations under the License.
             </build>
         </profile>
         <profile>
-            <id>artifactory</id>
+            <id>jfrog</id>
             <properties>
-                <artifactory.username>${env.ARTIFACTORY_USERNAME}</artifactory.username>
-                <artifactory.password>${env.ARTIFACTORY_PASSWORD}</artifactory.password>
-                <artifactory.snapshot.url>${env.ARTIFACTORY_SNAPSHOT_URL}</artifactory.snapshot.url>
-                <artifactory.context.url>${env.ARTIFACTORY_CONTEXT_URL}</artifactory.context.url>
-                <artifactory.repository.prefix>${env.ARTIFACTORY_REPOSITORY_PREFIX}</artifactory.repository.prefix>
+                <jfrog.artifactory.username>${env.JFROG_ARTIFACTORY_USERNAME}</jfrog.artifactory.username>
+                <jfrog.artifactory.password>${env.JFROG_ARTIFACTORY_PASSWORD}</jfrog.artifactory.password>
+                <jfrog.artifactory.snapshot.url>${env.JFROG_ARTIFACTORY_SNAPSHOT_URL}</jfrog.artifactory.snapshot.url>
+                <jfrog.artifactory.context.url>${env.JFROG_ARTIFACTORY_CONTEXT_URL}</jfrog.artifactory.context.url>
+                <jfrog.artifactory.repository.prefix>${env.JFROG_ARTIFACTORY_REPOSITORY_PREFIX}</jfrog.artifactory.repository.prefix>
             </properties>
             <distributionManagement>
                 <snapshotRepository>
                     <id>snapshots</id>
-                    <name>${artifactory.repository.prefix}-snapshots</name>
-                    <url>${artifactory.snapshot.url}</url>
+                    <name>${jfrog.artifactory.repository.prefix}-snapshots</name>
+                    <url>${jfrog.artifactory.snapshot.url}</url>
                 </snapshotRepository>
             </distributionManagement>
             <build>
@@ -572,12 +570,12 @@ limitations under the License.
                                         <timeoutSec>60</timeoutSec>
                                     </artifactory>
                                     <publisher>
-                                        <contextUrl>${artifactory.context.url}</contextUrl>
-                                        <username>${artifactory.username}</username>
-                                        <password>${artifactory.password}</password>
+                                        <contextUrl>${jfrog.artifactory.context.url}</contextUrl>
+                                        <username>${jfrog.artifactory.username}</username>
+                                        <password>${jfrog.artifactory.password}</password>
                                         <excludePatterns>*-tests.jar</excludePatterns>
-                                        <repoKey>${artifactory.repository.prefix}-libs-release-local</repoKey>
-                                        <snapshotRepoKey>${artifactory.repository.prefix}-libs-snapshot-local</snapshotRepoKey>
+                                        <repoKey>${jfrog.artifactory.repository.prefix}-libs-release-local</repoKey>
+                                        <snapshotRepoKey>${jfrog.artifactory.repository.prefix}-libs-snapshot-local</snapshotRepoKey>
                                     </publisher>
                                     <buildInfo>
                                         <buildName>${project.artifactId}</buildName>

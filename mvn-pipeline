@@ -1,11 +1,11 @@
-# export seSONAR_TOKEN=
-# export seSONAR_URL=http://localhost:9000
+# export SONAR_TOKEN=
+# export SONAR_URL=http://localhost:9000
 #
-# export seARTIFACTORY_USERNAME=admin
-# export seARTIFACTORY_PASSWORD=
-# export seARTIFACTORY_SNAPSHOT_URL=http://localhost:8081/artifactory/pine-libs-snapshot
-# export seARTIFACTORY_CONTEXT_URL=http://localhost:8082/artifactory
-# export seARTIFACTORY_REPOSITORY_PREFIX=pine
+# export JFROG_ARTIFACTORY_USERNAME=admin
+# export JFROG_ARTIFACTORY_PASSWORD=
+# export JFROG_ARTIFACTORY_SNAPSHOT_URL=http://localhost:8081/artifactory/pine-libs-snapshot
+# export JFROG_ARTIFACTORY_CONTEXT_URL=http://localhost:8082/artifactory
+# export JFROG_ARTIFACTORY_REPOSITORY_PREFIX=pine
 
 clear
 
@@ -38,5 +38,5 @@ mvn sonar:sonar -s settings.xml -P sonar
 echo 'step [sonar] end'
 
 echo 'step [artifactory] begin'
-mvn deploy -s settings.xml -P artifactory
+mvn deploy -s settings.xml -P jfrog
 echo 'step [artifactory] end'

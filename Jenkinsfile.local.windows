@@ -3,18 +3,16 @@ pipeline {
   tools {
       maven 'maven3'
       jdk 'jdk17'
-      git 'default-git'
+      git 'git'
     }
     environment {
        SONAR_TOKEN=credentials('sonar_token')
        SONAR_URL='http://localhost:9000'
-       ARTIFACTORY_USERNAME='admin'
-       ARTIFACTORY_PASSWORD=credentials('artifactory_password')
-       ARTIFACTORY_SNAPSHOT_URL='http://localhost:8081/artifactory/pine-libs-snapshot'
-       ARTIFACTORY_CONTEXT_URL='http://localhost:8082/artifactory'
-       ARTIFACTORY_REPOSITORY_PREFIX='pine'
-       JAVA_HOME='/var/jenkins_home/jdk'
-       M2_HOME='/var/jenkins_home/maven'
+       JFROG_ARTIFACTORY_USERNAME='admin'
+       JFROG_ARTIFACTORY_PASSWORD=credentials('artifactory_password')
+       JFROG_ARTIFACTORY_SNAPSHOT_URL='http://localhost:8081/artifactory/pine-libs-snapshot'
+       JFROG_ARTIFACTORY_CONTEXT_URL='http://localhost:8082/artifactory'
+       JFROG_ARTIFACTORY_REPOSITORY_PREFIX='pine'
       }
   stages {
     stage('Verify') {
@@ -85,7 +83,7 @@ pipeline {
 
     stage('Deploy to Artifactory') {
       steps {
-        bat 'mvn deploy -s settings.xml -P artifactory'
+        bat 'mvn deploy -s settings.xml -P jfrog'
       }
     }
   }
