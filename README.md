@@ -26,6 +26,7 @@ The framework comprised three main part as follows:
         - **[2-3-1 Windows](#2-3-1-Windows)**
         - **[2-3-2 Linux](#2-3-2-Linux)**
         - **[2-3-3 Test Git](#2-3-3-Test-git)**
+        - **[2-3-4 GitHub CLI](#2-3-4-GitHub-CLI)**
     - **[2-4 SonarQube](#2-4-Sonarqube)**
         - **[2-4-1 Sonarqube Server](#2-4-1-Sonarqube-Server)**
         - **[2-4-2 Sonar Scanner](#2-4-2-Sonar-Scanner)**
@@ -34,10 +35,12 @@ The framework comprised three main part as follows:
     - **[2-7 IDE Setting](#2-7-IDE-Setting)**
         - **[2-7-1 Intellij IDEA](#2-7-1-Intellij-IDEA)**
     - **[2-8 Ngrok](#2-8-Ngrok)**
-- **[3 Pipeline](#3-Pipeline)**
-    - **[3-1 Pipeline With Trigger](#3-1-Pipeline-With-Trigger)**
-- **[4 Build](#4-Build)**
-- **[5 Install](#5-Install)**
+- **[3 Build](#3-Build-and-Test)**
+- **[4 Install](#4-Install)**
+- **[3 Pipeline](#5-Pipeline)**
+    - **[3-1 Maven Pipeline](#5-1-Maven-Pipeline)**
+    - **[3-1 Jenkins Pipeline](#5-2-Jenkins-Pipeline)**
+    - **[3-1 Jenkins Pipeline With Trigger](#5-3-Jenkins-Pipeline-With-Trigger)**
 
 ---
 
@@ -139,6 +142,21 @@ mvn -version
 ```bash
 git --version
 ```
+### 2-3-4 GitHub CLI
+1. generate token by GitHub.com 
+2. install GitHub CLI 
+3. run `gh –version`
+4. create a text file named token.txt 
+5. copy token from GitHub and paste in the token.txt 
+6. login via GitHub CLI 
+   - gh auth login -p ssh -h github.com --with-token < token.txt
+   - gh repo list
+7. generate ssh keys by git tool
+   - interactive mode: ssh-keygen -t rsa -C "comment"
+   - without prompt: ssh-keygen -t rsa -C "comment" -N '' -f ~/.ssh//id_rsa. <<< y
+8. deploy public keys via GitHub CLI
+   - gh repo deploy-key add ./id_rsa.pub -R owner/repository-name -t key-title -w
+
 
 ## <span style="color: RoyalBlue">2-4 Sonarqube</span>
 
@@ -266,40 +284,32 @@ tunnels:
 
 7. `ngrok start --all`
 8. brows http://127.0.0.1:4040
+---
+
+# <span style="color: Crimson">3 Build and Test</span>
+
+``` bash
+mvn clean package -DskipTests=true -s settings.xml -P source,javadoc,license
+mvn test -s settings.xml
+mvn checkstyle:check -s settings.xml -P checkstyle
+mvn install -DskipTests=true -s settings.xml
+mvn site:site site:stage -s settings.xml -P site,javadoc,changelog,test-report
+mvn scm-publish:publish-scm -s settings.xml -P publish
+  ```
 
 ---
 
-# <span style="color: Crimson">3 Pipeline</span>
+# <span style="color: Crimson">4 Install</span>
 
-1. click on New Item menu in dashboard of [Jenkins](#2-5-Jenkins)
-2. select Pipeline and then OK.
-3. in the configuration page check `GitHub hook trigger for GITScm polling` item and insert the url of the project.
-4. in Advanced Project Options section select Pipeline script from SCM as pipeline definition.
-    - select Git as a SCM
-    - insert repository url
-    - add credentials
-    - choose branch
-    - insert script path (default is Jenkinsfile)
-5. click on the save button to see the pipeline dashboard.
-6. click on Build Now menu
-
-## <span style="color: RoyalBlue">3-1 Pipeline With Trigger</span>
-
-1. add webhook to your GitHub repository
-   - https://jenkins-domain/github-webhook/
-2. click on New Item menu in dashboard of [Jenkins](#2-5-Jenkins)
-3. select Multibranch Pipeline and then OK.
-4. in Branch sources section select GitHub.
-    - add credentials
-    - insert repository url
-    - choose branch strategy
-    - insert script path (default is Jenkinsfile)
-5. click on the save button to see the pipeline dashboard.
-6. click on Build Now menu
+``` bash
+mvn clean install -DskipTests=true
+```
 
 ---
 
-# <span style="color: Crimson">4 Build</span>
+# <span style="color: Crimson">5 Pipeline</span>
+
+## <span style="color: RoyalBlue">5-1 Maven Pipeline</span>
 
 ``` bash
 mvn clean package -DskipTests=true -s settings.xml -P source,javadoc,license
@@ -309,15 +319,39 @@ mvn install -DskipTests=true -s settings.xml
 mvn site:site site:stage -s settings.xml -P site,javadoc,changelog,test-report
 mvn scm-publish:publish-scm -s settings.xml -P publish
 mvn sonar:sonar -s settings.xml -P sonar
-mvn deploy -s settings.xml -P artifactory
+mvn deploy -s settings.xml -P jfrog
   ```
+## <span style="color: RoyalBlue">5-2 Jenkins Pipeline</span>
+
+1. install Jenkins, Jfrog, Sonarqube and ngrok
+2. generate ssh key by git and deploy the public key to the GitHub repository.
+2. click on New Item menu in dashboard of [Jenkins](#2-5-Jenkins)
+2. select Pipeline and then OK.
+3. in the configuration page check `GitHub hook trigger for GITScm polling` item and insert the url of the project.
+4. in Advanced Project Options section select Pipeline script from SCM as pipeline definition.
+    - select Git as an SCM
+    - insert URL of repository in HTTPS format
+    - add credentials (GitHub token as a secret text)
+    - choose branch
+    - insert script path (default is Jenkinsfile)
+5. click on the save button to see the pipeline dashboard.
+6. click on Build Now menu
+
+## <span style="color: RoyalBlue">5-3 Jenkins Pipeline With Trigger</span>
+
+1. install Jenkins, Jfrog, Sonarqube and ngrok
+2. generate ssh key by git and deploy the public key to the GitHub repository.
+3. add webhook to your GitHub repository
+    - Url of Jenkins: https://jenkins-domain/github-webhook/
+4. click on New Item menu in dashboard of [Jenkins](#2-5-Jenkins)
+5. select Multibranch Pipeline and then OK.
+6. in Branch sources section select GitHub.
+    - add credentials (GitHub token as a secret text)
+    - insert URL of repository in HTTPS format
+    - choose branch strategy
+    - insert script path (default is Jenkinsfile)
+7. click on the save button to see the pipeline dashboard.
+8. click on Build Now menu
 
 ---
-
-# <span style="color: Crimson">5 Install</span>
-
-``` bash
-mvn clean install -DskipTests=true
-```
-
 #### <p align="center"> [Top](#Pine-Framework) </p>
