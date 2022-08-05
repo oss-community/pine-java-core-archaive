@@ -352,6 +352,5 @@ mvn deploy -s settings.xml -P jfrog
     - insert script path (default is Jenkinsfile)
 7. click on the save button to see the pipeline dashboard.
 8. click on Build Now menu
-
 ---
 #### <p align="center"> [Top](#Pine-Framework) </p>
