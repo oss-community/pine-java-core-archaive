@@ -103,6 +103,7 @@ setx /M PATH "%PATH%;%M2_HOME%\bin"
 
 ### 2-2-2 Linux
 
+
 [Download Maven in tar.gz format.](https://maven.apache.org/download.cgi)
 
 ```bash
