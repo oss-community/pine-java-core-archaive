@@ -40,7 +40,6 @@ The framework comprised three main part as follows:
 - **[3 Pipeline](#5-Pipeline)**
     - **[3-1 Maven Pipeline](#5-1-Maven-Pipeline)**
     - **[3-1 Jenkins Pipeline](#5-2-Jenkins-Pipeline)**
-    - **[3-1 Jenkins Pipeline With Trigger](#5-3-Jenkins-Pipeline-With-Trigger)**
 
 ---
 
@@ -325,32 +324,17 @@ mvn deploy -s settings.xml -P jfrog
 
 1. install Jenkins, Jfrog, Sonarqube and ngrok
 2. generate ssh key by git and deploy the public key to the GitHub repository.
-2. click on New Item menu in dashboard of [Jenkins](#2-5-Jenkins)
-2. select Pipeline and then OK.
-3. in the configuration page check `GitHub hook trigger for GITScm polling` item and insert the url of the project.
-4. in Advanced Project Options section select Pipeline script from SCM as pipeline definition.
+3. click on New Item menu in dashboard of [Jenkins](#2-5-Jenkins)
+4. select Pipeline and then OK.
+5. in the configuration page check `GitHub hook trigger for GITScm polling` item and insert the url of the project.
+6. in Advanced Project Options section select Pipeline script from SCM as pipeline definition.
     - select Git as an SCM
     - insert URL of repository in HTTPS format
     - add credentials (GitHub token as a secret text)
     - choose branch
     - insert script path (default is Jenkinsfile)
-5. click on the save button to see the pipeline dashboard.
-6. click on Build Now menu
-
-## <span style="color: RoyalBlue">5-3 Jenkins Pipeline With Trigger</span>
-
-1. install Jenkins, Jfrog, Sonarqube and ngrok
-2. generate ssh key by git and deploy the public key to the GitHub repository.
-3. add webhook to your GitHub repository
-    - Url of Jenkins: https://jenkins-domain/github-webhook/
-4. click on New Item menu in dashboard of [Jenkins](#2-5-Jenkins)
-5. select Multibranch Pipeline and then OK.
-6. in Branch sources section select GitHub.
-    - add credentials (GitHub token as a secret text)
-    - insert URL of repository in HTTPS format
-    - choose branch strategy
-    - insert script path (default is Jenkinsfile)
 7. click on the save button to see the pipeline dashboard.
 8. click on Build Now menu
+
 ---
 #### <p align="center"> [Top](#Pine-Framework) </p>

@@ -17,7 +17,7 @@ pipeline {
   stages {
     stage('Verify') {
       parallel {
-        stage('Version') {
+        stage('Check Version') {
           steps {
             sh 'java -version'
             sh 'mvn --version'
@@ -60,7 +60,7 @@ pipeline {
           }
         }
 
-        stage('Sonar') {
+        stage('Sonarqube') {
           steps {
             sh 'mvn sonar:sonar -s settings.xml -P sonar'
           }
@@ -81,7 +81,7 @@ pipeline {
       }
     }
 
-    stage('Deploy to Artifactory') {
+    stage('Deploy to JFrog') {
       steps {
         sh 'mvn deploy -s settings.xml -P jfrog'
       }

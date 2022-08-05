@@ -20,6 +20,7 @@
         <developer>
             <name>Saman Alishirishahrbabak</name>
             <email>samanalishiri@gmail.com</email>
+            <url>${scm.url}/</url>
             <roles>
                 <role>Developer</role>
             </roles>

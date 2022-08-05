@@ -15,7 +15,7 @@ pipeline {
        JFROG_ARTIFACTORY_REPOSITORY_PREFIX='pine'
       }
   stages {
-    stage('Verify') {
+    stage('Check Verify') {
       parallel {
         stage('Version') {
           steps {
@@ -60,7 +60,7 @@ pipeline {
           }
         }
 
-        stage('Sonar') {
+        stage('Sonarqube') {
           steps {
             bat 'mvn sonar:sonar -s settings.xml -P sonar'
           }
@@ -81,7 +81,7 @@ pipeline {
       }
     }
 
-    stage('Deploy to Artifactory') {
+    stage('Deploy to JFrog') {
       steps {
         bat 'mvn deploy -s settings.xml -P jfrog'
       }

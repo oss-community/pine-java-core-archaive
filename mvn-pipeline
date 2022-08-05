@@ -1,3 +1,4 @@
+# install sonarqube, jfrog and setup github for maven site
 # export SONAR_TOKEN=
 # export SONAR_URL=http://localhost:9000
 #

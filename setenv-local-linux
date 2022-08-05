@@ -1,7 +1,7 @@
-echo "export SONAR_TOKEN=" >> ${HOME}/.bashrc
+echo "export SONAR_TOKEN=???" >> ${HOME}/.bashrc
 echo "export SONAR_URL=http://localhost:9000" >> ${HOME}/.bashrc
 echo "export JFROG_ARTIFACTORY_USERNAME=admin" >> ${HOME}/.bashrc
-echo "export JFROG_ARTIFACTORY_PASSWORD=" >> ${HOME}/.bashrc
+echo "export JFROG_ARTIFACTORY_PASSWORD=???" >> ${HOME}/.bashrc
 echo "export JFROG_ARTIFACTORY_SNAPSHOT_URL=http://localhost:8081/artifactory/pine-libs-snapshot" >> ${HOME}/.bashrc
 echo "export JFROG_ARTIFACTORY_CONTEXT_URL=http://localhost:8082/artifactory" >> ${HOME}/.bashrc
 echo "export JFROG_ARTIFACTORY_REPOSITORY_PREFIX=pine" >> ${HOME}/.bashrc

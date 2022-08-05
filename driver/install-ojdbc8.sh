@@ -6,4 +6,4 @@ mvn install:install-file \
 -DartifactId=ojdbc8 \
 -Dversion=12.2.0.1 \
 -Dpackaging=jar\
--DlocalRepositoryPath=../local-repo^
+-DlocalRepositoryPath=../local-repo
