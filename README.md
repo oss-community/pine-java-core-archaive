@@ -152,7 +152,7 @@ git --version
    - gh repo list
 7. generate ssh keys by git tool
    - interactive mode: ssh-keygen -t rsa -C "comment"
-   - without prompt: ssh-keygen -t rsa -C "comment" -N '' -f ~/.ssh//id_rsa. <<< y
+   - without prompt: ssh-keygen -t rsa -C "comment" -N '' -f ~/.ssh//id_rsa
 8. deploy public keys via GitHub CLI
    - gh repo deploy-key add ./id_rsa.pub -R owner/repository-name -t key-title -w
 

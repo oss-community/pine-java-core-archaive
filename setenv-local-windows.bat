@@ -1,3 +1,5 @@
+call setx /M GITHUB_JENKINS_TOKEN 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
+
 call setx /M SONAR_TOKEN 113f5c14c05348d5850924c54819a4bb5616bbc9
 call setx /M SONAR_URL http://localhost:9000
 

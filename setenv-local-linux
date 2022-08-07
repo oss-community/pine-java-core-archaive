@@ -1,3 +1,4 @@
+echo "export GITHUB_JENKINS_TOKEN=???" >> ${HOME}/.bashrc
 echo "export SONAR_TOKEN=???" >> ${HOME}/.bashrc
 echo "export SONAR_URL=http://localhost:9000" >> ${HOME}/.bashrc
 echo "export JFROG_ARTIFACTORY_USERNAME=admin" >> ${HOME}/.bashrc

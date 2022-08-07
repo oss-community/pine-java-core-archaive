@@ -1,12 +1,14 @@
 version: '3.8'
 services:
   pine-jenkins:
-    image: jenkins/jenkins:lts
-    container_name: pine-jenkins
-    hostname: pine-jenkins
-    restart: always
-    privileged: true
-    user: root
+    image: jenkins/latest
+    container_name: pine-jenkins-test
+    hostname: pine-jenkins-test
+    build:
+      context: jenkins-file
+      dockerfile: Dockerfile
+      args:
+        GITHUB_JENKINS_TOKEN: ${GITHUB_JENKINS_TOKEN}
     ports:
       - "8080:8080"
       - "50000:50000"
