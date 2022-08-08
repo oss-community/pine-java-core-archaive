@@ -1,11 +1,9 @@
 FROM jenkins/jenkins:lts
 MAINTAINER samanalishiri@gmail.com
 
-ARG JENKINS_USER=admin
-ARG JENKINS_PASS=password
 ARG GITHUB_JENKINS_TOKEN=token
 ARG KEY_COMMENT=samanalishiri@gmail.com
-#  gh repo deploy-key delete $(gh repo deploy-key list -R saman-oss/pine-java-core | awk '{print $1}') -R saman-oss/pine-java-core && \
+
 USER root
 RUN apt-get update && \
     apt-get -y install \
@@ -25,11 +23,11 @@ RUN apt-get update && \
     git config --global user.email samanalishiri@gmail.com && \
     git config --global user.name samanalishiri && \
     echo $GITHUB_JENKINS_TOKEN > ./github-token.txt && \
-    echo GITHUB_JENKINS_TOKEN=$GITHUB_JENKINS_TOKEN && \
     ssh-keygen -t rsa -C $KEY_COMMENT -N '' -f /root/.ssh/id_rsa && \
     gh auth login -p ssh -h github.com --with-token < ./github-token.txt && \
     eval "$(ssh-agent -s)" && \
     ssh-add /root/.ssh/id_rsa && \
+    gh repo deploy-key delete $(gh repo deploy-key list -R saman-oss/pine-java-core | awk '{print ($1==""?"":$1)}') -R saman-oss/pine-java-core || true && \
     gh repo deploy-key add /root/.ssh/id_rsa.pub -R saman-oss/pine-java-core -t jenkins-key-pub -w && \
     java -version && \
     mvn -version && \
