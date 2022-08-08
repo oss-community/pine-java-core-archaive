@@ -1,0 +1,21 @@
+echo "export GITHUB_JENKINS_TOKEN=???" >> ${HOME}/.bashrc
+
+echo "export SONAR_TOKEN=???" >> ${HOME}/.bashrc
+echo "export SONAR_URL=http://localhost:9000" >> ${HOME}/.bashrc
+echo "export SONAR_DB=sonar" >> ${HOME}/.bashrc
+echo "export SONAR_DB USER=sonar" >> ${HOME}/.bashrc
+echo "export SONAR_DB_PASSWORD=sonar" >> ${HOME}/.bashrc
+echo "export SONAR_JDBC_URL=jdbc:postgresql://pine-sonarqube-db:5432/sonar" >> ${HOME}/.bashrc
+echo "export JFROG_ARTIFACTORY_USERNAME=admin" >> ${HOME}/.bashrc
+echo "export JFROG_ARTIFACTORY_PASSWORD=???" >> ${HOME}/.bashrc
+echo "export JFROG_ARTIFACTORY_SNAPSHOT_URL=http://localhost:8081/artifactory/pine-libs-snapshot" >> ${HOME}/.bashrc
+echo "export JFROG_ARTIFACTORY_CONTEXT_URL=http://localhost:8082/artifactory" >> ${HOME}/.bashrc
+echo "export JFROG_ARTIFACTORY_REPOSITORY_PREFIX=pine" >> ${HOME}/.bashrc
+echo "export JFROG_DB=artifactory" >> ${HOME}/.bashrc
+echo "export JFROG_DB_USER=artifactory" >> ${HOME}/.bashrc
+echo "export JFROG_DB_PASSWORD=password" >> ${HOME}/.bashrc
+echo "export JF_SHARED_DATABASE_TYPE=postgresql" >> ${HOME}/.bashrc
+echo "export JF_SHARED_DATABASE_DRIVER="org.postgresql.Driver"" >> ${HOME}/.bashrc
+echo "export JF_SHARED_DATABASE_URL=jdbc:postgresql://pine-jfrog-db:5432/artifactory" >> ${HOME}/.bashrc
+
+source ${HOME}/.bashrc

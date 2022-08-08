@@ -6,8 +6,8 @@ services:
     hostname: pine-jenkins-test
     restart: always
     build:
-      context: jenkins-file
-      dockerfile: jenkins-file/Dockerfile
+      context: .\jenkins-resources
+      dockerfile: Dockerfile
       args:
         GITHUB_JENKINS_TOKEN: ${GITHUB_JENKINS_TOKEN}
     ports:
