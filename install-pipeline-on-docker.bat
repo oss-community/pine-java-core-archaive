@@ -1,6 +1,6 @@
 call cls
 call .\pipeline\docker\pre-config.bat
-call .\pipeline\docker\createenv.bat
+call .\pipeline\docker\create-env.bat
 
 docker-compose -f .\pipeline\docker\docker-compose.yaml ^
 -p pine-pipeline ^

@@ -1,6 +1,5 @@
 call ./pipeline/docker/pre-config
-call ./pipeline/docker/setenv
-call ./pipeline/docker/createenv
+call ./pipeline/docker/create-env
 
 docker-compose -f ./pipeline/docker/docker-compose.yaml ^
 -p pine-pipeline ^
