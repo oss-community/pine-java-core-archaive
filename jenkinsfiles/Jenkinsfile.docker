@@ -92,7 +92,7 @@ pipeline {
 
     stage('Deploy to JFrog') {
       steps {
-        sh 'mvn deploy -s settings.xml -P artifactory'
+        sh 'mvn deploy -s settings.xml -P jfrog'
       }
     }
   }

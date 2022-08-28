@@ -51,7 +51,7 @@ Pine Core Java has modules as follows.
 
 - helper
 - document
-- i18n 
+- i18n
 
 # <span style="color: Crimson">2 Tools</span>
 
@@ -146,8 +146,7 @@ git --version
 
 ### 2-3-4 GitHub CLI
 
-[generate token by GitHub.com](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token)
-[install GitHub CLI](https://github.com/cli/cli)
+[Install GitHub CLI](https://github.com/cli/cli)
 
 ### 2-3-5 Test GitHub CLI
 
@@ -155,7 +154,9 @@ git --version
 gh –-version
 ```
 
-Create a text file named token.txt and copy token from GitHub and paste in the `token.txt`.
+[Generate token by GitHub.com](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token)
+
+Create a text file named token.txt and copy the token from GitHub and paste in the `token.txt`.
 
 Login via GitHub CLI.
 
@@ -167,22 +168,17 @@ Login via GitHub CLI.
 Generate ssh keys by git tool (select one solution).
 
 ```shell
-  ssh-keygen -t rsa -C "comment" #interactive mode
-  ssh-keygen -t rsa -C "comment" -N '' -f ~/.ssh/id_rsa #without prompt
+  ssh-keygen -t rsa -C "comment" #interactive mode, solution 1
+  ssh-keygen -t rsa -C "comment" -N '' -f ~/.ssh/id_rsa #without prompt, solution 2
   add key: ssh-add ~/.ssh/id_rsa
 ```
 
 Deploy public keys via GitHub CLI (select one solution).
 
 ```shell
-  gh repo deploy-key add ~/.ssh/id_rsa.pub -R owner/repository-name -t key-title -w #deploy key into repository
-  gh ssh-key add ~/.ssh/id_rsa.pub #deploy key into user
-```
-
-### 2-3-5 Test GitHub ssh
-
-```shell
-ssh -T git@github.com
+  gh repo deploy-key add ~/.ssh/id_rsa.pub -R owner/repository-name -t key-title -w #deploy key into repository, solution 1
+  gh ssh-key add ~/.ssh/id_rsa.pub #deploy key into user, solution 2
+  ssh -T git@github.com
 ```
 
 ## <span style="color: RoyalBlue">2-4 Sonarqube</span>
@@ -303,20 +299,22 @@ Add customized checkstyle.xml to _**setting/preferences > Tools > Checkstyle > C
 
 Import customized checkstyle.xml to _**setting/preferences > Editor > Code Style > Schema**_.
 
-
 #### Test Coverage
 
-Click on _**Navigate > Search Everywhere**_, then type `Registry...`and in the registry, type `idea.coverage` then disable
-    - idea.coverage.new.sampling.enable
-    - idea.coverage.test.tracking.enable
-    - idea.coverage.tracing.enable
+Click on _**Navigate > Search Everywhere**_, then type `Registry...`and in the registry, type `idea.coverage` then
+disable
+- idea.coverage.new.sampling.enable
+- idea.coverage.test.tracking.enable
+- idea.coverage.tracing.enable
 
 ## <span style="color: RoyalBlue">2-8 Ngrok</span>
 
 [Go to Ngrok website](https://dashboard.ngrok.com/) and create an account.
 
 Download ngrok then add ngrok to system path.
+
 #### Windows
+
 ```shell
 set NGROK_HOME=extracted-path
 setx /M PATH "%PATH%;%NGROK_HOME%"
@@ -329,10 +327,12 @@ echo "export NGROK_HOME=extracted-path" >> ${HOME}/.bashrc
 source ~/.bashrc
 ```
 
-add token 
+add token
+
 ```shell
 ngrok config add-authtoken <token>
 ```
+
 Define tunnel like the following example in the config file.
 windows: user-home\AppData\Local\ngrok\ngrok.yml
 
@@ -348,9 +348,11 @@ tunnels:
     addr: 9000
     proto: http
 ```
+
 ```shell
 ngrok start --all 
 ```
+
 Brows http://127.0.0.1:4040.
 
 ---
@@ -365,6 +367,7 @@ mvn install -DskipTests=true -s settings.xml
 mvn site:site site:stage -s settings.xml -P site,javadoc,changelog,test-report
 mvn scm-publish:publish-scm -s settings.xml -P publish
 ```
+
 ## <span style="color: RoyalBlue">3-1 Site</span>
 
 View [generated documents of project](https://saman-oss.github.io/pine-java-core/).

@@ -15,6 +15,10 @@ services:
       - "50000:50000"
     volumes:
       - ~/docker_compose/jenkins_configuration:/var/jenkins_home
+    deploy:
+      resources:
+        limits:
+          memory: '1024M'
     ulimits:
       nproc: 262144
       memlock:
