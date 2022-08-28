@@ -360,6 +360,7 @@ Brows http://127.0.0.1:4040.
 # <span style="color: Crimson">3 Build and Test</span>
 
 ``` shell
+mvn validate
 mvn clean package -DskipTests=true -s settings.xml -P source,javadoc,license
 mvn test -s settings.xml
 mvn checkstyle:check -s settings.xml -P checkstyle
