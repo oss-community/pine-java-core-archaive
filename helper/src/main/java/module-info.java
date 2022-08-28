@@ -1,7 +1,7 @@
 open module core.java.helper {
   requires javaee.web.api;
   requires java.sql;
-  requires ojdbc8;
+  requires com.oracle.database.jdbc;
   requires com.h2database;
   requires com.fasterxml.jackson.annotation;
   requires com.fasterxml.jackson.core;
