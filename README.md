@@ -365,6 +365,9 @@ mvn install -DskipTests=true -s settings.xml
 mvn site:site site:stage -s settings.xml -P site,javadoc,changelog,test-report
 mvn scm-publish:publish-scm -s settings.xml -P publish
 ```
+## <span style="color: RoyalBlue">3-1 Site</span>
+
+View [generated documents of project](https://saman-oss.github.io/pine-java-core/).
 
 ---
 
@@ -398,18 +401,18 @@ mvn deploy -s settings.xml -P jfrog
 1. install [Jenkins](#2-5-Jenkins), [JFrog](#2-5-JFrog), [Sonarqube](#2-4-Sonarqube) and [ngrok](#2-8-Ngrok)
 2. setup JDK, Maven and Git
 3. add `sonar_token`, `artifactory_password` and `github_token`.
-2. generate ssh key by git and deploy the public key to the GitHub repository.
-3. click on New Item menu in dashboard of [Jenkins](#2-5-Jenkins)
-4. select Pipeline and then OK.
-5. in the configuration page check `GitHub hook trigger for GITScm polling` item and insert the url of the project.
-6. in Advanced Project Options section, select `Pipeline script from SCM` as pipeline definition.
+4. generate ssh key by git and deploy the public key to the GitHub repository.
+5. click on New Item menu in dashboard of [Jenkins](#2-5-Jenkins)
+6. select Pipeline and then OK.
+7. in the configuration page check `GitHub hook trigger for GITScm polling` item and insert the url of the project.
+8. in Advanced Project Options section, select `Pipeline script from SCM` as pipeline definition.
     - select Git as an SCM
     - insert URL of repository in HTTPS format
     - add credentials (GitHub token as a secret text)
     - choose branch
     - insert script path (default is Jenkinsfile)
-7. click on the save button to see the pipeline dashboard.
-8. click on Build Now menu
+9. click on the save button to see the pipeline dashboard.
+10. click on Build Now menu
 
 ---
 

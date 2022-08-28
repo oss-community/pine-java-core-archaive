@@ -22,13 +22,14 @@ RUN apt-get update && \
     apt-get update && \
     git config --global user.email samanalishiri@gmail.com && \
     git config --global user.name samanalishiri && \
-    echo $GITHUB_JENKINS_TOKEN > ./github-token.txt && \
     ssh-keygen -t rsa -C $KEY_COMMENT -N '' -f /root/.ssh/id_rsa && \
-    gh auth login -p ssh -h github.com --with-token < ./github-token.txt && \
     eval "$(ssh-agent -s)" && \
     ssh-add /root/.ssh/id_rsa && \
+    echo $GITHUB_JENKINS_TOKEN > ./github-token.txt && \
+    gh auth login -p ssh -h github.com --with-token < ./github-token.txt && \
     gh repo deploy-key delete $(gh repo deploy-key list -R saman-oss/pine-java-core | awk '{print ($1==""?"":$1)}') -R saman-oss/pine-java-core || true && \
     gh repo deploy-key add /root/.ssh/id_rsa.pub -R saman-oss/pine-java-core -t jenkins-key-pub -w && \
+    ssh -T git@github.com -yes && \
     java -version && \
     mvn -version && \
     git --version && \
