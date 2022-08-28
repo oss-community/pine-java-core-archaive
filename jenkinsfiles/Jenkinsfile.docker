@@ -40,12 +40,18 @@ pipeline {
           }
         }
 
+         stage('Maven Validate') {
+          steps {
+            sh 'mvn validate'
+          }
+        }
+
       }
     }
 
     stage('Build') {
       steps {
-        sh 'mvn -U clean package -DskipTests=true -s settings.xml -P source,javadoc,license'
+        sh 'mvn clean package -DskipTests=true -s settings.xml -P source,javadoc,license'
       }
     }
 

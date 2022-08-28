@@ -371,6 +371,7 @@ mvn scm-publish:publish-scm -s settings.xml -P publish
 # <span style="color: Crimson">4 Install</span>
 
 ``` shell
+mvn validate
 mvn clean install -DskipTests=true
 ```
 
@@ -381,6 +382,7 @@ mvn clean install -DskipTests=true
 ## <span style="color: RoyalBlue">5-1 Maven Pipeline</span>
 
 ``` shell
+mvn validate
 mvn clean package -DskipTests=true -s settings.xml -P source,javadoc,license
 mvn test -s settings.xml
 mvn checkstyle:check -s settings.xml -P checkstyle

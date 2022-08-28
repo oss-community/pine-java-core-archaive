@@ -57,20 +57,14 @@ limitations under the License.
         <system>GitHub Issues</system>
     </issueManagement>
     <properties>
-        <ojdbc.version>12.2.0.1</ojdbc.version>
+        <ojdbc.version>21c</ojdbc.version>
         <h2.version>2.1.210</h2.version>
     </properties>
-    <repositories>
-        <repository>
-            <id>local-repo</id>
-            <url>file://${project.parent.basedir}${file.separator}local-repo</url>
-        </repository>
-    </repositories>
     <dependencies>
         <!--jdbc driver begin-->
         <dependency>
             <groupId>com.oracle</groupId>
-            <artifactId>ojdbc8</artifactId>
+            <artifactId>ojdbc11</artifactId>
             <version>${ojdbc.version}</version>
         </dependency>
         <dependency>
@@ -121,6 +115,26 @@ limitations under the License.
                             <goal>aggregate-download-licenses</goal>
                         </goals>
                         <configuration>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-install-plugin</artifactId>
+                <version>2.5.2</version>
+                <executions>
+                    <execution>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>install-file</goal>
+                        </goals>
+                        <configuration>
+                            <groupId>com.oracle</groupId>
+                            <artifactId>ojdbc11</artifactId>
+                            <version>21c</version>
+                            <packaging>jar</packaging>
+                            <file>${project.parent.basedir}${file.separator}driver/ojdbc11.jar</file>
                         </configuration>
                     </execution>
                 </executions>

@@ -10,6 +10,10 @@
 
 clear
 
+echo 'step [validate] begin'
+mvn validate
+echo 'step [validate] end'
+
 echo 'step [build] begin'
 mvn clean package -DskipTests=true -s settings.xml -P source,javadoc,license
 echo 'step [build] end'

@@ -37,6 +37,12 @@ pipeline {
           }
         }
 
+         stage('Maven Validate') {
+          steps {
+            bat 'mvn validate'
+          }
+        }
+
       }
     }
 

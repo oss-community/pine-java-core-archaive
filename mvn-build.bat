@@ -1,4 +1,8 @@
 cls
+call echo 'step [validate] begin'
+call mvn validate
+call echo 'step [validate] end'
+
 call echo 'step [build] begin'
 call mvn clean package -DskipTests=true -s settings.xml -P source,javadoc,license
 call echo 'step [build] end'
