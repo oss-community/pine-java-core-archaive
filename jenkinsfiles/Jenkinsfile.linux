@@ -6,6 +6,7 @@ pipeline {
       git 'git'
     }
     environment {
+       GITHUB_TOKEN=credentials('github_token')
        SONAR_TOKEN=credentials('sonar_token')
        SONAR_URL='http://localhost:9000'
        JFROG_ARTIFACTORY_USERNAME='admin'

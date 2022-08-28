@@ -68,6 +68,26 @@ services:
       nofile:
         soft: 65535
         hard: 65535
+  pine-concourse-db:
+    container_name: pine-concourse-db
+    hostname: pine-concourse-db
+    restart: always
+    image: postgres
+    environment:
+      POSTGRES_DB: ${CONCOURSE_DB}
+      POSTGRES_PASSWORD: ${CONCOURSE_DB_PASSWORD}
+      POSTGRES_USER: ${CONCOURSE_DB_USER}
+      PGDATA: /database
+    ports:
+      - "5053:5432"
+    volumes:
+      - ~/docker_compose/concourse-postgresql:/var/lib/postgresql
+      - ~/docker_compose/concourse-postgresql/concourse-postgresql_data:/var/lib/postgresql/data
+    ulimits:
+      nproc: 262144
+      nofile:
+        soft: 32000
+        hard: 40000
   # wsl -d docker-desktop
   # sysctl -w vm.max_map_count=262144
   # set vm.max_map_count=262144 in /etc/sysctl.conf then execute sysctl -p
@@ -127,4 +147,30 @@ services:
       nofile:
         soft: 65535
         hard: 65535
+  concourse:
+    image: concourse/concourse
+    container_name: pine-concourse
+    hostname: pine-concourse
+    restart: always
+    command: quickstart
+    privileged: true
+    depends_on: [ pine-concourse-db ]
+    ports: [ "8083:8080" ]
+    environment:
+      CONCOURSE_POSTGRES_HOST: pine-concourse-db
+      CONCOURSE_POSTGRES_USER: ${CONCOURSE_DB_USER}
+      CONCOURSE_POSTGRES_PASSWORD: ${CONCOURSE_DB_PASSWORD}
+      CONCOURSE_POSTGRES_DATABASE: ${CONCOURSE_DB}
+      CONCOURSE_EXTERNAL_URL: ${CONCOURSE_EXTERNAL_URL}
+      CONCOURSE_ADD_LOCAL_USER: ${CONCOURSE_ADD_LOCAL_USER}:${CONCOURSE_ADD_LOCAL_PASSWORD}
+      CONCOURSE_MAIN_TEAM_LOCAL_USER: ${CONCOURSE_MAIN_TEAM_LOCAL_USER}
+      # instead of relying on the default "detect"
+      CONCOURSE_WORKER_BAGGAGECLAIM_DRIVER: overlay
+      CONCOURSE_CLIENT_SECRET: ${CONCOURSE_CLIENT_SECRET}
+      CONCOURSE_TSA_CLIENT_SECRET: ${CONCOURSE_TSA_CLIENT_SECRET}
+      CONCOURSE_X_FRAME_OPTIONS: allow
+      CONCOURSE_CONTENT_SECURITY_POLICY: "*"
+      CONCOURSE_CLUSTER_NAME: ${CONCOURSE_CLUSTER_NAME}
+      CONCOURSE_WORKER_CONTAINERD_DNS_SERVER: "8.8.8.8"
+      CONCOURSE_WORKER_RUNTIME: "containerd"
 
