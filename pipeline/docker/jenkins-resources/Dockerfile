@@ -1,4 +1,4 @@
-FROM jenkins/jenkins:lts
+FROM jenkins/jenkins:jdk17
 MAINTAINER samanalishiri@gmail.com
 
 ARG GITHUB_JENKINS_TOKEN=token
