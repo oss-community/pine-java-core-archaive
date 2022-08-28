@@ -2,8 +2,8 @@ version: '3.8'
 services:
   pine-jenkins:
     image: jenkins/latest
-    container_name: pine-jenkins-test
-    hostname: pine-jenkins-test
+    container_name: pine-jenkins
+    hostname: pine-jenkins
     restart: always
     build:
       context: .\jenkins-resources

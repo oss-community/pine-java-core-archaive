@@ -51,6 +51,7 @@ Pine Core Java has modules as follows.
 
 - helper
 - document
+- i18n 
 
 # <span style="color: Crimson">2 Tools</span>
 
@@ -60,7 +61,7 @@ Pine Core Java has modules as follows.
 
 [Download Java 17 in zip format.](https://www.oracle.com/java/technologies/downloads/#jdk17-windows)
 
-```bash
+```shell
 mkdir C:\sdk
 # extract zip file to C:\sdk and rename it to jdk-17
 set JAVA_HOME=C:\sdk\jdk-17
@@ -72,12 +73,13 @@ setx /M PATH "%PATH%;%JAVA_HOME%\bin"
 
 [Download Java 17 in tar.gz format.](https://www.oracle.com/java/technologies/downloads/#jdk17-linux)
 
-```bash
-sudo chown user-name /opt/
-sudo chmod 765 /opt/
+```shell
+sudo chown ${USER} -R /opt/
+sudo chmod 765 -R /opt/
 tar -xvf ./jdk-17_linux-x64_bin.tar.gz -C /opt/
 mv jdk-17_linux-x64_bin jdk-17
-echo "export JAVA_HOME=/opt/jdk-17" >> /home/user-name/.bashrc
+sudo chmod +x -R /opt/java-17/bin/
+echo "export JAVA_HOME=/opt/jdk-17" >> ${HOME}/.bashrc
 sed -i 's/$PATH/$JAVA_HOME\/bin:$PATH/g' .bashrc #redhat
 sed -i 's/PATH=/PATH=$JAVA_HOME\/bin:/' .bashrc #debian
 source ~/.bashrc
@@ -85,7 +87,7 @@ source ~/.bashrc
 
 ### 2-1-3 Test Java
 
-```bash
+```shell
 java -version
 ```
 
@@ -95,7 +97,7 @@ java -version
 
 [Download Maven in zip format.](https://maven.apache.org/download.cgi)
 
-```bash
+```shell
 mkdir C:\sdk
 # extract zip file to C:\sdk and rename it to maven
 set M2_HOME=C:\sdk\maven
@@ -105,15 +107,15 @@ setx /M PATH "%PATH%;%M2_HOME%\bin"
 
 ### 2-2-2 Linux
 
-
 [Download Maven in tar.gz format.](https://maven.apache.org/download.cgi)
 
-```bash
-sudo chown user-name /opt/
-sudo chmod 765 /opt/
+```shell
+sudo chown ${USER} -R /opt/
+sudo chmod 765 -R /opt/
 tar -xvf ./maven*.tar.gz -C /opt/
 mv maven* maven
-echo "export M2_HOME=/opt/maven" >> /home/user-name/.bashrc
+sudo chmod +x -R /opt/maven/bin/
+echo "export M2_HOME=/opt/maven" >> ${HOME}/.bashrc
 sed -i 's/$PATH/M2_HOME\/bin:$PATH/g' .bashrc #redhat
 sed -i 's/PATH=/PATH=$M2_HOME\/bin:/' .bashrc #debian
 source ~/.bashrc
@@ -121,7 +123,7 @@ source ~/.bashrc
 
 ### 2-2-3 Test Maven
 
-```bash
+```shell
 mvn -version
 ```
 
@@ -138,51 +140,89 @@ mvn -version
 
 ### 2-3-3 Test Git
 
-```bash
+```shell
 git --version
 ```
-### 2-3-4 GitHub CLI
-1. generate token by GitHub.com 
-2. install GitHub CLI 
-3. run `gh –version`
-4. create a text file named token.txt 
-5. copy token from GitHub and paste in the token.txt 
-6. login via GitHub CLI 
-   - gh auth login -p ssh -h github.com --with-token < token.txt
-   - gh repo list
-7. generate ssh keys by git tool
-   - interactive mode: ssh-keygen -t rsa -C "comment"
-   - without prompt: ssh-keygen -t rsa -C "comment" -N '' -f ~/.ssh//id_rsa
-8. deploy public keys via GitHub CLI
-   - gh repo deploy-key add ./id_rsa.pub -R owner/repository-name -t key-title -w
 
+### 2-3-4 GitHub CLI
+
+[generate token by GitHub.com](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token)
+[install GitHub CLI](https://github.com/cli/cli)
+
+### 2-3-5 Test GitHub CLI
+
+```shell
+gh –-version
+```
+
+Create a text file named token.txt and copy token from GitHub and paste in the `token.txt`.
+
+Login via GitHub CLI.
+
+```shell
+   gh auth login -p ssh -h github.com --with-token < token.txt
+   gh repo list
+```
+
+Generate ssh keys by git tool (select one solution).
+
+```shell
+  ssh-keygen -t rsa -C "comment" #interactive mode
+  ssh-keygen -t rsa -C "comment" -N '' -f ~/.ssh/id_rsa #without prompt
+  add key: ssh-add ~/.ssh/id_rsa
+```
+
+Deploy public keys via GitHub CLI (select one solution).
+
+```shell
+  gh repo deploy-key add ~/.ssh/id_rsa.pub -R owner/repository-name -t key-title -w #deploy key into repository
+  gh ssh-key add ~/.ssh/id_rsa.pub #deploy key into user
+```
+
+### 2-3-5 Test GitHub ssh
+
+```shell
+ssh -T git@github.com
+```
 
 ## <span style="color: RoyalBlue">2-4 Sonarqube</span>
 
 ### 2-4-1 Sonarqube Server
 
-1. [download sonarqube](https://www.sonarqube.org/downloads/) then extract it
-2. in the extracted path execute the following command
-    - Linux: `bin/linux-x86-64/sonar.sh start`
-    - Windows: `bin/windows-x86-64/StartSonar.bat`
-3. browse SonarQube for localhost installation at `http://localhost:9000`.
-    - username: admin
-    - password: admin
+[Download sonarqube](https://www.sonarqube.org/downloads/) then extract it.
+In the extracted path execute the following command.
+
+#### Windows
+
+```shell
+$SONARQUBE_HOME/bin/linux-x86-64/sonar.sh start
+```
+
+#### Linux
+
+```shell
+%SONARQUBE_HOME%\bin/windows-x86-64/StartSonar.bat
+```
+
+Browse SonarQube for localhost installation at `http://localhost:9000`.
+
+- username: admin
+- password: admin
 
 Generate token at _**My Account > security > Generate Tokens**_ and add environment variable.
 
 #### Windows
 
-```bash
+```shell
 setx /M SONAR_TOKEN generated-token
 setx /M SONAR_URL sonarqube-url
 ```
 
 #### Linux
 
-```bash
-echo "export SONAR_TOKEN=generated-token" >> /home/user-name/.bashrc
-echo "export SONAR_URL=sonarqube-url" >> /home/user-name/.bashrc
+```shell
+echo "export SONAR_TOKEN=generated-token" >> ${HOME}/.bashrc
+echo "export SONAR_URL=sonarqube-url" >> ${HOME}/.bashrc
 ```
 
 ### 2-4-2 Sonar Scanner
@@ -192,15 +232,15 @@ then add the following environment variables.
 
 #### Windows
 
-```bash
+```shell
 set SONAR_SCANNER_HOME=extracted path
 setx /M PATH "%PATH%;%SONAR_SCANNER_HOME%\bin"
 ```
 
 #### Linux
 
-```bash
-echo "export SONAR_SCANNER_HOME=extracted path" >> /home/user-name/.bashrc
+```shell
+echo "export SONAR_SCANNER_HOME=extracted path" >> ${HOME}/.bashrc
 sed -i 's/$PATH/$SONAR_SCANNER_HOME\/bin:$PATH/g' .bashrc #redhat
 sed -i 's/PATH=/PATH=$SONAR_SCANNER_HOME\/bin:/' .bashrc #debian
 source ~/.bashrc
@@ -208,38 +248,48 @@ source ~/.bashrc
 
 ## <span style="color: RoyalBlue">2-5 Jenkins</span>
 
-1. [download jenkins as war file](https://www.jenkins.io/download/)
-2. `java -jar jenkins.war --httpPort=8080`
-3. browse Jenkins for localhost installation at http://localhost:9090.
-    - username: admin
-    - password: look at the console
+[Download jenkins as war file](https://www.jenkins.io/download/).
+
+```shell
+java -jar jenkins.war --httpPort=8080
+```
+
+Browse Jenkins for localhost installation at http://localhost:9090.
+
+- username: admin
+- password: look at the console
 
 ## <span style="color: RoyalBlue">2-6 JFrog</span>
 
-1. [download Jfrog](https://jfrog.com/download-jfrog-platform/) and extract it
-2. in the extracted path execute the following command
-    - Linux: `$JFROG_HOME/artifactory/app/bin/artifactoryctl`
-    - Windows: `%JFROG_HOME%\app\bin\artifactory.bat`
-3. browse JFrog for localhost installation at `http://localhost:8082/ui`.
-    - username: admin
-    - password: password
-4. change password at _**Administration > User Management > Users**_ 
-5. get encrypted password from _**Edit Profile**_ menu
-6. create repository by _**Quick Setup**_ menu
+[Download Jfrog](https://jfrog.com/download-jfrog-platform/) and extract it.
+In the extracted path execute the following command.
 
-##### Windows
+#### Windows
 
-```bash
+```shell
 set JFROG_HOME=extracted path
 setx /M JFROG_HOME "%JFROG_HOME%"
+%JFROG_HOME%\app\bin\artifactory.bat
 ```
 
-##### Linux
+#### Linux
 
-```bash
-echo "export JFROG_HOME=extracted path" >> /home/user-name/.bashrc
+```shell
+echo "export JFROG_HOME=extracted path" >> ${HOME}/.bashrc
 source ~/.bashrc
+$JFROG_HOME/artifactory/app/bin/artifactoryctl
 ```
+
+Browse JFrog for localhost installation at `http://localhost:8082/ui`.
+
+- username: admin
+- password: password
+
+Change password at _**Administration > User Management > Users**_.
+
+Get encrypted password from _**Edit Profile**_ menu.
+
+Create repository by _**Quick Setup**_ menu.
 
 ## <span style="color: RoyalBlue">2-7 IDE Setting</span>
 
@@ -247,26 +297,44 @@ source ~/.bashrc
 
 #### Checkstyle
 
-1. [install google check style plugin](https://plugins.jetbrains.com/plugin/1065-checkstyle-idea/versions)
-2. add customized checkstyle.xml to _**setting/preferences > Tools > Checkstyle > Configuration File**_
-3. import customized checkstyle.xml to _**setting/preferences > Editor > Code Style > Schema**_
+[Install google check style plugin](https://plugins.jetbrains.com/plugin/1065-checkstyle-idea/versions).
+
+Add customized checkstyle.xml to _**setting/preferences > Tools > Checkstyle > Configuration File**_.
+
+Import customized checkstyle.xml to _**setting/preferences > Editor > Code Style > Schema**_.
+
 
 #### Test Coverage
 
-1. click on _**Navigate > Search Everywhere**_, then type `Registry...`.
-2. in registry, type `idea.coverage` then disable
+Click on _**Navigate > Search Everywhere**_, then type `Registry...`and in the registry, type `idea.coverage` then disable
     - idea.coverage.new.sampling.enable
     - idea.coverage.test.tracking.enable
     - idea.coverage.tracing.enable
 
 ## <span style="color: RoyalBlue">2-8 Ngrok</span>
 
-1. [go to Ngrok website](https://dashboard.ngrok.com/)
-2. create an account
-3. download ngrok
-4. add ngrok to system path
-5. add token `ngrok config add-authtoken <token>`
-6. define tunnel like the following example
+[Go to Ngrok website](https://dashboard.ngrok.com/) and create an account.
+
+Download ngrok then add ngrok to system path.
+#### Windows
+```shell
+set NGROK_HOME=extracted-path
+setx /M PATH "%PATH%;%NGROK_HOME%"
+```
+
+#### Linux
+
+```shell
+echo "export NGROK_HOME=extracted-path" >> ${HOME}/.bashrc
+source ~/.bashrc
+```
+
+add token 
+```shell
+ngrok config add-authtoken <token>
+```
+Define tunnel like the following example in the config file.
+windows: user-home\AppData\Local\ngrok\ngrok.yml
 
 ```
 tunnels:
@@ -280,27 +348,29 @@ tunnels:
     addr: 9000
     proto: http
 ```
+```shell
+ngrok start --all 
+```
+Brows http://127.0.0.1:4040.
 
-7. `ngrok start --all`
-8. brows http://127.0.0.1:4040
 ---
 
 # <span style="color: Crimson">3 Build and Test</span>
 
-``` bash
+``` shell
 mvn clean package -DskipTests=true -s settings.xml -P source,javadoc,license
 mvn test -s settings.xml
 mvn checkstyle:check -s settings.xml -P checkstyle
 mvn install -DskipTests=true -s settings.xml
 mvn site:site site:stage -s settings.xml -P site,javadoc,changelog,test-report
 mvn scm-publish:publish-scm -s settings.xml -P publish
-  ```
+```
 
 ---
 
 # <span style="color: Crimson">4 Install</span>
 
-``` bash
+``` shell
 mvn clean install -DskipTests=true
 ```
 
@@ -310,7 +380,7 @@ mvn clean install -DskipTests=true
 
 ## <span style="color: RoyalBlue">5-1 Maven Pipeline</span>
 
-``` bash
+``` shell
 mvn clean package -DskipTests=true -s settings.xml -P source,javadoc,license
 mvn test -s settings.xml
 mvn checkstyle:check -s settings.xml -P checkstyle
@@ -319,15 +389,16 @@ mvn site:site site:stage -s settings.xml -P site,javadoc,changelog,test-report
 mvn scm-publish:publish-scm -s settings.xml -P publish
 mvn sonar:sonar -s settings.xml -P sonar
 mvn deploy -s settings.xml -P jfrog
-  ```
+```
+
 ## <span style="color: RoyalBlue">5-2 Jenkins Pipeline</span>
 
-1. install Jenkins, Jfrog, Sonarqube and ngrok
+1. install [Jenkins](#2-5-Jenkins), [JFrog](#2-5-JFrog), [Sonarqube](#2-4-Sonarqube) and [ngrok](#2-8-Ngrok)
 2. generate ssh key by git and deploy the public key to the GitHub repository.
 3. click on New Item menu in dashboard of [Jenkins](#2-5-Jenkins)
 4. select Pipeline and then OK.
 5. in the configuration page check `GitHub hook trigger for GITScm polling` item and insert the url of the project.
-6. in Advanced Project Options section select Pipeline script from SCM as pipeline definition.
+6. in Advanced Project Options section, select `Pipeline script from SCM` as pipeline definition.
     - select Git as an SCM
     - insert URL of repository in HTTPS format
     - add credentials (GitHub token as a secret text)
@@ -337,4 +408,5 @@ mvn deploy -s settings.xml -P jfrog
 8. click on Build Now menu
 
 ---
+
 #### <p align="center"> [Top](#Pine-Framework) </p>
