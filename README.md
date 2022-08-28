@@ -394,6 +394,8 @@ mvn deploy -s settings.xml -P jfrog
 ## <span style="color: RoyalBlue">5-2 Jenkins Pipeline</span>
 
 1. install [Jenkins](#2-5-Jenkins), [JFrog](#2-5-JFrog), [Sonarqube](#2-4-Sonarqube) and [ngrok](#2-8-Ngrok)
+2. setup JDK, Maven and Git
+3. add `sonar_token`, `artifactory_password` and `github_token`.
 2. generate ssh key by git and deploy the public key to the GitHub repository.
 3. click on New Item menu in dashboard of [Jenkins](#2-5-Jenkins)
 4. select Pipeline and then OK.
