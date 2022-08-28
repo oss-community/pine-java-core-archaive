@@ -45,7 +45,7 @@ pipeline {
 
     stage('Build') {
       steps {
-        sh 'mvn clean package -DskipTests=true -s settings.xml -P source,javadoc,license'
+        sh 'mvn -U clean package -DskipTests=true -s settings.xml -P source,javadoc,license'
       }
     }
 
