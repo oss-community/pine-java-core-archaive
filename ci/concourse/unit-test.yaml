@@ -1,40 +1,20 @@
-#---
-#platform: linux
-#
-#container_limits: { }
-#
-#image_resource:
-#  type: registry-image
-#  source:
-#    repository: maven
-#    tag: 3.6.3
-#
-#caches:
-#  - path: $HOME/.m2/repository
-#
-#
-#inputs:
-#  - name: git
-#
-##outputs:
-##  - name: jar-file
-##    path: git/target/
-#
-#run:
-#  path: mvn
-#  args: ["-f", "git/pom.xml", "clean", "package"]
-#
-##inputs:
-##  - name: git
-##
-##outputs:
-##  - name: build
-##run:
-##  path: /bin/sh
-##  args:
-##    - -c
-##    - |
-##      mvn -f pom.xml clean package
-##
-##      # Make this output available to the 'test' Job
-##      cp -R * build
+---
+platform: linux
+
+container_limits: { }
+
+image_resource:
+  type: registry-image
+  source:
+    repository: maven
+    tag: 3.6.3
+
+caches:
+  - path: $HOME/.m2/repository
+
+inputs:
+  - name: git
+
+run:
+  path: mvn
+  args: ["-f", "git/pom.xml", "clean", "package"]
