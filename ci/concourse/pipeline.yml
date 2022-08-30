@@ -3,6 +3,10 @@ groups:
     jobs:
       - build-pine-java-core
       - test-pine-java-core
+  - name: uat
+    jobs:
+      - build-pine-java-core
+      - test-pine-java-core
 
 resources:
   - name: repo-pine-java-core
@@ -16,7 +20,7 @@ jobs:
   - name: test-pine-java-core
     plan:
       - get: repo-pine-java-core
-        passed: [build-pine-java-core]
+        passed: [ build-pine-java-core ]
         trigger: true
       - task: test
         input_mapping:
