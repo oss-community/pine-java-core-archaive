@@ -1,6 +1,5 @@
 ---
 platform: linux
-
 container_limits: { }
 
 image_resource:
