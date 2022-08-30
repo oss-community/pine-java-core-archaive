@@ -18,7 +18,7 @@ jobs:
             type: registry-image
             source:
               repository: maven
-              tag: 3.6.3
+              tag: 3.8.6-openjdk-18
 
           inputs:
             - name: git-repo
