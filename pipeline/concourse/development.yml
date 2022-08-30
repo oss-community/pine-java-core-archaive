@@ -12,11 +12,22 @@ jobs:
   # then execute a 'build' task which is defined separately in the repository.
   - name: maven-package
     plan:
-      - get: git # Concourse is stateless and needs to be given an external input to this Job.
-        version: latest # Just process the latest Git commit, not every commit (this is the default setting)
-        trigger: true
       - task: maven-package
-        file: git/ci/concourse/maven-package.yml
+        config:
+          platform: linux
+          container_limits: { }
+          image_resource:
+            type: registry-image
+            source:
+              repository: maven
+              tag: 3.6.3
+          caches:
+           - path: $HOME/.m2/repository
+          inputs:
+           - name: git
+          run:
+            path: mvn
+            args: [ "-f", "git/pom.xml", "-DskipTests=true", "clean", "package" ]
 #  - name: unit-test
 #    plan:
 #      - get: git
