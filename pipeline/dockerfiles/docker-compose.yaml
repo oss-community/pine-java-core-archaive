@@ -6,7 +6,7 @@ services:
     hostname: pine-jenkins
     restart: always
     build:
-      context: .\jenkins-resources
+      context: .\jenkins
       dockerfile: Dockerfile
       args:
         GITHUB_JENKINS_TOKEN: ${GITHUB_JENKINS_TOKEN}

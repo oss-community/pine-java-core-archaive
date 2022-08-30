@@ -24,4 +24,3 @@ run:
       cp -r repo/* $(pwd)
       mvn validate
       mvn clean package -DskipTests=true
-      mvn test

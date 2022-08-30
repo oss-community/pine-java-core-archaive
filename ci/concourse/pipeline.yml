@@ -1,0 +1,84 @@
+groups:
+  - name: dev
+    jobs:
+      - build-pine-java-core
+      - test-pine-java-core
+
+resources:
+  - name: repo-pine-java-core
+    type: git
+    icon: github
+    source:
+      uri: https://github.com/saman-oss/pine-java-core.git
+      branch: main
+
+jobs:
+  - name: build-pine-java-core
+    plan:
+      - get: repo-pine-java-core
+        trigger: true
+      - task: build
+        input_mapping:
+          repo: repo-pine-java-core
+        privileged: true
+        file: repo-pine-java-core/ci/concourse/build.yaml
+  - name: test-pine-java-core
+    plan:
+      - get: repo-pine-java-core
+        trigger: true
+      - task: test
+        input_mapping:
+          repo: repo-pine-java-core
+        privileged: true
+        file: repo-pine-java-core/ci/concourse/unit-test.yaml
+#        config:
+#          platform: linux
+#          image_resource:
+#            type: registry-image
+#            source:
+#              repository: maven
+#              tag: 3.8.6-openjdk-18
+#          caches:
+#            - path: $HOME/.m2/repository
+#
+#          inputs:
+#            - name: git-repo
+#          output:
+#            - name: build
+#
+#          run:
+#            path: /bin/sh
+#            args:
+#              - -c
+#              - |
+#                mvn -f git-repo/pom.xml validate
+#                mvn -f git-repo/pom.xml clean package -DskipTests=true
+#  - name: test
+#    plan:
+#      - get: pine-java-core-repo
+#        passed:
+#         - build
+#        trigger: true
+#      - task: maven-test
+#        privileged: true
+#        config:
+#          platform: linux
+#          image_resource:
+#            type: registry-image
+#            source:
+#              repository: maven
+#              tag: 3.8.6-openjdk-18
+#
+#          caches:
+#            - path: $HOME/.m2/repository
+#
+#          inputs:
+#            - name: build
+#
+#          run:
+#            path: /bin/sh
+#            args:
+#              - -c
+#              - |
+#                mvn -f git-repo/pom.xml validate
+#                mvn -f git-repo/pom.xml test
