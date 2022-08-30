@@ -11,10 +11,10 @@ caches:
 inputs:
   - name: git
 outputs:
-  - name: image # Concourse creates this directory for us. This will hold the OCI image .tar
+  - name: jar
 run:
   path: /bin/sh
   args:
     - -c
     - |
-      mvn -B -f git/pom.xml clean package -DskipTests=true
+      mvn -B -f pom.xml clean package -DskipTests=true

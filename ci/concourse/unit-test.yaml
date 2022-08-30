@@ -17,7 +17,7 @@ run:
   args:
     - -c
     - |
-      mvn -f git/pom.xml clean package
+      mvn -f pom.xml clean package
       
       # Make this output available to the 'test' Job
-      cp -R git/* build
+      cp -R * build

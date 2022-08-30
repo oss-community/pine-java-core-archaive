@@ -16,7 +16,7 @@ jobs:
         version: latest # Just process the latest Git commit, not every commit (this is the default setting)
         trigger: true
       - task: maven-package
-        file: git/ci/concourse/maven-package.yml
+        file: ci/concourse/maven-package.yml
   - name: unit-test
     plan:
       - get: git
@@ -25,4 +25,4 @@ jobs:
         passed:
           - package
       - task: run-unit-tests
-        file: git/ci/concourse/unit-test.yml
+        file: ci/concourse/unit-test.yml
