@@ -24,8 +24,12 @@ jobs:
             - name: git-repo
 
           run:
-            path: mvn
-            args: ["-f", "git-repo/pom.xml", "-DskipTests=true", "clean", "package"]
+            path: /bin/sh
+            args:
+              - -c
+              - |
+                mvn -f git-repo/pom.xml validate
+                mvn -f git-repo/pom.xml clean package -DskipTests=true
 #---
 #resources:
 #  - name: git
