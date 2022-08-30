@@ -36,11 +36,12 @@ jobs:
                 mvn -f git-repo/pom.xml clean package -DskipTests=true
   - name: test
     plan:
-      - get: build
+      - get: git-repo
+        passed:
+         - build
         trigger: true
       - task: maven-test
         privileged: true
-        passed: [build]
         config:
           platform: linux
           image_resource:
@@ -61,4 +62,4 @@ jobs:
               - -c
               - |
                 mvn -f git-repo/pom.xml validate
-                mvn -f git-repo/pom.xml clean package
+                mvn -f git-repo/pom.xml test
