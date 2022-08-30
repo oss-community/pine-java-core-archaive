@@ -3,7 +3,7 @@ resources:
     type: git
     source:
       uri: https://github.com/saman-oss/pine-java-core.git
-      branch: master
+      branch: main
 
 jobs:
   - name: maven-package
