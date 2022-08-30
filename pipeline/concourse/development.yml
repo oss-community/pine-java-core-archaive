@@ -23,8 +23,8 @@ jobs:
               tag: 3.6.3
           caches:
            - path: $HOME/.m2/repository
-          inputs:
-           - name: git
+#          inputs:
+#           - name: git
           run:
             path: mvn
             args: [ "-f", "git/pom.xml", "-DskipTests=true", "clean", "package" ]
