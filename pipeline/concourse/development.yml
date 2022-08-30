@@ -4,7 +4,7 @@ resources:
     icon: github
     type: git
     source:
-      uri: https://github.com/saman-oss/pine-java-core
+      uri: https://github.com/saman-oss/pine-java-core.git
       branch: main
 
 jobs:
@@ -16,7 +16,7 @@ jobs:
         version: latest # Just process the latest Git commit, not every commit (this is the default setting)
         trigger: true
       - task: maven-package
-        file: ci/concourse/maven-package.yml
+        file: git/ci/concourse/maven-package.yml
   - name: unit-test
     plan:
       - get: git
@@ -25,4 +25,4 @@ jobs:
         passed:
           - package
       - task: run-unit-tests
-        file: ci/concourse/unit-test.yml
+        file: git/ci/concourse/unit-test.yml
