@@ -10,19 +10,19 @@ resources:
 jobs:
   # This build job will fetch the source code,
   # then execute a 'build' task which is defined separately in the repository.
-  - name: package
+  - name: maven-package
     plan:
       - get: git # Concourse is stateless and needs to be given an external input to this Job.
         version: latest # Just process the latest Git commit, not every commit (this is the default setting)
         trigger: true
       - task: maven-package
         file: git/ci/concourse/maven-package.yml
-  - name: unit-test
-    plan:
-      - get: git
-        version: latest # Just process the latest Git commit, not every commit (this is the default setting)
-        trigger: true # Trigger this job whenever Concourse detects a new Resource version (i.e. a new Git commit)
-        passed:
-          - package
-      - task: run-unit-tests
-        file: git/ci/concourse/unit-test.yml
+#  - name: unit-test
+#    plan:
+#      - get: git
+#        version: latest # Just process the latest Git commit, not every commit (this is the default setting)
+#        trigger: true # Trigger this job whenever Concourse detects a new Resource version (i.e. a new Git commit)
+#        passed:
+#          - package
+#      - task: run-unit-tests
+#        file: git/ci/concourse/unit-test.yml
