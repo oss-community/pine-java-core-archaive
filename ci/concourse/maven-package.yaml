@@ -1,35 +1,15 @@
 ---
 platform: linux
-
 container_limits: { }
-
 image_resource:
   type: registry-image
   source:
     repository: maven
     tag: 3.6.3
-
 caches:
   - path: $HOME/.m2/repository
-
 inputs:
   - name: git
-
-#outputs:
-#  - name: jar-file
-#    path: git/target/
-
 run:
   path: mvn
   args: ["-f", "git/pom.xml", "-DskipTests=true", "clean", "package"]
-#
-#inputs:
-#  - name: git
-#outputs:
-#  - name: jar
-#run:
-#  path: /bin/sh
-#  args:
-#    - -c
-#    - |
-#      mvn -B -f pom.xml clean package -DskipTests=true
