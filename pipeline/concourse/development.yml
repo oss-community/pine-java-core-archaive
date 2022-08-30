@@ -5,7 +5,7 @@ resources:
     type: git
     source:
       uri: https://github.com/saman-oss/pine-java-core
-      branch: master
+      branch: main
 
 jobs:
   # This build job will fetch the source code,
