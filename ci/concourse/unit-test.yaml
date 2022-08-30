@@ -1,0 +1,23 @@
+---
+platform: linux
+container_limits: { }
+image_resource:
+  type: registry-image
+  source:
+    repository: maven
+    tag: 3.6.3
+caches:
+  - path: $HOME/.m2/repository
+inputs:
+  - name: git
+outputs:
+  - name: build
+run:
+  path: /bin/sh
+  args:
+    - -c
+    - |
+      mvn -f git/pom.xml test
+      
+      # Make this output available to the 'test' Job
+      cp -R git/* build

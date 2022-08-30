@@ -25,16 +25,16 @@ echo "export JF_SHARED_DATABASE_DRIVER="org.postgresql.Driver"" >> ${HOME}/.bash
 echo "export JF_SHARED_DATABASE_URL=jdbc:postgresql://pine-jfrog-db:5432/artifactory" >> ${HOME}/.bashrc
 
 # build docker
-export "CONCOURSE_DB" >> ${HOME}/.bashrc
-export "CONCOURSE_DB_USER" >> ${HOME}/.bashrc
-export "CONCOURSE_DB_PASSWORD" >> ${HOME}/.bashrc
-export "CONCOURSE_JDBC_URL" >> ${HOME}/.bashrc
-export "CONCOURSE_EXTERNAL_URL" >> ${HOME}/.bashrc
-export "CONCOURSE_CLUSTER_NAME" >> ${HOME}/.bashrc
-export "CONCOURSE_ADD_LOCAL_USER" >> ${HOME}/.bashrc
-export "CONCOURSE_ADD_LOCAL_PASSWORD" >> ${HOME}/.bashrc
-export "CONCOURSE_MAIN_TEAM_LOCAL_USER" >> ${HOME}/.bashrc
-export "CONCOURSE_CLIENT_SECRET" >> ${HOME}/.bashrc
-export "CONCOURSE_TSA_CLIENT_SECRET" >> ${HOME}/.bashrc
+export "CONCOURSE_DB=concourse" >> ${HOME}/.bashrc
+export "CONCOURSE_DB_USER=concourse_user" >> ${HOME}/.bashrc
+export "CONCOURSE_DB_PASSWORD=concourse_pass" >> ${HOME}/.bashrc
+export "CONCOURSE_JDBC_URL=jdbc:postgresql://pine-concourse-db:5432/sonar" >> ${HOME}/.bashrc
+export "CONCOURSE_EXTERNAL_URL=http://localhost:8083" >> ${HOME}/.bashrc
+export "CONCOURSE_CLUSTER_NAME=pineframework" >> ${HOME}/.bashrc
+export "CONCOURSE_ADD_LOCAL_USER=pine" >> ${HOME}/.bashrc
+export "CONCOURSE_ADD_LOCAL_PASSWORD=pine" >> ${HOME}/.bashrc
+export "CONCOURSE_MAIN_TEAM_LOCAL_USER=pine" >> ${HOME}/.bashrc
+export "CONCOURSE_CLIENT_SECRET=Y29uY291cnNlLXdlYgo=" >> ${HOME}/.bashrc
+export "CONCOURSE_TSA_CLIENT_SECRET=Y29uY291cnNlLXdvcmtlcgo=" >> ${HOME}/.bashrc
 
 source ${HOME}/.bashrc

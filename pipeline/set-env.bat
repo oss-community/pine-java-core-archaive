@@ -29,8 +29,8 @@ call setx /M CONCOURSE_DB concourse
 call setx /M CONCOURSE_DB_USER concourse_user
 call setx /M CONCOURSE_DB_PASSWORD concourse_pass
 call setx /M CONCOURSE_JDBC_URL jdbc:postgresql://pine-concourse-db:5432/sonar
-call setx /M CONCOURSE_EXTERNAL_URL http://pine-concourse:8083
-call setx /M CONCOURSE_CLUSTER_NAME pine
+call setx /M CONCOURSE_EXTERNAL_URL http://localhost:8083
+call setx /M CONCOURSE_CLUSTER_NAME pineframework
 call setx /M CONCOURSE_ADD_LOCAL_USER pine
 call setx /M CONCOURSE_ADD_LOCAL_PASSWORD pine
 call setx /M CONCOURSE_MAIN_TEAM_LOCAL_USER pine

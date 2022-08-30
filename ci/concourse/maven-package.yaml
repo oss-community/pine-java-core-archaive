@@ -1,0 +1,20 @@
+---
+platform: linux
+container_limits: { }
+image_resource:
+  type: registry-image
+  source:
+    repository: maven
+    tag: 3.6.3
+caches:
+  - path: $HOME/.m2/repository
+inputs:
+  - name: git
+outputs:
+  - name: image # Concourse creates this directory for us. This will hold the OCI image .tar
+run:
+  path: /bin/sh
+  args:
+    - -c
+    - |
+      mvn -B -f git/pom.xml clean package -DskipTests=true

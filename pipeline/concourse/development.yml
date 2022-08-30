@@ -1,18 +1,28 @@
+---
+resources:
+  - name: git
+    icon: github
+    type: git
+    source:
+      uri: https://github.com/saman-oss/pine-java-core
+      branch: master
+
 jobs:
-- name: hello-world-job
-  plan:
-  - task: hello-world-task
-    config:
-      # Tells Concourse which type of worker this task should run on
-      platform: linux
-      # This is one way of telling Concourse which container image to use for a
-      # task. We'll explain this more when talking about resources
-      image_resource:
-        type: registry-image
-        source:
-          repository: busybox # images are pulled from docker hub by default
-      # The command Concourse will run inside the container
-      # echo "Hello world!"
-      run:
-        path: echo
-        args: ["Hello world!"]
+  # This build job will fetch the source code,
+  # then execute a 'build' task which is defined separately in the repository.
+  - name: package
+    plan:
+      - get: git # Concourse is stateless and needs to be given an external input to this Job.
+        version: latest # Just process the latest Git commit, not every commit (this is the default setting)
+        trigger: true
+      - task: maven-package
+        file: git/ci/concourse/maven-package.yml
+  - name: unit-test
+    plan:
+      - get: git
+        version: latest # Just process the latest Git commit, not every commit (this is the default setting)
+        trigger: true # Trigger this job whenever Concourse detects a new Resource version (i.e. a new Git commit)
+        passed:
+          - package
+      - task: run-unit-tests
+        file: git/ci/concourse/unit-test.yml
