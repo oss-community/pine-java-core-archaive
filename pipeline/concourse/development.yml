@@ -28,12 +28,3 @@ jobs:
           run:
             path: mvn
             args: [ "-f", "git/pom.xml", "-DskipTests=true", "clean", "package" ]
-#  - name: unit-test
-#    plan:
-#      - get: git
-#        version: latest # Just process the latest Git commit, not every commit (this is the default setting)
-#        trigger: true # Trigger this job whenever Concourse detects a new Resource version (i.e. a new Git commit)
-#        passed:
-#          - package
-#      - task: run-unit-tests
-#        file: git/ci/concourse/unit-test.yml
