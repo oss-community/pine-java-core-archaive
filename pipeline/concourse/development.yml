@@ -1,22 +1,50 @@
----
 resources:
-  - name: git
-    icon: github
+  - name: git-repo
     type: git
     source:
       uri: https://github.com/saman-oss/pine-java-core.git
-      branch: main
+      branch: master
 
 jobs:
-  # This build job will fetch the source code,
-  # then execute a 'build' task which is defined separately in the repository.
   - name: maven-package
     plan:
-      - get: git # Concourse is stateless and needs to be given an external input to this Job.
-        version: latest # Just process the latest Git commit, not every commit (this is the default setting)
+      - get: git-repo
         trigger: true
       - task: maven-package
-        file: git/ci/concourse/maven-package.yml
+        privileged: true
+        config:
+          platform: linux
+          image_resource:
+            type: registry-image
+            source:
+              repository: maven
+              tag: 3.6.3
+
+          inputs:
+            - name: git-repo
+
+          run:
+            path: mvn
+            args: ["-f", "git-repo/pom.xml", "-DskipTests=true", "clean", "package"]
+#---
+#resources:
+#  - name: git
+#    icon: github
+#    type: git
+#    source:
+#      uri: https://github.com/saman-oss/pine-java-core.git
+#      branch: main
+#
+#jobs:
+#  # This build job will fetch the source code,
+#  # then execute a 'build' task which is defined separately in the repository.
+#  - name: maven-package
+#    plan:
+#      - get: git # Concourse is stateless and needs to be given an external input to this Job.
+#        version: latest # Just process the latest Git commit, not every commit (this is the default setting)
+#        trigger: true
+#      - task: maven-package
+#        file: git/ci/concourse/maven-package.yml
 #  - name: unit-test
 #    plan:
 #      - get: git
