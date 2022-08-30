@@ -19,9 +19,13 @@ jobs:
             source:
               repository: maven
               tag: 3.8.6-openjdk-18
+          caches:
+            - path: $HOME/.m2/repository
 
           inputs:
             - name: git-repo
+          output:
+            - name: build
 
           run:
             path: /bin/sh
@@ -32,10 +36,11 @@ jobs:
                 mvn -f git-repo/pom.xml clean package -DskipTests=true
   - name: test
     plan:
-      - get: git-repo
+      - get: build
         trigger: true
       - task: maven-test
         privileged: true
+        passed: [build]
         config:
           platform: linux
           image_resource:
@@ -43,6 +48,9 @@ jobs:
             source:
               repository: maven
               tag: 3.8.6-openjdk-18
+
+          caches:
+            - path: $HOME/.m2/repository
 
           inputs:
             - name: build
