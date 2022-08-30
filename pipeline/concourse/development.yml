@@ -10,9 +10,9 @@ resources:
 jobs:
   # This build job will fetch the source code,
   # then execute a 'build' task which is defined separately in the repository.
-  - name: maven-package
+  - name: build
     plan:
-      - task: maven-package
+      - task: build
         config:
           platform: linux
           container_limits: { }
