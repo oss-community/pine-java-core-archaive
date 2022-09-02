@@ -15,4 +15,5 @@ run:
   args:
     - -exc
     - |
+      mvn -f repo/pom.xml validate
       mvn -f repo/pom.xml test
