@@ -20,20 +20,26 @@ jobs:
       - get: repo-pine-java-core
         trigger: true
       - task: build
-        file: repo-pine-java-core/ci/concourse/build.yaml
-      - task: test
-        file: repo-pine-java-core/ci/concourse/unit-test.yaml
         input_mapping:
           repo: repo-pine-java-core
+        privileged: true
+        file: repo-pine-java-core/ci/concourse/build.yaml
+      - task: test
+        input_mapping:
+          repo: repo-pine-java-core
+        file: repo-pine-java-core/ci/concourse/unit-test.yaml
         privileged: true
   - name: uat-build-pine-java-core
     plan:
       - get: repo-pine-java-core
         passed: [ development-build-pine-java-core ]
       - task: build
-        file: repo-pine-java-core/ci/concourse/build.yaml
-      - task: test
-        file: repo-pine-java-core/ci/concourse/unit-test.yaml
         input_mapping:
           repo: repo-pine-java-core
         privileged: true
+        file: repo-pine-java-core/ci/concourse/build.yaml
+      - task: test
+        input_mapping:
+          repo: repo-pine-java-core
+        privileged: true
+        file: repo-pine-java-core/ci/concourse/unit-test.yaml
