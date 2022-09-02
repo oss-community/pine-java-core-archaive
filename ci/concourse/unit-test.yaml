@@ -10,16 +10,9 @@ image_resource:
 caches:
   - path: $HOME/.m2/repository
 
-inputs:
-  - name: repo
-
-outputs:
-  - name: artifact
-
 run:
   path: sh
   args:
     - -exc
     - |
-      cp -r repo/* $(pwd)
       mvn test

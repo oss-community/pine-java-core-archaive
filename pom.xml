@@ -589,5 +589,34 @@ limitations under the License.
                 </plugins>
             </build>
         </profile>
+
+
+
+
+
+        <profile>
+            <id>maven-publish</id>
+            <properties>
+
+            </properties>
+            <distributionManagement>
+                <repository>
+                    <id>github</id>
+                    <name>GitHub Packages</name>
+                    <url>https://maven.pkg.github.com/octocat/hello-world</url>
+                </repository>
+            </distributionManagement>
+            <build>
+                <plugins>
+
+                </plugins>
+            </build>
+        </profile>
+
+
+
+
+
+
     </profiles>
 </project>
