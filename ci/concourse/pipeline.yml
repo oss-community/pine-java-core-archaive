@@ -37,7 +37,11 @@ jobs:
       - task: build
         input_mapping:
           repo: repo-pine-java-core
+        output_mapping:
+          repo: repo
         privileged: true
         file: repo-pine-java-core/ci/concourse/build.yaml
       - task: test
+        input_mapping:
+          repo: repo
         file: repo-pine-java-core/ci/concourse/unit-test.yaml
