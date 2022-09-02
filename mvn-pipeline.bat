@@ -25,6 +25,10 @@ call echo 'step [checkstyle] begin'
 call mvn checkstyle:check -s settings.xml -P checkstyle
 call echo 'step [checkstyle] end'
 
+call echo 'step [sonar] begin'
+call mvn sonar:sonar -s settings.xml -P sonar
+call echo 'step [sonar] end'
+
 call echo 'step [install] begin'
 call mvn install -DskipTests=true -s settings.xml
 call echo 'step [install] end'
@@ -36,10 +40,6 @@ call echo 'step [site] end'
 call echo 'step [publish site] begin'
 call mvn scm-publish:publish-scm -s settings.xml -P publish
 call echo 'step [publish site] end'
-
-call echo 'step [sonar] begin'
-call mvn sonar:sonar -s settings.xml -P sonar
-call echo 'step [sonar] end'
 
 call echo 'step [jfrog artifactory] begin'
 call mvn deploy -s settings.xml -P jfrog
