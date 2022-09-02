@@ -2,11 +2,9 @@ groups:
   - name: development
     jobs:
       - development-build-pine-java-core
-      - development-test-pine-java-core
   - name: uat
     jobs:
       - uat-build-pine-java-core
-      - uat-test-pine-java-core
 
 resources:
   - name: repo-pine-java-core
@@ -17,39 +15,25 @@ resources:
       branch: main
 
 jobs:
-  - name: development-test-pine-java-core
-    plan:
-      - get: repo-pine-java-core
-        passed: [ development-build-pine-java-core ]
-        trigger: true
-      - task: test
-        input_mapping:
-          repo: repo-pine-java-core
-        privileged: true
-        file: repo-pine-java-core/ci/concourse/unit-test.yaml
   - name: development-build-pine-java-core
     plan:
       - get: repo-pine-java-core
         trigger: true
       - task: build
-        input_mapping:
-          repo: repo-pine-java-core
-        privileged: true
         file: repo-pine-java-core/ci/concourse/build.yaml
-  - name: uat-test-pine-java-core
-    plan:
-      - get: repo-pine-java-core
-        passed: [ uat-build-pine-java-core ]
       - task: test
+        file: repo-pine-java-core/ci/concourse/unit-test.yaml
         input_mapping:
           repo: repo-pine-java-core
         privileged: true
-        file: repo-pine-java-core/ci/concourse/unit-test.yaml
   - name: uat-build-pine-java-core
     plan:
       - get: repo-pine-java-core
+        passed: [ development-build-pine-java-core ]
       - task: build
+        file: repo-pine-java-core/ci/concourse/build.yaml
+      - task: test
+        file: repo-pine-java-core/ci/concourse/unit-test.yaml
         input_mapping:
           repo: repo-pine-java-core
         privileged: true
-        file: repo-pine-java-core/ci/concourse/build.yaml
