@@ -596,9 +596,12 @@ limitations under the License.
 
         <profile>
             <id>maven-publish</id>
-            <properties>
-
-            </properties>
+            <activation>
+                <property>
+                    <name>useGitHubPackages</name>
+                    <value>true</value>
+                </property>
+            </activation>
             <distributionManagement>
                 <repository>
                     <id>github</id>

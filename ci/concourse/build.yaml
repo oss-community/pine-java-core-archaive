@@ -14,13 +14,12 @@ inputs:
   - name: repo
 
 outputs:
-  - name: artifact
+  - name: repo
 
 run:
   path: sh
   args:
     - -exc
     - |
-      cp -r repo/* $(pwd)
-      mvn validate
-      mvn clean package -DskipTests=true
+      mvn -f repo/pom.xml validate
+      mvn -f repo/pom.xml clean package -DskipTests=true

@@ -10,9 +10,12 @@ image_resource:
 caches:
   - path: $HOME/.m2/repository
 
+inputs:
+  - name: repo
+
 run:
   path: sh
   args:
     - -exc
     - |
-      mvn test
+      mvn -f repo/pom.xml test
