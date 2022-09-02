@@ -16,6 +16,7 @@ resources:
 
 jobs:
   - name: development-build-pine-java-core
+    public: true
     plan:
       - get: repo-pine-java-core
         trigger: true
@@ -23,12 +24,12 @@ jobs:
         input_mapping:
           repo: repo-pine-java-core
         output_mapping:
-          repo: repo-pine-java-core
+          repo: artifact
         privileged: true
         file: repo-pine-java-core/ci/concourse/build.yaml
       - task: test
         input_mapping:
-          repo: repo-pine-java-core
+          repo: artifact
         privileged: true
         file: repo-pine-java-core/ci/concourse/unit-test.yaml
   - name: uat-build-pine-java-core
@@ -39,11 +40,11 @@ jobs:
         input_mapping:
           repo: repo-pine-java-core
         output_mapping:
-          repo: repo-pine-java-core
+          repo: artifact
         privileged: true
         file: repo-pine-java-core/ci/concourse/build.yaml
       - task: test
         input_mapping:
-          repo: repo-pine-java-core
+          repo: artifact
         privileged: true
         file: repo-pine-java-core/ci/concourse/unit-test.yaml

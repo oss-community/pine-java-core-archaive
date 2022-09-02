@@ -98,5 +98,12 @@ pipeline {
         sh 'mvn deploy -s settings.xml -P jfrog'
       }
     }
+
+    stage('Deploy to GitHub') {
+      steps {
+        sh 'mvn deploy -s settings.xml -P github'
+      }
+    }
+
   }
 }
