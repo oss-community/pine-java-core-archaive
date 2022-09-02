@@ -29,6 +29,7 @@ jobs:
       - task: test
         input_mapping:
           repo: repo-pine-java-core
+        privileged: true
         file: repo-pine-java-core/ci/concourse/unit-test.yaml
   - name: uat-build-pine-java-core
     plan:
@@ -38,10 +39,11 @@ jobs:
         input_mapping:
           repo: repo-pine-java-core
         output_mapping:
-          repo: repo
+          repo: repo-pine-java-core
         privileged: true
         file: repo-pine-java-core/ci/concourse/build.yaml
       - task: test
         input_mapping:
-          repo: repo
+          repo: repo-pine-java-core
+        privileged: true
         file: repo-pine-java-core/ci/concourse/unit-test.yaml

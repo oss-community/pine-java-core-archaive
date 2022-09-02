@@ -589,37 +589,18 @@ limitations under the License.
                 </plugins>
             </build>
         </profile>
-
-
-
-
-
         <profile>
-            <id>maven-publish</id>
-            <activation>
-                <property>
-                    <name>useGitHubPackages</name>
-                    <value>true</value>
-                </property>
-            </activation>
+            <id>github</id>
+            <properties>
+                <github.artifactory.url>${env.GITHUB_ARTIFACTORY_UR}</github.artifactory.url>
+            </properties>
             <distributionManagement>
                 <repository>
                     <id>github</id>
                     <name>GitHub Packages</name>
-                    <url>https://maven.pkg.github.com/octocat/hello-world</url>
+                    <url>https://maven.pkg.github.com/${github.artifactory.url}</url>
                 </repository>
             </distributionManagement>
-            <build>
-                <plugins>
-
-                </plugins>
-            </build>
         </profile>
-
-
-
-
-
-
     </profiles>
 </project>

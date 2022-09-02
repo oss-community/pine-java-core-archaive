@@ -1,5 +1,8 @@
 # localhost, build docker
 echo "export GITHUB_JENKINS_TOKEN=???" >> ${HOME}/.bashrc
+echo "export GITHUB_USERNAME=???" >> ${HOME}/.bashrc
+echo "export GITHUB_PACKAGE_TOKEN=???" >> ${HOME}/.bashrc
+echo "export GITHUB_ARTIFACTORY_UR=saman-oss/pine-java-core" >> ${HOME}/.bashrc
 
 # localhost
 echo "export SONAR_TOKEN=squ_3e5e959649e40c20883ba8cb78b5a07f0ffc7a14" >> ${HOME}/.bashrc

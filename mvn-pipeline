@@ -45,3 +45,7 @@ echo 'step [publish site] end'
 echo 'step [jfrog artifactory] begin'
 mvn deploy -s settings.xml -P jfrog
 echo 'step [jfrog artifactory] end'
+
+echo 'step [github artifactory] begin'
+mvn deploy -s settings.xml -P github
+echo 'step [github artifactory] end'

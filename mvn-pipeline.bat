@@ -44,3 +44,7 @@ call echo 'step [publish site] end'
 call echo 'step [jfrog artifactory] begin'
 call mvn deploy -s settings.xml -P jfrog
 call echo 'step [jfrog artifactory] end'
+
+call echo 'step [github artifactory] begin'
+call mvn deploy -s settings.xml -P github
+call echo 'step [github artifactory] end'
