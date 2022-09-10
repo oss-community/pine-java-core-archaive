@@ -1,8 +1,8 @@
 call cls
-call .\pipeline\dockerfiles\pre-config.bat
-call .\pipeline\dockerfiles\create-env.bat
+call .\docker\pre-config.bat
+call .\docker\create-env.bat
 
-docker-compose -f .\pipeline\dockerfiles\docker-compose.yaml ^
+docker-compose -f .\docker\docker-compose.yaml ^
 -p pine-pipeline ^
---env-file .\pipeline\dockerfiles\.env ^
+--env-file .\docker\.env ^
 up --build -d

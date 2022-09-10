@@ -1,7 +1,7 @@
-call ./pipeline/dockerfiles/pre-config
-call ./pipeline/dockerfiles/create-env
+call ./docker/pre-config
+call ./docker/create-env
 
-docker-compose -f ./pipeline/dockerfiles/docker-compose.yaml ^
+docker-compose -f ./docker/docker-compose.yaml ^
 -p pine-pipeline ^
---env-file ./pipeline/dockerfiles/.env ^
+--env-file ./docker/.env ^
 up --build -d

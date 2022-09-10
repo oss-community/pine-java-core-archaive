@@ -7,7 +7,7 @@ services:
     restart: always
     build:
       context: .\jenkins
-      dockerfile: Dockerfile
+      dockerfile: jenkins/Dockerfile
       args:
         GITHUB_JENKINS_TOKEN: ${GITHUB_JENKINS_TOKEN}
     ports:
