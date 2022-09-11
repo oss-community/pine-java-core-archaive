@@ -112,7 +112,7 @@ class StringValidatorTest extends AbstractUtilsTest {
     assertNotNull(result);
     var message = result.getMessage();
     logErrorAsInfo(message);
-    assertEquals(i18n("error.validation.should.not.be.emptyOrNull", i18n("parameter.name.parameter")), message);
+    assertEquals(i18n("error.validation.should.not.be.emptyOrNull", i18n("var.name.parameter")), message);
   }
 
   @Test
@@ -131,7 +131,7 @@ class StringValidatorTest extends AbstractUtilsTest {
     assertNotNull(result);
     var message = result.getMessage();
     logErrorAsInfo(message);
-    assertEquals(i18n("error.validation.should.not.be.emptyOrNull", i18n("parameter.name.parameter")), message);
+    assertEquals(i18n("error.validation.should.not.be.emptyOrNull", i18n("var.name.parameter")), message);
   }
 
   @Test

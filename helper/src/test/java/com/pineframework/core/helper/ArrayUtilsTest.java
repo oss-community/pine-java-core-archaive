@@ -68,7 +68,7 @@ class ArrayUtilsTest extends AbstractUtilsTest {
     assertNotNull(result);
     var message = result.getMessage();
     logErrorAsInfo(message);
-    assertEquals(i18n("error.validation.should.not.be.null", i18n("parameter.name.type")), message);
+    assertEquals(i18n("error.validation.should.not.be.null", i18n("var.name.type")), message);
   }
 
   @Test
@@ -88,7 +88,7 @@ class ArrayUtilsTest extends AbstractUtilsTest {
     assertNotNull(result);
     var message = result.getMessage();
     logErrorAsInfo(message);
-    assertEquals(i18n("error.validation.should.be.greaterThan", i18n("parameter.name.size"), 0), message);
+    assertEquals(i18n("error.validation.should.be.greaterThan", i18n("var.name.size"), 0), message);
   }
 
   @Test
@@ -163,7 +163,7 @@ class ArrayUtilsTest extends AbstractUtilsTest {
     assertNotNull(result);
     var message = result.getMessage();
     logErrorAsInfo(message);
-    assertEquals(i18n("error.validation.should.not.be.emptyOrNull", i18n("parameter.name.array")), message);
+    assertEquals(i18n("error.validation.should.not.be.emptyOrNull", i18n("var.name.array")), message);
   }
 
   @Test
@@ -182,7 +182,7 @@ class ArrayUtilsTest extends AbstractUtilsTest {
     assertNotNull(result);
     var message = result.getMessage();
     logErrorAsInfo(message);
-    assertEquals(i18n("error.validation.should.not.be.emptyOrNull", i18n("parameter.name.array")), message);
+    assertEquals(i18n("error.validation.should.not.be.emptyOrNull", i18n("var.name.array")), message);
   }
 
   @Test
@@ -233,7 +233,7 @@ class ArrayUtilsTest extends AbstractUtilsTest {
     assertNotNull(result);
     var message = result.getMessage();
     logErrorAsInfo(message);
-    assertEquals(i18n("error.validation.should.not.be.null", i18n("parameter.name.array")), message);
+    assertEquals(i18n("error.validation.should.not.be.null", i18n("var.name.array")), message);
   }
 
   @Test
@@ -253,7 +253,7 @@ class ArrayUtilsTest extends AbstractUtilsTest {
     assertNotNull(result);
     var message = result.getMessage();
     logErrorAsInfo(message);
-    assertEquals(i18n("error.validation.should.not.be.null", i18n("parameter.name.comparator")), message);
+    assertEquals(i18n("error.validation.should.not.be.null", i18n("var.name.comparator")), message);
   }
 
   @Test
@@ -322,7 +322,7 @@ class ArrayUtilsTest extends AbstractUtilsTest {
     assertNotNull(result);
     var message = result.getMessage();
     logErrorAsInfo(message);
-    assertEquals(i18n("error.validation.should.not.be.null", i18n("parameter.name.array")), message);
+    assertEquals(i18n("error.validation.should.not.be.null", i18n("var.name.array")), message);
   }
 
   @Test
@@ -342,7 +342,7 @@ class ArrayUtilsTest extends AbstractUtilsTest {
     assertNotNull(result);
     var message = result.getMessage();
     logErrorAsInfo(message);
-    assertEquals(i18n("error.validation.should.not.be.null", i18n("parameter.name.array")), message);
+    assertEquals(i18n("error.validation.should.not.be.null", i18n("var.name.array")), message);
   }
 
   @Test
@@ -442,7 +442,7 @@ class ArrayUtilsTest extends AbstractUtilsTest {
     assertNotNull(result);
     var message = result.getMessage();
     logErrorAsInfo(message);
-    assertEquals(i18n("error.validation.should.not.be.null", i18n("parameter.name.array")), message);
+    assertEquals(i18n("error.validation.should.not.be.null", i18n("var.name.array")), message);
   }
 
   @Test
@@ -462,7 +462,7 @@ class ArrayUtilsTest extends AbstractUtilsTest {
     assertNotNull(result);
     var message = result.getMessage();
     logErrorAsInfo(message);
-    assertEquals(i18n("error.validation.should.not.be.null", i18n("parameter.name.array")), message);
+    assertEquals(i18n("error.validation.should.not.be.null", i18n("var.name.array")), message);
   }
 
   @Test
@@ -541,7 +541,7 @@ class ArrayUtilsTest extends AbstractUtilsTest {
     assertNotNull(result);
     var message = result.getMessage();
     logErrorAsInfo(message);
-    assertEquals(i18n("error.validation.should.not.be.null", i18n("parameter.name.array")), message);
+    assertEquals(i18n("error.validation.should.not.be.null", i18n("var.name.array")), message);
   }
 
   @Test
@@ -561,7 +561,7 @@ class ArrayUtilsTest extends AbstractUtilsTest {
     assertNotNull(result);
     var message = result.getMessage();
     logErrorAsInfo(message);
-    assertEquals(i18n("error.validation.should.not.be.null", i18n("parameter.name.vararg")), message);
+    assertEquals(i18n("error.validation.should.not.be.null", i18n("var.name.vararg")), message);
   }
 
   @Test

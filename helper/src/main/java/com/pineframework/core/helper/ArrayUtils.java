@@ -68,8 +68,8 @@ public final class ArrayUtils {
    * @throws IllegalArgumentException if {@code type} is {@code null} or {@code size} is less than zero
    */
   public static <E> E[] createArray(Class<?> type, int size) {
-    requireNonNull(type, i18n("error.validation.should.not.be.null", i18n("parameter.name.type")));
-    shouldBeGreaterThanZero(size, i18n("error.validation.should.be.greaterThan", i18n("parameter.name.size"), 0));
+    requireNonNull(type, i18n("error.validation.should.not.be.null", i18n("var.name.type")));
+    shouldBeGreaterThanZero(size, i18n("error.validation.should.be.greaterThan", i18n("var.name.size"), 0));
 
     //noinspection unchecked
     return (E[]) Array.newInstance(type, size);
@@ -123,8 +123,8 @@ public final class ArrayUtils {
    * @throws IllegalArgumentException if any parameter is {@code null}
    */
   public static <T> Optional<T> find(T[] array, Predicate<? super T> comparator) {
-    requireNonNull(array, i18n("error.validation.should.not.be.null", i18n("parameter.name.array")));
-    requireNonNull(comparator, i18n("error.validation.should.not.be.null", i18n("parameter.name.comparator")));
+    requireNonNull(array, i18n("error.validation.should.not.be.null", i18n("var.name.array")));
+    requireNonNull(comparator, i18n("error.validation.should.not.be.null", i18n("var.name.comparator")));
 
     return Arrays.stream(array)
         .filter(comparator)
@@ -148,10 +148,10 @@ public final class ArrayUtils {
    * @throws IllegalArgumentException if any parameter is {@code null}
    */
   public static <T, E> T[] subtract(T[] array1, E[] array2, BiPredicate<T, E> comparator, Class<?> type) {
-    requireNonNull(array1, i18n("error.validation.should.not.be.null", i18n("parameter.name.array")));
-    requireNonNull(array2, i18n("error.validation.should.not.be.null", i18n("parameter.name.array")));
-    requireNonNull(comparator, i18n("error.validation.should.not.be.null", i18n("parameter.name.comparator")));
-    requireNonNull(type, i18n("error.validation.should.not.be.null", i18n("parameter.name.type")));
+    requireNonNull(array1, i18n("error.validation.should.not.be.null", i18n("var.name.array")));
+    requireNonNull(array2, i18n("error.validation.should.not.be.null", i18n("var.name.array")));
+    requireNonNull(comparator, i18n("error.validation.should.not.be.null", i18n("var.name.comparator")));
+    requireNonNull(type, i18n("error.validation.should.not.be.null", i18n("var.name.type")));
 
     return Arrays.stream(array1)
         .filter(a1 -> Arrays.stream(array2).noneMatch(a2 -> comparator.test(a1, a2)))
@@ -172,10 +172,10 @@ public final class ArrayUtils {
    * @throws IllegalArgumentException if any parameter is {@code null}
    */
   public static <T, E> T[] intersection(T[] array1, E[] array2, BiPredicate<T, E> comparator, Class<?> type) {
-    requireNonNull(array1, i18n("error.validation.should.not.be.null", i18n("parameter.name.array")));
-    requireNonNull(array2, i18n("error.validation.should.not.be.null", i18n("parameter.name.array")));
-    requireNonNull(comparator, i18n("error.validation.should.not.be.null", i18n("parameter.name.comparator")));
-    requireNonNull(type, i18n("error.validation.should.not.be.null", i18n("parameter.name.type")));
+    requireNonNull(array1, i18n("error.validation.should.not.be.null", i18n("var.name.array")));
+    requireNonNull(array2, i18n("error.validation.should.not.be.null", i18n("var.name.array")));
+    requireNonNull(comparator, i18n("error.validation.should.not.be.null", i18n("var.name.comparator")));
+    requireNonNull(type, i18n("error.validation.should.not.be.null", i18n("var.name.type")));
 
     return Arrays.stream(array1)
         .filter(e1 -> Arrays.stream(array2).anyMatch(e2 -> comparator.test(e1, e2)))
@@ -195,8 +195,8 @@ public final class ArrayUtils {
    */
   @SafeVarargs
   public static <T> T[] union(T[] array, T... vararg) {
-    requireNonNull(array, i18n("error.validation.should.not.be.null", i18n("parameter.name.array")));
-    requireNonNull(vararg, i18n("error.validation.should.not.be.null", i18n("parameter.name.vararg")));
+    requireNonNull(array, i18n("error.validation.should.not.be.null", i18n("var.name.array")));
+    requireNonNull(vararg, i18n("error.validation.should.not.be.null", i18n("var.name.vararg")));
 
     HashSet<T> set = new HashSet<>();
     set.addAll(asList(array));

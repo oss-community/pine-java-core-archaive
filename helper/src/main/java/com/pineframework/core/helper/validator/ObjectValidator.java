@@ -43,7 +43,7 @@ public final class ObjectValidator {
    * @throws IllegalArgumentException if {@code object} is {@code null}
    */
   public static <T> T requireNonNull(T object) {
-    return requireNonNull(object, i18n("error.validation.should.not.be.null", i18n("parameter.name.data")));
+    return requireNonNull(object, i18n("error.validation.should.not.be.null", i18n("var.name.data")));
   }
 
   /**

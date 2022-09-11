@@ -26,12 +26,47 @@ jobs:
         output_mapping:
           repo: artifact
         privileged: true
-        file: repo-pine-java-core/ci/concourse/build.yaml
+        config:
+          platform: linux
+          image_resource:
+            type: registry-image
+            source:
+              repository: maven
+              tag: 3.8.6-openjdk-18
+          caches:
+            - path: $HOME/.m2/repository
+          inputs:
+            - name: repo
+          outputs:
+            - name: repo
+          run:
+            path: sh
+            args:
+              - -exc
+              - |
+                mvn -f repo/pom.xml validate
+                mvn -f repo/pom.xml clean package -DskipTests=true
       - task: test
         input_mapping:
           repo: artifact
         privileged: true
-        file: repo-pine-java-core/ci/concourse/unit-test.yaml
+        config:
+          platform: linux
+          image_resource:
+            type: registry-image
+            source:
+              repository: maven
+              tag: 3.8.6-openjdk-18
+          inputs:
+            - name: repo
+          run:
+            path: sh
+            args:
+              - -exc
+              - |
+                mvn -f repo/pom.xml validate
+                mvn -f repo/pom.xml test
+
   - name: uat-build-pine-java-core
     plan:
       - get: repo-pine-java-core
@@ -42,9 +77,43 @@ jobs:
         output_mapping:
           repo: artifact
         privileged: true
-        file: repo-pine-java-core/ci/concourse/build.yaml
+        config:
+          platform: linux
+          image_resource:
+            type: registry-image
+            source:
+              repository: maven
+              tag: 3.8.6-openjdk-18
+          caches:
+            - path: $HOME/.m2/repository
+          inputs:
+            - name: repo
+          outputs:
+            - name: repo
+          run:
+            path: sh
+            args:
+              - -exc
+              - |
+                mvn -f repo/pom.xml validate
+                mvn -f repo/pom.xml clean package -DskipTests=true
       - task: test
         input_mapping:
           repo: artifact
         privileged: true
-        file: repo-pine-java-core/ci/concourse/unit-test.yaml
+        config:
+          platform: linux
+          image_resource:
+            type: registry-image
+            source:
+              repository: maven
+              tag: 3.8.6-openjdk-18
+          inputs:
+            - name: repo
+          run:
+            path: sh
+            args:
+              - -exc
+              - |
+                mvn -f repo/pom.xml validate
+                mvn -f repo/pom.xml test

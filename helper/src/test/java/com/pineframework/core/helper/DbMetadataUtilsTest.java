@@ -74,7 +74,7 @@ class DbMetadataUtilsTest extends AbstractUtilsTest {
     assertNotNull(result);
     var message = result.getMessage();
     logErrorAsInfo(message);
-    assertEquals(i18n("error.validation.should.not.be.null", i18n("parameter.name.connection"), 0), message);
+    assertEquals(i18n("error.validation.should.not.be.null", i18n("var.name.connection"), 0), message);
   }
 
   @Test
@@ -128,7 +128,7 @@ class DbMetadataUtilsTest extends AbstractUtilsTest {
     assertNotNull(result);
     var message = result.getMessage();
     logErrorAsInfo(message);
-    assertEquals(i18n("error.validation.should.not.be.null", i18n("parameter.name.connection"), 0), message);
+    assertEquals(i18n("error.validation.should.not.be.null", i18n("var.name.connection"), 0), message);
   }
 
   @Test
@@ -148,7 +148,7 @@ class DbMetadataUtilsTest extends AbstractUtilsTest {
     assertNotNull(result);
     var message = result.getMessage();
     logErrorAsInfo(message);
-    assertEquals(i18n("error.validation.should.not.be.emptyOrNull", i18n("parameter.name.tableName"), 0), message);
+    assertEquals(i18n("error.validation.should.not.be.emptyOrNull", i18n("var.name.tableName"), 0), message);
   }
 
   @Test
@@ -168,7 +168,7 @@ class DbMetadataUtilsTest extends AbstractUtilsTest {
     assertNotNull(result);
     var message = result.getMessage();
     logErrorAsInfo(message);
-    assertEquals(i18n("error.validation.should.not.be.emptyOrNull", i18n("parameter.name.tableName"), 0), message);
+    assertEquals(i18n("error.validation.should.not.be.emptyOrNull", i18n("var.name.tableName"), 0), message);
   }
 
   @Test

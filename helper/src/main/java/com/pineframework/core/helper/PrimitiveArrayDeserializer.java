@@ -42,7 +42,7 @@ public class PrimitiveArrayDeserializer extends StdDeserializer<Object[]> {
 
   @Override
   public Object[] deserialize(JsonParser parser, DeserializationContext context) throws IOException {
-    requireNonNull(parser, i18n("error.validation.should.not.be.null", i18n("parameter.name.parser")));
+    requireNonNull(parser, i18n("error.validation.should.not.be.null", i18n("var.name.parser")));
 
     return Arrays.stream(parser.readValueAs(Object[].class))
         .map(o -> toJavaBasicType(o, o.getClass()))

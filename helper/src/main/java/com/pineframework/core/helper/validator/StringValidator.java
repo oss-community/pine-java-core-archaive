@@ -69,7 +69,7 @@ public final class StringValidator {
    */
   public static void requireNonEmptyOrNull(String str) {
     if (isEmptyOrNull(str)) {
-      throw new IllegalArgumentException(i18n("error.validation.should.not.be.emptyOrNull", i18n("parameter.name.parameter")));
+      throw new IllegalArgumentException(i18n("error.validation.should.not.be.emptyOrNull", i18n("var.name.parameter")));
     }
   }
 

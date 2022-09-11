@@ -87,8 +87,9 @@ public final class DateUtils {
 
   static {
     var path = Try.of(() -> new File("src/main/resources")).get();
-    var files = requireNonNull(path.listFiles(), i18n("error.validation.should.not.be.null", i18n("parameter.name.file")));
-    PROFILES = Stream.of(files).filter(file -> file.getName().startsWith("calendar_"))
+    var files = requireNonNull(path.listFiles(), i18n("error.validation.should.not.be.null", i18n("var.name.file")));
+    PROFILES = Stream.of(files)
+        .filter(file -> file.getName().startsWith("calendar_"))
         .collect(toMap(file -> file.getName().split("\\.")[0].split("_")[1], file -> getBundle(file.getName().split("\\.")[0])));
   }
 
@@ -105,8 +106,8 @@ public final class DateUtils {
    * @throws IllegalArgumentException if any parameter is {@code null} or empty
    */
   private static ULocale forLocale(String id, Locale locale) {
-    requireNonEmptyOrNull(id, i18n("error.validation.should.not.be.emptyOrNull", i18n("parameter.name.id")));
-    requireNonNull(locale, i18n("error.validation.should.not.be.null", i18n("parameter.name.locale")));
+    requireNonEmptyOrNull(id, i18n("error.validation.should.not.be.emptyOrNull", i18n("var.name.id")));
+    requireNonNull(locale, i18n("error.validation.should.not.be.null", i18n("var.name.locale")));
 
     var bundle = PROFILES.get(id);
     return new ULocale(locale + "@calendar=" + bundle.getString("calendar.instance"));
@@ -122,9 +123,9 @@ public final class DateUtils {
    * @throws IllegalArgumentException if any parameter is {@code null} or empty
    */
   public static SimpleDateFormat createFormat(String id, Locale locale, String pattern) {
-    requireNonEmptyOrNull(id, i18n("error.validation.should.not.be.emptyOrNull", i18n("parameter.name.id")));
-    requireNonNull(locale, i18n("error.validation.should.not.be.null", i18n("parameter.name.locale")));
-    requireNonEmptyOrNull(pattern, i18n("error.validation.should.not.be.emptyOrNull", i18n("parameter.name.pattern")));
+    requireNonEmptyOrNull(id, i18n("error.validation.should.not.be.emptyOrNull", i18n("var.name.id")));
+    requireNonNull(locale, i18n("error.validation.should.not.be.null", i18n("var.name.locale")));
+    requireNonEmptyOrNull(pattern, i18n("error.validation.should.not.be.emptyOrNull", i18n("var.name.pattern")));
 
     return new SimpleDateFormat(pattern, forLocale(id, locale));
   }
@@ -138,7 +139,7 @@ public final class DateUtils {
    * @throws IllegalArgumentException if {@code zone} is {@code null}
    */
   public static Map<String, String> allZoneAndOffsetRelatedTo(ZoneId zone) {
-    requireNonNull(zone, i18n("error.validation.should.not.be.null", i18n("parameter.name.zone")));
+    requireNonNull(zone, i18n("error.validation.should.not.be.null", i18n("var.name.zone")));
 
     return ZoneId.getAvailableZoneIds().stream().map(ZoneId::of)
         .map(zoneId -> new SimpleEntry<>(zoneId.toString(), calculateOffset(zone, zoneId)))
@@ -155,8 +156,8 @@ public final class DateUtils {
    * @throws IllegalArgumentException if {@code zone1} or {@code zone2} is {@code null}
    */
   public static String calculateOffset(ZoneId zone1, ZoneId zone2) {
-    requireNonNull(zone1, i18n("error.validation.should.not.be.null", i18n("parameter.name.zone")));
-    requireNonNull(zone2, i18n("error.validation.should.not.be.null", i18n("parameter.name.zone")));
+    requireNonNull(zone1, i18n("error.validation.should.not.be.null", i18n("var.name.zone")));
+    requireNonNull(zone2, i18n("error.validation.should.not.be.null", i18n("var.name.zone")));
 
     var referenceOffset = ZonedDateTime.now(zone1).getOffset().getTotalSeconds();
     var functionOffset = ZonedDateTime.now(zone2).getOffset().getTotalSeconds();
@@ -183,8 +184,8 @@ public final class DateUtils {
    * @throws IllegalArgumentException if {@code zone1} or {@code zone2} is {@code null}
    */
   public static String calculateOffset(LocalDateTime dateTime, ZoneId zone1, ZoneId zone2) {
-    requireNonNull(zone1, i18n("error.validation.should.not.be.null", i18n("parameter.name.zone")));
-    requireNonNull(zone2, i18n("error.validation.should.not.be.null", i18n("parameter.name.zone")));
+    requireNonNull(zone1, i18n("error.validation.should.not.be.null", i18n("var.name.zone")));
+    requireNonNull(zone2, i18n("error.validation.should.not.be.null", i18n("var.name.zone")));
 
     var referenceOffset = ZonedDateTime.of(dateTime, zone1).getOffset().getTotalSeconds();
     var functionOffset = ZonedDateTime.of(dateTime, zone2).getOffset().getTotalSeconds();
@@ -205,7 +206,7 @@ public final class DateUtils {
    */
   public static int toSecond(String time) {
     isTime(time).no(() -> {
-      throw new IllegalArgumentException(i18n("error.validation.is.not.valid", i18n("parameter.name.format"), i18n("parameter.name.time")));
+      throw new IllegalArgumentException(i18n("error.validation.is.not.valid", i18n("var.name.format"), i18n("var.name.time")));
     });
 
     var timeParts = time.split(":");
@@ -230,9 +231,9 @@ public final class DateUtils {
    * @throws IllegalArgumentException if any parameter is {@code null} or empty
    */
   public static Date toDate(LocalDateTime dateTime, String id, Locale locale) {
-    requireNonNull(dateTime, i18n("error.validation.should.not.be.null", i18n("parameter.name.dataAndTime")));
-    requireNonEmptyOrNull(id, i18n("error.validation.should.not.be.emptyOrNull", i18n("parameter.name.id")));
-    requireNonNull(locale, i18n("error.validation.should.not.be.null", i18n("parameter.name.locale")));
+    requireNonNull(dateTime, i18n("error.validation.should.not.be.null", i18n("var.name.dataAndTime")));
+    requireNonEmptyOrNull(id, i18n("error.validation.should.not.be.emptyOrNull", i18n("var.name.id")));
+    requireNonNull(locale, i18n("error.validation.should.not.be.null", i18n("var.name.locale")));
 
     var calendar = Calendar.getInstance(forLocale(id, locale));
     calendar.set(dateTime.getYear(), dateTime.getMonthValue() - 1, dateTime.getDayOfMonth(),
@@ -252,9 +253,9 @@ public final class DateUtils {
    * @throws IllegalArgumentException if any parameter is {@code null} or empty
    */
   public static Date toDate(LocalDate date, String id, Locale locale) {
-    requireNonNull(date, i18n("error.validation.should.not.be.null", i18n("parameter.name.date")));
-    requireNonEmptyOrNull(id, i18n("error.validation.should.not.be.emptyOrNull", i18n("parameter.name.id")));
-    requireNonNull(locale, i18n("error.validation.should.not.be.null", i18n("parameter.name.locale")));
+    requireNonNull(date, i18n("error.validation.should.not.be.null", i18n("var.name.date")));
+    requireNonEmptyOrNull(id, i18n("error.validation.should.not.be.emptyOrNull", i18n("var.name.id")));
+    requireNonNull(locale, i18n("error.validation.should.not.be.null", i18n("var.name.locale")));
 
     var calendar = Calendar.getInstance(forLocale(id, locale));
     calendar.set(date.getYear(), date.getMonthValue() - 1, date.getDayOfMonth());
@@ -272,9 +273,9 @@ public final class DateUtils {
    * @throws IllegalArgumentException if any parameter is {@code null}
    */
   public static LocalDateTime changeZone(LocalDateTime dateTime, ZoneId currentZone, ZoneId nextZone) {
-    requireNonNull(dateTime, i18n("error.validation.should.not.be.null", i18n("parameter.name.dataAndTime")));
-    requireNonNull(currentZone, i18n("error.validation.should.not.be.null", i18n("parameter.name.zone")));
-    requireNonNull(nextZone, i18n("error.validation.should.not.be.null", i18n("parameter.name.zone")));
+    requireNonNull(dateTime, i18n("error.validation.should.not.be.null", i18n("var.name.dataAndTime")));
+    requireNonNull(currentZone, i18n("error.validation.should.not.be.null", i18n("var.name.zone")));
+    requireNonNull(nextZone, i18n("error.validation.should.not.be.null", i18n("var.name.zone")));
 
     return ZonedDateTime.of(dateTime, currentZone).withZoneSameInstant(nextZone).toLocalDateTime();
   }
@@ -290,9 +291,9 @@ public final class DateUtils {
    * @throws IllegalArgumentException if any parameter is {@code null}
    */
   public static LocalDate changeZone(LocalDate date, ZoneId currentZone, ZoneId nextZone) {
-    requireNonNull(date, i18n("error.validation.should.not.be.null", i18n("parameter.name.date")));
-    requireNonNull(currentZone, i18n("error.validation.should.not.be.null", i18n("parameter.name.zone")));
-    requireNonNull(nextZone, i18n("error.validation.should.not.be.null", i18n("parameter.name.zone")));
+    requireNonNull(date, i18n("error.validation.should.not.be.null", i18n("var.name.date")));
+    requireNonNull(currentZone, i18n("error.validation.should.not.be.null", i18n("var.name.zone")));
+    requireNonNull(nextZone, i18n("error.validation.should.not.be.null", i18n("var.name.zone")));
 
     return date.atStartOfDay(currentZone).withZoneSameInstant(nextZone).toLocalDate();
   }
@@ -306,9 +307,9 @@ public final class DateUtils {
    * @throws IllegalArgumentException if any parameter is {@code null}
    */
   public static LocalDate changeZoneRightNow(LocalDate date, ZoneId currentZone, ZoneId nextZone) {
-    requireNonNull(date, i18n("error.validation.should.not.be.null", i18n("parameter.name.date")));
-    requireNonNull(currentZone, i18n("error.validation.should.not.be.null", i18n("parameter.name.zone")));
-    requireNonNull(nextZone, i18n("error.validation.should.not.be.null", i18n("parameter.name.zone")));
+    requireNonNull(date, i18n("error.validation.should.not.be.null", i18n("var.name.date")));
+    requireNonNull(currentZone, i18n("error.validation.should.not.be.null", i18n("var.name.zone")));
+    requireNonNull(nextZone, i18n("error.validation.should.not.be.null", i18n("var.name.zone")));
 
     return date.atTime(LocalTime.now(currentZone)).atZone(currentZone).withZoneSameInstant(nextZone).toLocalDate();
   }
@@ -326,9 +327,9 @@ public final class DateUtils {
    * @throws IllegalArgumentException if any parameter is {@code null} or empty
    */
   public static LocalDate plus(LocalDate date, int years, int months, int days, String id, Locale locale) {
-    requireNonNull(date, i18n("error.validation.should.not.be.null", i18n("parameter.name.date")));
-    requireNonEmptyOrNull(id, i18n("error.validation.should.not.be.emptyOrNull", i18n("parameter.name.id")));
-    requireNonNull(locale, i18n("error.validation.should.not.be.null", i18n("parameter.name.locale")));
+    requireNonNull(date, i18n("error.validation.should.not.be.null", i18n("var.name.date")));
+    requireNonEmptyOrNull(id, i18n("error.validation.should.not.be.emptyOrNull", i18n("var.name.id")));
+    requireNonNull(locale, i18n("error.validation.should.not.be.null", i18n("var.name.locale")));
 
     var calendar = Calendar.getInstance(forLocale(id, locale));
     calendar.set(date.getYear(), date.getMonthValue() - 1, date.getDayOfMonth());
@@ -354,10 +355,10 @@ public final class DateUtils {
    * @throws IllegalArgumentException if any parameter is {@code null} or empty
    */
   public static int getDayDifference(LocalDate date, LocalTime currentTime, ZoneId currentZone, LocalTime nextTime, ZoneId nextZone) {
-    requireNonNull(currentTime, i18n("error.validation.should.not.be.null", i18n("parameter.name.time")));
-    requireNonNull(currentZone, i18n("error.validation.should.not.be.null", i18n("parameter.name.zone")));
-    requireNonNull(nextTime, i18n("error.validation.should.not.be.null", i18n("parameter.name.time")));
-    requireNonNull(nextZone, i18n("error.validation.should.not.be.null", i18n("parameter.name.zone")));
+    requireNonNull(currentTime, i18n("error.validation.should.not.be.null", i18n("var.name.time")));
+    requireNonNull(currentZone, i18n("error.validation.should.not.be.null", i18n("var.name.zone")));
+    requireNonNull(nextTime, i18n("error.validation.should.not.be.null", i18n("var.name.time")));
+    requireNonNull(nextZone, i18n("error.validation.should.not.be.null", i18n("var.name.zone")));
 
     var currentOffset = calculateOffset(LocalDateTime.of(date, currentTime), ZoneId.of("UTC"), currentZone);
     var nextOffset = calculateOffset(LocalDateTime.of(date, nextTime), ZoneId.of("UTC"), nextZone);
@@ -382,9 +383,9 @@ public final class DateUtils {
    * @throws IllegalArgumentException if any parameter is {@code null} or empty
    */
   public static Tuple2<LocalDateTime, String> getCurrentDateTime(String id, Locale locale, ZoneId zone) {
-    requireNonEmptyOrNull(id, i18n("error.validation.should.not.be.emptyOrNull", i18n("parameter.name.id")));
-    requireNonNull(locale, i18n("error.validation.should.not.be.null", i18n("parameter.name.locale")));
-    requireNonNull(zone, i18n("error.validation.should.not.be.null", i18n("parameter.name.zone")));
+    requireNonEmptyOrNull(id, i18n("error.validation.should.not.be.emptyOrNull", i18n("var.name.id")));
+    requireNonNull(locale, i18n("error.validation.should.not.be.null", i18n("var.name.locale")));
+    requireNonNull(zone, i18n("error.validation.should.not.be.null", i18n("var.name.zone")));
 
     var date = toDate(LocalDateTime.now(zone), id, locale);
 
@@ -411,13 +412,13 @@ public final class DateUtils {
   static Tuple2<LocalDate, String> convertCalendar(LocalDate currentDate, String currentId, Locale currentLocale, ZoneId currentZone,
                                                    String nextId, Locale nextLocale, ZoneId nextZone) {
 
-    requireNonNull(currentDate, i18n("error.validation.should.not.be.null", i18n("parameter.name.date")));
-    requireNonEmptyOrNull(currentId, i18n("error.validation.should.not.be.emptyOrNull", i18n("parameter.name.id")));
-    requireNonNull(currentLocale, i18n("error.validation.should.not.be.null", i18n("parameter.name.locale")));
-    requireNonNull(currentZone, i18n("error.validation.should.not.be.null", i18n("parameter.name.zone")));
-    requireNonEmptyOrNull(nextId, i18n("error.validation.should.not.be.emptyOrNull", i18n("parameter.name.id")));
-    requireNonNull(nextLocale, i18n("error.validation.should.not.be.null", i18n("parameter.name.locale")));
-    requireNonNull(nextZone, i18n("error.validation.should.not.be.null", i18n("parameter.name.zone")));
+    requireNonNull(currentDate, i18n("error.validation.should.not.be.null", i18n("var.name.date")));
+    requireNonEmptyOrNull(currentId, i18n("error.validation.should.not.be.emptyOrNull", i18n("var.name.id")));
+    requireNonNull(currentLocale, i18n("error.validation.should.not.be.null", i18n("var.name.locale")));
+    requireNonNull(currentZone, i18n("error.validation.should.not.be.null", i18n("var.name.zone")));
+    requireNonEmptyOrNull(nextId, i18n("error.validation.should.not.be.emptyOrNull", i18n("var.name.id")));
+    requireNonNull(nextLocale, i18n("error.validation.should.not.be.null", i18n("var.name.locale")));
+    requireNonNull(nextZone, i18n("error.validation.should.not.be.null", i18n("var.name.zone")));
 
     var bundle = PROFILES.get(nextId);
     var dateFormat = createFormat(nextId, US, bundle.getString("calendar.format.date1"));
@@ -445,13 +446,13 @@ public final class DateUtils {
   static Tuple2<LocalDateTime, String> convertCalendar(LocalDateTime currentDateTime, String currentId, Locale currentLocale,
                                                        ZoneId currentZone, String nextId, Locale nextLocale, ZoneId nextZone) {
 
-    requireNonNull(currentDateTime, i18n("error.validation.should.not.be.null", i18n("parameter.name.dataAndTime")));
-    requireNonEmptyOrNull(currentId, i18n("error.validation.should.not.be.emptyOrNull", i18n("parameter.name.id")));
-    requireNonNull(currentLocale, i18n("error.validation.should.not.be.null", i18n("parameter.name.locale")));
-    requireNonNull(currentZone, i18n("error.validation.should.not.be.null", i18n("parameter.name.zone")));
-    requireNonEmptyOrNull(nextId, i18n("error.validation.should.not.be.emptyOrNull", i18n("parameter.name.id")));
-    requireNonNull(nextLocale, i18n("error.validation.should.not.be.null", i18n("parameter.name.locale")));
-    requireNonNull(nextZone, i18n("error.validation.should.not.be.null", i18n("parameter.name.zone")));
+    requireNonNull(currentDateTime, i18n("error.validation.should.not.be.null", i18n("var.name.dataAndTime")));
+    requireNonEmptyOrNull(currentId, i18n("error.validation.should.not.be.emptyOrNull", i18n("var.name.id")));
+    requireNonNull(currentLocale, i18n("error.validation.should.not.be.null", i18n("var.name.locale")));
+    requireNonNull(currentZone, i18n("error.validation.should.not.be.null", i18n("var.name.zone")));
+    requireNonEmptyOrNull(nextId, i18n("error.validation.should.not.be.emptyOrNull", i18n("var.name.id")));
+    requireNonNull(nextLocale, i18n("error.validation.should.not.be.null", i18n("var.name.locale")));
+    requireNonNull(nextZone, i18n("error.validation.should.not.be.null", i18n("var.name.zone")));
 
     var currentTime = currentDateTime.toLocalTime();
     var currentDate =
@@ -482,8 +483,8 @@ public final class DateUtils {
    * @throws IllegalArgumentException if any parameter is {@code null} or empty
    */
   public static boolean isLeap(int year, String id, Locale locale) {
-    requireNonEmptyOrNull(id, i18n("error.validation.should.not.be.emptyOrNull", i18n("parameter.name.id")));
-    requireNonNull(locale, i18n("error.validation.should.not.be.null", i18n("parameter.name.locale")));
+    requireNonEmptyOrNull(id, i18n("error.validation.should.not.be.emptyOrNull", i18n("var.name.id")));
+    requireNonNull(locale, i18n("error.validation.should.not.be.null", i18n("var.name.locale")));
 
     var calendar = Calendar.getInstance(forLocale(id, locale));
     calendar.set(year, 1, 1);

@@ -53,7 +53,7 @@ public record SqlFileHelper(Connection connection) {
    * @throws IllegalArgumentException if the {@code connection} is {@code null}
    */
   public SqlFileHelper {
-    requireNonNull(connection, i18n("error.validation.should.not.be.null", i18n("parameter.name.connection")));
+    requireNonNull(connection, i18n("error.validation.should.not.be.null", i18n("var.name.connection")));
   }
 
   /**
@@ -80,7 +80,7 @@ public record SqlFileHelper(Connection connection) {
    * @throws NullPointerException if {@code sqlFile} is {@code null}
    */
   public Boolean execute(Path sqlFile) {
-    requireNonNull(sqlFile, i18n("error.validation.should.not.be.null", i18n("parameter.name.sqlFile")));
+    requireNonNull(sqlFile, i18n("error.validation.should.not.be.null", i18n("var.name.sqlFile")));
 
     return withResources(connection::createStatement)
         .of(statement -> execute(sqlFile, statement))
@@ -99,8 +99,8 @@ public record SqlFileHelper(Connection connection) {
    * @throws NullPointerException if any parameter is {@code null}
    */
   private boolean execute(Path sqlFile, Statement statement) {
-    requireNonNull(sqlFile, i18n("error.validation.should.not.be.null", i18n("parameter.name.sqlFile")));
-    requireNonNull(statement, i18n("error.validation.should.not.be.null", i18n("parameter.name.statement")));
+    requireNonNull(sqlFile, i18n("error.validation.should.not.be.null", i18n("var.name.sqlFile")));
+    requireNonNull(statement, i18n("error.validation.should.not.be.null", i18n("var.name.statement")));
 
     return stream(readParts(sqlFile, SEPARATOR))
         .map(query -> isSuccess(statement, query))

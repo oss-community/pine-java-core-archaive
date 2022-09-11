@@ -46,7 +46,7 @@ public final class LogUtils {
    * @throws NullPointerException if {@code name} is {@code null}
    */
   public static Logger getLogger(String name) {
-    requireNonEmptyOrNull(name, i18n("error.validation.should.not.be.emptyOrNull", i18n("parameter.name.name")));
+    requireNonEmptyOrNull(name, i18n("error.validation.should.not.be.emptyOrNull", i18n("var.name.name")));
 
     return LoggerFactory.getLogger(name);
   }

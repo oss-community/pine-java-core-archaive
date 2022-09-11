@@ -50,7 +50,7 @@ public record YesNoQuestion(boolean value) {
    * @throws NullPointerException if {@code logic} is {@code null}
    */
   public YesNoQuestion yes(Runnable logic) {
-    requireNonNull(logic, i18n("error.validation.should.not.be.null", i18n("parameter.name.logic")));
+    requireNonNull(logic, i18n("error.validation.should.not.be.null", i18n("var.name.logic")));
 
     if (value) {
       logic.run();
@@ -67,7 +67,7 @@ public record YesNoQuestion(boolean value) {
    * @throws NullPointerException if {@code logic} is {@code null}
    */
   public YesNoQuestion no(Runnable logic) {
-    requireNonNull(logic, i18n("error.validation.should.not.be.null", i18n("parameter.name.logic")));
+    requireNonNull(logic, i18n("error.validation.should.not.be.null", i18n("var.name.logic")));
 
     if (!value) {
       logic.run();

@@ -50,7 +50,7 @@ public final class DateTimeValidator {
    * @throws IllegalArgumentException if {@code date} is {@code null} or empty
    */
   public static YesNoQuestion isDate(String date) {
-    requireNonEmptyOrNull(date, i18n("error.validation.should.not.be.emptyOrNull", i18n("parameter.name.date")));
+    requireNonEmptyOrNull(date, i18n("error.validation.should.not.be.emptyOrNull", i18n("var.name.date")));
 
     return ask(date.matches("^\\d{4}-\\d{2}-\\d{2}$"));
   }
@@ -65,7 +65,7 @@ public final class DateTimeValidator {
    * @throws IllegalArgumentException if {@code time} is {@code null} or empty
    */
   public static YesNoQuestion isTime(String time) {
-    requireNonEmptyOrNull(time, i18n("error.validation.should.not.be.emptyOrNull", i18n("parameter.name.time")));
+    requireNonEmptyOrNull(time, i18n("error.validation.should.not.be.emptyOrNull", i18n("var.name.time")));
 
     return ask(time.matches("^\\d{2}:\\d{2}:\\d{2}$") || time.matches("^[+-]\\d{2}:\\d{2}(:\\d{2})?$"));
   }
@@ -80,7 +80,7 @@ public final class DateTimeValidator {
    * @throws IllegalArgumentException if {@code datetime} is {@code null} or empty
    */
   public static YesNoQuestion isDateTime(String datetime) {
-    requireNonEmptyOrNull(datetime, i18n("error.validation.should.not.be.emptyOrNull", i18n("parameter.name.dataAndTime")));
+    requireNonEmptyOrNull(datetime, i18n("error.validation.should.not.be.emptyOrNull", i18n("var.name.dataAndTime")));
 
     return ask(datetime.matches("^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}$"));
   }

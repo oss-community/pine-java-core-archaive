@@ -26,7 +26,7 @@ package com.pineframework.core.helper;
  */
 public class TestEnvironmentConfig {
 
-  public static final String EN_US_LOCALE = "en_US";
+  public static final String ENV_LANG = "fa";
   public static final TestDatabase TEST_DB = new TestDatabase();
 
   private TestEnvironmentConfig() {

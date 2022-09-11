@@ -79,7 +79,7 @@ public final class ArrayValidator {
     ask(array != null && array.length == expectedSize)
         .no(() -> {
           throw new IllegalArgumentException(
-              i18n("error.validation.expectation", i18n("parameter.name.size"), (isNull(array) ? i18n("value.null") : array.length),
+              i18n("error.validation.expectation", i18n("var.name.size"), (isNull(array) ? i18n("value.null") : array.length),
                   expectedSize));
         });
   }
@@ -99,7 +99,7 @@ public final class ArrayValidator {
   public static <T> T[] requireElement(T[] array) {
     ask(isEmptyOrNull(array))
         .yes(() -> {
-          throw new IllegalArgumentException(i18n("error.validation.should.not.be.emptyOrNull", i18n("parameter.name.array")));
+          throw new IllegalArgumentException(i18n("error.validation.should.not.be.emptyOrNull", i18n("var.name.array")));
         });
 
     return array;

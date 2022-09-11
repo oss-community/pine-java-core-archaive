@@ -99,7 +99,7 @@ class CollectionUtilsTest extends AbstractUtilsTest {
     assertNotNull(result);
     var message = result.getMessage();
     logErrorAsInfo(message);
-    assertEquals(i18n("error.validation.should.not.be.null", i18n("parameter.name.collection")), message);
+    assertEquals(i18n("error.validation.should.not.be.null", i18n("var.name.collection")), message);
   }
 
   @Test
@@ -153,7 +153,7 @@ class CollectionUtilsTest extends AbstractUtilsTest {
     assertNotNull(result);
     var message = result.getMessage();
     logErrorAsInfo(message);
-    assertEquals(i18n("error.validation.should.not.be.null", i18n("parameter.name.collection")), message);
+    assertEquals(i18n("error.validation.should.not.be.null", i18n("var.name.collection")), message);
   }
 
   @Test
@@ -205,7 +205,7 @@ class CollectionUtilsTest extends AbstractUtilsTest {
     assertNotNull(result);
     var message = result.getMessage();
     logErrorAsInfo(message);
-    assertEquals(i18n("error.validation.should.not.be.null", i18n("parameter.name.collection")), message);
+    assertEquals(i18n("error.validation.should.not.be.null", i18n("var.name.collection")), message);
   }
 
   @Test
@@ -225,7 +225,7 @@ class CollectionUtilsTest extends AbstractUtilsTest {
     assertNotNull(result);
     var message = result.getMessage();
     logErrorAsInfo(message);
-    assertEquals(i18n("error.validation.should.not.be.null", i18n("parameter.name.collection")), message);
+    assertEquals(i18n("error.validation.should.not.be.null", i18n("var.name.collection")), message);
   }
 
   @Test
@@ -315,7 +315,7 @@ class CollectionUtilsTest extends AbstractUtilsTest {
     assertNotNull(result);
     var message = result.getMessage();
     logErrorAsInfo(message);
-    assertEquals(i18n("error.validation.should.not.be.null", i18n("parameter.name.collection")), message);
+    assertEquals(i18n("error.validation.should.not.be.null", i18n("var.name.collection")), message);
   }
 
   @Test
@@ -335,7 +335,7 @@ class CollectionUtilsTest extends AbstractUtilsTest {
     assertNotNull(result);
     var message = result.getMessage();
     logErrorAsInfo(message);
-    assertEquals(i18n("error.validation.should.not.be.null", i18n("parameter.name.collection")), message);
+    assertEquals(i18n("error.validation.should.not.be.null", i18n("var.name.collection")), message);
   }
 
   @Test
@@ -423,7 +423,7 @@ class CollectionUtilsTest extends AbstractUtilsTest {
     assertNotNull(result);
     var message = result.getMessage();
     logErrorAsInfo(message);
-    assertEquals(i18n("error.validation.should.not.be.null", i18n("parameter.name.collection")), message);
+    assertEquals(i18n("error.validation.should.not.be.null", i18n("var.name.collection")), message);
   }
 
   @Test
@@ -443,7 +443,7 @@ class CollectionUtilsTest extends AbstractUtilsTest {
     assertNotNull(result);
     var message = result.getMessage();
     logErrorAsInfo(message);
-    assertEquals(i18n("error.validation.should.not.be.null", i18n("parameter.name.collection")), message);
+    assertEquals(i18n("error.validation.should.not.be.null", i18n("var.name.collection")), message);
   }
 
   @Test

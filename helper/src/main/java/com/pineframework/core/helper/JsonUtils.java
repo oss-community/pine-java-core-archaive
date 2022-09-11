@@ -77,7 +77,7 @@ public final class JsonUtils {
    * @throws IllegalArgumentException when {@code jsonString} is {@code null} or empty
    */
   public static Map<String, Object> toMap(String jsonString) {
-    requireNonEmptyOrNull(jsonString, i18n("error.validation.should.not.be.emptyOrNull", i18n("parameter.name.json")));
+    requireNonEmptyOrNull(jsonString, i18n("error.validation.should.not.be.emptyOrNull", i18n("var.name.json")));
 
     return Try.of(() -> OBJECT_MAPPER.readValue(jsonString, new TypeReference<Map<String, Object>>() {
     })).get();
@@ -94,9 +94,9 @@ public final class JsonUtils {
    * @throws IllegalArgumentException if any parameter is {@code null} or empty
    */
   public static <T> T readArray(String jsonString, String fieldName, Class<T> type) {
-    requireNonEmptyOrNull(jsonString, i18n("error.validation.should.not.be.emptyOrNull", i18n("parameter.name.json")));
-    requireNonEmptyOrNull(fieldName, i18n("error.validation.should.not.be.emptyOrNull", i18n("parameter.name.fieldName")));
-    requireNonNull(type, i18n("error.validation.should.not.be.null", i18n("parameter.name.type")));
+    requireNonEmptyOrNull(jsonString, i18n("error.validation.should.not.be.emptyOrNull", i18n("var.name.json")));
+    requireNonEmptyOrNull(fieldName, i18n("error.validation.should.not.be.emptyOrNull", i18n("var.name.fieldName")));
+    requireNonNull(type, i18n("error.validation.should.not.be.null", i18n("var.name.type")));
 
     return Try.of(() -> OBJECT_MAPPER.convertValue(OBJECT_MAPPER.readTree(jsonString).withArray(fieldName), type)).get();
   }
@@ -112,9 +112,9 @@ public final class JsonUtils {
    * @throws IllegalArgumentException if any parameter is {@code null} or empty
    */
   public static <T> T readArray(File jsonFile, String fieldName, Class<T> type) {
-    requireNonNull(jsonFile, i18n("error.validation.should.not.be.null", i18n("parameter.name.jsonFile")));
-    requireNonEmptyOrNull(fieldName, i18n("error.validation.should.not.be.emptyOrNull", i18n("parameter.name.fieldName")));
-    requireNonNull(type, i18n("error.validation.should.not.be.null", i18n("parameter.name.type")));
+    requireNonNull(jsonFile, i18n("error.validation.should.not.be.null", i18n("var.name.jsonFile")));
+    requireNonEmptyOrNull(fieldName, i18n("error.validation.should.not.be.emptyOrNull", i18n("var.name.fieldName")));
+    requireNonNull(type, i18n("error.validation.should.not.be.null", i18n("var.name.type")));
 
     return Try.of(() -> OBJECT_MAPPER.convertValue(OBJECT_MAPPER.readTree(jsonFile).withArray(fieldName), type)).get();
   }
@@ -130,9 +130,9 @@ public final class JsonUtils {
    * @throws IllegalArgumentException if any parameter is {@code null} or empty
    */
   public static <T> T getNode(String jsonString, String nodeName, Class<T> type) {
-    requireNonEmptyOrNull(jsonString, i18n("error.validation.should.not.be.emptyOrNull", i18n("parameter.name.jsonString")));
-    requireNonEmptyOrNull(nodeName, i18n("error.validation.should.not.be.emptyOrNull", i18n("parameter.name.nodeName")));
-    requireNonNull(type, i18n("error.validation.should.not.be.null", i18n("parameter.name.type")));
+    requireNonEmptyOrNull(jsonString, i18n("error.validation.should.not.be.emptyOrNull", i18n("var.name.jsonString")));
+    requireNonEmptyOrNull(nodeName, i18n("error.validation.should.not.be.emptyOrNull", i18n("var.name.nodeName")));
+    requireNonNull(type, i18n("error.validation.should.not.be.null", i18n("var.name.type")));
 
     return Try.of(() -> OBJECT_MAPPER.convertValue(OBJECT_MAPPER.readTree(jsonString).with(nodeName), type)).get();
   }
@@ -148,9 +148,9 @@ public final class JsonUtils {
    * @throws IllegalArgumentException if any parameter is {@code null} or empty
    */
   public static <T> T getNode(File jsonFile, String nodeName, Class<T> type) {
-    requireNonNull(jsonFile, i18n("error.validation.should.not.be.null", i18n("parameter.name.jsonFile")));
-    requireNonEmptyOrNull(nodeName, i18n("error.validation.should.not.be.emptyOrNull", i18n("parameter.name.nodeName")));
-    requireNonNull(type, i18n("error.validation.should.not.be.null", i18n("parameter.name.type")));
+    requireNonNull(jsonFile, i18n("error.validation.should.not.be.null", i18n("var.name.jsonFile")));
+    requireNonEmptyOrNull(nodeName, i18n("error.validation.should.not.be.emptyOrNull", i18n("var.name.nodeName")));
+    requireNonNull(type, i18n("error.validation.should.not.be.null", i18n("var.name.type")));
 
     return Try.of(() -> OBJECT_MAPPER.convertValue(OBJECT_MAPPER.readTree(jsonFile).with(nodeName), type)).get();
   }
@@ -165,8 +165,8 @@ public final class JsonUtils {
    * @throws IllegalArgumentException if any parameter is {@code null} or empty
    */
   public static <T> T toType(String jsonString, Class<T> type) {
-    requireNonEmptyOrNull(jsonString, i18n("error.validation.should.not.be.emptyOrNull", i18n("parameter.name.jsonString")));
-    requireNonNull(type, i18n("error.validation.should.not.be.null", i18n("parameter.name.type")));
+    requireNonEmptyOrNull(jsonString, i18n("error.validation.should.not.be.emptyOrNull", i18n("var.name.jsonString")));
+    requireNonNull(type, i18n("error.validation.should.not.be.null", i18n("var.name.type")));
 
     return Try.of(() -> OBJECT_MAPPER.readValue(jsonString, type)).get();
   }
@@ -179,7 +179,7 @@ public final class JsonUtils {
    * @throws NullPointerException if {@code file} is {@code null}
    */
   public static JsonObject toJsonObject(File file) {
-    requireNonNull(file, i18n("error.validation.should.not.be.null", i18n("parameter.name.file")));
+    requireNonNull(file, i18n("error.validation.should.not.be.null", i18n("var.name.file")));
 
     var inputStream = Try.of(() -> new FileInputStream(file)).get();
     var reader = Json.createReader(inputStream);
@@ -202,9 +202,9 @@ public final class JsonUtils {
    * @throws IllegalArgumentException if any parameter is {@code null} or empty
    */
   public static <T> T readPrimitive(String jsonString, String fieldName, Class<T> type) {
-    requireNonEmptyOrNull(jsonString, i18n("error.validation.should.not.be.emptyOrNull", i18n("parameter.name.jsonString")));
-    requireNonEmptyOrNull(fieldName, i18n("error.validation.should.not.be.emptyOrNull", i18n("parameter.name.fieldName")));
-    requireNonNull(type, i18n("error.validation.should.not.be.null", i18n("parameter.name.type")));
+    requireNonEmptyOrNull(jsonString, i18n("error.validation.should.not.be.emptyOrNull", i18n("var.name.jsonString")));
+    requireNonEmptyOrNull(fieldName, i18n("error.validation.should.not.be.emptyOrNull", i18n("var.name.fieldName")));
+    requireNonNull(type, i18n("error.validation.should.not.be.null", i18n("var.name.type")));
 
     JsonNode jsonNode = Try.of(() -> OBJECT_MAPPER.readValue(jsonString, JsonNode.class)).get();
     return ReflectionUtils.toJavaBasicType(jsonNode.get(fieldName), type);
@@ -221,8 +221,8 @@ public final class JsonUtils {
    * @throws IllegalArgumentException if any parameter is {@code null} or empty
    */
   public static boolean contain(String jsonString, String fieldName) {
-    requireNonEmptyOrNull(jsonString, i18n("error.validation.should.not.be.emptyOrNull", i18n("parameter.name.jsonString")));
-    requireNonEmptyOrNull(fieldName, i18n("error.validation.should.not.be.emptyOrNull", i18n("parameter.name.fieldName")));
+    requireNonEmptyOrNull(jsonString, i18n("error.validation.should.not.be.emptyOrNull", i18n("var.name.jsonString")));
+    requireNonEmptyOrNull(fieldName, i18n("error.validation.should.not.be.emptyOrNull", i18n("var.name.fieldName")));
 
     return Try.of(() -> OBJECT_MAPPER.readValue(jsonString, JsonNode.class)).get().has(fieldName);
   }
@@ -236,8 +236,8 @@ public final class JsonUtils {
    * @throws IllegalArgumentException if any parameter is {@code null} or empty
    */
   public static boolean isConvertible(String jsonString, Class<?> type) {
-    requireNonEmptyOrNull(jsonString, i18n("error.validation.should.not.be.emptyOrNull", i18n("parameter.name.jsonString")));
-    requireNonNull(type, i18n("error.validation.should.not.be.null", i18n("parameter.name.type")));
+    requireNonEmptyOrNull(jsonString, i18n("error.validation.should.not.be.emptyOrNull", i18n("var.name.jsonString")));
+    requireNonNull(type, i18n("error.validation.should.not.be.null", i18n("var.name.type")));
 
     return Try.of(() -> OBJECT_MAPPER.readValue(jsonString, type)).onFailure(e -> LOGGER.error(e.getMessage())).isSuccess();
   }
@@ -250,7 +250,7 @@ public final class JsonUtils {
    * @throws NullPointerException if {@code array} is {@code null}
    */
   public static List<String> toStringList(JsonArray array) {
-    requireNonNull(array, i18n("error.validation.should.not.be.null", i18n("parameter.name.array")));
+    requireNonNull(array, i18n("error.validation.should.not.be.null", i18n("var.name.array")));
 
     return array.stream().map(e -> ((JsonString) e).getString()).collect(toList());
   }
@@ -263,7 +263,7 @@ public final class JsonUtils {
    * @throws NullPointerException if {@code obj} is {@code null}
    */
   public static String toJsonString(Object obj) {
-    requireNonNull(obj, i18n("error.validation.should.not.be.null", i18n("parameter.name.object")));
+    requireNonNull(obj, i18n("error.validation.should.not.be.null", i18n("var.name.object")));
 
 
     return Try.of(() -> OBJECT_MAPPER.writerWithDefaultPrettyPrinter().writeValueAsString(obj)).get();
@@ -278,8 +278,8 @@ public final class JsonUtils {
    * @throws IllegalArgumentException if any parameter is {@code null} or empty
    */
   public static String toJsonString(Object obj, Class<?> view) {
-    requireNonNull(obj, i18n("error.validation.should.not.be.null", i18n("parameter.name.object")));
-    requireNonNull(view, i18n("error.validation.should.not.be.null", i18n("parameter.name.view")));
+    requireNonNull(obj, i18n("error.validation.should.not.be.null", i18n("var.name.object")));
+    requireNonNull(view, i18n("error.validation.should.not.be.null", i18n("var.name.view")));
 
     return Try.of(() -> OBJECT_MAPPER.writerWithView(view).writeValueAsString(obj)).get();
   }

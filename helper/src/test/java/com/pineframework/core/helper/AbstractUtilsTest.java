@@ -19,7 +19,7 @@ package com.pineframework.core.helper;
 
 import static com.pineframework.core.helper.I18nUtils.I18N_FILES;
 import static com.pineframework.core.helper.I18nUtils.I18N_LOCALE;
-import static com.pineframework.core.helper.TestEnvironmentConfig.EN_US_LOCALE;
+import static com.pineframework.core.helper.TestEnvironmentConfig.ENV_LANG;
 
 import io.vavr.CheckedRunnable;
 import io.vavr.control.Try;
@@ -45,13 +45,13 @@ public abstract class AbstractUtilsTest {
 
   @BeforeAll
   static void beforeAll() {
-    var testLocale = EN_US_LOCALE;
+    var testLocale = ENV_LANG;
     var testI18n = "test_i18n";
 
     System.setProperty(I18N_LOCALE, testLocale);
     System.setProperty(I18N_FILES, testI18n);
 
-    System.out.printf("Locale: %s, added i18n: %s\n", testLocale, testI18n);
+    System.out.printf("lang: %s, added i18n: %s\n", testLocale, testI18n);
   }
 
   private Logger logger() {

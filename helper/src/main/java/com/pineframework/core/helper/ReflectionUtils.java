@@ -93,7 +93,7 @@ public final class ReflectionUtils {
    * @throws IllegalArgumentException if {@code packageName} is {@code null} or empty
    */
   private static Set<Class<?>> scanPackage(String packageName) {
-    requireNonEmptyOrNull(packageName, i18n("error.validation.should.not.be.emptyOrNull", i18n("parameter.name.packageName")));
+    requireNonEmptyOrNull(packageName, i18n("error.validation.should.not.be.emptyOrNull", i18n("var.name.packageName")));
 
     var reflections = new Reflections(packageName, SubTypes.filterResultsBy(s -> true));
 
@@ -135,7 +135,7 @@ public final class ReflectionUtils {
    * @throws IllegalArgumentException if any parameter is {@code null} or empty
    */
   private static Set<Class<?>> scanPackageByAnnotation(Class<? extends Annotation> annotation, String packageName) {
-    requireNonEmptyOrNull(packageName, i18n("error.validation.should.not.be.emptyOrNull", i18n("parameter.name.packageName")));
+    requireNonEmptyOrNull(packageName, i18n("error.validation.should.not.be.emptyOrNull", i18n("var.name.packageName")));
     Reflections reflections = new Reflections(packageName);
     return reflections.getTypesAnnotatedWith(annotation);
   }
@@ -151,7 +151,7 @@ public final class ReflectionUtils {
    * @throws IllegalArgumentException if any parameter is {@code null} or empty
    */
   public static Set<Class<?>> scanPackageByAnnotation(Class<? extends Annotation> annotation, String... packageNames) {
-    requireNonNull(annotation, i18n("error.validation.should.not.be.null", i18n("parameter.name.annotation")));
+    requireNonNull(annotation, i18n("error.validation.should.not.be.null", i18n("var.name.annotation")));
     requireElement(packageNames);
 
     return stream(packageNames)
@@ -174,8 +174,8 @@ public final class ReflectionUtils {
    * @throws IllegalArgumentException if any parameter is {@code null} or empty
    */
   public static Optional<Field> getField(Class<?> type, String fieldName) {
-    requireNonNull(type, i18n("error.validation.should.not.be.null", i18n("parameter.name.type")));
-    requireNonEmptyOrNull(fieldName, i18n("error.validation.should.not.be.emptyOrNull", i18n("parameter.name.fieldName")));
+    requireNonNull(type, i18n("error.validation.should.not.be.null", i18n("var.name.type")));
+    requireNonEmptyOrNull(fieldName, i18n("error.validation.should.not.be.emptyOrNull", i18n("var.name.fieldName")));
 
     if (!contain(type, fieldName) && nonNull(type.getSuperclass())) {
       return getField(type.getSuperclass(), fieldName);
@@ -197,7 +197,7 @@ public final class ReflectionUtils {
    * @throws IllegalArgumentException if any parameter is {@code null}
    */
   private static List<Field> getFields(Class<?> type) {
-    requireNonNull(type, i18n("error.validation.should.not.be.null", i18n("parameter.name.type")));
+    requireNonNull(type, i18n("error.validation.should.not.be.null", i18n("var.name.type")));
     return stream(type.getDeclaredFields()).toList();
   }
 
@@ -229,7 +229,7 @@ public final class ReflectionUtils {
    * @throws IllegalArgumentException if {@code type} is {@code null}
    */
   private static List<Field> getDeepFields(Class<?> type) {
-    requireNonNull(type, i18n("error.validation.should.not.be.null", i18n("parameter.name.type")));
+    requireNonNull(type, i18n("error.validation.should.not.be.null", i18n("var.name.type")));
 
     List<Field> fields = new ArrayList<>(stream(type.getDeclaredFields()).toList());
 
@@ -269,8 +269,8 @@ public final class ReflectionUtils {
    * @throws IllegalArgumentException if any parameter is {@code null} or empty
    */
   public static Class<?> getFieldType(Class<?> owner, Field field) {
-    requireNonNull(owner, i18n("error.validation.should.not.be.null", i18n("parameter.name.owner")));
-    requireNonNull(field, i18n("error.validation.should.not.be.null", i18n("parameter.name.field")));
+    requireNonNull(owner, i18n("error.validation.should.not.be.null", i18n("var.name.owner")));
+    requireNonNull(field, i18n("error.validation.should.not.be.null", i18n("var.name.field")));
 
     return field.getType() == Object.class ? resolveRawClass(field.getGenericType(), owner) : field.getType();
   }
@@ -284,8 +284,8 @@ public final class ReflectionUtils {
    * @throws IllegalArgumentException if any parameter is {@code null} or empty
    */
   public static List<Field> getAnnotatedFields(Class<?> type, Class<? extends Annotation> annotation) {
-    requireNonNull(type, i18n("error.validation.should.not.be.null", i18n("parameter.name.type")));
-    requireNonNull(annotation, i18n("error.validation.should.not.be.null", i18n("parameter.name.annotation")));
+    requireNonNull(type, i18n("error.validation.should.not.be.null", i18n("var.name.type")));
+    requireNonNull(annotation, i18n("error.validation.should.not.be.null", i18n("var.name.annotation")));
 
     return getDeepFields(type)
         .stream()
@@ -303,8 +303,8 @@ public final class ReflectionUtils {
    * @throws IllegalArgumentException if any parameter is {@code null} or empty
    */
   public static boolean contain(Class<?> type, String fieldName) {
-    requireNonNull(type, i18n("error.validation.should.not.be.null", i18n("parameter.name.type")));
-    requireNonEmptyOrNull(fieldName, i18n("error.validation.should.not.be.emptyOrNull", i18n("parameter.name.fieldName")));
+    requireNonNull(type, i18n("error.validation.should.not.be.null", i18n("var.name.type")));
+    requireNonEmptyOrNull(fieldName, i18n("error.validation.should.not.be.emptyOrNull", i18n("var.name.fieldName")));
 
     return Try.of(() -> type.getDeclaredField(fieldName)).isSuccess();
   }
@@ -318,16 +318,16 @@ public final class ReflectionUtils {
    * @throws IllegalArgumentException if any parameter is {@code null} or empty
    */
   public static Type extract(Class<?> owner, int index) {
-    requireNonNull(owner, i18n("error.validation.should.not.be.null", i18n("parameter.name.owner")));
+    requireNonNull(owner, i18n("error.validation.should.not.be.null", i18n("var.name.owner")));
 
     if (index < 0) {
-      throw new IllegalArgumentException(i18n("error.validation.should.be.greaterThan", i18n("parameter.name.index"), 0));
+      throw new IllegalArgumentException(i18n("error.validation.should.be.greaterThan", i18n("var.name.index"), 0));
     }
 
     Type[] types = ((ParameterizedType) owner.getGenericSuperclass()).getActualTypeArguments();
 
     if (index >= types.length) {
-      throw new IllegalArgumentException(i18n("error.validation.should.be.lessThan", i18n("parameter.name.index"), types.length));
+      throw new IllegalArgumentException(i18n("error.validation.should.be.lessThan", i18n("var.name.index"), types.length));
     }
 
     return types[index];
@@ -345,8 +345,8 @@ public final class ReflectionUtils {
    */
   @SuppressWarnings("unchecked")
   public static <T> T toJavaBasicType(Object value, Class<T> type) {
-    requireNonNull(value, i18n("error.validation.should.not.be.null", i18n("parameter.name.value")));
-    requireNonNull(type, i18n("error.validation.should.not.be.null", i18n("parameter.name.type")));
+    requireNonNull(value, i18n("error.validation.should.not.be.null", i18n("var.name.value")));
+    requireNonNull(type, i18n("error.validation.should.not.be.null", i18n("var.name.type")));
 
     if (value.getClass().equals(String.class)) {
       var valueAsString = String.valueOf(value);

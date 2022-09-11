@@ -142,7 +142,7 @@ class CollectionValidatorTest extends AbstractUtilsTest {
     assertNotNull(result);
     var message = result.getMessage();
     logErrorAsInfo(message);
-    assertEquals(i18n("error.validation.expectation", i18n("parameter.name.size"), "null", givenSize), message);
+    assertEquals(i18n("error.validation.expectation", i18n("var.name.size"), "null", givenSize), message);
   }
 
   @Test
@@ -176,7 +176,7 @@ class CollectionValidatorTest extends AbstractUtilsTest {
     assertNotNull(result);
     var message = result.getMessage();
     logErrorAsInfo(message);
-    assertEquals(i18n("error.validation.expectation", i18n("parameter.name.size"), givenCollection.size(), givenSize), message);
+    assertEquals(i18n("error.validation.expectation", i18n("var.name.size"), givenCollection.size(), givenSize), message);
   }
 
   @Test
@@ -210,7 +210,7 @@ class CollectionValidatorTest extends AbstractUtilsTest {
     assertNotNull(result);
     var message = result.getMessage();
     logErrorAsInfo(message);
-    assertEquals(i18n("error.validation.expectation", i18n("parameter.name.size"), givenCollection.size(), givenSize), message);
+    assertEquals(i18n("error.validation.expectation", i18n("var.name.size"), givenCollection.size(), givenSize), message);
   }
 
   @Test
@@ -229,7 +229,7 @@ class CollectionValidatorTest extends AbstractUtilsTest {
     assertNotNull(result);
     var message = result.getMessage();
     logErrorAsInfo(message);
-    assertEquals(i18n("error.validation.should.not.be.empty", i18n("parameter.name.collection")), message);
+    assertEquals(i18n("error.validation.should.not.be.empty", i18n("var.name.collection")), message);
   }
 
   @Test
@@ -248,7 +248,7 @@ class CollectionValidatorTest extends AbstractUtilsTest {
     assertNotNull(result);
     var message = result.getMessage();
     logErrorAsInfo(message);
-    assertEquals(i18n("error.validation.should.not.be.empty", i18n("parameter.name.collection")), message);
+    assertEquals(i18n("error.validation.should.not.be.empty", i18n("var.name.collection")), message);
   }
 
   @Test

@@ -83,7 +83,7 @@ public final class CollectionValidator {
     ask(collection != null && collection.size() == size)
         .no(() -> {
           throw new IllegalArgumentException(
-              i18n("error.validation.expectation", i18n("parameter.name.size"), (isNull(collection) ? "null" : collection.size()), size)
+              i18n("error.validation.expectation", i18n("var.name.size"), (isNull(collection) ? "null" : collection.size()), size)
           );
         });
   }
@@ -99,7 +99,7 @@ public final class CollectionValidator {
   public static <T> void requireElement(Collection<T> collection) {
     ask(isNotEmpty(collection))
         .no(() -> {
-          throw new IllegalArgumentException(i18n("error.validation.should.not.be.empty", i18n("parameter.name.collection")));
+          throw new IllegalArgumentException(i18n("error.validation.should.not.be.empty", i18n("var.name.collection")));
         });
   }
 }

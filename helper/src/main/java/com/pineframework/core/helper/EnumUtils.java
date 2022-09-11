@@ -50,8 +50,8 @@ public final class EnumUtils {
    * @throws NullPointerException if any parameter is {@code null}
    */
   public static <T extends Enum<T>> Optional<T> findEnumByFilter(Class<T> type, Predicate<T> filter) {
-    requireNonNull(type, i18n("error.validation.should.not.be.null", i18n("parameter.name.type")));
-    requireNonNull(filter, i18n("error.validation.should.not.be.null", i18n("parameter.name.filter")));
+    requireNonNull(type, i18n("error.validation.should.not.be.null", i18n("var.name.type")));
+    requireNonNull(filter, i18n("error.validation.should.not.be.null", i18n("var.name.filter")));
 
     return allOf(type)
         .stream()

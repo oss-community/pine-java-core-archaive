@@ -97,7 +97,7 @@ class DateUtilsTest extends AbstractUtilsTest {
     assertNotNull(result);
     var message = result.getMessage();
     logErrorAsInfo(message);
-    assertEquals(i18n("error.validation.should.not.be.emptyOrNull", i18n("parameter.name.id"), 0), message);
+    assertEquals(i18n("error.validation.should.not.be.emptyOrNull", i18n("var.name.id"), 0), message);
   }
 
   @Test
@@ -118,7 +118,7 @@ class DateUtilsTest extends AbstractUtilsTest {
     assertNotNull(result);
     var message = result.getMessage();
     logErrorAsInfo(message);
-    assertEquals(i18n("error.validation.should.not.be.emptyOrNull", i18n("parameter.name.id"), 0), message);
+    assertEquals(i18n("error.validation.should.not.be.emptyOrNull", i18n("var.name.id"), 0), message);
   }
 
   @Test
@@ -139,7 +139,7 @@ class DateUtilsTest extends AbstractUtilsTest {
     assertNotNull(result);
     var message = result.getMessage();
     logErrorAsInfo(message);
-    assertEquals(i18n("error.validation.should.not.be.emptyOrNull", i18n("parameter.name.pattern"), 0), message);
+    assertEquals(i18n("error.validation.should.not.be.emptyOrNull", i18n("var.name.pattern"), 0), message);
   }
 
   @Test
@@ -160,7 +160,7 @@ class DateUtilsTest extends AbstractUtilsTest {
     assertNotNull(result);
     var message = result.getMessage();
     logErrorAsInfo(message);
-    assertEquals(i18n("error.validation.should.not.be.emptyOrNull", i18n("parameter.name.pattern"), 0), message);
+    assertEquals(i18n("error.validation.should.not.be.emptyOrNull", i18n("var.name.pattern"), 0), message);
   }
 
   @Test
@@ -181,7 +181,7 @@ class DateUtilsTest extends AbstractUtilsTest {
     assertNotNull(result);
     var message = result.getMessage();
     logErrorAsInfo(message);
-    assertEquals(i18n("error.validation.should.not.be.null", i18n("parameter.name.locale")), message);
+    assertEquals(i18n("error.validation.should.not.be.null", i18n("var.name.locale")), message);
   }
 
   @Test
@@ -222,7 +222,7 @@ class DateUtilsTest extends AbstractUtilsTest {
     assertNotNull(result);
     var message = result.getMessage();
     logErrorAsInfo(message);
-    assertEquals(i18n("error.validation.should.not.be.null", i18n("parameter.name.zone")), message);
+    assertEquals(i18n("error.validation.should.not.be.null", i18n("var.name.zone")), message);
   }
 
   @Test
@@ -256,7 +256,7 @@ class DateUtilsTest extends AbstractUtilsTest {
     assertNotNull(result);
     var message = result.getMessage();
     logErrorAsInfo(message);
-    assertEquals(i18n("error.validation.should.not.be.null", i18n("parameter.name.zone")), message);
+    assertEquals(i18n("error.validation.should.not.be.null", i18n("var.name.zone")), message);
   }
 
   @Test
@@ -276,7 +276,7 @@ class DateUtilsTest extends AbstractUtilsTest {
     assertNotNull(result);
     var message = result.getMessage();
     logErrorAsInfo(message);
-    assertEquals(i18n("error.validation.should.not.be.null", i18n("parameter.name.zone")), message);
+    assertEquals(i18n("error.validation.should.not.be.null", i18n("var.name.zone")), message);
   }
 
   @ParameterizedTest(name = "[{index}]: between {0} and {1}")
@@ -321,7 +321,7 @@ class DateUtilsTest extends AbstractUtilsTest {
     assertNotNull(result);
     var message = result.getMessage();
     logErrorAsInfo(message);
-    assertEquals(i18n("error.validation.should.not.be.emptyOrNull", i18n("parameter.name.time")), message);
+    assertEquals(i18n("error.validation.should.not.be.emptyOrNull", i18n("var.name.time")), message);
   }
 
   @Test
@@ -340,7 +340,7 @@ class DateUtilsTest extends AbstractUtilsTest {
     assertNotNull(result);
     var message = result.getMessage();
     logErrorAsInfo(message);
-    assertEquals(i18n("error.validation.should.not.be.emptyOrNull", i18n("parameter.name.time")), message);
+    assertEquals(i18n("error.validation.should.not.be.emptyOrNull", i18n("var.name.time")), message);
   }
 
   @Test
@@ -359,7 +359,7 @@ class DateUtilsTest extends AbstractUtilsTest {
     assertNotNull(result);
     var message = result.getMessage();
     logErrorAsInfo(message);
-    assertEquals(i18n("error.validation.is.not.valid", i18n("parameter.name.format"), i18n("parameter.name.time")), message);
+    assertEquals(i18n("error.validation.is.not.valid", i18n("var.name.format"), i18n("var.name.time")), message);
   }
 
   @Test
@@ -428,7 +428,7 @@ class DateUtilsTest extends AbstractUtilsTest {
     assertNotNull(result);
     var message = result.getMessage();
     logErrorAsInfo(message);
-    assertEquals(i18n("error.validation.should.not.be.null", i18n("parameter.name.dataAndTime")), message);
+    assertEquals(i18n("error.validation.should.not.be.null", i18n("var.name.dataAndTime")), message);
   }
 
   @Test
@@ -449,7 +449,7 @@ class DateUtilsTest extends AbstractUtilsTest {
     assertNotNull(result);
     var message = result.getMessage();
     logErrorAsInfo(message);
-    assertEquals(i18n("error.validation.should.not.be.null", i18n("parameter.name.locale")), message);
+    assertEquals(i18n("error.validation.should.not.be.null", i18n("var.name.locale")), message);
   }
 
   @Test
@@ -470,7 +470,7 @@ class DateUtilsTest extends AbstractUtilsTest {
     assertNotNull(result);
     var message = result.getMessage();
     logErrorAsInfo(message);
-    assertEquals(i18n("error.validation.should.not.be.emptyOrNull", i18n("parameter.name.id")), message);
+    assertEquals(i18n("error.validation.should.not.be.emptyOrNull", i18n("var.name.id")), message);
   }
 
   @Test
@@ -491,7 +491,7 @@ class DateUtilsTest extends AbstractUtilsTest {
     assertNotNull(result);
     var message = result.getMessage();
     logErrorAsInfo(message);
-    assertEquals(i18n("error.validation.should.not.be.emptyOrNull", i18n("parameter.name.id")), message);
+    assertEquals(i18n("error.validation.should.not.be.emptyOrNull", i18n("var.name.id")), message);
   }
 
   @Test
@@ -537,7 +537,7 @@ class DateUtilsTest extends AbstractUtilsTest {
     assertNotNull(result);
     var message = result.getMessage();
     logErrorAsInfo(message);
-    assertEquals(i18n("error.validation.should.not.be.null", i18n("parameter.name.date")), message);
+    assertEquals(i18n("error.validation.should.not.be.null", i18n("var.name.date")), message);
   }
 
   @Test
@@ -558,7 +558,7 @@ class DateUtilsTest extends AbstractUtilsTest {
     assertNotNull(result);
     var message = result.getMessage();
     logErrorAsInfo(message);
-    assertEquals(i18n("error.validation.should.not.be.null", i18n("parameter.name.locale")), message);
+    assertEquals(i18n("error.validation.should.not.be.null", i18n("var.name.locale")), message);
   }
 
   @Test
@@ -579,7 +579,7 @@ class DateUtilsTest extends AbstractUtilsTest {
     assertNotNull(result);
     var message = result.getMessage();
     logErrorAsInfo(message);
-    assertEquals(i18n("error.validation.should.not.be.emptyOrNull", i18n("parameter.name.id")), message);
+    assertEquals(i18n("error.validation.should.not.be.emptyOrNull", i18n("var.name.id")), message);
   }
 
   @Test
@@ -600,7 +600,7 @@ class DateUtilsTest extends AbstractUtilsTest {
     assertNotNull(result);
     var message = result.getMessage();
     logErrorAsInfo(message);
-    assertEquals(i18n("error.validation.should.not.be.emptyOrNull", i18n("parameter.name.id")), message);
+    assertEquals(i18n("error.validation.should.not.be.emptyOrNull", i18n("var.name.id")), message);
   }
 
   @Test
@@ -643,7 +643,7 @@ class DateUtilsTest extends AbstractUtilsTest {
     assertNotNull(result);
     var message = result.getMessage();
     logErrorAsInfo(message);
-    assertEquals(i18n("error.validation.should.not.be.null", i18n("parameter.name.dataAndTime")), message);
+    assertEquals(i18n("error.validation.should.not.be.null", i18n("var.name.dataAndTime")), message);
   }
 
   @Test
@@ -664,7 +664,7 @@ class DateUtilsTest extends AbstractUtilsTest {
     assertNotNull(result);
     var message = result.getMessage();
     logErrorAsInfo(message);
-    assertEquals(i18n("error.validation.should.not.be.null", i18n("parameter.name.zone")), message);
+    assertEquals(i18n("error.validation.should.not.be.null", i18n("var.name.zone")), message);
   }
 
   @Test
@@ -685,7 +685,7 @@ class DateUtilsTest extends AbstractUtilsTest {
     assertNotNull(result);
     var message = result.getMessage();
     logErrorAsInfo(message);
-    assertEquals(i18n("error.validation.should.not.be.null", i18n("parameter.name.zone")), message);
+    assertEquals(i18n("error.validation.should.not.be.null", i18n("var.name.zone")), message);
   }
 
   @ParameterizedTest(name = "[{index}]: from {0} to {1}")
@@ -724,7 +724,7 @@ class DateUtilsTest extends AbstractUtilsTest {
     assertNotNull(result);
     var message = result.getMessage();
     logErrorAsInfo(message);
-    assertEquals(i18n("error.validation.should.not.be.null", i18n("parameter.name.date")), message);
+    assertEquals(i18n("error.validation.should.not.be.null", i18n("var.name.date")), message);
   }
 
   @Test
@@ -745,7 +745,7 @@ class DateUtilsTest extends AbstractUtilsTest {
     assertNotNull(result);
     var message = result.getMessage();
     logErrorAsInfo(message);
-    assertEquals(i18n("error.validation.should.not.be.null", i18n("parameter.name.zone")), message);
+    assertEquals(i18n("error.validation.should.not.be.null", i18n("var.name.zone")), message);
   }
 
   @Test
@@ -766,7 +766,7 @@ class DateUtilsTest extends AbstractUtilsTest {
     assertNotNull(result);
     var message = result.getMessage();
     logErrorAsInfo(message);
-    assertEquals(i18n("error.validation.should.not.be.null", i18n("parameter.name.zone")), message);
+    assertEquals(i18n("error.validation.should.not.be.null", i18n("var.name.zone")), message);
   }
 
   @ParameterizedTest(name = "[{index}]: from [({0})::{1}] to [({2})::{3}]")
@@ -803,7 +803,7 @@ class DateUtilsTest extends AbstractUtilsTest {
     assertNotNull(result);
     var message = result.getMessage();
     logErrorAsInfo(message);
-    assertEquals(i18n("error.validation.should.not.be.null", i18n("parameter.name.date")), message);
+    assertEquals(i18n("error.validation.should.not.be.null", i18n("var.name.date")), message);
   }
 
   @Test
@@ -824,7 +824,7 @@ class DateUtilsTest extends AbstractUtilsTest {
     assertNotNull(result);
     var message = result.getMessage();
     logErrorAsInfo(message);
-    assertEquals(i18n("error.validation.should.not.be.null", i18n("parameter.name.zone")), message);
+    assertEquals(i18n("error.validation.should.not.be.null", i18n("var.name.zone")), message);
   }
 
   @Test
@@ -845,7 +845,7 @@ class DateUtilsTest extends AbstractUtilsTest {
     assertNotNull(result);
     var message = result.getMessage();
     logErrorAsInfo(message);
-    assertEquals(i18n("error.validation.should.not.be.null", i18n("parameter.name.zone")), message);
+    assertEquals(i18n("error.validation.should.not.be.null", i18n("var.name.zone")), message);
   }
 
   @ParameterizedTest(name = "[{index}]: from {0} to {1}")
@@ -881,7 +881,7 @@ class DateUtilsTest extends AbstractUtilsTest {
     assertNotNull(result);
     var message = result.getMessage();
     logErrorAsInfo(message);
-    assertEquals(i18n("error.validation.should.not.be.null", i18n("parameter.name.date")), message);
+    assertEquals(i18n("error.validation.should.not.be.null", i18n("var.name.date")), message);
   }
 
   @Test
@@ -902,7 +902,7 @@ class DateUtilsTest extends AbstractUtilsTest {
     assertNotNull(result);
     var message = result.getMessage();
     logErrorAsInfo(message);
-    assertEquals(i18n("error.validation.should.not.be.emptyOrNull", i18n("parameter.name.id")), message);
+    assertEquals(i18n("error.validation.should.not.be.emptyOrNull", i18n("var.name.id")), message);
   }
 
   @Test
@@ -923,7 +923,7 @@ class DateUtilsTest extends AbstractUtilsTest {
     assertNotNull(result);
     var message = result.getMessage();
     logErrorAsInfo(message);
-    assertEquals(i18n("error.validation.should.not.be.emptyOrNull", i18n("parameter.name.id")), message);
+    assertEquals(i18n("error.validation.should.not.be.emptyOrNull", i18n("var.name.id")), message);
   }
 
   @Test
@@ -944,7 +944,7 @@ class DateUtilsTest extends AbstractUtilsTest {
     assertNotNull(result);
     var message = result.getMessage();
     logErrorAsInfo(message);
-    assertEquals(i18n("error.validation.should.not.be.null", i18n("parameter.name.locale")), message);
+    assertEquals(i18n("error.validation.should.not.be.null", i18n("var.name.locale")), message);
   }
 
   @Test
@@ -990,7 +990,7 @@ class DateUtilsTest extends AbstractUtilsTest {
     assertNotNull(result);
     var message = result.getMessage();
     logErrorAsInfo(message);
-    assertEquals(i18n("error.validation.should.not.be.emptyOrNull", i18n("parameter.name.id")), message);
+    assertEquals(i18n("error.validation.should.not.be.emptyOrNull", i18n("var.name.id")), message);
   }
 
   @Test
@@ -1011,7 +1011,7 @@ class DateUtilsTest extends AbstractUtilsTest {
     assertNotNull(result);
     var message = result.getMessage();
     logErrorAsInfo(message);
-    assertEquals(i18n("error.validation.should.not.be.emptyOrNull", i18n("parameter.name.id")), message);
+    assertEquals(i18n("error.validation.should.not.be.emptyOrNull", i18n("var.name.id")), message);
   }
 
   @Test
@@ -1032,7 +1032,7 @@ class DateUtilsTest extends AbstractUtilsTest {
     assertNotNull(result);
     var message = result.getMessage();
     logErrorAsInfo(message);
-    assertEquals(i18n("error.validation.should.not.be.null", i18n("parameter.name.locale")), message);
+    assertEquals(i18n("error.validation.should.not.be.null", i18n("var.name.locale")), message);
   }
 
   @Test
@@ -1053,7 +1053,7 @@ class DateUtilsTest extends AbstractUtilsTest {
     assertNotNull(result);
     var message = result.getMessage();
     logErrorAsInfo(message);
-    assertEquals(i18n("error.validation.should.not.be.null", i18n("parameter.name.zone")), message);
+    assertEquals(i18n("error.validation.should.not.be.null", i18n("var.name.zone")), message);
   }
 
   @Test

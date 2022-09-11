@@ -116,7 +116,7 @@ class JdbcUtilsTest extends AbstractUtilsTest {
     var result = assertThrows(expectedException, iterator::next);
 
     //Then
-    assertEquals(i18n("error.validation.can.not.find", i18n("parameter.name.element")), result.getMessage());
+    assertEquals(i18n("error.validation.can.not.find", i18n("var.name.element")), result.getMessage());
   }
 
   static class TestData {

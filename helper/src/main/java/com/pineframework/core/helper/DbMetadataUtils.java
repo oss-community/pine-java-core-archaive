@@ -66,7 +66,7 @@ public final class DbMetadataUtils {
    * @throws IllegalArgumentException if {@code connection} is {@code null}
    */
   public static String[] getTables(Connection connection) {
-    requireNonNull(connection, i18n("error.validation.should.not.be.null", i18n("parameter.name.connection")));
+    requireNonNull(connection, i18n("error.validation.should.not.be.null", i18n("var.name.connection")));
     ask(Try.of(connection::isClosed).get())
         .yes(() -> {
           throw new IllegalArgumentException(i18n("error.validation.connection.is.close"));
@@ -86,8 +86,8 @@ public final class DbMetadataUtils {
    * @throws IllegalArgumentException if any parameter is {@code null} or empty
    */
   public static String[] getColumns(Connection connection, String table) {
-    requireNonNull(connection, i18n("error.validation.should.not.be.null", i18n("parameter.name.connection")));
-    requireNonEmptyOrNull(table, i18n("error.validation.should.not.be.emptyOrNull", i18n("parameter.name.tableName")));
+    requireNonNull(connection, i18n("error.validation.should.not.be.null", i18n("var.name.connection")));
+    requireNonEmptyOrNull(table, i18n("error.validation.should.not.be.emptyOrNull", i18n("var.name.tableName")));
     ask(Try.of(connection::isClosed).get())
         .yes(() -> {
           throw new IllegalArgumentException(i18n("error.validation.connection.is.close"));

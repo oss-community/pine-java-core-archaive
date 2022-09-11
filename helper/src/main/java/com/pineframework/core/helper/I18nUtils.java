@@ -48,8 +48,8 @@ public final class I18nUtils {
 
   /**
    * The language of locale in two letters format.
-   * <example>en_US</example>
-   * <example>fa_IR</example>
+   * <example>en</example>
+   * <example>fa</example>
    */
   public static final String I18N_LOCALE = "I18N_LOCALE";
 
@@ -65,13 +65,13 @@ public final class I18nUtils {
   private static final Map<String, ResourceBundle> bundles = Collections.synchronizedMap(new HashMap<>());
 
   static {
-    var locale = getEnv(I18N_LOCALE).orElse("en_US").split("_");
-    bundles.put("i18n", getBundle("i18n", new Locale(locale[0], locale[1])));
+    var lang = getEnv(I18N_LOCALE).orElse("en");
+    bundles.put("i18n", getBundle("i18n", new Locale(lang)));
 
     getEnv(I18N_FILES).ifPresent(value -> {
       var files = value.split(",");
       for (String file : files) {
-        bundles.put(file, getBundle(file, new Locale(locale[0], locale[1])));
+        bundles.put(file, getBundle(file, new Locale(lang)));
       }
     });
   }
@@ -119,7 +119,7 @@ public final class I18nUtils {
     requireNonEmptyOrNull(key, "key is empty or null");
 
     var bundle = bundles.get(bundlePrefix);
-    return bundle.containsKey(key) ? format(bundle.getString(key), params) : "";
+    return bundle.containsKey(key) ? format(bundle.getString(key), params) : key;
   }
 
   /**

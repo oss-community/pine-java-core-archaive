@@ -57,7 +57,7 @@ class StringUtilsTest extends AbstractUtilsTest {
     assertNotNull(result);
     var message = result.getMessage();
     logErrorAsInfo(message);
-    assertEquals(i18n("error.validation.should.not.be.null", i18n("parameter.name.separator")), message);
+    assertEquals(i18n("error.validation.should.not.be.null", i18n("var.name.separator")), message);
   }
 
   @Test
@@ -78,7 +78,7 @@ class StringUtilsTest extends AbstractUtilsTest {
     assertNotNull(result);
     var message = result.getMessage();
     logErrorAsInfo(message);
-    assertEquals(i18n("error.validation.should.not.be.emptyOrNull", i18n("parameter.name.array")), message);
+    assertEquals(i18n("error.validation.should.not.be.emptyOrNull", i18n("var.name.array")), message);
   }
 
   @Test
@@ -98,7 +98,7 @@ class StringUtilsTest extends AbstractUtilsTest {
     assertNotNull(result);
     var message = result.getMessage();
     logErrorAsInfo(message);
-    assertEquals(i18n("error.validation.should.not.be.emptyOrNull", i18n("parameter.name.array")), message);
+    assertEquals(i18n("error.validation.should.not.be.emptyOrNull", i18n("var.name.array")), message);
   }
 
   @Test

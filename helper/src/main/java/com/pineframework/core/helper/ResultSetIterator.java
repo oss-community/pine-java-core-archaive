@@ -42,7 +42,7 @@ public record ResultSetIterator(ResultSet rs) implements Iterator<ResultSet> {
   @Override
   public ResultSet next() throws NoSuchElementException {
     if (rs == null) {
-      throw new NoSuchElementException(i18n("error.validation.can.not.find", i18n("parameter.name.element")));
+      throw new NoSuchElementException(i18n("error.validation.can.not.find", i18n("var.name.element")));
     }
 
     return rs;

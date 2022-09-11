@@ -49,7 +49,7 @@ public final class NumberValidator {
    * @throws IllegalArgumentException if {@code number} is less than zero
    */
   public static void shouldBeGreaterThanZero(int number) {
-    shouldBeGreaterThanZero(number, i18n("error.validation.should.be.greaterThan", i18n("parameter.name.number"), 0));
+    shouldBeGreaterThanZero(number, i18n("error.validation.should.be.greaterThan", i18n("var.name.number"), 0));
   }
 
   /**
@@ -80,7 +80,7 @@ public final class NumberValidator {
    * @throws IllegalArgumentException if {@code number} is less than zero
    */
   public static void shouldBeLessThanZero(int number) {
-    shouldBeLessThanZero(number, i18n("error.validation.should.be.lessThan", i18n("parameter.name.number"), 0));
+    shouldBeLessThanZero(number, i18n("error.validation.should.be.lessThan", i18n("var.name.number"), 0));
   }
 
   /**

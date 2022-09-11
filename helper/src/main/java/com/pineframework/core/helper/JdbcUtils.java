@@ -58,7 +58,7 @@ public final class JdbcUtils {
    * @throws IllegalArgumentException if {@code rs} is {@code null}
    */
   public static Spliterator<ResultSet> createSpliterator(ResultSet rs) {
-    requireNonNull(rs, i18n("error.validation.should.not.be.null", i18n("parameter.name.resultSet")));
+    requireNonNull(rs, i18n("error.validation.should.not.be.null", i18n("var.name.resultSet")));
 
     Iterable<ResultSet> iterable = () -> new ResultSetIterator(rs);
     return iterable.spliterator();
@@ -87,7 +87,7 @@ public final class JdbcUtils {
      * @throws IllegalArgumentException if any parameter is {@code null} or empty
      */
     static Connection createInMemoryH2Connection(String name, String passwd) {
-      requireNonEmptyOrNull(name, i18n("error.validation.should.not.be.emptyOrNull", i18n("parameter.name.name")));
+      requireNonEmptyOrNull(name, i18n("error.validation.should.not.be.emptyOrNull", i18n("var.name.name")));
 
       return Try.of(() -> {
         DriverManager.registerDriver(new org.h2.Driver());
@@ -104,8 +104,8 @@ public final class JdbcUtils {
      * @throws IllegalArgumentException if any parameter is {@code null} or empty
      */
     static String makeH2ConnectionString(String type, String name) {
-      requireNonEmptyOrNull(name, i18n("error.validation.should.not.be.emptyOrNull", i18n("parameter.name.name")));
-      requireNonEmptyOrNull(type, i18n("error.validation.should.not.be.emptyOrNull", i18n("parameter.name.type")));
+      requireNonEmptyOrNull(name, i18n("error.validation.should.not.be.emptyOrNull", i18n("var.name.name")));
+      requireNonEmptyOrNull(type, i18n("error.validation.should.not.be.emptyOrNull", i18n("var.name.type")));
 
       return String.format("jdbc:h2:%s:%s;DB_CLOSE_DELAY=-1", type, name);
     }
@@ -132,7 +132,7 @@ public final class JdbcUtils {
      * @throws IllegalArgumentException if any parameter is {@code null} or empty
      */
     static Connection createThinConnection(String host, String name, String username, String passwd) {
-      requireNonEmptyOrNull(name, i18n("error.validation.should.not.be.emptyOrNull", i18n("parameter.name.name")));
+      requireNonEmptyOrNull(name, i18n("error.validation.should.not.be.emptyOrNull", i18n("var.name.name")));
 
       return Try.of(() -> {
         DriverManager.registerDriver(new oracle.jdbc.OracleDriver());
@@ -151,7 +151,7 @@ public final class JdbcUtils {
      * @throws IllegalArgumentException if any parameter is {@code null} or empty
      */
     static String makeThinConnectionString(String host, String name, String username, String passwd) {
-      requireNonEmptyOrNull(name, i18n("error.validation.should.not.be.emptyOrNull", i18n("parameter.name.name")));
+      requireNonEmptyOrNull(name, i18n("error.validation.should.not.be.emptyOrNull", i18n("var.name.name")));
 
       return String.format("jdbc:oracle:thin:%s/%s@%s:1521:%s", username, passwd, host, name);
     }

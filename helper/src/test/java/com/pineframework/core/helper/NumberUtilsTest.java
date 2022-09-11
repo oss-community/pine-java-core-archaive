@@ -163,7 +163,7 @@ class NumberUtilsTest extends AbstractUtilsTest {
     assertNotNull(result);
     var message = result.getMessage();
     logErrorAsInfo(message);
-    assertEquals(i18n("error.validation.should.be.greaterThan", i18n("parameter.name.number"), 0), message);
+    assertEquals(i18n("error.validation.should.be.greaterThan", i18n("var.name.number"), 0), message);
   }
 
   @Test

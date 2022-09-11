@@ -139,7 +139,7 @@ class ArrayValidatorTest extends AbstractUtilsTest {
     assertNotNull(result);
     var message = result.getMessage();
     logErrorAsInfo(message);
-    assertEquals(i18n("error.validation.expectation", i18n("parameter.name.size"), i18n("value.null"), givenSize), message);
+    assertEquals(i18n("error.validation.expectation", i18n("var.name.size"), i18n("value.null"), givenSize), message);
   }
 
   @Test
@@ -173,7 +173,7 @@ class ArrayValidatorTest extends AbstractUtilsTest {
     assertNotNull(result);
     var message = result.getMessage();
     logErrorAsInfo(message);
-    assertEquals(i18n("error.validation.expectation", i18n("parameter.name.size"), givenArray.length, givenExpectedSize), message);
+    assertEquals(i18n("error.validation.expectation", i18n("var.name.size"), givenArray.length, givenExpectedSize), message);
   }
 
   @Test
@@ -207,7 +207,7 @@ class ArrayValidatorTest extends AbstractUtilsTest {
     assertNotNull(result);
     var message = result.getMessage();
     logErrorAsInfo(message);
-    assertEquals(i18n("error.validation.expectation", i18n("parameter.name.size"), givenArray.length, givenExpectedSize), message);
+    assertEquals(i18n("error.validation.expectation", i18n("var.name.size"), givenArray.length, givenExpectedSize), message);
   }
 
   @Test
@@ -226,7 +226,7 @@ class ArrayValidatorTest extends AbstractUtilsTest {
     assertNotNull(result);
     var message = result.getMessage();
     logErrorAsInfo(message);
-    assertEquals(i18n("error.validation.should.not.be.emptyOrNull", i18n("parameter.name.array")), message);
+    assertEquals(i18n("error.validation.should.not.be.emptyOrNull", i18n("var.name.array")), message);
   }
 
   @Test
@@ -245,7 +245,7 @@ class ArrayValidatorTest extends AbstractUtilsTest {
     assertNotNull(result);
     var message = result.getMessage();
     logErrorAsInfo(message);
-    assertEquals(i18n("error.validation.should.not.be.emptyOrNull", i18n("parameter.name.array")), message);
+    assertEquals(i18n("error.validation.should.not.be.emptyOrNull", i18n("var.name.array")), message);
   }
 
   @Test

@@ -28,7 +28,7 @@ public final class StringUtils {
    * @throws IllegalArgumentException if {@code strings} does not have an element
    */
   public static String concatenate(String separator, String... strings) {
-    requireNonNull(separator, i18n("error.validation.should.not.be.null", i18n("parameter.name.separator")));
+    requireNonNull(separator, i18n("error.validation.should.not.be.null", i18n("var.name.separator")));
     requireElement(strings);
 
     return String.join(separator, strings);
@@ -42,7 +42,7 @@ public final class StringUtils {
    * @throws IllegalArgumentException if {@code word} is {@code null} or <i>empty</i>
    */
   private static String toTitleCase(String word) {
-    requireNonEmptyOrNull(word, i18n("error.validation.should.not.be.null", i18n("parameter.name.word")));
+    requireNonEmptyOrNull(word, i18n("error.validation.should.not.be.null", i18n("var.name.word")));
 
     return Character.toUpperCase(word.charAt(0)) + word.substring(1).toLowerCase();
   }

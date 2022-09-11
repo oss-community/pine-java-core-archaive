@@ -67,7 +67,7 @@ public final class FileUtils {
    * @throws IllegalArgumentException if {@code packageName} is {@code null} or empty
    */
   public static Path toPath(String packageName) {
-    requireNonEmptyOrNull(packageName, i18n("error.validation.should.not.be.emptyOrNull", i18n("parameter.name.packageName")));
+    requireNonEmptyOrNull(packageName, i18n("error.validation.should.not.be.emptyOrNull", i18n("var.name.packageName")));
 
     return Paths.get(packageName.replace('.', File.separatorChar));
   }
@@ -80,7 +80,7 @@ public final class FileUtils {
    * @throws NullPointerException if the {@code path} is null
    */
   public static String toPackage(Path path) {
-    requireNonNull(path, i18n("error.validation.should.not.be.null", i18n("parameter.name.path")));
+    requireNonNull(path, i18n("error.validation.should.not.be.null", i18n("var.name.path")));
 
     return path.toString().replace(File.separatorChar, '.');
   }
@@ -94,7 +94,7 @@ public final class FileUtils {
    * @see #toPath(String)
    */
   public static URL toUrl(Path path) {
-    requireNonNull(path, i18n("error.validation.should.not.be.null", i18n("parameter.name.path")));
+    requireNonNull(path, i18n("error.validation.should.not.be.null", i18n("var.name.path")));
 
     return currentThread().getContextClassLoader().getResource(path.toString());
   }
@@ -108,7 +108,7 @@ public final class FileUtils {
    * @see #toPath(String)
    */
   public static URI toUri(Path path) {
-    requireNonNull(path, i18n("error.validation.should.not.be.null", i18n("parameter.name.path")));
+    requireNonNull(path, i18n("error.validation.should.not.be.null", i18n("var.name.path")));
 
     return Try.of(() -> toUrl(path).toURI()).get();
   }
@@ -125,7 +125,7 @@ public final class FileUtils {
    * @see #toPath(String)
    */
   public static Path toFullPath(Path path) {
-    requireNonNull(path, i18n("error.validation.should.not.be.null", i18n("parameter.name.path")));
+    requireNonNull(path, i18n("error.validation.should.not.be.null", i18n("var.name.path")));
 
     return Try.of(() -> Paths.get(toUri(path))).get();
   }
@@ -139,7 +139,7 @@ public final class FileUtils {
    * @see #toPath(String)
    */
   public static Stream<String> walkThrowPackage(Path path) {
-    requireNonNull(path, i18n("error.validation.should.not.be.null", i18n("parameter.name.path")));
+    requireNonNull(path, i18n("error.validation.should.not.be.null", i18n("var.name.path")));
 
     return Try.of(() -> Files.walk(toFullPath(path)).map(FileUtils::toPackage)).get();
   }
@@ -152,7 +152,7 @@ public final class FileUtils {
    * @throws NullPointerException if {@code path} is {@code null}
    */
   public static byte[] readContentAsByteArray(Path path) {
-    requireNonNull(path, i18n("error.validation.should.not.be.null", i18n("parameter.name.path")));
+    requireNonNull(path, i18n("error.validation.should.not.be.null", i18n("var.name.path")));
 
     return Try.of(() -> Files.readString(path).replace("\r", "").getBytes(UTF_8)).get();
   }
@@ -165,7 +165,7 @@ public final class FileUtils {
    * @throws NullPointerException if {@code path} is {@code null}
    */
   public static String readContentAsString(Path path) {
-    requireNonNull(path, i18n("error.validation.should.not.be.null", i18n("parameter.name.path")));
+    requireNonNull(path, i18n("error.validation.should.not.be.null", i18n("var.name.path")));
 
     return Try.of(() -> Files.readString(path, UTF_8).replace("\r", "")).get();
   }
@@ -179,8 +179,8 @@ public final class FileUtils {
    * @throws IllegalArgumentException if any parameter is {@code null} or empty
    */
   public static String[] readParts(Path path, String separator) {
-    requireNonNull(path, i18n("error.validation.should.not.be.null", i18n("parameter.name.path")));
-    requireNonEmptyOrNull(separator, i18n("error.validation.should.not.be.emptyOrNull", i18n("parameter.name.separator")));
+    requireNonNull(path, i18n("error.validation.should.not.be.null", i18n("var.name.path")));
+    requireNonEmptyOrNull(separator, i18n("error.validation.should.not.be.emptyOrNull", i18n("var.name.separator")));
 
     return Try.of(() -> Files.readString(path, UTF_8).replace("\r", "").split(separator)).get();
   }
@@ -193,11 +193,11 @@ public final class FileUtils {
    * @throws IllegalArgumentException if {@code path} is {@code null} or empty, or file does not exist
    */
   public static Properties getProperties(Path path) {
-    requireNonNull(path, i18n("error.validation.should.not.be.null", i18n("parameter.name.path")));
+    requireNonNull(path, i18n("error.validation.should.not.be.null", i18n("var.name.path")));
 
     var inputStream = Try.of(() -> currentThread().getContextClassLoader().getResourceAsStream(path.toString()))
         .getOrElseThrow(() -> {
-          throw new IllegalArgumentException(i18n("error.validation.is.wrong", i18n("parameter.name.path")));
+          throw new IllegalArgumentException(i18n("error.validation.is.wrong", i18n("var.name.path")));
         });
 
     var properties = new Properties();
@@ -214,8 +214,8 @@ public final class FileUtils {
    * @throws NullPointerException if any parameter is {@code null}
    */
   public static FileOutputStream createFile(Path path, byte[] content) {
-    requireNonNull(path, i18n("error.validation.should.not.be.null", i18n("parameter.name.path")));
-    requireNonNull(content, i18n("error.validation.should.not.be.null", i18n("parameter.name.content")));
+    requireNonNull(path, i18n("error.validation.should.not.be.null", i18n("var.name.path")));
+    requireNonNull(content, i18n("error.validation.should.not.be.null", i18n("var.name.content")));
 
     return Try.withResources(() -> new FileOutputStream(path.toFile())).of(output -> {
       output.write(content);

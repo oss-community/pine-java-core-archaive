@@ -68,7 +68,7 @@ public final class CollectionUtils {
    * @throws IllegalArgumentException if {@code collection} is  {@code null}
    */
   private static <T> void checkNull(Collection<T> collection) {
-    requireNonNull(collection, i18n("error.validation.should.not.be.null", i18n("parameter.name.collection")));
+    requireNonNull(collection, i18n("error.validation.should.not.be.null", i18n("var.name.collection")));
   }
 
   /**
@@ -78,7 +78,7 @@ public final class CollectionUtils {
    * @throws IllegalArgumentException if {@code comparator} is  {@code null}
    */
   private static <T, E> void checkNull(BiPredicate<T, E> comparator) {
-    requireNonNull(comparator, i18n("error.validation.should.not.be.null", i18n("parameter.name.comparator")));
+    requireNonNull(comparator, i18n("error.validation.should.not.be.null", i18n("var.name.comparator")));
   }
 
   /**

@@ -78,9 +78,9 @@ public final class OracleJdbcUtils {
    * @throws IllegalArgumentException if any parameter is {@code null} or empty
    */
   public static void registerChangeNotification(OracleConnection connection, DatabaseChangeListener listener, String tableName) {
-    requireNonNull(connection, i18n("error.validation.should.not.be.null", i18n("parameter.name.connection")));
-    requireNonNull(listener, i18n("error.validation.should.not.be.null", i18n("parameter.name.listener")));
-    requireNonEmptyOrNull(tableName, i18n("error.validation.should.not.be.emptyOrNull", i18n("parameter.name.tableName")));
+    requireNonNull(connection, i18n("error.validation.should.not.be.null", i18n("var.name.connection")));
+    requireNonNull(listener, i18n("error.validation.should.not.be.null", i18n("var.name.listener")));
+    requireNonEmptyOrNull(tableName, i18n("error.validation.should.not.be.emptyOrNull", i18n("var.name.tableName")));
 
     Try.run(() -> {
       DatabaseChangeRegistration notification = connection.registerDatabaseChangeNotification(getListenerProperties());
@@ -158,8 +158,8 @@ public final class OracleJdbcUtils {
    */
   @SuppressWarnings("unchecked")
   public static <T> T convertToJavaType(Object value, Class<T> type) {
-    requireNonNull(value, i18n("error.validation.should.not.be.null", i18n("parameter.name.value")));
-    requireNonNull(type, i18n("error.validation.should.not.be.null", i18n("parameter.name.type")));
+    requireNonNull(value, i18n("error.validation.should.not.be.null", i18n("var.name.value")));
+    requireNonNull(type, i18n("error.validation.should.not.be.null", i18n("var.name.type")));
 
     return (T) DataBaseTypeConverter.CONVERTERS.get(type).apply(value);
   }
