@@ -1,0 +1,1 @@
+fly -t pine set-pipeline -p pine -c .\ci\concourse\pipeline.yml
