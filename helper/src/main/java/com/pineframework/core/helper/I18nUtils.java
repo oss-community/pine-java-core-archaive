@@ -51,10 +51,10 @@ public final class I18nUtils {
    * <example>en</example>
    * <example>fa</example>
    */
-  public static final String I18N_LOCALE = "I18N_LOCALE";
+  public static final String I18N_LANG = "I18N_LANG";
 
   /**
-   * The files in order to handle multiple internationalization file.
+   * The files in order to handle multiple internationalization files.
    * <p>
    * The files should be write as a comma separate string.
    * </p>
@@ -65,7 +65,7 @@ public final class I18nUtils {
   private static final Map<String, ResourceBundle> bundles = Collections.synchronizedMap(new HashMap<>());
 
   static {
-    var lang = getEnv(I18N_LOCALE).orElse("en");
+    var lang = getEnv(I18N_LANG).orElse("en");
     bundles.put("i18n", getBundle("i18n", new Locale(lang)));
 
     getEnv(I18N_FILES).ifPresent(value -> {

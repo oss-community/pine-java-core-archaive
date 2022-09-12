@@ -17,10 +17,9 @@
 
 package com.pineframework.core.helper;
 
-import static com.pineframework.core.helper.I18nUtils.I18N_LOCALE;
+import static com.pineframework.core.helper.I18nUtils.I18N_LANG;
 import static com.pineframework.core.helper.I18nUtils.i18n;
 import static com.pineframework.core.helper.I18nUtils.i18ns;
-import static com.pineframework.core.helper.TestEnvironmentConfig.ENV_LANG;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -71,7 +70,7 @@ class I18nUtilsTest extends AbstractUtilsTest {
     //Then
     assertNotNull(result);
     assertEquals(expectedMessageNo, result.length);
-    SystemUtils.getEnv(I18N_LOCALE).ifPresent(locale -> {
+    SystemUtils.getEnv(I18N_LANG).ifPresent(locale -> {
       switch (locale) {
         case "en" -> assertThat(result).containsExactly("message1", "message2");
         case "fa" -> assertThat(result).containsExactly("پیام1", "پیام2");
@@ -117,7 +116,7 @@ class I18nUtilsTest extends AbstractUtilsTest {
     assertNotNull(result);
     assertEquals(expectedMessageNo, result.length);
 
-    SystemUtils.getEnv(I18N_LOCALE).ifPresent(locale -> {
+    SystemUtils.getEnv(I18N_LANG).ifPresent(locale -> {
       switch (locale) {
         case "en" -> assertThat(result).containsExactly("message1", "message2");
         case "fa" -> assertThat(result).containsExactly("پیام1", "پیام2");
