@@ -11,6 +11,7 @@ rectangle "Core Component" as coreComponent {
     component "Contract" as contract
     component "Business" as business
 
+    helper ..> i18n
     contract ..> dataModel
     contract ..> helper
     business ..> contract
