@@ -26,7 +26,7 @@ package com.pineframework.core.helper;
  */
 public class TestEnvironmentConfig {
 
-  public static final String TEST_I18N_LANG = "fa";
+  public static final String TEST_I18N_LANG = "en";
   public static final String TEST_I18N_FILES = "test_i18n";
   public static final TestDatabase TEST_DB = new TestDatabase();
 

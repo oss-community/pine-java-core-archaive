@@ -376,13 +376,14 @@ mvn test -s settings.xml
 mvn checkstyle:check -s settings.xml -P checkstyle
 mvn install -DskipTests=true -s settings.xml
 mvn site:site site:stage -s settings.xml -P site,javadoc,changelog,test-report
+mvn site:run -s settings.xml -P site
 mvn scm-publish:publish-scm -s settings.xml -P publish
 ```
 
 ### <span style="color: RoyalBlue">Site</span>
 
-View generated [documents](https://saman-oss.github.io/pine-java-core/) of project.
-
+View maven site on [GitHub page](https://saman-oss.github.io/pine-java-core/) of project.
+Also, you can see maven site [locally](http://localhost:8000/).
 ---
 
 ## <span style="color: Crimson">Install</span>

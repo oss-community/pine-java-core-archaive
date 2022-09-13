@@ -445,6 +445,9 @@ limitations under the License.
         </profile>
         <profile>
             <id>site</id>
+            <properties>
+                <maven.site.local.port>8000</maven.site.local.port>
+            </properties>
             <distributionManagement>
             <site>
                 <id>github.com</id>
@@ -456,7 +459,12 @@ limitations under the License.
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-site-plugin</artifactId>
-                        <version>3.10.0</version>
+                        <version>3.12.1</version>
+                        <configuration>
+                            <locales>en</locales>
+                            <port>${maven.site.local.port}</port>
+                            <tempWebappDirectory>${basedir}/target/staging</tempWebappDirectory>
+                        </configuration>
                     </plugin>
                 </plugins>
             </build>
@@ -465,7 +473,7 @@ limitations under the License.
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-project-info-reports-plugin</artifactId>
-                        <version>3.2.2</version>
+                        <version>3.4.1</version>
                         <reportSets>
                             <reportSet>
                                 <reports>
