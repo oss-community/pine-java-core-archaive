@@ -6,10 +6,10 @@ REM gh repo deploy-key delete $(gh repo deploy-key list -R saman-oss/pine-java-c
 call gh repo deploy-key add .\ssh\id_rsa.pub -R saman-oss/pine-java-core -t concourse-key-pub -w
 
 echo # credentials > .\ci\concourse\credentials.yml
-FOR /F "tokens=* delims=" %%x in (.\ssh\id_rsa.pub) DO echo git-key-pub: %%x >> .\ci\concourse\credentials.yml
-echo git-key: ^| >> .\ci\concourse\credentials.yml
+FOR /F "tokens=* delims=" %%x in (.\ssh\id_rsa.pub) DO echo github-key-pub: %%x >> .\ci\concourse\credentials.yml
+echo github-key: ^|- >> .\ci\concourse\credentials.yml
 FOR /F "tokens=* delims=" %%x in (.\ssh\id_rsa) DO echo    %%x >> .\ci\concourse\credentials.yml
 del .\github-token.txt
-del .\ssh\id_rsa
-del .\ssh\id_rsa.pub
-rmdir .\ssh
+REM del .\ssh\id_rsa
+REM del .\ssh\id_rsa.pub
+REM rmdir .\ssh
