@@ -592,7 +592,7 @@ limitations under the License.
         <profile>
             <id>github</id>
             <properties>
-                <github.artifactory.url>${env.GITHUB_ARTIFACTORY_UR}</github.artifactory.url>
+                <github.artifactory.url>${env.GITHUB_ARTIFACTORY_URL}</github.artifactory.url>
             </properties>
             <distributionManagement>
                 <repository>
