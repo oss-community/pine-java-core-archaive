@@ -21,6 +21,8 @@ RUN echo $GITHUB_JENKINS_TOKEN > ./github-token.txt
 RUN gh auth login -p ssh -h github.com --with-token < ./github-token.txt
 RUN gh repo deploy-key delete $(gh repo deploy-key list -R saman-oss/pine-java-core | awk '{print ($1==""?"":$1)}') -R saman-oss/pine-java-core || true
 RUN gh repo deploy-key add /root/.ssh/id_rsa.pub -R saman-oss/pine-java-core -t jenkins-key-pub -w
+RUN echo "Host *" > /root/.ssh/config
+RUN echo "    StrictHostKeyChecking no" >> /root/.ssh/config
 #RUN ssh -T git@github.com
 RUN java -version
 RUN mvn -version
