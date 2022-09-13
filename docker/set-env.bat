@@ -1,8 +1,9 @@
 # localhost, build docker
 call setx /M GITHUB_JENKINS_TOKEN ???
 call setx /M GITHUB_USERNAME ???
+call setx /M GITHUB_EMAIL ???
 call setx /M GITHUB_PACKAGE_TOKEN ???
-call setx /M GITHUB_ARTIFACTORY_UR saman-oss/pine-java-core
+call setx /M GITHUB_ARTIFACTORY_URL saman-oss/pine-java-core
 
 # localhost
 call setx /M SONAR_TOKEN ???

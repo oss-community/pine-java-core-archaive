@@ -12,7 +12,6 @@ resources:
     icon: github
     source:
       uri: git@github.com:saman-oss/pine-java-core.git
-#      uri: https://github.com/saman-oss/pine-java-core.git
       branch: main
       private_key: ((github-key))
 
@@ -61,6 +60,8 @@ jobs:
           outputs:
             - name: artifact
           params:
+            GITHUB-USER-NAME: ((github-user-name))
+            GITHUB-USER-EMAIL: ((github-user-email))
             PRIVKEY: ((github-key))
             PUBKEY: ((github-key-pub))
           run:
@@ -68,6 +69,9 @@ jobs:
             args:
               - -exc
               - |
+                git config --global user.email "$GITHUB-USER-NAME"
+                git config --global user.name "$GITHUB-USER-EMAIL"
+                
                 mkdir ~/.ssh
                 ls ~/.ssh/
                 set +x

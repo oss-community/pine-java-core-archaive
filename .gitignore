@@ -31,3 +31,4 @@ target
 .env.dev
 
 ci/concourse/credentials.yml
+ssh
