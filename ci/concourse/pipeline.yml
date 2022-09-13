@@ -1,10 +1,10 @@
 groups:
   - name: development
     jobs:
-      - development-build-pine-java-core
+      - build-pine-java-core
   - name: uat
     jobs:
-      - uat-build-pine-java-core
+      - uat-pine-java-core
 
 resources:
   - name: repo-pine-java-core
@@ -15,7 +15,7 @@ resources:
       branch: main
 
 jobs:
-  - name: development-build-pine-java-core
+  - name: build-pine-java-core
     public: true
     plan:
       - get: repo-pine-java-core
@@ -46,31 +46,11 @@ jobs:
               - |
                 mvn -f repo/pom.xml validate
                 mvn -f repo/pom.xml clean package -DskipTests=true
-      - task: test
-        input_mapping:
-          repo: artifact
-        privileged: true
-        config:
-          platform: linux
-          image_resource:
-            type: registry-image
-            source:
-              repository: maven
-              tag: 3.8.6-openjdk-18
-          inputs:
-            - name: repo
-          run:
-            path: sh
-            args:
-              - -exc
-              - |
-                mvn -f repo/pom.xml validate
-                mvn -f repo/pom.xml test
-
-  - name: uat-build-pine-java-core
+                mvn -f repo/pom.xml test -s settings.xml
+  - name: uat-pine-java-core
     plan:
       - get: repo-pine-java-core
-        passed: [ development-build-pine-java-core ]
+        passed: [ build-pine-java-core ]
       - task: build
         input_mapping:
           repo: repo-pine-java-core
@@ -96,24 +76,10 @@ jobs:
               - -exc
               - |
                 mvn -f repo/pom.xml validate
-                mvn -f repo/pom.xml clean package -DskipTests=true
-      - task: test
-        input_mapping:
-          repo: artifact
-        privileged: true
-        config:
-          platform: linux
-          image_resource:
-            type: registry-image
-            source:
-              repository: maven
-              tag: 3.8.6-openjdk-18
-          inputs:
-            - name: repo
-          run:
-            path: sh
-            args:
-              - -exc
-              - |
-                mvn -f repo/pom.xml validate
-                mvn -f repo/pom.xml test
+                mvn -f repo/pom.xml clean package -DskipTests=true -s settings.xml -P source,javadoc,license
+                mvn -f repo/pom.xml test -s settings.xml
+                mvn -f repo/pom.xml checkstyle:check -s settings.xml -P checkstyle
+                mvn -f repo/pom.xml install -DskipTests=true -s settings.xml
+                mvn -f repo/pom.xml site:site site:stage -s settings.xml -P site,javadoc,changelog,test-report
+                mvn -f repo/pom.xml site:run -s settings.xml -P site
+                mvn -f repo/pom.xml scm-publish:publish-scm -s settings.xml -P publish
