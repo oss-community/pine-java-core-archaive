@@ -29,3 +29,5 @@ target
 .scannerwork
 .env
 .env.dev
+
+ci/concourse/credentials.yml

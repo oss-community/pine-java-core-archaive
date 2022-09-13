@@ -57,8 +57,8 @@ jobs:
         output_mapping:
           repo: artifact
         params:
-          PRIVKEY: ((git-key-pine-java-core))
-          PUBKEY: ((git-key-pub-pine-java-core))
+          PRIVKEY: ((git-key))
+          PUBKEY: ((git-key-pub))
         privileged: true
         config:
           platform: linux
@@ -83,8 +83,8 @@ jobs:
                 set +x
                 echo "$PRIVKEY" > ~/.ssh/id_rsa
                 echo "$PUBKEY" > ~/.ssh/id_rsa.pub
-                chmod 765 ~/.ssh/id_rsa
-                chmod 765 ~/.ssh/id_rsa.pub
+                chmod 600 ~/.ssh/id_rsa
+                chmod 600 ~/.ssh/id_rsa.pub
                 echo "Host *" > ~/.ssh/config
                 echo "    StrictHostKeyChecking no" >> ~/.ssh/config
                 set -x
