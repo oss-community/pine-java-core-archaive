@@ -1,5 +1,5 @@
 groups:
-  - name: development
+  - name: dev
     jobs:
       - build-pine-java-core
   - name: uat
@@ -13,19 +13,15 @@ resources:
     source:
       uri: git@github.com:saman-oss/pine-java-core.git
       branch: main
-      private_key: ((git-key))
+      private_key: {{git-key}}
 
 jobs:
   - name: build-pine-java-core
     public: true
     plan:
       - get: repo
-#        trigger: true
+      #        trigger: true
       - task: build
-        input_mapping:
-          repo: repo
-        output_mapping:
-          repo: artifact
         privileged: true
         config:
           platform: linux
@@ -34,8 +30,6 @@ jobs:
             source:
               repository: maven
               tag: 3.8.6-openjdk-18
-          caches:
-            - path: $HOME/.m2/repository
           inputs:
             - name: repo
           outputs:
@@ -51,15 +45,8 @@ jobs:
   - name: uat-pine-java-core
     plan:
       - get: repo
-#        passed: [ build-pine-java-core ]
+      #        passed: [ build-pine-java-core ]
       - task: build
-        input_mapping:
-          repo: repo
-        output_mapping:
-          repo: artifact
-        params:
-          PRIVKEY: ((git-key))
-          PUBKEY: ((git-key-pub))
         privileged: true
         config:
           platform: linux
@@ -68,12 +55,13 @@ jobs:
             source:
               repository: maven
               tag: 3.8.6-openjdk-18
-          caches:
-            - path: $HOME/.m2/repository
           inputs:
             - name: repo
           outputs:
             - name: repo
+          params:
+            PRIVKEY: {{git-key}}
+            PUBKEY: {{git-key-pub}}
           run:
             path: sh
             args:
