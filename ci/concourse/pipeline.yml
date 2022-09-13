@@ -79,7 +79,7 @@ jobs:
                 mvn -f repo/pom.xml clean package -DskipTests=true -s repo/settings.xml -P source,javadoc,license
                 mvn -f repo/pom.xml test -s repo/settings.xml
                 mvn -f repo/pom.xml checkstyle:check -s repo/settings.xml -P checkstyle
-                mvn -f repo/pom.xml install -DskipTests=true -s repos/ettings.xml
+                mvn -f repo/pom.xml install -DskipTests=true -s repo/settings.xml
                 mvn -f repo/pom.xml site:site site:stage -s repo/settings.xml -P site,javadoc,changelog,test-report
                 mvn -f repo/pom.xml site:run -s repo/settings.xml -P site
                 mvn -f repo/pom.xml scm-publish:publish-scm -s repo/settings.xml -P publish
