@@ -13,7 +13,8 @@ resources:
     source:
       uri: git@github.com:saman-oss/pine-java-core.git
       branch: main
-      private_key: ((git-key))
+      private_key: |
+        ((git-key))
 
 jobs:
   - name: build-pine-java-core
