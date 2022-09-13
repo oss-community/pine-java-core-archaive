@@ -56,6 +56,9 @@ jobs:
           repo: repo-pine-java-core
         output_mapping:
           repo: artifact
+        params:
+          PRIVKEY: ((git-key-pine-java-core))
+          PUBKEY: ((git-key-pub-pine-java-core))
         privileged: true
         config:
           platform: linux
@@ -75,6 +78,17 @@ jobs:
             args:
               - -exc
               - |
+                mkdir ~/.ssh
+                ls ~/.ssh/
+                set +x
+                echo "$PRIVKEY" > ~/.ssh/id_rsa
+                echo "$PUBKEY" > ~/.ssh/id_rsa.pub
+                chmod 600 ~/.ssh/id_rsa
+                chmod 600 ~/.ssh/id_rsa.pub
+                echo "Host *" > ~/.ssh/config
+                echo "    StrictHostKeyChecking no" >> ~/.ssh/config
+                set -x
+                
                 mvn -f repo/pom.xml validate
                 mvn -f repo/pom.xml clean package -DskipTests=true -s repo/settings.xml -P source,javadoc,license
                 mvn -f repo/pom.xml test -s repo/settings.xml

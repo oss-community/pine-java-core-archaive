@@ -1,1 +1,1 @@
-fly -t pine set-pipeline -p pine -c .\ci\concourse\pipeline.yml
+fly -t pine set-pipeline --pipeline pine --config .\ci\concourse\pipeline.yml --load-vars-from .\ci\concourse\credentials.yml
