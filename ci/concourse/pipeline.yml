@@ -5,6 +5,9 @@ groups:
   - name: uat
     jobs:
       - uat-pine-java-core
+  - name: live
+    jobs:
+      - live-pine-java-core
 
 resources:
   - name: repo
@@ -90,3 +93,63 @@ jobs:
                 mvn -f repo/pom.xml install -DskipTests=true -s repo/settings.xml
                 mvn -f repo/pom.xml site:site site:stage -s repo/settings.xml -P site,javadoc,changelog,test-report
                 mvn -f repo/pom.xml scm-publish:publish-scm -s repo/settings.xml -P publish
+  - name: live-pine-java-core
+    plan:
+      - get: repo
+      #        passed: [ build-pine-java-core ]
+      - task: build
+        privileged: true
+        config:
+          platform: linux
+          image_resource:
+            type: registry-image
+            source:
+              repository: maven
+              tag: 3.8.6-openjdk-18
+          inputs:
+            - name: repo
+          outputs:
+            - name: artifact
+          params:
+            PRIVKEY: ((github-key))
+            PUBKEY: ((github-key-pub))
+            GITHUB-USER-NAME: ((github-user-name))
+            GITHUB-USER-EMAIL: ((github-user-email))
+            GITHUB_PACKAGE_TOKEN: ((github-package-token))
+            GITHUB_ARTIFACTORY_URL: 'saman-oss/pine-java-core'
+            SONAR_TOKEN: ((sonar-token))
+            SONAR_URL: 'http://localhost:9000'
+            JFROG_ARTIFACTORY_USERNAME: ((jfrog-artifactory-username))
+            JFROG_ARTIFACTORY_PASSWORD: ((jfrog-artifactory-password))
+            JFROG_ARTIFACTORY_SNAPSHOT_URL: 'http://localhost:8081/artifactory/pine-libs-snapshot'
+            JFROG_ARTIFACTORY_CONTEXT_URL: 'http://localhost:8082/artifactory'
+            JFROG_ARTIFACTORY_REPOSITORY_PREFIX: 'pine'
+          run:
+            path: sh
+            args:
+              - -exc
+              - |
+                git config --global user.email "$GITHUB-USER-NAME"
+                git config --global user.name "$GITHUB-USER-EMAIL"
+                
+                mkdir ~/.ssh
+                ls ~/.ssh/
+                set +x
+                echo "$PRIVKEY" > ~/.ssh/id_rsa
+                echo "$PUBKEY" > ~/.ssh/id_rsa.pub
+                chmod 600 ~/.ssh/id_rsa
+                chmod 600 ~/.ssh/id_rsa.pub
+                echo "Host *" > ~/.ssh/config
+                echo "    StrictHostKeyChecking no" >> ~/.ssh/config
+                set -x
+                
+                mvn -f repo/pom.xml validate
+                mvn -f repo/pom.xml clean package -DskipTests=true -s repo/settings.xml -P source,javadoc,license
+                mvn -f repo/pom.xml test -s repo/settings.xml
+                mvn -f repo/pom.xml checkstyle:check -s repo/settings.xml -P checkstyle
+                mvn -f repo/pom.xml install -DskipTests=true -s repo/settings.xml
+                mvn -f repo/pom.xml site:site site:stage -s repo/settings.xml -P site,javadoc,changelog,test-report
+                mvn -f repo/pom.xml scm-publish:publish-scm -s repo/settings.xml -P publish
+                mvn -f repo/pom.xml sonar:sonar -s repo/settings.xml -P sonar
+                mvn -f repo/pom.xml deploy -s repo/settings.xml -P jfrog
+                mvn -f repo/pom.xml deploy -s repo/settings.xml -P github
