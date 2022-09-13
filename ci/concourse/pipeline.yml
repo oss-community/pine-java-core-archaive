@@ -7,7 +7,7 @@ groups:
       - uat-pine-java-core
 
 resources:
-  - name: repo-pine-java-core
+  - name: repo
     type: git
     icon: github
     source:
@@ -18,14 +18,13 @@ jobs:
   - name: build-pine-java-core
     public: true
     plan:
-      - get: repo-pine-java-core
+      - get: repo
         trigger: true
       - task: build
         input_mapping:
-          repo: repo-pine-java-core
+          repo: repo
         output_mapping:
           repo: artifact
-        privileged: true
         config:
           platform: linux
           image_resource:
@@ -49,17 +48,16 @@ jobs:
                 mvn -f repo/pom.xml test -s repo/settings.xml
   - name: uat-pine-java-core
     plan:
-      - get: repo-pine-java-core
-        passed: [ build-pine-java-core ]
+      - get: repo
+#        passed: [ build-pine-java-core ]
       - task: build
         input_mapping:
-          repo: repo-pine-java-core
+          repo: repo
         output_mapping:
           repo: artifact
         params:
           PRIVKEY: ((git-key-pine-java-core))
           PUBKEY: ((git-key-pub-pine-java-core))
-        privileged: true
         config:
           platform: linux
           image_resource:
