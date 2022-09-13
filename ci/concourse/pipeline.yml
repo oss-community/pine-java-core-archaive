@@ -45,7 +45,7 @@ jobs:
               - -exc
               - |
                 mvn -f repo/pom.xml validate
-                mvn -f repo/pom.xml clean package -DskipTests=true
+                mvn -f repo/pom.xml clean package -DskipTests=true -s settings.xml -P source,javadoc,license
                 mvn -f repo/pom.xml test -s settings.xml
   - name: uat-pine-java-core
     plan:
