@@ -10,9 +10,9 @@ pipeline {
        GITHUB_USERNAME=credentials('github_username')
        GITHUB_PACKAGE_TOKEN=credentials('github_package_token')
        SONAR_TOKEN=credentials('sonar_token')
-       GITHUB_ARTIFACTORY_URL=credentials('github_artifactory_url')
+       GITHUB_ARTIFACTORY_URL=saman-oss/pine-java-core
        SONAR_URL='http://pine-sonarqube:9000'
-       JFROG_ARTIFACTORY_USERNAME='admin'
+       JFROG_ARTIFACTORY_USERNAME=credentials('jfrog_artifactory_username')
        JFROG_ARTIFACTORY_PASSWORD=credentials('jfrog_artifactory_password')
        JFROG_ARTIFACTORY_SNAPSHOT_URL='http://pine-jfrog:8081/artifactory/pine-libs-snapshot'
        JFROG_ARTIFACTORY_CONTEXT_URL='http://pine-jfrog:8082/artifactory'
