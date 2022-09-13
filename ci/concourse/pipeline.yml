@@ -45,8 +45,8 @@ jobs:
               - -exc
               - |
                 mvn -f repo/pom.xml validate
-                mvn -f repo/pom.xml clean package -DskipTests=true -s settings.xml -P source,javadoc,license
-                mvn -f repo/pom.xml test -s settings.xml
+                mvn -f repo/pom.xml clean package -DskipTests=true -s repo/settings.xml -P source,javadoc,license
+                mvn -f repo/pom.xml test -s repo/settings.xml
   - name: uat-pine-java-core
     plan:
       - get: repo-pine-java-core
@@ -76,10 +76,10 @@ jobs:
               - -exc
               - |
                 mvn -f repo/pom.xml validate
-                mvn -f repo/pom.xml clean package -DskipTests=true -s settings.xml -P source,javadoc,license
-                mvn -f repo/pom.xml test -s settings.xml
-                mvn -f repo/pom.xml checkstyle:check -s settings.xml -P checkstyle
-                mvn -f repo/pom.xml install -DskipTests=true -s settings.xml
-                mvn -f repo/pom.xml site:site site:stage -s settings.xml -P site,javadoc,changelog,test-report
-                mvn -f repo/pom.xml site:run -s settings.xml -P site
-                mvn -f repo/pom.xml scm-publish:publish-scm -s settings.xml -P publish
+                mvn -f repo/pom.xml clean package -DskipTests=true -s repo/settings.xml -P source,javadoc,license
+                mvn -f repo/pom.xml test -s repo/settings.xml
+                mvn -f repo/pom.xml checkstyle:check -s repo/settings.xml -P checkstyle
+                mvn -f repo/pom.xml install -DskipTests=true -s srepo/ettings.xml
+                mvn -f repo/pom.xml site:site site:stage -s repo/settings.xml -P site,javadoc,changelog,test-report
+                mvn -f repo/pom.xml site:run -s repo/settings.xml -P site
+                mvn -f repo/pom.xml scm-publish:publish-scm -s repo/settings.xml -P publish
