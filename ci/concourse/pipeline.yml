@@ -9,8 +9,14 @@ groups:
     jobs:
       - live-pine-java-core
 
-resources:
+resource_types:
+  - name: sonar-runner
+    type: docker-image
+    source:
+      repository: cathive/concourse-sonarqube-resource
+      tag: latest
 
+resources:
   - name: repo
     type: git
     icon: github
@@ -18,6 +24,11 @@ resources:
       uri: git@github.com:saman-oss/pine-java-core.git
       branch: main
       private_key: ((github-key))
+  - name: code-analysis
+    type: sonar-runner
+    source:
+      host_url: http://localhost:9000/
+      login: ((sonar-token))
 
 jobs:
   - name: build-pine-java-core
