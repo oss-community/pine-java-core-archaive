@@ -128,8 +128,8 @@ jobs:
             SONAR_URL: 'http://localhost:9000'
             JFROG_ARTIFACTORY_USERNAME: ((jfrog-artifactory-username))
             JFROG_ARTIFACTORY_PASSWORD: ((jfrog-artifactory-password))
-            JFROG_ARTIFACTORY_SNAPSHOT_URL: 'http://pine-jfrog:8081/artifactory/pine-libs-snapshot'
-            JFROG_ARTIFACTORY_CONTEXT_URL: 'http://pine-jfrog:8082/artifactory'
+            JFROG_ARTIFACTORY_SNAPSHOT_URL: 'http://localhost:8081/artifactory/pine-libs-snapshot'
+            JFROG_ARTIFACTORY_CONTEXT_URL: 'http://localhost:8082/artifactory'
             JFROG_ARTIFACTORY_REPOSITORY_PREFIX: 'pine'
           run:
             path: sh

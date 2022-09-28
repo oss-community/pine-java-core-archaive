@@ -67,7 +67,7 @@ public final class DateTimeValidator {
   public static YesNoQuestion isTime(String time) {
     requireNonEmptyOrNull(time, i18n("error.validation.should.not.be.emptyOrNull", i18n("var.name.time")));
 
-    return ask(time.matches("^\\d{2}:\\d{2}:\\d{2}$") || time.matches("^[+-]\\d{2}:\\d{2}(:\\d{2})?$"));
+    return ask(time.matches("^\\d{2}:\\d{2}:\\d{2}$") || time.matches("^([+-])?\\d{2}:\\d{2}(:\\d{2})?$"));
   }
 
   /**

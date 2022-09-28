@@ -45,6 +45,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 import java.util.stream.Stream;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtensionContext;
@@ -64,20 +65,6 @@ import org.junit.jupiter.params.provider.ArgumentsSource;
 @SuppressWarnings("ConstantConditions")
 @DisplayName("Date Utils Tests")
 class DateUtilsTest extends AbstractUtilsTest {
-
-  boolean isAppliedChangingHour(ZoneId zone) {
-    var utc = LocalDate.now(ZoneId.of("UTC"));
-
-    if (zone.getId().equals("Asia/Tehran")) {
-      return (utc.isAfter(LocalDate.of(utc.getYear(), 3, 21)) && utc.isBefore(LocalDate.of(utc.getYear(), 9, 22)));
-
-    } else if (zone.getId().equals("Europe/Berlin")) {
-      return (utc.isAfter(LocalDate.of(utc.getYear(), 3, 26)) && utc.isBefore(LocalDate.of(utc.getYear(), 9, 27)));
-
-    } else {
-      return false;
-    }
-  }
 
   @Test
   @DisplayName("creating date format if id is null")
@@ -284,17 +271,13 @@ class DateUtilsTest extends AbstractUtilsTest {
   @DisplayName("calculate offset between two zones")
   void calculateOffset_IfZoneIdsAreValid_ShouldReturnOffset(ZoneId givenZone1, ZoneId givenZone2, String expectedOffset) {
 
-    if (isAppliedChangingHour(givenZone1) && !isAppliedChangingHour(givenZone2)) {
-      var offsetDiff = toSecond(expectedOffset) - 3600;
-      var time = ofPattern("HH:mm").format(LocalTime.ofSecondOfDay(Math.abs(offsetDiff)));
-      expectedOffset = String.format("%s%s", offsetDiff >= 0 ? "+" : "-", time);
-    }
+    var lowOffsetDiff = toSecond(expectedOffset) - 3600;
+    var lowTime = ofPattern("HH:mm").format(LocalTime.ofSecondOfDay(Math.abs(lowOffsetDiff)));
+    var lowExpectedOffset = String.format("%s%s", lowOffsetDiff >= 0 ? "+" : "-", lowTime);
 
-    if (!isAppliedChangingHour(givenZone1) && isAppliedChangingHour(givenZone2)) {
-      var offsetDiff = toSecond(expectedOffset) + 3600;
-      var time = ofPattern("HH:mm").format(LocalTime.ofSecondOfDay(Math.abs(offsetDiff)));
-      expectedOffset = String.format("%s%s", offsetDiff >= 0 ? "+" : "-", time);
-    }
+    var highOffsetDiff = toSecond(expectedOffset) + 3600;
+    var highTime = ofPattern("HH:mm").format(LocalTime.ofSecondOfDay(Math.abs(highOffsetDiff)));
+    var highExpectedOffset = String.format("%s%s", highOffsetDiff >= 0 ? "+" : "-", highTime);
 
     //When
     var result = calculateOffset(givenZone1, givenZone2);
@@ -302,7 +285,7 @@ class DateUtilsTest extends AbstractUtilsTest {
     //Then
     assertNotNull(result);
     assertFalse(result.isEmpty());
-    assertEquals(expectedOffset, result);
+    Assertions.assertThat(result).isIn(expectedOffset, lowExpectedOffset, highExpectedOffset);
   }
 
   @Test
