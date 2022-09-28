@@ -10,6 +10,7 @@ groups:
       - live-pine-java-core
 
 resources:
+
   - name: repo
     type: git
     icon: github
@@ -33,6 +34,8 @@ jobs:
             source:
               repository: maven
               tag: 3.8.6-openjdk-18
+          caches:
+            - path: $HOME/.m2/repository
           inputs:
             - name: repo
           outputs:
@@ -58,6 +61,8 @@ jobs:
             source:
               repository: maven
               tag: 3.8.6-openjdk-18
+          caches:
+            - path: $HOME/.m2/repository
           inputs:
             - name: repo
           outputs:
@@ -106,6 +111,8 @@ jobs:
             source:
               repository: maven
               tag: 3.8.6-openjdk-18
+          caches:
+            - path: $HOME/.m2/repository
           inputs:
             - name: repo
           outputs:
@@ -118,7 +125,7 @@ jobs:
             GITHUB_PACKAGE_TOKEN: ((github-package-token))
             GITHUB_ARTIFACTORY_URL: 'saman-oss/pine-java-core'
             SONAR_TOKEN: ((sonar-token))
-            SONAR_URL: 'http://pine-sonarqube:9000'
+            SONAR_URL: 'http://localhost:9000'
             JFROG_ARTIFACTORY_USERNAME: ((jfrog-artifactory-username))
             JFROG_ARTIFACTORY_PASSWORD: ((jfrog-artifactory-password))
             JFROG_ARTIFACTORY_SNAPSHOT_URL: 'http://pine-jfrog:8081/artifactory/pine-libs-snapshot'
