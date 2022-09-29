@@ -1,13 +1,12 @@
 version: '3.8'
 services:
   pine-jenkins:
-    image: jenkins/latest
     container_name: pine-jenkins
     hostname: pine-jenkins
     restart: always
     build:
-      context: .\jenkins
-      dockerfile: jenkins/Dockerfile
+      context: ./jenkins
+      dockerfile: Dockerfile
       args:
         GITHUB_JENKINS_TOKEN: ${GITHUB_JENKINS_TOKEN}
     ports:
@@ -164,13 +163,12 @@ services:
       CONCOURSE_EXTERNAL_URL: ${CONCOURSE_EXTERNAL_URL}
       CONCOURSE_ADD_LOCAL_USER: ${CONCOURSE_ADD_LOCAL_USER}:${CONCOURSE_ADD_LOCAL_PASSWORD}
       CONCOURSE_MAIN_TEAM_LOCAL_USER: ${CONCOURSE_MAIN_TEAM_LOCAL_USER}
-      # instead of relying on the default "detect"
       CONCOURSE_WORKER_BAGGAGECLAIM_DRIVER: overlay
       CONCOURSE_CLIENT_SECRET: ${CONCOURSE_CLIENT_SECRET}
       CONCOURSE_TSA_CLIENT_SECRET: ${CONCOURSE_TSA_CLIENT_SECRET}
       CONCOURSE_X_FRAME_OPTIONS: allow
       CONCOURSE_CONTENT_SECURITY_POLICY: "*"
       CONCOURSE_CLUSTER_NAME: ${CONCOURSE_CLUSTER_NAME}
-      CONCOURSE_WORKER_CONTAINERD_DNS_SERVER: "8.8.8.8"
       CONCOURSE_WORKER_RUNTIME: "containerd"
-
+      CONCOURSE_CONTAINERD_DNS_SERVER: "1.1.1.1,8.8.8.8"
+      CONCOURSE_CONTAINERD_ALLOW_HOST_ACCESS: "true"

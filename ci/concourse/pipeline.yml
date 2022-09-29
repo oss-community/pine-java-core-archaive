@@ -1,7 +1,7 @@
 groups:
   - name: dev
     jobs:
-      - build-pine-java-core
+      - dev-pine-java-core
   - name: uat
     jobs:
       - uat-pine-java-core
@@ -19,7 +19,7 @@ resources:
       private_key: ((github-key))
 
 jobs:
-  - name: build-pine-java-core
+  - name: dev-pine-java-core
     public: true
     plan:
       - get: repo
@@ -31,8 +31,8 @@ jobs:
           image_resource:
             type: registry-image
             source:
-              repository: maven
-              tag: 3.8.6-openjdk-18
+              repository: samanalishiri/openjdk17-maven3.8-git2.3
+              tag: latest
           caches:
             - path: $HOME/.m2/repository
           inputs:
