@@ -146,7 +146,7 @@ services:
       nofile:
         soft: 65535
         hard: 65535
-  concourse:
+  pine-concourse:
     image: concourse/concourse
     container_name: pine-concourse
     hostname: pine-concourse
@@ -169,6 +169,6 @@ services:
       CONCOURSE_X_FRAME_OPTIONS: allow
       CONCOURSE_CONTENT_SECURITY_POLICY: "*"
       CONCOURSE_CLUSTER_NAME: ${CONCOURSE_CLUSTER_NAME}
+      CONCOURSE_WORKER_CONTAINERD_DNS_SERVER: "8.8.8.8"
       CONCOURSE_WORKER_RUNTIME: "containerd"
-      CONCOURSE_CONTAINERD_DNS_SERVER: "1.1.1.1,8.8.8.8"
-      CONCOURSE_CONTAINERD_ALLOW_HOST_ACCESS: "true"
+
