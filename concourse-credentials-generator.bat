@@ -10,8 +10,11 @@ echo sonar-token: %SONAR_TOKEN% >> .\ci\concourse\credentials.yml
 
 echo github-key-pub: >> .\ci\concourse\credentials.yml
 echo github-key: ^|- >> .\ci\concourse\credentials.yml
-mkdir .\ssh
-call ssh-keygen -t rsa -C "concourse_team" -f .\ssh\id_rsa
+mkdir .\docker\ssh
+call ssh-keygen -t rsa -C "concourse_team" -f .\docker\ssh\id_rsa
+call ssh-keygen -t rsa -b 4096 -m PEM -f .\docker\ssh\session_signing_key
+call ssh-keygen -t rsa -b 4096 -m PEM -f .\docker\ssh\tsa_host_key
+call ssh-keygen -t rsa -b 4096 -m PEM -f .\docker\ssh\worker_key
 REM del .\ssh\id_rsa
 REM del .\ssh\id_rsa.pub
 REM rmdir .\ssh

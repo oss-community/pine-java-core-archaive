@@ -87,6 +87,26 @@ services:
       nofile:
         soft: 32000
         hard: 40000
+  pine-concourse-db-2:
+    container_name: pine-concourse-db-2
+    hostname: pine-concourse-db-2
+    restart: always
+    image: postgres
+    environment:
+      POSTGRES_DB: ${CONCOURSE_DB}
+      POSTGRES_PASSWORD: ${CONCOURSE_DB_PASSWORD}
+      POSTGRES_USER: ${CONCOURSE_DB_USER}
+      PGDATA: /database
+    ports:
+      - "5054:5432"
+    volumes:
+      - ~/docker_compose/concourse-postgresql-2:/var/lib/postgresql
+      - ~/docker_compose/concourse-postgresql-2/concourse-postgresql_data:/var/lib/postgresql/data
+    ulimits:
+      nproc: 262144
+      nofile:
+        soft: 32000
+        hard: 40000
   # wsl -d docker-desktop
   # sysctl -w vm.max_map_count=262144
   # set vm.max_map_count=262144 in /etc/sysctl.conf then execute sysctl -p
@@ -171,4 +191,45 @@ services:
       CONCOURSE_CLUSTER_NAME: ${CONCOURSE_CLUSTER_NAME}
       CONCOURSE_WORKER_CONTAINERD_DNS_SERVER: "8.8.8.8"
       CONCOURSE_WORKER_RUNTIME: "containerd"
+  pine-concourse-web:
+    image: concourse/concourse
+    container_name: pine-concourse-web
+    hostname: pine-concourse-web
+    restart: always
+    command: web
+    privileged: true
+    depends_on: [ pine-concourse-db-2 ]
+    ports: [ "8084:8080" ]
+    volumes:
+      - ~/docker_compose/concourse/keys:/concourse-keys
+    environment:
+      CONCOURSE_POSTGRES_HOST: pine-concourse-db-2
+      CONCOURSE_POSTGRES_PORT: 5432
+      CONCOURSE_POSTGRES_DATABASE: ${CONCOURSE_DB}
+      CONCOURSE_POSTGRES_USER: ${CONCOURSE_DB_USER}
+      CONCOURSE_POSTGRES_PASSWORD: ${CONCOURSE_DB_PASSWORD}
+      CONCOURSE_ADD_LOCAL_USER: ${CONCOURSE_ADD_LOCAL_USER}:${CONCOURSE_ADD_LOCAL_PASSWORD}
+      CONCOURSE_MAIN_TEAM_LOCAL_USER: ${CONCOURSE_MAIN_TEAM_LOCAL_USER}
+      CONCOURSE_EXTERNAL_URL: "http://localhost:8084"
+      CONCOURSE_CLUSTER_NAME: ${CONCOURSE_CLUSTER_NAME}
+      CONCOURSE_SESSION_SIGNING_KEY: /concourse-keys/session_signing_key
+      CONCOURSE_TSA_HOST_KEY: /concourse-keys/tsa_host_key
+      CONCOURSE_TSA_AUTHORIZED_KEYS: ./concourse-keys/authorized_worker_keys
+  pine-concourse-worker:
+      image: concourse/concourse
+      container_name: pine-concourse-worker
+      hostname: pine-concourse-worker
+      restart: always
+      command: worker
+      privileged: true
+      depends_on: [ pine-concourse-web ]
+      volumes:
+        - ~/docker_compose/concourse/keys:/concourse-keys
+      environment:
+        CONCOURSE_WORK_DIR: /var/lib/concourse
+        CONCOURSE_TSA_HOST: pine-concourse-web:2222
+        CONCOURSE_TSA_PUBLIC_KEY: /concourse-keys/tsa_host_key.pub
+        CONCOURSE_TSA_WORKER_PRIVATE_KEY: /concourse-keys/worker_key
+        CONCOURSE_GARDEN_DNS_PROXY_ENABLE: "true"
+        CONCOURSE_GARDEN_DNS_SERVER: "1.1.1.1,8.8.8.8"
 
