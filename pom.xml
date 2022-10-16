@@ -543,7 +543,7 @@ limitations under the License.
             <id>jfrog</id>
             <properties>
                 <jfrog.artifactory.username>${env.JFROG_ARTIFACTORY_USERNAME}</jfrog.artifactory.username>
-                <jfrog.artifactory.password>${env.JFROG_ARTIFACTORY_PASSWORD}</jfrog.artifactory.password>
+                <jfrog.artifactory.encrypted.password>${env.JFROG_ARTIFACTORY_ENCRYPTED_PASSWORD}</jfrog.artifactory.encrypted.password>
                 <jfrog.artifactory.snapshot.url>${env.JFROG_ARTIFACTORY_SNAPSHOT_URL}</jfrog.artifactory.snapshot.url>
                 <jfrog.artifactory.context.url>${env.JFROG_ARTIFACTORY_CONTEXT_URL}</jfrog.artifactory.context.url>
                 <jfrog.artifactory.repository.prefix>${env.JFROG_ARTIFACTORY_REPOSITORY_PREFIX}</jfrog.artifactory.repository.prefix>
@@ -580,7 +580,7 @@ limitations under the License.
                                     <publisher>
                                         <contextUrl>${jfrog.artifactory.context.url}</contextUrl>
                                         <username>${jfrog.artifactory.username}</username>
-                                        <password>${jfrog.artifactory.password}</password>
+                                        <password>${jfrog.artifactory.encrypted.password}</password>
                                         <excludePatterns>*-tests.jar</excludePatterns>
                                         <repoKey>${jfrog.artifactory.repository.prefix}-libs-release-local</repoKey>
                                         <snapshotRepoKey>${jfrog.artifactory.repository.prefix}-libs-snapshot-local</snapshotRepoKey>

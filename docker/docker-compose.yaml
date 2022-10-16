@@ -9,11 +9,12 @@ services:
       dockerfile: Dockerfile
       args:
         GITHUB_JENKINS_TOKEN: ${GITHUB_JENKINS_TOKEN}
+        GITHUB_ARTIFACTORY_URL: ${GITHUB_ARTIFACTORY_URL}
     ports:
       - "8080:8080"
       - "50000:50000"
     volumes:
-      - ~/docker_compose/jenkins_configuration:/var/jenkins_home
+      - ~/docker_compose/jenkins_home:/var/jenkins_home
     deploy:
       resources:
         limits:
@@ -39,7 +40,6 @@ services:
       - "5051:5432"
     volumes:
       - ~/docker_compose/sonarqube-postgresql:/var/lib/postgresql
-      - ~/docker_compose/sonarqube-postgresql/sonarqube-postgresql_data:/var/lib/postgresql/data
     ulimits:
       nproc: 262144
       nofile:
@@ -58,7 +58,6 @@ services:
       - "5052:5432"
     volumes:
       - ~/docker_compose/jfrog-postgresql:/var/lib/postgresql
-      - ~/docker_compose/jfrog-postgresql/jfrog-postgresql_data:/var/lib/postgresql/data
     ulimits:
       nproc: 262144
       memlock:
@@ -67,9 +66,9 @@ services:
       nofile:
         soft: 65535
         hard: 65535
-  pine-concourse-db:
-    container_name: pine-concourse-db
-    hostname: pine-concourse-db
+  pine-concourse-db-1:
+    container_name: pine-concourse-db-1
+    hostname: pine-concourse-db-1
     restart: always
     image: postgres
     environment:
@@ -80,8 +79,7 @@ services:
     ports:
       - "5053:5432"
     volumes:
-      - ~/docker_compose/concourse-postgresql:/var/lib/postgresql
-      - ~/docker_compose/concourse-postgresql/concourse-postgresql_data:/var/lib/postgresql/data
+      - ~/docker_compose/concourse-postgresql-1:/var/lib/postgresql
     ulimits:
       nproc: 262144
       nofile:
@@ -101,7 +99,6 @@ services:
       - "5054:5432"
     volumes:
       - ~/docker_compose/concourse-postgresql-2:/var/lib/postgresql
-      - ~/docker_compose/concourse-postgresql-2/concourse-postgresql_data:/var/lib/postgresql/data
     ulimits:
       nproc: 262144
       nofile:
@@ -166,17 +163,17 @@ services:
       nofile:
         soft: 65535
         hard: 65535
-  pine-concourse:
+  pine-concourse-quickstart:
     image: concourse/concourse
-    container_name: pine-concourse
-    hostname: pine-concourse
+    container_name: pine-concourse-quickstart
+    hostname: pine-concourse-quickstart
     restart: always
     command: quickstart
     privileged: true
-    depends_on: [ pine-concourse-db ]
+    depends_on: [ pine-concourse-db-1 ]
     ports: [ "8083:8080" ]
     environment:
-      CONCOURSE_POSTGRES_HOST: pine-concourse-db
+      CONCOURSE_POSTGRES_HOST: pine-concourse-db-1
       CONCOURSE_POSTGRES_USER: ${CONCOURSE_DB_USER}
       CONCOURSE_POSTGRES_PASSWORD: ${CONCOURSE_DB_PASSWORD}
       CONCOURSE_POSTGRES_DATABASE: ${CONCOURSE_DB}
@@ -201,7 +198,7 @@ services:
     depends_on: [ pine-concourse-db-2 ]
     ports: [ "8084:8080" ]
     volumes:
-      - ~/docker_compose/concourse/keys:/concourse-keys
+      - ~/docker_compose/concourse/keys:/keys
     environment:
       CONCOURSE_POSTGRES_HOST: pine-concourse-db-2
       CONCOURSE_POSTGRES_PORT: 5432
@@ -212,9 +209,9 @@ services:
       CONCOURSE_MAIN_TEAM_LOCAL_USER: ${CONCOURSE_MAIN_TEAM_LOCAL_USER}
       CONCOURSE_EXTERNAL_URL: "http://localhost:8084"
       CONCOURSE_CLUSTER_NAME: ${CONCOURSE_CLUSTER_NAME}
-      CONCOURSE_SESSION_SIGNING_KEY: /concourse-keys/session_signing_key
-      CONCOURSE_TSA_HOST_KEY: /concourse-keys/tsa_host_key
-      CONCOURSE_TSA_AUTHORIZED_KEYS: ./concourse-keys/authorized_worker_keys
+      CONCOURSE_SESSION_SIGNING_KEY: /keys/session_signing_key
+      CONCOURSE_TSA_HOST_KEY: /keys/tsa_host_key
+      CONCOURSE_TSA_AUTHORIZED_KEYS: ./keys/authorized_worker_keys
   pine-concourse-worker:
       image: concourse/concourse
       container_name: pine-concourse-worker
@@ -224,12 +221,12 @@ services:
       privileged: true
       depends_on: [ pine-concourse-web ]
       volumes:
-        - ~/docker_compose/concourse/keys:/concourse-keys
+        - ~/docker_compose/concourse/keys:/keys
       environment:
         CONCOURSE_WORK_DIR: /var/lib/concourse
-        CONCOURSE_TSA_HOST: pine-concourse-web:2222
-        CONCOURSE_TSA_PUBLIC_KEY: /concourse-keys/tsa_host_key.pub
-        CONCOURSE_TSA_WORKER_PRIVATE_KEY: /concourse-keys/worker_key
+        CONCOURSE_TSA_HOST: ${CONCOURSE_TSA_HOST}
+        CONCOURSE_TSA_PUBLIC_KEY: /keys/tsa_host_key.pub
+        CONCOURSE_TSA_WORKER_PRIVATE_KEY: /keys/worker_key
         CONCOURSE_CONTAINERD_DNS_PROXY_ENABLE: "true"
         CONCOURSE_CONTAINERD_DNS_SERVER: "1.1.1.1,8.8.8.8"
         CONCOURSE_RUNTIME: "containerd"

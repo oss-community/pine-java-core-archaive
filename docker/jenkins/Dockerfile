@@ -2,7 +2,8 @@ FROM jenkins/jenkins:jdk17
 MAINTAINER samanalishiri@gmail.com
 
 ARG GITHUB_JENKINS_TOKEN=token
-ARG KEY_COMMENT=samanalishiri@gmail.com
+ARG GITHUB_ARTIFACTORY_URL=saman-oss/pine-java-core
+ARG GITHUB_KEY_COMMENT=samanalishiri@gmail.com
 
 USER root
 RUN apt-get update
@@ -15,12 +16,12 @@ RUN apt-get -y install gh
 RUN apt-get update
 RUN git config --global user.email samanalishiri@gmail.com
 RUN git config --global user.name samanalishiri
-RUN ssh-keygen -t rsa -C $KEY_COMMENT -N '' -f /root/.ssh/id_rsa
+RUN ssh-keygen -t rsa -C $GITHUB_KEY_COMMENT -N '' -f /root/.ssh/id_rsa
 RUN eval "$(ssh-agent -s)" && ssh-add /root/.ssh/id_rsa
 RUN echo $GITHUB_JENKINS_TOKEN > ./github-token.txt
 RUN gh auth login -p ssh -h github.com --with-token < ./github-token.txt
-RUN gh repo deploy-key delete $(gh repo deploy-key list -R saman-oss/pine-java-core | awk '{print ($1==""?"":$1)}') -R saman-oss/pine-java-core || true
-RUN gh repo deploy-key add /root/.ssh/id_rsa.pub -R saman-oss/pine-java-core -t jenkins-key-pub -w
+RUN gh repo deploy-key delete $(gh repo deploy-key list -R $GITHUB_ARTIFACTORY_URL | awk '{print ($1==""?"":$1)}') -R $GITHUB_ARTIFACTORY_URL || true
+RUN gh repo deploy-key add /root/.ssh/id_rsa.pub -R $GITHUB_ARTIFACTORY_URL -t jenkins-key-pub -w
 RUN echo "Host *" > /root/.ssh/config
 RUN echo "    StrictHostKeyChecking no" >> /root/.ssh/config
 #RUN ssh -T git@github.com

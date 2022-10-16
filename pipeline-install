@@ -1,0 +1,8 @@
+./docker-pre-config
+./docker-create-env
+./docker-build-image-openjdk17
+
+docker-compose -f ./docker/docker-compose.yaml ^
+-p pine-pipeline ^
+--env-file ./docker/.env ^
+up --build -d
