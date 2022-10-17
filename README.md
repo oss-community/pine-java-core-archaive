@@ -17,6 +17,7 @@ The framework comprised three main part as follows:
 ## <p align="center">Table of content</p>
 
 - **[Pine Java Core](#Pine-Java-Core)**
+- **[Prerequisite](#Prerequisite)**
 - **[Tools](#Tools)**
     - **[Java](#Java)**
         - **[Windows](#Windows)**
@@ -39,6 +40,7 @@ The framework comprised three main part as follows:
     - **[IDE Setting](#IDE-Setting)**
         - **[Intellij IDEA](#Intellij-IDEA)**
     - **[Ngrok](#Ngrok)**
+    - **[Docker](#Docker)**
 - **[Build](#Build-and-Test)**
 - **[Install](#Install)**
 - **[Pipeline](#Pipeline)**
@@ -61,6 +63,7 @@ Pine Core Java has modules as follows.
 - Java
 - Maven
 - Git
+- Docker (Only for pipeline)
 
 
 ## <span style="color: Crimson">Tools</span>
@@ -165,11 +168,9 @@ Install [GitHub CLI](https://github.com/cli/cli)
 gh –-version
 ```
 
-[Generate token by GitHub.com](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token)
-
-Create a text file named token.txt and copy the token from GitHub and paste in the `token.txt`.
-
-Login via GitHub CLI.
+[Generate a token by GitHub.com](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token)
+ then create a text file named token.txt and copy the token from GitHub and paste in the `token.txt`.
+ after that login via GitHub CLI.
 
 ```shell
    gh auth login -p ssh -h github.com --with-token < token.txt
@@ -179,16 +180,16 @@ Login via GitHub CLI.
 Generate ssh keys by git tool (select one solution).
 
 ```shell
-  ssh-keygen -t rsa -C "comment" #interactive mode, solution 1
-  ssh-keygen -t rsa -C "comment" -N '' -f ~/.ssh/id_rsa #without prompt, solution 2
+  ssh-keygen -t rsa -C "comment" #solution 1: interactive mode
+  ssh-keygen -t rsa -C "comment" -N '' -f ~/.ssh/id_rsa #solution 2: without prompt
   add key: ssh-add ~/.ssh/id_rsa
 ```
 
 Deploy public keys via GitHub CLI (select one solution).
 
 ```shell
-  gh repo deploy-key add ~/.ssh/id_rsa.pub -R owner/repository-name -t key-title -w #deploy key into repository, solution 1
-  gh ssh-key add ~/.ssh/id_rsa.pub #deploy key into user, solution 2
+  gh repo deploy-key add ~/.ssh/id_rsa.pub -R owner/repository-name -t key-title -w #solution 1: deploy key into repository
+  gh ssh-key add ~/.ssh/id_rsa.pub #solution 2: deploy key into user
   ssh -T git@github.com
 ```
 
@@ -211,7 +212,7 @@ $SONARQUBE_HOME/bin/linux-x86-64/sonar.sh start
 %SONARQUBE_HOME%\bin/windows-x86-64/StartSonar.bat
 ```
 
-Browse SonarQube for localhost installation at `http://localhost:9000`.
+Browse SonarQube for localhost installation at http://localhost:9000.
 
 - username: admin
 - password: admin
@@ -260,7 +261,7 @@ Download [jenkins](https://www.jenkins.io/download/) as war file.
 java -jar jenkins.war --httpPort=8080
 ```
 
-Browse Jenkins for localhost installation at http://localhost:9090.
+Browse Jenkins for localhost installation at http://localhost:8080.
 
 - username: admin
 - password: look at the console
@@ -364,6 +365,9 @@ ngrok start --all
 ```
 
 Brows http://127.0.0.1:4040.
+
+### <span style="color: RoyalBlue">ِDocker</span>
+Install [Docker Desktop](https://docs.docker.com/get-docker/)
 
 ---
 

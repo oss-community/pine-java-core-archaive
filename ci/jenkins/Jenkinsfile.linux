@@ -4,22 +4,21 @@ pipeline {
       maven 'maven3'
       jdk 'jdk17'
       git 'git'
-    }
-    environment {
+  }
+  environment {
        GITHUB_USERNAME=credentials('github_username')
        GITHUB_EMAIL=credentials('github_email')
        GITHUB_JENKINS_TOKEN=credentials('github_jenkins_token')
        GITHUB_PACKAGE_TOKEN=credentials('github_package_token')
-       GITHUB_ARTIFACTORY_URL='saman-oss/pine-java-core'
+       GITHUB_ARTIFACTORY_URL=credentials('github_artifactory_url')
        SONAR_TOKEN=credentials('sonar_token')
-       SONAR_URL='http://localhost:9000'
+       SONAR_URL=credentials('sonar_url')
        JFROG_ARTIFACTORY_USERNAME=credentials('jfrog_artifactory_username')
-       JFROG_ARTIFACTORY_PASSWORD=credentials('jfrog_artifactory_password')
        JFROG_ARTIFACTORY_ENCRYPTED_PASSWORD=credentials('jfrog_artifactory_encrypted_password')
-       JFROG_ARTIFACTORY_SNAPSHOT_URL='http://localhost:8081/artifactory/pine-libs-snapshot'
-       JFROG_ARTIFACTORY_CONTEXT_URL='http://localhost:8082/artifactory'
-       JFROG_ARTIFACTORY_REPOSITORY_PREFIX='pine'
-      }
+       JFROG_ARTIFACTORY_SNAPSHOT_URL=credentials('jfrog_artifactory_snapshot_url')
+       JFROG_ARTIFACTORY_CONTEXT_URL=credentials('jfrog_artifactory_context_url')
+       JFROG_ARTIFACTORY_REPOSITORY_PREFIX=credentials('jfrog_artifactory_repository_prefix')
+  }
   stages {
     stage('Verify') {
       parallel {

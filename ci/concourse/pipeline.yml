@@ -49,7 +49,7 @@ jobs:
   - name: uat-pine-java-core
     plan:
       - get: repo
-      #        passed: [ build-pine-java-core ]
+        passed: [ dev-pine-java-core ]
       - task: build
         privileged: true
         config:
@@ -99,7 +99,7 @@ jobs:
   - name: live-pine-java-core
     plan:
       - get: repo
-      #        passed: [ build-pine-java-core ]
+        passed: [ uat-pine-java-core ]
       - task: build
         privileged: true
         config:
@@ -121,14 +121,14 @@ jobs:
             GITHUB-USER-NAME: ((github-user-name))
             GITHUB-USER-EMAIL: ((github-user-email))
             GITHUB_PACKAGE_TOKEN: ((github-package-token))
-            GITHUB_ARTIFACTORY_URL: 'saman-oss/pine-java-core'
+            GITHUB_ARTIFACTORY_URL: ((github-artifactory-url))
             SONAR_TOKEN: ((sonar-token))
-            SONAR_URL: 'http://pine-sonarqube:9000'
+            SONAR_URL: ((sonar-url))
             JFROG_ARTIFACTORY_USERNAME: ((jfrog-artifactory-username))
-            JFROG_ARTIFACTORY_PASSWORD: ((jfrog-artifactory-password))
-            JFROG_ARTIFACTORY_SNAPSHOT_URL: 'http://pine-jfrog:8081/artifactory/pine-libs-snapshot'
-            JFROG_ARTIFACTORY_CONTEXT_URL: 'http://pine-jfrog:8082/artifactory'
-            JFROG_ARTIFACTORY_REPOSITORY_PREFIX: 'pine'
+            JFROG_ARTIFACTORY_PASSWORD: ((jfrog-artifactory-encrypted-password))
+            JFROG_ARTIFACTORY_SNAPSHOT_URL: ((jfrog-artifactory-snapshot-ur))
+            JFROG_ARTIFACTORY_CONTEXT_URL: ((jfrog-artifactory-context-url))
+            JFROG_ARTIFACTORY_REPOSITORY_PREFIX: ((jfrog-artifactory-repository-prefix))
           run:
             path: sh
             args:

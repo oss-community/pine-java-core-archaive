@@ -66,9 +66,9 @@ services:
       nofile:
         soft: 65535
         hard: 65535
-  pine-concourse-db-1:
-    container_name: pine-concourse-db-1
-    hostname: pine-concourse-db-1
+  pine-concourse-db:
+    container_name: pine-concourse-db
+    hostname: pine-concourse-db
     restart: always
     image: postgres
     environment:
@@ -79,26 +79,7 @@ services:
     ports:
       - "5053:5432"
     volumes:
-      - ~/docker_compose/concourse-postgresql-1:/var/lib/postgresql
-    ulimits:
-      nproc: 262144
-      nofile:
-        soft: 32000
-        hard: 40000
-  pine-concourse-db-2:
-    container_name: pine-concourse-db-2
-    hostname: pine-concourse-db-2
-    restart: always
-    image: postgres
-    environment:
-      POSTGRES_DB: ${CONCOURSE_DB}
-      POSTGRES_PASSWORD: ${CONCOURSE_DB_PASSWORD}
-      POSTGRES_USER: ${CONCOURSE_DB_USER}
-      PGDATA: /database
-    ports:
-      - "5054:5432"
-    volumes:
-      - ~/docker_compose/concourse-postgresql-2:/var/lib/postgresql
+      - ~/docker_compose/concourse-postgresql:/var/lib/postgresql
     ulimits:
       nproc: 262144
       nofile:
@@ -163,31 +144,6 @@ services:
       nofile:
         soft: 65535
         hard: 65535
-  pine-concourse-quickstart:
-    image: concourse/concourse
-    container_name: pine-concourse-quickstart
-    hostname: pine-concourse-quickstart
-    restart: always
-    command: quickstart
-    privileged: true
-    depends_on: [ pine-concourse-db-1 ]
-    ports: [ "8083:8080" ]
-    environment:
-      CONCOURSE_POSTGRES_HOST: pine-concourse-db-1
-      CONCOURSE_POSTGRES_USER: ${CONCOURSE_DB_USER}
-      CONCOURSE_POSTGRES_PASSWORD: ${CONCOURSE_DB_PASSWORD}
-      CONCOURSE_POSTGRES_DATABASE: ${CONCOURSE_DB}
-      CONCOURSE_EXTERNAL_URL: ${CONCOURSE_EXTERNAL_URL}
-      CONCOURSE_ADD_LOCAL_USER: ${CONCOURSE_ADD_LOCAL_USER}:${CONCOURSE_ADD_LOCAL_PASSWORD}
-      CONCOURSE_MAIN_TEAM_LOCAL_USER: ${CONCOURSE_MAIN_TEAM_LOCAL_USER}
-      CONCOURSE_WORKER_BAGGAGECLAIM_DRIVER: overlay
-      CONCOURSE_CLIENT_SECRET: ${CONCOURSE_CLIENT_SECRET}
-      CONCOURSE_TSA_CLIENT_SECRET: ${CONCOURSE_TSA_CLIENT_SECRET}
-      CONCOURSE_X_FRAME_OPTIONS: allow
-      CONCOURSE_CONTENT_SECURITY_POLICY: "*"
-      CONCOURSE_CLUSTER_NAME: ${CONCOURSE_CLUSTER_NAME}
-      CONCOURSE_WORKER_CONTAINERD_DNS_SERVER: "8.8.8.8"
-      CONCOURSE_WORKER_RUNTIME: "containerd"
   pine-concourse-web:
     image: concourse/concourse
     container_name: pine-concourse-web
@@ -195,19 +151,19 @@ services:
     restart: always
     command: web
     privileged: true
-    depends_on: [ pine-concourse-db-2 ]
-    ports: [ "8084:8080" ]
+    depends_on: [ pine-concourse-db ]
+    ports: [ "8083:8080" ]
     volumes:
       - ~/docker_compose/concourse/keys:/keys
     environment:
-      CONCOURSE_POSTGRES_HOST: pine-concourse-db-2
-      CONCOURSE_POSTGRES_PORT: 5432
+      CONCOURSE_POSTGRES_HOST: ${CONCOURSE_DB_HOST}
+      CONCOURSE_POSTGRES_PORT: ${CONCOURSE_DB_PORT}
       CONCOURSE_POSTGRES_DATABASE: ${CONCOURSE_DB}
       CONCOURSE_POSTGRES_USER: ${CONCOURSE_DB_USER}
       CONCOURSE_POSTGRES_PASSWORD: ${CONCOURSE_DB_PASSWORD}
       CONCOURSE_ADD_LOCAL_USER: ${CONCOURSE_ADD_LOCAL_USER}:${CONCOURSE_ADD_LOCAL_PASSWORD}
       CONCOURSE_MAIN_TEAM_LOCAL_USER: ${CONCOURSE_MAIN_TEAM_LOCAL_USER}
-      CONCOURSE_EXTERNAL_URL: "http://localhost:8084"
+      CONCOURSE_EXTERNAL_URL: ${CONCOURSE_EXTERNAL_URL}
       CONCOURSE_CLUSTER_NAME: ${CONCOURSE_CLUSTER_NAME}
       CONCOURSE_SESSION_SIGNING_KEY: /keys/session_signing_key
       CONCOURSE_TSA_HOST_KEY: /keys/tsa_host_key
