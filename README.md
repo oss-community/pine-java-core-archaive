@@ -454,7 +454,7 @@ Go to the Jenkins console http://localhost:8080 and add the following secret var
 Go to the Concourse console http://localhost:8080 then login via `pine` as user and `pine` as password, after that download 
 CLI tools and add it to system path. Add private key named `id_rsa` and public key named `id_rsa.pub` that already 
 generated in `user-home/pine/keys` by `ssh-keygen` to`credentials.yml` file locate in `ci/concourse` folder then execute
-the following command.
+the following command. Also deploy `id_rsa.pub` to the repository.
 
 ### <span style="color: RoyalBlue">Maven Pipeline</span>
 
