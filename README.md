@@ -41,10 +41,12 @@ The framework comprised three main part as follows:
         - **[Intellij IDEA](#Intellij-IDEA)**
     - **[Ngrok](#Ngrok)**
     - **[Docker](#Docker)**
+    - **[Podman](#Podman)**
     - **[Concourse](#Concourse)**
 - **[Build](#Build-and-Test)**
 - **[Install](#Install)**
 - **[Pipeline](#Pipeline)**
+    - **[Setup Pipeline Tools](#Setup-Pipeline-Tools)**
     - **[Maven Pipeline](#Maven-Pipeline)**
     - **[Jenkins Pipeline](#Jenkins-Pipeline)**
     - **[Concourse Pipeline](#Concourse-Pipeline)**
@@ -371,7 +373,11 @@ Brows http://127.0.0.1:4040.
 ### <span style="color: RoyalBlue">ِDocker</span>
 Install [Docker Desktop](https://docs.docker.com/get-docker/)
 
+### <span style="color: RoyalBlue">Podman</span>
+Install [Docker Desktop](https://docs.docker.com/get-docker/)
+
 ### <span style="color: RoyalBlue">Concourse</span>
+
 ---
 
 ## <span style="color: Crimson">Build and Test</span>
@@ -409,6 +415,46 @@ mvn clean install -DskipTests=true
 ---
 
 ## <span style="color: Crimson">Pipeline</span>
+It should be executed `pipeline-install` file that located in root path of project .
+##### Windows
+If docker and podman installed on the machine, then make sure podman  is stopped and docker is running. And make sure
+docker installation path was added to system path.
+```shell
+podman machine stop
+bcdedit /set hypervisorlaunchtype auto
+DockerCli -SwitchDaemon
+```
+Then execute the following bat file.
+```shell
+.\pipeline-install.bat
+```
+##### Linux
+```shell
+./pipeline-install
+```
+### Setup Pipeline Tools
+Go to the Sonar console http://localhost:9000 and follow the instruction [SonarQube](#SonarQube) to generate token.
+
+Go to the JFrog console http://localhost:8082/ui and follow the instruction [JFrog](#JFrog) to get encrypted password.
+
+Go to the Jenkins console http://localhost:8080 and add the following secret variables to invoke by `credentials()`.
+- github_username
+- github_email
+- github_jenkins_token
+- github_package_token
+- github_artifactory_url
+- sonar_token
+- sonar_url
+- jfrog_artifactory_username
+- jfrog_artifactory_encrypted_password
+- jfrog_artifactory_snapshot_url
+- jfrog_artifactory_context_url
+- jfrog_artifactory_repository_prefix
+
+Go to the Concourse console http://localhost:8080 then login via `pine` as user and `pine` as password, after that download 
+CLI tools and add it to system path. Add private key named `id_rsa` and public key named `id_rsa.pub` that already 
+generated in `user-home/pine/keys` by `ssh-keygen` to`credentials.yml` file locate in `ci/concourse` folder then execute
+the following command.
 
 ### <span style="color: RoyalBlue">Maven Pipeline</span>
 
@@ -428,7 +474,7 @@ mvn deploy -s settings.xml -P github
 ### <span style="color: RoyalBlue">Jenkins Pipeline</span>
 
 1. install [Jenkins](#Jenkins), [JFrog](#JFrog), [Sonarqube](#Sonarqube) and [ngrok](#Ngrok)
-2. add `sonar_token`, `artifactory_password`, `github_token`, `github_username`, `github_package_token`, `github_artifactory_url`.
+2. add secret variables to invoke by `credentials()`.
 3. click on New Item menu in dashboard of [Jenkins](#Jenkins)
 4. select Pipeline and then OK.
 5. in the configuration page check `GitHub hook trigger for GITScm polling` item and insert the url of the project.
@@ -442,6 +488,13 @@ mvn deploy -s settings.xml -P github
 8. click on Build Now menu
 
 ### <span style="color: RoyalBlue">Concourse Pipeline</span>
+
+```shell
+fly --target pine login --team-name main --concourse-url http://localhost:8083 -u pine -p pine
+fly --target pine set-pipeline --pipeline pine --config .\ci\concourse\pipeline.yml --load-vars-from .\ci\concourse\credentials.yml
+fly -t pine unpause-pipeline -p pine
+```
+
 ---
 
 #### <p align="center"> [Top](#Pine-Framework) </p>

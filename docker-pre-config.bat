@@ -2,8 +2,7 @@ docker --version
 docker-compose --version
 docker-machine --version
 
-mkdir ^
-%HOMEPATH%\docker_compose\jenkins_home ^
+mkdir %HOMEPATH%\docker_compose\jenkins_home ^
 %HOMEPATH%\docker_compose\jfrog-postgresql ^
 %HOMEPATH%\docker_compose\jfrog ^
 %HOMEPATH%\docker_compose\concourse-postgresql ^
@@ -11,7 +10,6 @@ mkdir ^
 %HOMEPATH%\docker_compose\sonarqube-postgresql ^
 %HOMEPATH%\docker_compose\sonarqube\sonarqube_data ^
 %HOMEPATH%\docker_compose\sonarqube\sonarqube_extensions ^
-%HOMEPATH%\docker_compose\sonarqube\sonarqube_logs ^
- 2>null
+%HOMEPATH%\docker_compose\sonarqube\sonarqube_logs 2>null
 
 wsl sudo sysctl -w vm.max_map_count=262144

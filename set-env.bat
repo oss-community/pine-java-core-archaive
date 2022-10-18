@@ -1,10 +1,10 @@
-call setx /M GITHUB_USERNAME ???
-call setx /M GITHUB_EMAIL ???
-call setx /M GITHUB_JENKINS_TOKEN ???
-call setx /M GITHUB_PACKAGE_TOKEN ???
+call setx /M GITHUB_USERNAME samanalishiri
+call setx /M GITHUB_EMAIL samanalishiri@gmail.com
+call setx /M GITHUB_JENKINS_TOKEN not_generated
+call setx /M GITHUB_PACKAGE_TOKEN not_generated
 call setx /M GITHUB_ARTIFACTORY_URL saman-oss/pine-java-core
 
-call setx /M SONAR_TOKEN ???
+call setx /M SONAR_TOKEN not_generated
 call setx /M SONAR_URL http://pine-sonarqube:9000
 call setx /M SONAR_DB sonar
 call setx /M SONAR_DB_USER sonar_user
@@ -12,7 +12,7 @@ call setx /M SONAR_DB_PASSWORD sonar_pass
 call setx /M SONAR_JDBC_URL jdbc:postgresql://pine-sonarqube-db:5432/sonar
 
 call setx /M JFROG_ARTIFACTORY_USERNAME admin
-call setx /M JFROG_ARTIFACTORY_ENCRYPTED_PASSWORD ???
+call setx /M JFROG_ARTIFACTORY_ENCRYPTED_PASSWORD not_generated
 call setx /M JFROG_ARTIFACTORY_SNAPSHOT_URL http://pine-jfrog:8081/artifactory/pine-libs-snapshot
 call setx /M JFROG_ARTIFACTORY_CONTEXT_URL http://pine-jfrog:8082/artifactory
 call setx /M JFROG_ARTIFACTORY_REPOSITORY_PREFIX pine
