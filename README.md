@@ -55,22 +55,22 @@ The framework comprised three main part as follows:
 
 # <p align="center"><span style="color: Crimson">Pine Java Core</span></p>
 
-Pine Java Core is a basic module is included utils, helpers, abstracts and the other basic facilities.
-
-Pine Core Java has modules as follows.
+Pine Java Core is a basic module is included utils, helpers, abstracts and the other basic facilities.<br/>
+Pine Core Java has modules as follows.<br/>
 
 - helper
 - document
 - i18n
 
 ## <span style="color: Crimson">Prerequisite</span>
+
 - Java
 - Maven
 - Git
 - Docker/Podman (Only for pipeline)
 
-
 ## <span style="color: Crimson">Tools</span>
+
 This tolls use for build and pipeline.
 
 ### <span style="color: RoyalBlue">Java</span>
@@ -173,8 +173,8 @@ gh –-version
 ```
 
 [Generate a token by GitHub.com](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token)
- then create a text file named token.txt and copy the token from GitHub and paste in the `token.txt`.
- after that login via GitHub CLI.
+then create a text file named token.txt and copy the token from GitHub and paste in the `token.txt`.
+after that login via GitHub CLI.
 
 ```shell
    gh auth login -p ssh -h github.com --with-token < token.txt
@@ -259,6 +259,7 @@ source ~/.bashrc
 ```
 
 ### <span style="color: RoyalBlue">Jenkins</span>
+
 Download [jenkins](https://www.jenkins.io/download/) as war file.
 
 ```shell
@@ -272,8 +273,8 @@ Browse Jenkins for localhost installation at http://localhost:8080.
 
 ### <span style="color: RoyalBlue">JFrog</span>
 
-Download [Jfrog](https://jfrog.com/download-jfrog-platform/) and extract it.
-In the extracted path execute the following command.
+Download [Jfrog](https://jfrog.com/download-jfrog-platform/) and extract it.<br/>
+In the extracted path execute the following command.<br/>
 
 ##### Windows
 
@@ -296,11 +297,9 @@ Browse JFrog for localhost installation at `http://localhost:8082/ui`.
 - username: admin
 - password: password
 
-Change password at _**Administration > User Management > Users**_.
-
-Get encrypted password from _**Edit Profile**_ menu.
-
-Create repository by _**Quick Setup**_ menu.
+Change password at _**Administration > User Management > Users**_.<br/>
+Get encrypted password from _**Edit Profile**_ menu.<br/>
+Create repository by _**Quick Setup**_ menu.<br/>
 
 ### <span style="color: RoyalBlue">IDE Setting</span>
 
@@ -308,16 +307,15 @@ Create repository by _**Quick Setup**_ menu.
 
 ##### Checkstyle
 
-Install [google check style](https://plugins.jetbrains.com/plugin/1065-checkstyle-idea/versions) plugin.
-
-Add customized checkstyle.xml to _**setting/preferences > Tools > Checkstyle > Configuration File**_.
-
-Import customized checkstyle.xml to _**setting/preferences > Editor > Code Style > Schema**_.
+Install [google check style](https://plugins.jetbrains.com/plugin/1065-checkstyle-idea/versions) plugin.<br/>
+Add customized checkstyle.xml to _**setting/preferences > Tools > Checkstyle > Configuration File**_.<br/>
+Import customized checkstyle.xml to _**setting/preferences > Editor > Code Style > Schema**_.<br/>
 
 ##### Test Coverage
 
 Click on _**Navigate > Search Everywhere**_, then type `Registry...`and in the registry, type `idea.coverage` then
 disable
+
 - idea.coverage.new.sampling.enable
 - idea.coverage.test.tracking.enable
 - idea.coverage.tracing.enable
@@ -371,12 +369,133 @@ ngrok start --all
 Brows http://127.0.0.1:4040.
 
 ### <span style="color: RoyalBlue">ِDocker</span>
+
 Install [Docker Desktop](https://docs.docker.com/get-docker/)
 
 ### <span style="color: RoyalBlue">Podman</span>
-Install [Docker Desktop](https://docs.docker.com/get-docker/)
+
+Install [Podman](https://podman.io/getting-started/installation)<br/>
+Install [Podman Desktop](https://podman-desktop.io/)<br/>
+Install [Podman compose](https://github.com/containers/podman-compose)<br/>
+
+For installation of Podman Compose, it needs to install python compiler.
 
 ### <span style="color: RoyalBlue">Concourse</span>
+
+At first define environment variables in .env file.<br/>
+
+```dotenv
+CONCOURSE_DB=concourse 
+CONCOURSE_DB_HOST=concourse-db 
+CONCOURSE_DB_PORT=5432 
+CONCOURSE_DB_USER=concourse_user 
+CONCOURSE_DB_PASSWORD=concourse_pass 
+CONCOURSE_EXTERNAL_URL=http://localhost:8088 
+CONCOURSE_CLUSTER_NAME=pineframework 
+CONCOURSE_ADD_LOCAL_USER=pine 
+CONCOURSE_ADD_LOCAL_PASSWORD=pine 
+CONCOURSE_MAIN_TEAM_LOCAL_USER=pine 
+CONCOURSE_TSA_HOST=concourse-web:2222 
+```
+
+Then, the certificates must be generated and move them to a directory in order to use that as a directory mapping.<br/>
+For windows
+
+```shell
+mkdir %HOMEPATH%\pine\keys
+call ssh-keygen -t rsa -b 4096 -m PEM -f %HOMEPATH%\pine\keys\session_signing_key
+call ssh-keygen -t rsa -b 4096 -m PEM -f %HOMEPATH%\pine\keys\tsa_host_key
+call ssh-keygen -t rsa -b 4096 -m PEM -f %HOMEPATH%\pine\keys\worker_key
+
+ren %HOMEPATH%\pine\keys\worker_key.pub authorized_worker_keys
+copy %HOMEPATH%\pine\keys\* %HOMEPATH%\docker_compose\concourse\keys
+```
+
+For Linux
+
+```shell
+mkdir ~/pine/keys
+
+ssh-keygen -t rsa -b 4096 -m PEM -f ~/pine/keys/session_signing_key
+ssh-keygen -t rsa -b 4096 -m PEM -f ~/pine/keys/tsa_host_key
+ssh-keygen -t rsa -b 4096 -m PEM -f ~/pine/keys/worker_key
+
+mv ~/pine/keys/worker_key.pub ~/pine/keys/authorized_worker_keys
+cp ~/pine/keys/* ~/docker_compose/concourse/keys
+```
+
+After that create the following docker-compose.yaml file to execute by Docker/Podman compose.
+
+```yaml
+  concourse-db:
+    container_name: concourse-db
+    hostname: concourse-db
+    restart: always
+    image: postgres
+    environment:
+      POSTGRES_DB: ${CONCOURSE_DB}
+      POSTGRES_PASSWORD: ${CONCOURSE_DB_PASSWORD}
+      POSTGRES_USER: ${CONCOURSE_DB_USER}
+      PGDATA: /database
+    ports:
+      - "5053:5432"
+    volumes:
+      - ~/docker_compose/concourse-postgresql:/var/lib/postgresql
+    ulimits:
+      nproc: 262144
+      nofile:
+        soft: 32000
+        hard: 40000
+  concourse-web:
+    image: concourse/concourse
+    container_name: concourse-web
+    hostname: concourse-web
+    restart: always
+    command: web
+    privileged: true
+    depends_on: [ concourse-db ]
+    ports: [ "8083:8080" ]
+    volumes:
+      - ~/docker_compose/concourse/keys:/keys
+    environment:
+      CONCOURSE_POSTGRES_HOST: ${CONCOURSE_DB_HOST}
+      CONCOURSE_POSTGRES_PORT: ${CONCOURSE_DB_PORT}
+      CONCOURSE_POSTGRES_DATABASE: ${CONCOURSE_DB}
+      CONCOURSE_POSTGRES_USER: ${CONCOURSE_DB_USER}
+      CONCOURSE_POSTGRES_PASSWORD: ${CONCOURSE_DB_PASSWORD}
+      CONCOURSE_ADD_LOCAL_USER: ${CONCOURSE_ADD_LOCAL_USER}:${CONCOURSE_ADD_LOCAL_PASSWORD}
+      CONCOURSE_MAIN_TEAM_LOCAL_USER: ${CONCOURSE_MAIN_TEAM_LOCAL_USER}
+      CONCOURSE_EXTERNAL_URL: ${CONCOURSE_EXTERNAL_URL}
+      CONCOURSE_CLUSTER_NAME: ${CONCOURSE_CLUSTER_NAME}
+      CONCOURSE_SESSION_SIGNING_KEY: /keys/session_signing_key
+      CONCOURSE_TSA_HOST_KEY: /keys/tsa_host_key
+      CONCOURSE_TSA_AUTHORIZED_KEYS: ./keys/authorized_worker_keys
+  concourse-worker:
+    image: concourse/concourse
+    container_name: concourse-worker
+    hostname: concourse-worker
+    restart: always
+    command: worker
+    privileged: true
+    depends_on: [ concourse-web ]
+    volumes:
+      - ~/docker_compose/concourse/keys:/keys
+    environment:
+      CONCOURSE_WORK_DIR: /var/lib/concourse
+      CONCOURSE_TSA_HOST: ${CONCOURSE_TSA_HOST}
+      CONCOURSE_TSA_PUBLIC_KEY: /keys/tsa_host_key.pub
+      CONCOURSE_TSA_WORKER_PRIVATE_KEY: /keys/worker_key
+      CONCOURSE_CONTAINERD_DNS_PROXY_ENABLE: "true"
+      CONCOURSE_CONTAINERD_DNS_SERVER: "1.1.1.1,8.8.8.8"
+      CONCOURSE_RUNTIME: "containerd"
+      CONCOURSE_BAGGAGECLAIM_DRIVER: "naive"
+```
+
+Finally, deploy the services to Docker/Podman.
+
+```shell
+docker compose --file docker-compose.yaml --project-name concourse --env-file .env up --build -d
+```
 
 ---
 
@@ -394,11 +513,13 @@ mvn site:site site:stage -s settings.xml -P site,javadoc,changelog,test-report
 ### <span style="color: RoyalBlue">Site</span>
 
 View maven site on [GitHub page](https://saman-oss.github.io/pine-java-core/) of project.
+
 ``` shell
 mvn scm-publish:publish-scm -s settings.xml -P publish
 ```
 
 Also, you can see maven site [locally](http://localhost:8000/).
+
 ``` shell
 mvn site:run -s settings.xml -P site
 ```
@@ -415,29 +536,40 @@ mvn clean install -DskipTests=true
 ---
 
 ## <span style="color: Crimson">Pipeline</span>
+
 It should be executed `pipeline-install` file that located in root path of project .
+
 ##### Windows
-If docker and podman installed on the machine, then make sure podman  is stopped and docker is running. And make sure
+
+If docker and podman installed on the machine, then make sure podman is stopped and docker is running. And make sure
 docker installation path was added to system path.
+
 ```shell
 podman machine stop
 bcdedit /set hypervisorlaunchtype auto
 DockerCli -SwitchDaemon
 ```
+
 Then execute the following bat file.
+
 ```shell
 .\pipeline-install.bat
 ```
+
 ##### Linux
+
 ```shell
 ./pipeline-install
 ```
+
 ### Setup Pipeline Tools
-Go to the Sonar console http://localhost:9000 and follow the instruction [SonarQube](#SonarQube) to generate token.
 
-Go to the JFrog console http://localhost:8082/ui and follow the instruction [JFrog](#JFrog) to get encrypted password.
+Go to the Sonar console http://localhost:9000 and follow the instruction [SonarQube](#SonarQube) to generate token.<br/>
+Go to the JFrog console http://localhost:8082/ui and follow the instruction [JFrog](#JFrog) to get encrypted
+password.<br/>
+Go to the Jenkins console http://localhost:8080 and add the following secret variables to invoke by `credentials()`
+.<br/>
 
-Go to the Jenkins console http://localhost:8080 and add the following secret variables to invoke by `credentials()`.
 - github_username
 - github_email
 - github_jenkins_token
@@ -451,10 +583,12 @@ Go to the Jenkins console http://localhost:8080 and add the following secret var
 - jfrog_artifactory_context_url
 - jfrog_artifactory_repository_prefix
 
-Go to the Concourse console http://localhost:8080 then login via `pine` as user and `pine` as password, after that download 
-CLI tools and add it to system path. Add private key named `id_rsa` and public key named `id_rsa.pub` that already 
-generated in `user-home/pine/keys` by `ssh-keygen` to`credentials.yml` file locate in `ci/concourse` folder then execute
-the following command. Also deploy `id_rsa.pub` to the repository.
+<p align="justify">
+Go to the Concourse console http://localhost:8080 then login via `pine` as user and `pine` as password, after that 
+download CLI tools and add it to system path. Add private key named `id_rsa` and public key named `id_rsa.pub` that 
+already generated in `user-home/pine/keys` by `ssh-keygen` to`credentials.yml` file locate in `ci/concourse` folder then
+execute  the following command. Also deploy `id_rsa.pub` to the repository.
+</p>
 
 ### <span style="color: RoyalBlue">Maven Pipeline</span>
 
