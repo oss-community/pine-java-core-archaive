@@ -254,13 +254,13 @@ command.
 ##### Windows
 
 ```shell
-$SONARQUBE_HOME/bin/linux-x86-64/sonar.sh start
+%SONARQUBE_HOME%/bin/windows-x86-64/StartSonar.bat
 ```
 
 ##### Linux
 
 ```shell
-%SONARQUBE_HOME%\bin/windows-x86-64/StartSonar.bat
+$SONARQUBE_HOME/bin/linux-x86-64/sonar.sh start
 ```
 
 Browse SonarQube for localhost installation at http://localhost:9000.
@@ -311,7 +311,7 @@ source ~/.bashrc
 
 ### <span style="color: RoyalBlue">Jenkins</span>
 
-Download [jenkins](https://www.jenkins.io/download/) as war file.
+Download [jenkins](https://www.jenkins.io/download/) as a war file and execute the following command.
 
 ```shell
 java -jar jenkins.war --httpPort=8080
