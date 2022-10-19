@@ -1,8 +1,11 @@
 # <p align="center">Pine Framework</p>
 
+<p align="justify">
+
 Pine Framework is framework based on Java language.
 Pine framework has a big mission, and it is, write business once independent of tools, framework, database, application
 server,... then use the implemented business into different architecture or structure.
+</p>
 
 The framework comprised three main part as follows:
 
@@ -55,8 +58,12 @@ The framework comprised three main part as follows:
 
 # <p align="center"><span style="color: Crimson">Pine Java Core</span></p>
 
-Pine Java Core is a basic module is included utils, helpers, abstracts and the other basic facilities.<br/>
-Pine Core Java has modules as follows.<br/>
+<p align="justify">
+
+Pine Java Core is a basic module is included utils, helpers, abstracts and the other basic facilities and, it has
+modules as follows.
+
+</p>
 
 - helper
 - document
@@ -71,17 +78,17 @@ Pine Core Java has modules as follows.<br/>
 
 ## <span style="color: Crimson">Tools</span>
 
-This tolls use for build and pipeline.
+This tools use for build and pipeline.
 
 ### <span style="color: RoyalBlue">Java</span>
 
 #### Windows
 
-Download [Java 17](https://www.oracle.com/java/technologies/downloads/#jdk17-windows) in zip format.
+Download [Java 17](https://www.oracle.com/java/technologies/downloads/#jdk17-windows) with zip format.
 
 ```shell
-mkdir C:\sdk
-# extract zip file to C:\sdk and rename it to jdk-17
+mkdir C:\sdk\jdk-17
+tar -xvf jdk-17_windows-x64_bin.zip --directory C:\sdk\jdk-17  --strip-components=1
 set JAVA_HOME=C:\sdk\jdk-17
 setx /M JAVA_HOME "%JAVA_HOME%"
 setx /M PATH "%PATH%;%JAVA_HOME%\bin"
@@ -89,12 +96,12 @@ setx /M PATH "%PATH%;%JAVA_HOME%\bin"
 
 #### Linux
 
-Download [Java 17](https://www.oracle.com/java/technologies/downloads/#jdk17-linux) in tar.gz format.
+Download [Java 17](https://www.oracle.com/java/technologies/downloads/#jdk17-linux) with tar.gz format.
 
 ```shell
 sudo chown ${USER} -R /opt/
 sudo chmod 765 -R /opt/
-tar -xvf ./jdk-17_linux-x64_bin.tar.gz -C /opt/
+tar -xvf ./jdk-17_linux-x64_bin.tar.gz --directory /opt/
 mv jdk-17_linux-x64_bin jdk-17
 sudo chmod +x -R /opt/java-17/bin/
 echo "export JAVA_HOME=/opt/jdk-17" >> ${HOME}/.bashrc
@@ -116,8 +123,8 @@ java -version
 Download [Maven](https://maven.apache.org/download.cgi) in zip format.
 
 ```shell
-mkdir C:\sdk
-# extract zip file to C:\sdk and rename it to maven
+mkdir C:\sdk\maven
+tar -xvf apache-maven-3.8.6-bin.zip --directory C:\sdk\maven  --strip-components=1
 set M2_HOME=C:\sdk\maven
 setx /M M2_HOME "%M2_HOME%"
 setx /M PATH "%PATH%;%M2_HOME%\bin"
@@ -130,7 +137,7 @@ Download [Maven](https://maven.apache.org/download.cgi) in tar.gz format.
 ```shell
 sudo chown ${USER} -R /opt/
 sudo chmod 765 -R /opt/
-tar -xvf ./maven*.tar.gz -C /opt/
+tar -xvf ./maven*.tar.gz --directory /opt/
 mv maven* maven
 sudo chmod +x -R /opt/maven/bin/
 echo "export M2_HOME=/opt/maven" >> ${HOME}/.bashrc
@@ -156,6 +163,9 @@ mvn -version
 
 [Guidance](https://git-scm.com/download/linux) of how to download and install.
 
+- Ubuntu: apt-get install git
+- Fedora: dnf install git
+
 #### Test Git
 
 ```shell
@@ -166,15 +176,48 @@ git --version
 
 Install [GitHub CLI](https://github.com/cli/cli)
 
+##### Windows
+
+<p align="justify">
+
+Download zip/MSI file from https://github.com/cli/cli/releases and if you download zip file then execute the following
+commands.
+
+</p>
+
+```shell
+mkdir C:\sdk\gh
+tar -xvf gh_*_windows_*.zip --directory C:\sdk\gh  --strip-components=1
+set GH_HOME=C:\sdk\gh
+setx /M GH_HOME "%GH_HOME%"
+setx /M PATH "%PATH%;%GH_HOME%\bin"
+```
+
+##### Linux (Ubuntu)
+
+```shell
+curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | tee /etc/apt/sources.list.d/github-cli.list > /dev/null
+apt-get update
+apt-get -y install gh
+```
+
 #### Test GitHub CLI
 
 ```shell
 gh –-version
 ```
 
-[Generate a token by GitHub.com](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token)
+### Login
+
+<p align="justify">
+
+In order to login via GitHub CLI (gh), you have
+to [generate a token by GitHub.com](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token)
 then create a text file named token.txt and copy the token from GitHub and paste in the `token.txt`.
 after that login via GitHub CLI.
+
+</p>
 
 ```shell
    gh auth login -p ssh -h github.com --with-token < token.txt
@@ -201,8 +244,12 @@ Deploy public keys via GitHub CLI (select one solution).
 
 #### Sonarqube Server
 
-Download [sonarqube](https://www.sonarqube.org/downloads/) then extract it.
-In the extracted path execute the following command.
+<p align="justify">
+
+Download [sonarqube](https://www.sonarqube.org/downloads/) then extract it. In the extracted path execute the following
+command.
+
+</p>
 
 ##### Windows
 
@@ -239,8 +286,12 @@ echo "export SONAR_URL=sonarqube-url" >> ${HOME}/.bashrc
 
 #### Sonar Scanner
 
+<p align="justify">
+
 Download [sonar scanner cli](https://binaries.sonarsource.com/?prefix=Distribution/sonar-scanner-cli/) and extract it,
 then add the following environment variables.
+
+</p>
 
 ##### Windows
 
@@ -273,8 +324,12 @@ Browse Jenkins for localhost installation at http://localhost:8080.
 
 ### <span style="color: RoyalBlue">JFrog</span>
 
-Download [Jfrog](https://jfrog.com/download-jfrog-platform/) and extract it.<br/>
-In the extracted path execute the following command.<br/>
+<p align="justify">
+
+Download [Jfrog](https://jfrog.com/download-jfrog-platform/) and extract it. In the extracted path execute the following
+command.
+
+</p>
 
 ##### Windows
 
@@ -297,9 +352,11 @@ Browse JFrog for localhost installation at `http://localhost:8082/ui`.
 - username: admin
 - password: password
 
-Change password at _**Administration > User Management > Users**_.<br/>
-Get encrypted password from _**Edit Profile**_ menu.<br/>
-Create repository by _**Quick Setup**_ menu.<br/>
+Follow the instruction for initialization.
+
+- Change password at _**Administration > User Management > Users**_.
+- Get encrypted password from _**Edit Profile**_ menu.
+- Create repository by _**Quick Setup**_ menu.
 
 ### <span style="color: RoyalBlue">IDE Setting</span>
 
@@ -307,14 +364,20 @@ Create repository by _**Quick Setup**_ menu.<br/>
 
 ##### Checkstyle
 
-Install [google check style](https://plugins.jetbrains.com/plugin/1065-checkstyle-idea/versions) plugin.<br/>
-Add customized checkstyle.xml to _**setting/preferences > Tools > Checkstyle > Configuration File**_.<br/>
-Import customized checkstyle.xml to _**setting/preferences > Editor > Code Style > Schema**_.<br/>
+Follow the instruction to apply Checkstyle.
+
+- Install [google check style](https://plugins.jetbrains.com/plugin/1065-checkstyle-idea/versions) plugin.
+- Add customized checkstyle.xml to _**setting/preferences > Tools > Checkstyle > Configuration File**_.
+- Import customized checkstyle.xml to _**setting/preferences > Editor > Code Style > Schema**_.
 
 ##### Test Coverage
 
+<p align="justify">
+
 Click on _**Navigate > Search Everywhere**_, then type `Registry...`and in the registry, type `idea.coverage` then
 disable
+
+</p>
 
 - idea.coverage.new.sampling.enable
 - idea.coverage.test.tracking.enable
@@ -374,11 +437,11 @@ Install [Docker Desktop](https://docs.docker.com/get-docker/)
 
 ### <span style="color: RoyalBlue">Podman</span>
 
+For installation of Podman Compose, it needs to install python compiler.
+
 Install [Podman](https://podman.io/getting-started/installation)<br/>
 Install [Podman Desktop](https://podman-desktop.io/)<br/>
 Install [Podman compose](https://github.com/containers/podman-compose)<br/>
-
-For installation of Podman Compose, it needs to install python compiler.
 
 ### <span style="color: RoyalBlue">Concourse</span>
 
@@ -399,16 +462,17 @@ CONCOURSE_TSA_HOST=concourse-web:2222
 ```
 
 Then, the certificates must be generated and move them to a directory in order to use that as a directory mapping.<br/>
+
 For windows
 
 ```shell
-mkdir %HOMEPATH%\pine\keys
-call ssh-keygen -t rsa -b 4096 -m PEM -f %HOMEPATH%\pine\keys\session_signing_key
-call ssh-keygen -t rsa -b 4096 -m PEM -f %HOMEPATH%\pine\keys\tsa_host_key
-call ssh-keygen -t rsa -b 4096 -m PEM -f %HOMEPATH%\pine\keys\worker_key
+mkdir %HOMEPATH%\keys
+call ssh-keygen -t rsa -b 4096 -m PEM -f %HOMEPATH%\keys\session_signing_key
+call ssh-keygen -t rsa -b 4096 -m PEM -f %HOMEPATH%\keys\tsa_host_key
+call ssh-keygen -t rsa -b 4096 -m PEM -f %HOMEPATH%\keys\worker_key
 
-ren %HOMEPATH%\pine\keys\worker_key.pub authorized_worker_keys
-copy %HOMEPATH%\pine\keys\* %HOMEPATH%\docker_compose\concourse\keys
+ren %HOMEPATH%\keys\worker_key.pub authorized_worker_keys
+copy %HOMEPATH%\keys\* %HOMEPATH%\docker_compose\concourse\keys
 ```
 
 For Linux
@@ -504,7 +568,7 @@ Via web browser
 - Username: user
 - Password: pass
 
-- Via fly
+- Via Concourse CLI (fly)
 
 ```shell
 fly --target pipeline-name login --team-name main --concourse-url http://localhost:8080 -u user -p pass
@@ -554,7 +618,7 @@ It should be executed `pipeline-install` file that located in root path of proje
 
 ##### Windows
 
-If docker and podman installed on the machine, then make sure podman is stopped and docker is running. And make sure
+If docker and podman installed on the machine, then make sure podman is stopped and docker is running and make sure
 docker installation path was added to system path.
 
 ```shell
@@ -597,10 +661,12 @@ Go to the Jenkins console http://localhost:8080 and add the following secret var
 - jfrog_artifactory_repository_prefix
 
 <p align="justify">
-Go to the Concourse console http://localhost:8080 then login via `pine` as user and `pine` as password, after that 
-download CLI tools and add it to system path. Add private key named `id_rsa` and public key named `id_rsa.pub` that 
+
+Go to the Concourse console http://localhost:8080 then login via `pine` as user and `pine` as password, after that
+download CLI tools and add it to system path. Add private key named `id_rsa` and public key named `id_rsa.pub` that
 already generated in `user-home/pine/keys` by `ssh-keygen` to`credentials.yml` file locate in `ci/concourse` folder then
-execute  the following command. Also deploy `id_rsa.pub` to the repository.
+execute the following command. Also deploy `id_rsa.pub` to the repository.
+
 </p>
 
 ### <span style="color: RoyalBlue">Maven Pipeline</span>
