@@ -169,21 +169,21 @@ services:
       CONCOURSE_TSA_HOST_KEY: /keys/tsa_host_key
       CONCOURSE_TSA_AUTHORIZED_KEYS: ./keys/authorized_worker_keys
   pine-concourse-worker:
-      image: concourse/concourse
-      container_name: pine-concourse-worker
-      hostname: pine-concourse-worker
-      restart: always
-      command: worker
-      privileged: true
-      depends_on: [ pine-concourse-web ]
-      volumes:
-        - ~/docker_compose/concourse/keys:/keys
-      environment:
-        CONCOURSE_WORK_DIR: /var/lib/concourse
-        CONCOURSE_TSA_HOST: ${CONCOURSE_TSA_HOST}
-        CONCOURSE_TSA_PUBLIC_KEY: /keys/tsa_host_key.pub
-        CONCOURSE_TSA_WORKER_PRIVATE_KEY: /keys/worker_key
-        CONCOURSE_CONTAINERD_DNS_PROXY_ENABLE: "true"
-        CONCOURSE_CONTAINERD_DNS_SERVER: "1.1.1.1,8.8.8.8"
-        CONCOURSE_RUNTIME: "containerd"
-        CONCOURSE_BAGGAGECLAIM_DRIVER: "naive"
+    image: concourse/concourse
+    container_name: pine-concourse-worker
+    hostname: pine-concourse-worker
+    restart: always
+    command: worker
+    privileged: true
+    depends_on: [ pine-concourse-web ]
+    volumes:
+      - ~/docker_compose/concourse/keys:/keys
+    environment:
+      CONCOURSE_WORK_DIR: /var/lib/concourse
+      CONCOURSE_TSA_HOST: ${CONCOURSE_TSA_HOST}
+      CONCOURSE_TSA_PUBLIC_KEY: /keys/tsa_host_key.pub
+      CONCOURSE_TSA_WORKER_PRIVATE_KEY: /keys/worker_key
+      CONCOURSE_CONTAINERD_DNS_PROXY_ENABLE: "true"
+      CONCOURSE_CONTAINERD_DNS_SERVER: "1.1.1.1,8.8.8.8"
+      CONCOURSE_RUNTIME: "containerd"
+      CONCOURSE_BAGGAGECLAIM_DRIVER: "naive"

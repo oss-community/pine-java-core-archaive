@@ -390,11 +390,11 @@ CONCOURSE_DB_HOST=concourse-db
 CONCOURSE_DB_PORT=5432 
 CONCOURSE_DB_USER=concourse_user 
 CONCOURSE_DB_PASSWORD=concourse_pass 
-CONCOURSE_EXTERNAL_URL=http://localhost:8088 
-CONCOURSE_CLUSTER_NAME=pineframework 
-CONCOURSE_ADD_LOCAL_USER=pine 
-CONCOURSE_ADD_LOCAL_PASSWORD=pine 
-CONCOURSE_MAIN_TEAM_LOCAL_USER=pine 
+CONCOURSE_EXTERNAL_URL=http://localhost:8080 
+CONCOURSE_CLUSTER_NAME=Company-name 
+CONCOURSE_ADD_LOCAL_USER=user 
+CONCOURSE_ADD_LOCAL_PASSWORD=pass 
+CONCOURSE_MAIN_TEAM_LOCAL_USER=user 
 CONCOURSE_TSA_HOST=concourse-web:2222 
 ```
 
@@ -424,7 +424,7 @@ mv ~/pine/keys/worker_key.pub ~/pine/keys/authorized_worker_keys
 cp ~/pine/keys/* ~/docker_compose/concourse/keys
 ```
 
-After that create the following docker-compose.yaml file to execute by Docker/Podman compose.
+After that create the following docker-compose.yml file to execute by Docker/Podman compose.
 
 ```yaml
   concourse-db:
@@ -438,7 +438,7 @@ After that create the following docker-compose.yaml file to execute by Docker/Po
       POSTGRES_USER: ${CONCOURSE_DB_USER}
       PGDATA: /database
     ports:
-      - "5053:5432"
+      - "5432:5432"
     volumes:
       - ~/docker_compose/concourse-postgresql:/var/lib/postgresql
     ulimits:
@@ -454,7 +454,7 @@ After that create the following docker-compose.yaml file to execute by Docker/Po
     command: web
     privileged: true
     depends_on: [ concourse-db ]
-    ports: [ "8083:8080" ]
+    ports: [ "8080:8080" ]
     volumes:
       - ~/docker_compose/concourse/keys:/keys
     environment:
@@ -494,7 +494,20 @@ After that create the following docker-compose.yaml file to execute by Docker/Po
 Finally, deploy the services to Docker/Podman.
 
 ```shell
-docker compose --file docker-compose.yaml --project-name concourse --env-file .env up --build -d
+docker compose --file docker-compose.yml --project-name concourse --env-file .env up --build -d
+```
+
+In order to login use the following instruction.
+Via web browser
+
+- URL: http://localhost:8080
+- Username: user
+- Password: pass
+
+- Via fly
+
+```shell
+fly --target pipeline-name login --team-name main --concourse-url http://localhost:8080 -u user -p pass
 ```
 
 ---
@@ -559,7 +572,7 @@ Then execute the following bat file.
 ##### Linux
 
 ```shell
-./pipeline-install
+./pipeline-install.sh
 ```
 
 ### Setup Pipeline Tools
