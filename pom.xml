@@ -446,7 +446,7 @@ limitations under the License.
         <profile>
             <id>site</id>
             <properties>
-                <maven.site.local.port>8000</maven.site.local.port>
+                <maven.site.port>8000</maven.site.port>
             </properties>
             <distributionManagement>
             <site>
@@ -462,7 +462,7 @@ limitations under the License.
                         <version>3.12.1</version>
                         <configuration>
                             <locales>en</locales>
-                            <port>${maven.site.local.port}</port>
+                            <port>${maven.site.port}</port>
                             <tempWebappDirectory>${basedir}/target/staging</tempWebappDirectory>
                         </configuration>
                     </plugin>
@@ -615,7 +615,7 @@ limitations under the License.
             <distributionManagement>
                 <snapshotRepository>
                     <id>nexus-snapshots</id>
-                    <url>${NEXUS_ARTIFACTORY_SNAPSHOT_URL}/</url>
+                    <url>${env.NEXUS_ARTIFACTORY_SNAPSHOT_URL}/</url>
                 </snapshotRepository>
             </distributionManagement>
         </profile>
