@@ -5,6 +5,7 @@ docker-machine --version
 mkdir %HOMEPATH%\docker_compose\jenkins_home ^
 %HOMEPATH%\docker_compose\jfrog-postgresql ^
 %HOMEPATH%\docker_compose\jfrog ^
+%HOMEPATH%\docker_compose\nexus\nexus-data ^
 %HOMEPATH%\docker_compose\concourse-postgresql ^
 %HOMEPATH%\docker_compose\concourse\keys ^
 %HOMEPATH%\docker_compose\sonarqube-postgresql ^

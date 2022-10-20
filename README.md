@@ -682,6 +682,7 @@ mvn scm-publish:publish-scm -s settings.xml -P publish
 mvn sonar:sonar -s settings.xml -P sonar
 mvn deploy -s settings.xml -P jfrog
 mvn deploy -s settings.xml -P github
+mvn deploy -s settings.xml -P nexus -DskipTests=true
 ```
 
 ### <span style="color: RoyalBlue">Jenkins Pipeline</span>

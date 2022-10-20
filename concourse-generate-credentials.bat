@@ -11,6 +11,10 @@ echo jfrog-artifactory-snapshot-ur: %JFROG_ARTIFACTORY_SNAPSHOT_URL% >> .\ci\con
 echo jfrog-artifactory-context-url: %JFROG_ARTIFACTORY_CONTEXT_URL% >> .\ci\concourse\credentials.yml
 echo jfrog-artifactory-repository-prefix: %JFROG_ARTIFACTORY_REPOSITORY_PREFIX% >> .\ci\concourse\credentials.yml
 
+echo nexus-artifactory-username: %NEXUS_ARTIFACTORY_USERNAME% >> .\ci\concourse\credentials.yml
+echo nexus-artifactory-password: %NEXUS_ARTIFACTORY_PASSWORD% >> .\ci\concourse\credentials.yml
+echo nexus-artifactory-snapshot-ur: %NEXUS_ARTIFACTORY_SNAPSHOT_URL% >> .\ci\concourse\credentials.yml
+
 echo sonar-token: %SONAR_TOKEN% >> .\ci\concourse\credentials.yml
 echo sonar-url: %SONAR_URL% >> .\ci\concourse\credentials.yml
 

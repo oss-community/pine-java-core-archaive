@@ -18,6 +18,9 @@ pipeline {
     JFROG_ARTIFACTORY_SNAPSHOT_URL=credentials('jfrog_artifactory_snapshot_url')
     JFROG_ARTIFACTORY_CONTEXT_URL=credentials('jfrog_artifactory_context_url')
     JFROG_ARTIFACTORY_REPOSITORY_PREFIX=credentials('jfrog_artifactory_repository_prefix')
+    NEXUS_ARTIFACTORY_USERNAME=credentials('nexus_artifactory_username')
+    NEXUS_ARTIFACTORY_PASSWORD=credentials('nexus_artifactory_password')
+    NEXUS_ARTIFACTORY_SNAPSHOT_URL=credentials('nexus_artifactory_snapshot_url')
   }
   stages {
     stage('Verify') {
@@ -107,5 +110,10 @@ pipeline {
       }
     }
 
+    stage('Deploy to Nexus') {
+      steps {
+        sh 'mvn deploy -s settings.xml -P nexus -DskipTests=true'
+      }
+    }
   }
 }

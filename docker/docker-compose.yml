@@ -144,6 +144,17 @@ services:
       nofile:
         soft: 65535
         hard: 65535
+  pine-nexus:
+    image: sonatype/nexus3
+    container_name: pine-nexus
+    hostname: pine-nexus
+    privileged: true
+    user: root
+    restart: always
+    volumes:
+      - ~/docker_compose/nexus/nexus-data:/nexus-data
+    ports:
+      - "8084:8081"
   pine-concourse-web:
     image: concourse/concourse
     container_name: pine-concourse-web

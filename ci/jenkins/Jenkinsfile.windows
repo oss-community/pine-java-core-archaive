@@ -6,7 +6,7 @@ pipeline {
     git 'git'
   }
   environment {
-    ITHUB_USERNAME=credentials('github_username')
+    GITHUB_USERNAME=credentials('github_username')
     GITHUB_EMAIL=credentials('github_email')
     GITHUB_JENKINS_TOKEN=credentials('github_jenkins_token')
     GITHUB_PACKAGE_TOKEN=credentials('github_package_token')
@@ -18,6 +18,9 @@ pipeline {
     JFROG_ARTIFACTORY_SNAPSHOT_URL=credentials('jfrog_artifactory_snapshot_url')
     JFROG_ARTIFACTORY_CONTEXT_URL=credentials('jfrog_artifactory_context_url')
     JFROG_ARTIFACTORY_REPOSITORY_PREFIX=credentials('jfrog_artifactory_repository_prefix')
+    NEXUS_ARTIFACTORY_USERNAME=credentials('nexus_artifactory_username')
+    NEXUS_ARTIFACTORY_PASSWORD=credentials('nexus_artifactory_password')
+    NEXUS_ARTIFACTORY_SNAPSHOT_URL=credentials('nexus_artifactory_snapshot_url')
   }
   stages {
     stage('Check Verify') {
@@ -100,7 +103,13 @@ pipeline {
 
     stage('Deploy to GitHub') {
       steps {
-        sh 'mvn deploy -s settings.xml -P github'
+        bat 'mvn deploy -s settings.xml -P github'
+      }
+    }
+
+    stage('Deploy to Nexus') {
+      steps {
+        bat 'mvn deploy -s settings.xml -P nexus -DskipTests=true'
       }
     }
   }

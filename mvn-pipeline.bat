@@ -48,3 +48,7 @@ call echo 'step [jfrog artifactory] end'
 call echo 'step [github artifactory] begin'
 call mvn deploy -s settings.xml -P github
 call echo 'step [github artifactory] end'
+
+call echo 'step [nexus artifactory] begin'
+call mvn deploy -s settings.xml -P nexus -DskipTests=true
+call echo 'step [nexus artifactory] end'

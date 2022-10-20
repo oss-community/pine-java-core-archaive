@@ -5,9 +5,9 @@ groups:
   - name: uat
     jobs:
       - uat-pine-java-core
-  - name: live
+  - name: prod
     jobs:
-      - live-pine-java-core
+      - prod-pine-java-core
 
 resources:
   - name: repo
@@ -96,7 +96,7 @@ jobs:
                 mvn -f repo/pom.xml install -DskipTests=true -s repo/settings.xml
                 mvn -f repo/pom.xml site:site site:stage -s repo/settings.xml -P site,javadoc,changelog,test-report
                 mvn -f repo/pom.xml scm-publish:publish-scm -s repo/settings.xml -P publish
-  - name: live-pine-java-core
+  - name: prod-pine-java-core
     plan:
       - get: repo
         passed: [ uat-pine-java-core ]
@@ -129,6 +129,9 @@ jobs:
             JFROG_ARTIFACTORY_SNAPSHOT_URL: ((jfrog-artifactory-snapshot-ur))
             JFROG_ARTIFACTORY_CONTEXT_URL: ((jfrog-artifactory-context-url))
             JFROG_ARTIFACTORY_REPOSITORY_PREFIX: ((jfrog-artifactory-repository-prefix))
+            NEXUS_ARTIFACTORY_USERNAME: ((nexus-artifactory-username))
+            NEXUS_ARTIFACTORY_PASSWORD: ((nexus-artifactory-password))
+            NEXUS_ARTIFACTORY_SNAPSHOT_URL: ((nexus-artifactory-snapshot-ur))
           run:
             path: sh
             args:
@@ -158,3 +161,4 @@ jobs:
                 mvn -f repo/pom.xml sonar:sonar -s repo/settings.xml -P sonar
                 mvn -f repo/pom.xml deploy -s repo/settings.xml -P jfrog
                 mvn -f repo/pom.xml deploy -s repo/settings.xml -P github
+                mvn -f repo/pom.xml deploy -s settings.xml -P nexus -DskipTests=true

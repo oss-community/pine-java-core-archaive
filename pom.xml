@@ -610,5 +610,14 @@ limitations under the License.
                 </repository>
             </distributionManagement>
         </profile>
+        <profile>
+            <id>nexus</id>
+            <distributionManagement>
+                <snapshotRepository>
+                    <id>nexus-snapshots</id>
+                    <url>${NEXUS_ARTIFACTORY_SNAPSHOT_URL}/</url>
+                </snapshotRepository>
+            </distributionManagement>
+        </profile>
     </profiles>
 </project>

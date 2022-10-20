@@ -6,18 +6,21 @@ pipeline {
       git 'git'
   }
   environment {
-       GITHUB_USERNAME=credentials('github_username')
-       GITHUB_EMAIL=credentials('github_email')
-       GITHUB_JENKINS_TOKEN=credentials('github_jenkins_token')
-       GITHUB_PACKAGE_TOKEN=credentials('github_package_token')
-       GITHUB_ARTIFACTORY_URL=credentials('github_artifactory_url')
-       SONAR_TOKEN=credentials('sonar_token')
-       SONAR_URL=credentials('sonar_url')
-       JFROG_ARTIFACTORY_USERNAME=credentials('jfrog_artifactory_username')
-       JFROG_ARTIFACTORY_ENCRYPTED_PASSWORD=credentials('jfrog_artifactory_encrypted_password')
-       JFROG_ARTIFACTORY_SNAPSHOT_URL=credentials('jfrog_artifactory_snapshot_url')
-       JFROG_ARTIFACTORY_CONTEXT_URL=credentials('jfrog_artifactory_context_url')
-       JFROG_ARTIFACTORY_REPOSITORY_PREFIX=credentials('jfrog_artifactory_repository_prefix')
+    GITHUB_USERNAME=credentials('github_username')
+    GITHUB_EMAIL=credentials('github_email')
+    GITHUB_JENKINS_TOKEN=credentials('github_jenkins_token')
+    GITHUB_PACKAGE_TOKEN=credentials('github_package_token')
+    GITHUB_ARTIFACTORY_URL=credentials('github_artifactory_url')
+    SONAR_TOKEN=credentials('sonar_token')
+    SONAR_URL=credentials('sonar_url')
+    JFROG_ARTIFACTORY_USERNAME=credentials('jfrog_artifactory_username')
+    JFROG_ARTIFACTORY_ENCRYPTED_PASSWORD=credentials('jfrog_artifactory_encrypted_password')
+    JFROG_ARTIFACTORY_SNAPSHOT_URL=credentials('jfrog_artifactory_snapshot_url')
+    JFROG_ARTIFACTORY_CONTEXT_URL=credentials('jfrog_artifactory_context_url')
+    JFROG_ARTIFACTORY_REPOSITORY_PREFIX=credentials('jfrog_artifactory_repository_prefix')
+    NEXUS_ARTIFACTORY_USERNAME=credentials('nexus_artifactory_username')
+    NEXUS_ARTIFACTORY_PASSWORD=credentials('nexus_artifactory_password')
+    NEXUS_ARTIFACTORY_SNAPSHOT_URL=credentials('nexus_artifactory_snapshot_url')
   }
   stages {
     stage('Verify') {
@@ -101,6 +104,12 @@ pipeline {
     stage('Deploy to GitHub') {
       steps {
         sh 'mvn deploy -s settings.xml -P github'
+      }
+    }
+
+    stage('Deploy to Nexus') {
+      steps {
+        sh 'mvn deploy -s settings.xml -P nexus -DskipTests=true'
       }
     }
   }

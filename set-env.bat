@@ -23,6 +23,10 @@ call setx /M JF_SHARED_DATABASE_TYPE postgresql
 call setx /M JF_SHARED_DATABASE_DRIVER "org.postgresql.Driver"
 call setx /M JF_SHARED_DATABASE_URL jdbc:postgresql://pine-jfrog-db:5432/artifactory
 
+call setx /M NEXUS_ARTIFACTORY_USERNAME admin
+call setx /M NEXUS_ARTIFACTORY_PASSWORD not_generated
+call setx /M NEXUS_ARTIFACTORY_SNAPSHOT_URL http://pine-nexus:8084/repository/maven-snapshots
+
 call setx /M CONCOURSE_DB concourse
 call setx /M CONCOURSE_DB_HOST pine-concourse-db
 call setx /M CONCOURSE_DB_PORT 5432

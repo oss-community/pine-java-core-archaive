@@ -23,6 +23,10 @@ echo "export JF_SHARED_DATABASE_TYPE=postgresql" >> ${HOME}/.bashrc
 echo "export JF_SHARED_DATABASE_DRIVER="org.postgresql.Driver"" >> ${HOME}/.bashrc
 echo "export JF_SHARED_DATABASE_URL=jdbc:postgresql://pine-jfrog-db:5432/artifactory" >> ${HOME}/.bashrc
 
+echo "export NEXUS_ARTIFACTORY_USERNAME=admin" >> ${HOME}/.bashrc
+echo "export NEXUS_ARTIFACTORY_ENCRYPTED_PASSWORD=not_generated" >> ${HOME}/.bashrc
+echo "export NEXUS_ARTIFACTORY_SNAPSHOT_URL=http://pine-nexus:8084/repository/maven-snapshots" >> ${HOME}/.bashrc
+
 export "CONCOURSE_DB=concourse" >> ${HOME}/.bashrc
 export "CONCOURSE_DB_HOST=pine-concourse-db" >> ${HOME}/.bashrc
 export "CONCOURSE_DB_PORT=5432" >> ${HOME}/.bashrc
