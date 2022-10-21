@@ -29,6 +29,6 @@ target
 .scannerwork
 .env
 .env.dev
+.DS_Store
 
 ci/concourse/credentials.yml
-docker/ssh

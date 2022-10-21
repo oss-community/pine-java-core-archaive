@@ -34,7 +34,7 @@ limitations under the License.
         <developer>
             <name>Saman Alishirishahrbabak</name>
             <email>samanalishiri@gmail.com</email>
-            <url>${scm.url}/</url>
+            <url>${scm.base-url.https}/</url>
             <roles>
                 <role>Developer</role>
             </roles>
@@ -53,7 +53,7 @@ limitations under the License.
         </license>
     </licenses>
     <issueManagement>
-        <url>${scm.url}/issues</url>
+        <url>${scm.base-url.https}/issues</url>
         <system>GitHub Issues</system>
     </issueManagement>
     <properties>

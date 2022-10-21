@@ -43,13 +43,12 @@ limitations under the License.
         <vavr.version>0.10.4</vavr.version>
         <junit.version>5.8.2</junit.version>
 
-        <scm.url>https://github.com/saman-oss/pine-java-core</scm.url>
-        <scm.https>scm:git:https://github.com/saman-oss/pine-java-core.git</scm.https>
-        <scm.ssh>scm:git:git@github.com:saman-oss/pine-java-core.git</scm.ssh>
+        <project.scm.id>github</project.scm.id>
+        <scm.base-url.https>https://github.com/saman-oss/pine-java-core</scm.base-url.https>
     </properties>
     <developers>
         <developer>
-            <id>samanalishiri</id>
+            <id>saman-alishirishahrbabak</id>
             <name>Saman Alishirishahrbabak</name>
             <email>samanalishiri@gmail.com</email>
             <url>https://github.com/samanalishiri/samanalishiri</url>
@@ -57,25 +56,26 @@ limitations under the License.
                 <role>developer</role>
             </roles>
             <properties>
-                <picUrl>${scm.url}/blob/main/docs/developer/samanalishiri/pic.jpg</picUrl>
+                <picUrl>${scm.base-url.https}/blob/main/docs/developer/saman-alishirishahrbabak/pic.jpg</picUrl>
             </properties>
         </developer>
     </developers>
     <licenses>
         <license>
             <name>Apache License, Version 2.0</name>
-            <url>${scm.web}/blob/main/LICENSE</url>
+            <url>${scm.base-url.https}/blob/main/LICENSE</url>
             <distribution>repo</distribution>
         </license>
     </licenses>
     <issueManagement>
         <system>GitHub Issues</system>
-        <url>${scm.url}/issues</url>
+        <url>${scm.base-url.https}/issues</url>
     </issueManagement>
     <scm>
-        <url>${scm.url}</url>
-        <connection>${scm.ssh}</connection>
-        <developerConnection>${scm.ssh}</developerConnection>
+        <connection>scm:git:${project.scm.url}</connection>
+        <developerConnection>scm:git:${project.scm.url}</developerConnection>
+        <url>git@github.com:saman-oss/pine-java-core.git</url>
+        <tag>HEAD</tag>
     </scm>
     <modules>
         <module>helper</module>
@@ -245,6 +245,14 @@ limitations under the License.
                 <artifactId>maven-scm-plugin</artifactId>
                 <version>1.13.0</version>
             </plugin>
+            <plugin>
+                <artifactId>maven-release-plugin</artifactId>
+                <version>2.5.3</version>
+                <configuration>
+                    <scmCommentPrefix>[ci skip]</scmCommentPrefix>
+                    <tagNameFormat>@{project.version}</tagNameFormat>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
     <profiles>
@@ -285,23 +293,23 @@ limitations under the License.
                 </plugins>
             </build>
             <reporting>
-                    <plugins>
-                        <plugin>
-                            <groupId>org.apache.maven.plugins</groupId>
-                            <artifactId>maven-checkstyle-plugin</artifactId>
-                            <version>3.1.2</version>
-                            <reportSets>
-                                <reportSet>
-                                    <reports>
-                                        <report>checkstyle-aggregate</report>
-                                    </reports>
-                                    <configuration>
-                                        <includeTestSourceDirectory>true</includeTestSourceDirectory>
-                                    </configuration>
-                                </reportSet>
-                            </reportSets>
-                        </plugin>
-                    </plugins>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-checkstyle-plugin</artifactId>
+                        <version>3.1.2</version>
+                        <reportSets>
+                            <reportSet>
+                                <reports>
+                                    <report>checkstyle-aggregate</report>
+                                </reports>
+                                <configuration>
+                                    <includeTestSourceDirectory>true</includeTestSourceDirectory>
+                                </configuration>
+                            </reportSet>
+                        </reportSets>
+                    </plugin>
+                </plugins>
             </reporting>
         </profile>
         <profile>
@@ -432,7 +440,8 @@ limitations under the License.
                             <reportSet>
                                 <id>aggregated-unit-test-report</id>
                                 <configuration>
-                                    <outputDirectory>${project.reporting.outputDirectory}/test-reports/ut</outputDirectory>
+                                    <outputDirectory>${project.reporting.outputDirectory}/test-reports/ut
+                                    </outputDirectory>
                                 </configuration>
                                 <reports>
                                     <report>report-only</report>
@@ -449,10 +458,10 @@ limitations under the License.
                 <maven.site.port>8000</maven.site.port>
             </properties>
             <distributionManagement>
-            <site>
-                <id>github.com</id>
-                <url>${scm.ssh}</url>
-            </site>
+                <site>
+                    <id>github.com</id>
+                    <url>${project.scm.connection}</url>
+                </site>
             </distributionManagement>
             <build>
                 <plugins>
@@ -506,7 +515,7 @@ limitations under the License.
             <distributionManagement>
                 <site>
                     <id>github.com</id>
-                    <url>${scm.ssh}</url>
+                    <url>${project.scm.connection}</url>
                 </site>
             </distributionManagement>
             <build>
@@ -543,10 +552,12 @@ limitations under the License.
             <id>jfrog</id>
             <properties>
                 <jfrog.artifactory.username>${env.JFROG_ARTIFACTORY_USERNAME}</jfrog.artifactory.username>
-                <jfrog.artifactory.encrypted.password>${env.JFROG_ARTIFACTORY_ENCRYPTED_PASSWORD}</jfrog.artifactory.encrypted.password>
+                <jfrog.artifactory.encrypted.password>${env.JFROG_ARTIFACTORY_ENCRYPTED_PASSWORD}
+                </jfrog.artifactory.encrypted.password>
                 <jfrog.artifactory.snapshot.url>${env.JFROG_ARTIFACTORY_SNAPSHOT_URL}</jfrog.artifactory.snapshot.url>
                 <jfrog.artifactory.context.url>${env.JFROG_ARTIFACTORY_CONTEXT_URL}</jfrog.artifactory.context.url>
-                <jfrog.artifactory.repository.prefix>${env.JFROG_ARTIFACTORY_REPOSITORY_PREFIX}</jfrog.artifactory.repository.prefix>
+                <jfrog.artifactory.repository.prefix>${env.JFROG_ARTIFACTORY_REPOSITORY_PREFIX}
+                </jfrog.artifactory.repository.prefix>
             </properties>
             <distributionManagement>
                 <snapshotRepository>
@@ -583,12 +594,13 @@ limitations under the License.
                                         <password>${jfrog.artifactory.encrypted.password}</password>
                                         <excludePatterns>*-tests.jar</excludePatterns>
                                         <repoKey>${jfrog.artifactory.repository.prefix}-libs-release-local</repoKey>
-                                        <snapshotRepoKey>${jfrog.artifactory.repository.prefix}-libs-snapshot-local</snapshotRepoKey>
+                                        <snapshotRepoKey>${jfrog.artifactory.repository.prefix}-libs-snapshot-local
+                                        </snapshotRepoKey>
                                     </publisher>
                                     <buildInfo>
                                         <buildName>${project.artifactId}</buildName>
                                         <buildNumber>${project.version}</buildNumber>
-                                        <buildUrl>${scm.url}</buildUrl>
+                                        <buildUrl>${scm.base-url.https}</buildUrl>
                                     </buildInfo>
                                 </configuration>
                             </execution>
@@ -612,10 +624,13 @@ limitations under the License.
         </profile>
         <profile>
             <id>nexus</id>
+            <properties>
+                <nexus.artifactory.url>${env.NEXUS_ARTIFACTORY_SNAPSHOT_URL}/</nexus.artifactory.url>
+            </properties>
             <distributionManagement>
                 <snapshotRepository>
                     <id>nexus-snapshots</id>
-                    <url>${env.NEXUS_ARTIFACTORY_SNAPSHOT_URL}/</url>
+                    <url>${nexus.artifactory.url}</url>
                 </snapshotRepository>
             </distributionManagement>
         </profile>
