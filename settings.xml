@@ -34,8 +34,8 @@
             <configuration>
                 <httpHeaders>
                     <property>
-                        <name>Authorization</name>
-                        <value>Bearer ${GITHUB_PACKAGE_TOKEN}</value>
+                        <name>Deploy-Token</name>
+                        <value>${GITHUB_PACKAGE_TOKEN}</value>
                     </property>
                 </httpHeaders>
             </configuration>
