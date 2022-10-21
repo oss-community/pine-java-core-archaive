@@ -634,5 +634,18 @@ limitations under the License.
                 </snapshotRepository>
             </distributionManagement>
         </profile>
+        <profile>
+            <id>releases</id>
+            <properties>
+                <github.artifactory.url>${env.GITHUB_ARTIFACTORY_URL}</github.artifactory.url>
+            </properties>
+            <distributionManagement>
+                <repository>
+                    <id>github</id>
+                    <name>GitHub Packages</name>
+                    <url>https://maven.pkg.github.com/${github.artifactory.url}</url>
+                </repository>
+            </distributionManagement>
+        </profile>
     </profiles>
 </project>
