@@ -683,6 +683,7 @@ mvn sonar:sonar -s settings.xml -P sonar
 mvn deploy -s settings.xml -P jfrog
 mvn deploy -s settings.xml -P github
 mvn deploy -s settings.xml -P nexus -DskipTests=true
+mvn -B release:clean release:prepare release:perform -P github -DskipTests=true
 ```
 
 ### <span style="color: RoyalBlue">Jenkins Pipeline</span>
