@@ -94,7 +94,7 @@ jobs:
                 mvn -f repo/pom.xml test -s repo/settings.xml
                 mvn -f repo/pom.xml checkstyle:check -s repo/settings.xml -P checkstyle
                 mvn -f repo/pom.xml install -DskipTests=true -s repo/settings.xml
-                mvn -f repo/pom.xml site:site site:stage -s repo/settings.xml -P site,javadoc,changelog,test-report
+                mvn -f repo/pom.xml site:site site:stage -s repo/settings.xml -P site,javadoc,changelog,test-report.github
                 mvn -f repo/pom.xml scm-publish:publish-scm -s repo/settings.xml -P site,github
   - name: prod-pine-java-core
     plan:
@@ -156,7 +156,7 @@ jobs:
                 mvn -f repo/pom.xml test -s repo/settings.xml
                 mvn -f repo/pom.xml checkstyle:check -s repo/settings.xml -P checkstyle
                 mvn -f repo/pom.xml install -DskipTests=true -s repo/settings.xml
-                mvn -f repo/pom.xml site:site site:stage -s repo/settings.xml -P site,javadoc,changelog,test-report
+                mvn -f repo/pom.xml site:site site:stage -s repo/settings.xml -P site,javadoc,changelog,test-report.github
                 mvn -f repo/pom.xml scm-publish:publish-scm -s repo/settings.xml -P site,github
                 mvn -f repo/pom.xml sonar:sonar -s repo/settings.xml -P sonar
                 mvn -f repo/pom.xml deploy -s repo/settings.xml -P jfrog

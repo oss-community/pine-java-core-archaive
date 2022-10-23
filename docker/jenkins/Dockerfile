@@ -6,6 +6,8 @@ ARG GITHUB_ARTIFACTORY_URL=saman-oss/pine-java-core
 ARG GITHUB_KEY_COMMENT=samanalishiri@gmail.com
 
 USER root
+RUN echo $GITHUB_ARTIFACTORY_URL
+RUN echo GITHUB_KEY_COMMENT
 RUN apt-get update
 RUN apt-get -y install apt-transport-https ca-certificates curl gnupg2 software-properties-common git maven
 RUN apt-get update
@@ -20,11 +22,11 @@ RUN ssh-keygen -t rsa -C $GITHUB_KEY_COMMENT -N '' -f /root/.ssh/id_rsa
 RUN eval "$(ssh-agent -s)" && ssh-add /root/.ssh/id_rsa
 RUN echo $GITHUB_JENKINS_TOKEN > ./github-token.txt
 RUN gh auth login -p ssh -h github.com --with-token < ./github-token.txt
-RUN gh repo deploy-key delete $(gh repo deploy-key list -R $GITHUB_ARTIFACTORY_URL | awk '{print ($1==""?"":$1)}') -R $GITHUB_ARTIFACTORY_URL || true
+# RUN gh repo deploy-key delete $(gh repo deploy-key list -R $GITHUB_ARTIFACTORY_URL | awk '{print ($1==""?"":$1)}') -R $GITHUB_ARTIFACTORY_URL || true
 RUN gh repo deploy-key add /root/.ssh/id_rsa.pub -R $GITHUB_ARTIFACTORY_URL -t jenkins-key-pub -w
 RUN echo "Host *" > /root/.ssh/config
 RUN echo "    StrictHostKeyChecking no" >> /root/.ssh/config
-#RUN ssh -T git@github.com
+# RUN ssh -T git@github.com
 RUN java -version
 RUN mvn -version
 RUN git --version

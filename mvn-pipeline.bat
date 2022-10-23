@@ -34,7 +34,7 @@ call mvn install -DskipTests=true -s settings.xml
 call echo 'step [install] end'
 
 call echo 'step [site] begin'
-call mvn site:site site:stage -s settings.xml -P site,javadoc,changelog,test-report
+call mvn site:site site:stage -s settings.xml -P site,javadoc,changelog,test-report.github
 call echo 'step [site] end'
 
 call echo 'step [publish site] begin'

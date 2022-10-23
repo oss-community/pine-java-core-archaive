@@ -22,8 +22,8 @@ echo github-key: |- >> ./ci/concourse/credentials.yml
 
 mkdir ~/pine/keys
 
-ssh-keygen -t rsa -C "concourse_team" -f ~/pine/keys/id_rsa
-gh repo deploy-key add %HOMEPATH%/pine/keys/id_rsa.pub -R %GITHUB_ARTIFACTORY_URL% -t concourse_team-key-pub -w
+ssh-keygen -t rsa -C "concourse_team" -f ~/pine/keys/pipeline_pine
+gh repo deploy-key add %HOMEPATH%/pine/keys/pipeline_pine.pub -R %GITHUB_ARTIFACTORY_URL% -t concourse_team-key-pub -w
 
 ssh-keygen -t rsa -b 4096 -m PEM -f ~/pine/keys/session_signing_key
 ssh-keygen -t rsa -b 4096 -m PEM -f ~/pine/keys/tsa_host_key

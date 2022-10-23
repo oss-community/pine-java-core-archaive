@@ -583,7 +583,7 @@ mvn clean package -DskipTests=true -s settings.xml -P source,javadoc,license
 mvn test -s settings.xml
 mvn checkstyle:check -s settings.xml -P checkstyle
 mvn install -DskipTests=true -s settings.xml
-mvn site:site site:stage -s settings.xml -P site,javadoc,changelog,test-report
+mvn site:site site:stage -s settings.xml -P site,javadoc,changelog,test-report.github
 ```
 
 ### <span style="color: RoyalBlue">Site</span>
@@ -676,7 +676,7 @@ mvn clean package -DskipTests=true -s settings.xml -P source,javadoc,license
 mvn test -s settings.xml
 mvn checkstyle:check -s settings.xml -P checkstyle
 mvn install -DskipTests=true -s settings.xml
-mvn site:site site:stage -s settings.xml -P site,javadoc,changelog,test-report
+mvn site:site site:stage -s settings.xml -P site,javadoc,changelog,test-report.github
 mvn scm-publish:publish-scm -s settings.xml -P site,github
 mvn sonar:sonar -s settings.xml -P sonar
 mvn deploy -s settings.xml -P jfrog

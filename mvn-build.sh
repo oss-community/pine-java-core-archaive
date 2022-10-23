@@ -20,6 +20,6 @@ mvn install -DskipTests=true -s settings.xml
 echo 'step [install] end'
 
 echo 'step [site] begin'
-mvn site:site site:stage -s settings.xml -P site,javadoc,changelog,test-report
+mvn site:site site:stage -s settings.xml -P site,javadoc,changelog,test-report.github
 call mvn site:run -s settings.xml -P site
 echo 'step [site] end'
