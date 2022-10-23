@@ -31,14 +31,6 @@
             <id>github</id>
             <username>${env.GITHUB_USERNAME}</username>
             <password>${env.GITHUB_PACKAGE_TOKEN}</password>
-            <configuration>
-                <httpHeaders>
-                    <property>
-                        <name>Authorization</name>
-                        <value>Bearer ${GITHUB_PACKAGE_TOKEN}</value>
-                    </property>
-                </httpHeaders>
-            </configuration>
         </server>
         <server>
             <id>nexus-snapshots</id>
