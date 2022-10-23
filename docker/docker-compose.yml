@@ -10,11 +10,12 @@ services:
       args:
         GITHUB_JENKINS_TOKEN: ${GITHUB_JENKINS_TOKEN}
         GITHUB_ARTIFACTORY_URL: ${GITHUB_ARTIFACTORY_URL}
+    environment:
+      JENKINS_PORT: 8080
     ports:
       - "8080:8080"
-      - "50000:50000"
     volumes:
-      - ~/docker_compose/jenkins_home:/var/jenkins_home
+      - ~/docker_compose/jenkins:/root/.jenkins
     deploy:
       resources:
         limits:

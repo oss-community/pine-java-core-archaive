@@ -2,7 +2,7 @@ docker --version
 docker-compose --version
 docker-machine --version
 
-mkdir %HOMEPATH%\docker_compose\jenkins_home ^
+mkdir %HOMEPATH%\docker_compose\jenkins ^
 %HOMEPATH%\docker_compose\jfrog-postgresql ^
 %HOMEPATH%\docker_compose\jfrog ^
 %HOMEPATH%\docker_compose\nexus\nexus-data ^
