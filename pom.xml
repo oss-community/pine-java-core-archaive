@@ -462,6 +462,12 @@ limitations under the License.
             <properties>
                 <maven.site.port>8000</maven.site.port>
             </properties>
+            <distributionManagement>
+            <site>
+                <id>github.com</id>
+                <url>${project.scm.connection}</url>
+            </site>
+            </distributionManagement>
             <build>
                 <plugins>
                     <plugin>
