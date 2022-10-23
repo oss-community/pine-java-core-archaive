@@ -33,6 +33,7 @@ RUN echo "    StrictHostKeyChecking no" >> ~/.ssh/config
 RUN echo $GITHUB_JENKINS_TOKEN > ~/github-token.txt
 RUN gh auth login -p ssh -h github.com --with-token < ~/github-token.txt
 RUN gh repo deploy-key add ~/.ssh/id_rsa.pub -R $GITHUB_ARTIFACTORY_URL -t jenkins-key-pub -w
+# RUN ssh -T git@github.com
 
 RUN wget -O jenkins.war https://get.jenkins.io/war/$JENKINS_VERSION/jenkins.war
 
