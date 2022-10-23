@@ -131,7 +131,9 @@ jobs:
             JFROG_ARTIFACTORY_REPOSITORY_PREFIX: ((jfrog-artifactory-repository-prefix))
             NEXUS_ARTIFACTORY_USERNAME: ((nexus-artifactory-username))
             NEXUS_ARTIFACTORY_PASSWORD: ((nexus-artifactory-password))
-            NEXUS_ARTIFACTORY_SNAPSHOT_URL: ((nexus-artifactory-snapshot-ur))
+            NEXUS_ARTIFACTORY_HOST_URL: ((nexus-artifactory-host-url))
+            NEXUS_ARTIFACTORY_SNAPSHOT_URL: ((nexus-artifactory-snapshot-url))
+            NEXUS_ARTIFACTORY_RELEASE_URL: ((nexus-artifactory-release-url))
           run:
             path: sh
             args:

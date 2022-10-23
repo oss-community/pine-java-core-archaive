@@ -1,6 +1,9 @@
 FROM alpine:latest
 MAINTAINER samanalishiri@gmail.com
 
+ENV LANG=en_US.UTF-8
+ENV LANGUAGE=en_US.UTF-8
+
 USER root
 RUN apk update
 RUN apk add ca-certificates wget curl openrc openssh openjdk17 git maven
@@ -12,6 +15,3 @@ RUN apk add glibc-bin-2.25-r0.apk glibc-i18n-2.25-r0.apk glibc-2.25-r0.apk
 
 COPY ./locale.md /locale.md
 RUN cat locale.md | xargs -i /usr/glibc-compat/bin/localedef -i {} -f UTF-8 {}.UTF-8
-
-ENV LANG=en_US.UTF-8
-ENV LANGUAGE=en_US.UTF-8

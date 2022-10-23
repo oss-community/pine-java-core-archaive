@@ -20,7 +20,9 @@ pipeline {
     JFROG_ARTIFACTORY_REPOSITORY_PREFIX=credentials('jfrog_artifactory_repository_prefix')
     NEXUS_ARTIFACTORY_USERNAME=credentials('nexus_artifactory_username')
     NEXUS_ARTIFACTORY_PASSWORD=credentials('nexus_artifactory_password')
+    NEXUS_ARTIFACTORY_HOST_URL=credentials('nexus_artifactory_host_url')
     NEXUS_ARTIFACTORY_SNAPSHOT_URL=credentials('nexus_artifactory_snapshot_url')
+    NEXUS_ARTIFACTORY_RELEASE_URL=credentials('nexus_artifactory_release_url')
   }
   stages {
     stage('Verify') {

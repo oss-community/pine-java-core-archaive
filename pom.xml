@@ -616,14 +616,43 @@ limitations under the License.
         <profile>
             <id>nexus</id>
             <properties>
-                <nexus.artifactory.url>${env.NEXUS_ARTIFACTORY_SNAPSHOT_URL}/</nexus.artifactory.url>
+                <nexus.artifactory.host.url>${env.NEXUS_ARTIFACTORY_HOST_URL}/</nexus.artifactory.host.url>
+                <nexus.artifactory.snapshot.url>${env.NEXUS_ARTIFACTORY_SNAPSHOT_URL}/</nexus.artifactory.snapshot.url>
+                <nexus.artifactory.release.url>${env.NEXUS_ARTIFACTORY_RELEASE_URL}/</nexus.artifactory.release.url>
             </properties>
             <distributionManagement>
                 <snapshotRepository>
                     <id>nexus-snapshots</id>
-                    <url>${nexus.artifactory.url}</url>
+                    <url>${nexus.artifactory.snapshot.url}</url>
                 </snapshotRepository>
+                <repository>
+                    <id>nexus-release</id>
+                    <url>${nexus.artifactory.release.url}</url>
+                </repository>
             </distributionManagement>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.sonatype.plugins</groupId>
+                        <artifactId>nexus-staging-maven-plugin</artifactId>
+                        <version>1.6.8</version>
+                        <executions>
+                            <execution>
+                                <id>default-deploy</id>
+                                <phase>deploy</phase>
+                                <goals>
+                                    <goal>deploy</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                        <configuration>
+                            <serverId>nexus</serverId>
+                            <nexusUrl>${nexus.artifactory.host.url}</nexusUrl>
+                            <skipStaging>true</skipStaging>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
         </profile>
     </profiles>
 </project>
