@@ -4,6 +4,7 @@ MAINTAINER samanalishiri@gmail.com
 ARG GITHUB_JENKINS_TOKEN=token
 ARG GITHUB_ARTIFACTORY_URL=saman-oss/pine-java-core
 ARG GITHUB_KEY_COMMENT=samanalishiri@gmail.com
+
 ARG JENKINS_VERSION=latest
 
 USER root
@@ -35,8 +36,6 @@ RUN gh repo deploy-key add ~/.ssh/id_rsa.pub -R $GITHUB_ARTIFACTORY_URL -t jenki
 
 RUN wget -O jenkins.war https://get.jenkins.io/war/$JENKINS_VERSION/jenkins.war
 
-EXPOSE $JENKINS_PORT
-
 ENV LANG=en_US.UTF-8
 ENV LANGUAGE=en_US.UTF-8
 # /usr/lib/jvm/java-17-openjdk
@@ -44,5 +43,7 @@ ENV echo JAVA_HOME=$(which java)
 # /usr/share/java/maven-3
 ENV echo M2_HOME=$(which mvn)
 ENV JENKINS_PORT=8080
+
+EXPOSE $JENKINS_PORT
 
 CMD java -jar jenkins.war --httpPort=$JENKINS_PORT -Xmx2048m
