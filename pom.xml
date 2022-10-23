@@ -598,7 +598,7 @@ limitations under the License.
         <profile>
             <id>github</id>
             <properties>
-                <project.scm.id>my-scm-server</project.scm.id>
+                <project.scm.id>github</project.scm.id>
                 <github.artifactory.url>${env.GITHUB_ARTIFACTORY_URL}</github.artifactory.url>
             </properties>
             <distributionManagement>
