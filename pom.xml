@@ -250,7 +250,6 @@ limitations under the License.
                     <scmCommentPrefix>[ci skip]</scmCommentPrefix>
                     <tagNameFormat>@{project.version}</tagNameFormat>
                     <useReleaseProfile>false</useReleaseProfile>
-                    <releaseProfiles>github</releaseProfiles>
                     <autoVersionSubmodules>true</autoVersionSubmodules>
                 </configuration>
             </plugin>

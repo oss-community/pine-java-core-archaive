@@ -1,1 +1,1 @@
-mvn -B release:clean release:prepare release:perform -DskipTests=true
+mvn -B release:clean release:prepare release:perform -P github -DskipTests=true
