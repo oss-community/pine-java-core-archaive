@@ -91,7 +91,7 @@ pipeline {
 
     stage('Publish Site') {
       steps {
-        bat 'mvn scm-publish:publish-scm -s settings.xml -P publish'
+        bat 'mvn scm-publish:publish-scm -s settings.xml -P site'
       }
     }
 

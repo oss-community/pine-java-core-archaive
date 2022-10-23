@@ -591,7 +591,7 @@ mvn site:site site:stage -s settings.xml -P site,javadoc,changelog,test-report
 View maven site on [GitHub page](https://saman-oss.github.io/pine-java-core/) of project.
 
 ``` shell
-mvn scm-publish:publish-scm -s settings.xml -P publish
+mvn scm-publish:publish-scm -s settings.xml -P site
 ```
 
 Also, you can see maven site [locally](http://localhost:8000/).
@@ -677,7 +677,7 @@ mvn test -s settings.xml
 mvn checkstyle:check -s settings.xml -P checkstyle
 mvn install -DskipTests=true -s settings.xml
 mvn site:site site:stage -s settings.xml -P site,javadoc,changelog,test-report
-mvn scm-publish:publish-scm -s settings.xml -P publish
+mvn scm-publish:publish-scm -s settings.xml -P site
 mvn sonar:sonar -s settings.xml -P sonar
 mvn deploy -s settings.xml -P jfrog
 mvn deploy -s settings.xml -P github
