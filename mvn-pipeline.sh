@@ -39,7 +39,7 @@ mvn site:site site:stage -s settings.xml -P site,javadoc,changelog,test-report
 echo 'step [site] end'
 
 echo 'step [publish site] begin'
-mvn scm-publish:publish-scm -s settings.xml -P site
+mvn scm-publish:publish-scm -s settings.xml -P site,github
 echo 'step [publish site] end'
 
 echo 'step [jfrog artifactory] begin'
