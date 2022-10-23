@@ -52,7 +52,3 @@ call echo 'step [github artifactory] end'
 call echo 'step [nexus artifactory] begin'
 call mvn deploy -s settings.xml -P nexus -DskipTests=true
 call echo 'step [nexus artifactory] end'
-
-call echo 'step [release] begin'
-call mvn -B release:rollback release:clean release:prepare release:perform -P github -DskipTests=true
-call echo 'step [release] end'

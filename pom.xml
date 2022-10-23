@@ -249,8 +249,9 @@ limitations under the License.
                 <configuration>
                     <scmCommentPrefix>[ci skip]</scmCommentPrefix>
                     <tagNameFormat>@{project.version}</tagNameFormat>
+                    <useReleaseProfile>false</useReleaseProfile>
+                    <releaseProfiles>github</releaseProfiles>
                     <autoVersionSubmodules>true</autoVersionSubmodules>
-                    <releaseProfiles>releases</releaseProfiles>
                 </configuration>
             </plugin>
         </plugins>
@@ -632,19 +633,6 @@ limitations under the License.
                     <id>nexus-snapshots</id>
                     <url>${nexus.artifactory.url}</url>
                 </snapshotRepository>
-            </distributionManagement>
-        </profile>
-        <profile>
-            <id>releases</id>
-            <properties>
-                <github.artifactory.url>${env.GITHUB_ARTIFACTORY_URL}</github.artifactory.url>
-            </properties>
-            <distributionManagement>
-                <repository>
-                    <id>github</id>
-                    <name>GitHub Packages</name>
-                    <url>https://maven.pkg.github.com/${github.artifactory.url}</url>
-                </repository>
             </distributionManagement>
         </profile>
     </profiles>
