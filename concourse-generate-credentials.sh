@@ -21,7 +21,7 @@ echo sonar-token: $SONAR_TOKEN >> ./ci/concourse/credentials.yml
 echo sonar-url: $SONAR_URL >> ./ci/concourse/credentials.yml
 
 echo github-key-pub: >> ./ci/concourse/credentials.yml
-echo github-key: |- >> ./ci/concourse/credentials.yml
+echo github-key: '|' >> ./ci/concourse/credentials.yml
 
 mkdir ~/pine/keys
 
