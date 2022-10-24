@@ -22,7 +22,7 @@ jobs:
   - name: dev-pine-java-core
     plan:
       - get: repo
-      #        trigger: true
+        trigger: true
       - task: build
         privileged: true
         config:
