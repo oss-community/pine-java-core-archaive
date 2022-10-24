@@ -14,6 +14,7 @@ echo "export SONAR_JDBC_URL=jdbc:postgresql://pine-sonarqube-db:5432/sonar" >> $
 echo "export JFROG_ARTIFACTORY_USERNAME=admin" >> ${HOME}/.bashrc
 echo "export JFROG_ARTIFACTORY_ENCRYPTED_PASSWORD=not_generated" >> ${HOME}/.bashrc
 echo "export JFROG_ARTIFACTORY_SNAPSHOT_URL=http://pine-jfrog:8081/artifactory/pine-libs-snapshot" >> ${HOME}/.bashrc
+echo "export JFROG_ARTIFACTORY_RELEASE_URL=http://pine-jfrog:8081/artifactory/pine-libs-release" >> ${HOME}/.bashrc
 echo "export JFROG_ARTIFACTORY_CONTEXT_URL=http://pine-jfrog:8082/artifactory" >> ${HOME}/.bashrc
 echo "export JFROG_ARTIFACTORY_REPOSITORY_PREFIX=pine" >> ${HOME}/.bashrc
 echo "export JFROG_DB=artifactory" >> ${HOME}/.bashrc

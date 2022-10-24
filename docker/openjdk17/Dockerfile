@@ -13,5 +13,8 @@ RUN wget https://github.com/sgerrand/alpine-pkg-glibc/releases/download/2.25-r0/
 RUN wget https://github.com/sgerrand/alpine-pkg-glibc/releases/download/2.25-r0/glibc-i18n-2.25-r0.apk
 RUN apk add glibc-bin-2.25-r0.apk glibc-i18n-2.25-r0.apk glibc-2.25-r0.apk
 
-COPY ./locale.md /locale.md
-RUN cat locale.md | xargs -i /usr/glibc-compat/bin/localedef -i {} -f UTF-8 {}.UTF-8
+RUN apk add ttf-dejavu
+
+RUN echo "en_US" > ~/locale.md
+RUN echo "fa_IR" >> ~/locale.md
+RUN cat ~/locale.md | xargs -i /usr/glibc-compat/bin/localedef -i {} -f UTF-8 {}.UTF-8

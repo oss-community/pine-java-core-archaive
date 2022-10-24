@@ -14,6 +14,7 @@ call setx /M SONAR_JDBC_URL jdbc:postgresql://pine-sonarqube-db:5432/sonar
 call setx /M JFROG_ARTIFACTORY_USERNAME admin
 call setx /M JFROG_ARTIFACTORY_ENCRYPTED_PASSWORD not_generated
 call setx /M JFROG_ARTIFACTORY_SNAPSHOT_URL http://pine-jfrog:8081/artifactory/pine-libs-snapshot
+call setx /M JFROG_ARTIFACTORY_RELEASE_URL http://pine-jfrog:8081/artifactory/pine-libs-release
 call setx /M JFROG_ARTIFACTORY_CONTEXT_URL http://pine-jfrog:8082/artifactory
 call setx /M JFROG_ARTIFACTORY_REPOSITORY_PREFIX pine
 call setx /M JFROG_DB artifactory

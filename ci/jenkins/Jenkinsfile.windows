@@ -16,6 +16,7 @@ pipeline {
     JFROG_ARTIFACTORY_USERNAME=credentials('jfrog_artifactory_username')
     JFROG_ARTIFACTORY_ENCRYPTED_PASSWORD=credentials('jfrog_artifactory_encrypted_password')
     JFROG_ARTIFACTORY_SNAPSHOT_URL=credentials('jfrog_artifactory_snapshot_url')
+    JFROG_ARTIFACTORY_RELEASE_URL=credentials('jfrog_artifactory_release_url')
     JFROG_ARTIFACTORY_CONTEXT_URL=credentials('jfrog_artifactory_context_url')
     JFROG_ARTIFACTORY_REPOSITORY_PREFIX=credentials('jfrog_artifactory_repository_prefix')
     NEXUS_ARTIFACTORY_USERNAME=credentials('nexus_artifactory_username')
