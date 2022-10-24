@@ -249,6 +249,14 @@ limitations under the License.
                 <version>1.13.0</version>
             </plugin>
             <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-scm-publish-plugin</artifactId>
+                <version>3.1.0</version>
+                <configuration>
+                    <scmBranch>site</scmBranch>
+                </configuration>
+            </plugin>
+            <plugin>
                 <artifactId>maven-release-plugin</artifactId>
                 <version>2.5.3</version>
                 <configuration>
@@ -459,9 +467,6 @@ limitations under the License.
         </profile>
         <profile>
             <id>site</id>
-            <properties>
-                <maven.site.port>8000</maven.site.port>
-            </properties>
             <build>
                 <plugins>
                     <plugin>
@@ -470,16 +475,8 @@ limitations under the License.
                         <version>3.12.1</version>
                         <configuration>
                             <locales>en</locales>
-                            <port>${maven.site.port}</port>
+                            <port>8000</port>
                             <tempWebappDirectory>${basedir}/target/staging</tempWebappDirectory>
-                        </configuration>
-                    </plugin>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-scm-publish-plugin</artifactId>
-                        <version>3.1.0</version>
-                        <configuration>
-                            <scmBranch>site</scmBranch>
                         </configuration>
                     </plugin>
                 </plugins>
