@@ -40,9 +40,9 @@ RUN wget -O jenkins.war https://get.jenkins.io/war/$JENKINS_VERSION/jenkins.war
 ENV LANG=en_US.UTF-8
 ENV LANGUAGE=en_US.UTF-8
 # /usr/lib/jvm/java-17-openjdk
-ENV echo JAVA_HOME=/usr/lib/jvm/java-17-openjdk
+ENV JAVA_HOME=/usr/lib/jvm/java-17-openjdk
 # /usr/share/java/maven-3
-ENV echo M2_HOME=/usr/share/java/maven-3
+ENV M2_HOME=/usr/share/java/maven-3
 ENV JENKINS_PORT=8080
 
 EXPOSE $JENKINS_PORT

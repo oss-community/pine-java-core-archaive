@@ -1,9 +1,6 @@
 FROM alpine:latest
 MAINTAINER samanalishiri@gmail.com
 
-ENV LANG=en_US.UTF-8
-ENV LANGUAGE=en_US.UTF-8
-
 USER root
 RUN apk update
 RUN apk add ca-certificates wget curl openrc openssh openjdk17 git maven
@@ -18,3 +15,11 @@ RUN apk add ttf-dejavu
 RUN echo "en_US" > ~/locale.md
 RUN echo "fa_IR" >> ~/locale.md
 RUN cat ~/locale.md | xargs -i /usr/glibc-compat/bin/localedef -i {} -f UTF-8 {}.UTF-8
+
+
+ENV LANG=en_US.UTF-8
+ENV LANGUAGE=en_US.UTF-8
+# /usr/lib/jvm/java-17-openjdk
+ENV JAVA_HOME=/usr/lib/jvm/java-17-openjdk
+# /usr/share/java/maven-3
+ENV M2_HOME=/usr/share/java/maven-3
