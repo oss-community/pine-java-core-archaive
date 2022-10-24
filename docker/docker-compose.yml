@@ -26,8 +26,8 @@ services:
         soft: -1
         hard: -1
       nofile:
-        soft: 65535
-        hard: 65535
+        soft: 65536
+        hard: 65536
   pine-sonarqube-db:
     image: postgres
     container_name: pine-sonarqube-db
@@ -65,8 +65,8 @@ services:
         soft: -1
         hard: -1
       nofile:
-        soft: 65535
-        hard: 65535
+        soft: 65536
+        hard: 65536
   pine-concourse-db:
     container_name: pine-concourse-db
     hostname: pine-concourse-db
@@ -117,8 +117,8 @@ services:
         soft: -1
         hard: -1
       nofile:
-        soft: 65535
-        hard: 65535
+        soft: 65536
+        hard: 65536
   pine-jfrog:
     image: docker.bintray.io/jfrog/artifactory-oss
     container_name: pine-jfrog
@@ -143,19 +143,28 @@ services:
         soft: -1
         hard: -1
       nofile:
-        soft: 65535
-        hard: 65535
+        soft: 65536
+        hard: 65536
   pine-nexus:
-    image: sonatype/nexus3
     container_name: pine-nexus
     hostname: pine-nexus
+    build:
+      context: ./nexus
+      dockerfile: Dockerfile
     privileged: true
-    user: root
     restart: always
     volumes:
       - ~/docker_compose/nexus/nexus-data:/nexus-data
     ports:
       - "8084:8081"
+    ulimits:
+      nproc: 262144
+      memlock:
+        soft: -1
+        hard: -1
+      nofile:
+        soft: 65536
+        hard: 65536
   pine-concourse-web:
     image: concourse/concourse
     container_name: pine-concourse-web
