@@ -26,9 +26,9 @@ echo "export JF_SHARED_DATABASE_URL=jdbc:postgresql://pine-jfrog-db:5432/artifac
 
 echo "export NEXUS_ARTIFACTORY_USERNAME=admin" >> ${HOME}/.bashrc
 echo "export NEXUS_ARTIFACTORY_ENCRYPTED_PASSWORD=not_generated" >> ${HOME}/.bashrc
-echo "export NEXUS_ARTIFACTORY_HOST_URL=http://pine-nexus:8084/" >> ${HOME}/.bashrc
-echo "export NEXUS_ARTIFACTORY_SNAPSHOT_URL=http://pine-nexus:8084/repository/pine-maven-snapshots/" >> ${HOME}/.bashrc
-echo "export NEXUS_ARTIFACTORY_RELEASE_URL=http://pine-nexus:8084/repository/pine-maven-releases/" >> ${HOME}/.bashrc
+echo "export NEXUS_ARTIFACTORY_HOST_URL=http://pine-nexus:8081/" >> ${HOME}/.bashrc
+echo "export NEXUS_ARTIFACTORY_SNAPSHOT_URL=http://pine-nexus:8081/repository/pine-maven-snapshots/" >> ${HOME}/.bashrc
+echo "export NEXUS_ARTIFACTORY_RELEASE_URL=http://pine-nexus:8081/repository/pine-maven-releases/" >> ${HOME}/.bashrc
 
 export "CONCOURSE_DB=concourse" >> ${HOME}/.bashrc
 export "CONCOURSE_DB_HOST=pine-concourse-db" >> ${HOME}/.bashrc

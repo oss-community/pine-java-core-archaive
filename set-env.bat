@@ -26,9 +26,9 @@ call setx /M JF_SHARED_DATABASE_URL jdbc:postgresql://pine-jfrog-db:5432/artifac
 
 call setx /M NEXUS_ARTIFACTORY_USERNAME admin
 call setx /M NEXUS_ARTIFACTORY_PASSWORD not_generated
-call setx /M NEXUS_ARTIFACTORY_HOST_URL http://pine-nexus:8084/
-call setx /M NEXUS_ARTIFACTORY_SNAPSHOT_URL http://pine-nexus:8084/repository/pine-maven-snapshots/
-call setx /M NEXUS_ARTIFACTORY_RELEASE_URL http://pine-nexus:8084/repository/pine-maven-releases/
+call setx /M NEXUS_ARTIFACTORY_HOST_URL http://pine-nexus:8081/
+call setx /M NEXUS_ARTIFACTORY_SNAPSHOT_URL http://pine-nexus:8081/repository/pine-maven-snapshots/
+call setx /M NEXUS_ARTIFACTORY_RELEASE_URL http://pine-nexus:8081/repository/pine-maven-releases/
 
 call setx /M CONCOURSE_DB concourse
 call setx /M CONCOURSE_DB_HOST pine-concourse-db
