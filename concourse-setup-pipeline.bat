@@ -1,3 +1,4 @@
+# fly --target pine destroy-pipeline --pipeline pin
 fly --target pine set-pipeline ^
 --pipeline pine ^
 --config .\ci\concourse\pipeline.yml ^
