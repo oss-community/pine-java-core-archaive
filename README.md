@@ -40,6 +40,7 @@ The framework comprised three main part as follows:
         - **[Sonar Scanner](#Sonar-Scanner)**
     - **[Jenkins](#Jenkins)**
     - **[JFrog](#JFrog)**
+    - **[Nexus3](#Nexus3)**
     - **[IDE Setting](#IDE-Setting)**
         - **[Intellij IDEA](#Intellij-IDEA)**
     - **[Ngrok](#Ngrok)**
@@ -88,9 +89,9 @@ Download [Java 17](https://www.oracle.com/java/technologies/downloads/#jdk17-win
 
 ```shell
 mkdir C:\sdk\jdk-17
-tar -xvf jdk-17_windows-x64_bin.zip --directory C:\sdk\jdk-17  --strip-components=1
+tar -xvf %HOMEPATH%\Downloads\jdk-17_windows-x64_bin.zip --directory C:\sdk\jdk-17 --strip-components=1
 set JAVA_HOME=C:\sdk\jdk-17
-setx /M JAVA_HOME "%JAVA_HOME%"
+setx /M JAVA_HOME C:\sdk\jdk-17
 setx /M PATH "%PATH%;%JAVA_HOME%\bin"
 ```
 
@@ -101,8 +102,8 @@ Download [Java 17](https://www.oracle.com/java/technologies/downloads/#jdk17-lin
 ```shell
 sudo chown ${USER} -R /opt/
 sudo chmod 765 -R /opt/
-tar -xvf ./jdk-17_linux-x64_bin.tar.gz --directory /opt/
-mv jdk-17_linux-x64_bin jdk-17
+mkdir -p /opt/jdk-17
+tar -xvf ./jdk-17_linux-x64_bin.tar.gz --directory /opt/jdk-17 --strip-components=1
 sudo chmod +x -R /opt/java-17/bin/
 echo "export JAVA_HOME=/opt/jdk-17" >> ${HOME}/.bashrc
 sed -i 's/$PATH/$JAVA_HOME\/bin:$PATH/g' .bashrc #redhat
@@ -124,9 +125,9 @@ Download [Maven](https://maven.apache.org/download.cgi) in zip format.
 
 ```shell
 mkdir C:\sdk\maven
-tar -xvf apache-maven-3.8.6-bin.zip --directory C:\sdk\maven  --strip-components=1
+tar -xvf %HOMEPATH%\Downloads\apache-maven-*-bin.zip --directory C:\sdk\maven --strip-components=1
 set M2_HOME=C:\sdk\maven
-setx /M M2_HOME "%M2_HOME%"
+setx /M M2_HOME C:\sdk\maven
 setx /M PATH "%PATH%;%M2_HOME%\bin"
 ```
 
@@ -137,8 +138,8 @@ Download [Maven](https://maven.apache.org/download.cgi) in tar.gz format.
 ```shell
 sudo chown ${USER} -R /opt/
 sudo chmod 765 -R /opt/
-tar -xvf ./maven*.tar.gz --directory /opt/
-mv maven* maven
+mkdir /opt/maven
+tar -xvf ./maven*.tar.gz --directory /opt/maven --strip-components=1
 sudo chmod +x -R /opt/maven/bin/
 echo "export M2_HOME=/opt/maven" >> ${HOME}/.bashrc
 sed -i 's/$PATH/M2_HOME\/bin:$PATH/g' .bashrc #redhat
@@ -187,9 +188,9 @@ commands.
 
 ```shell
 mkdir C:\sdk\gh
-tar -xvf gh_*_windows_*.zip --directory C:\sdk\gh  --strip-components=1
+tar -xvf %HOMEPATH%\Downloads\gh_*_windows_*.zip --directory C:\sdk\gh --strip-components=1
 set GH_HOME=C:\sdk\gh
-setx /M GH_HOME "%GH_HOME%"
+setx /M GH_HOME C:\sdk\gh
 setx /M PATH "%PATH%;%GH_HOME%\bin"
 ```
 
@@ -245,7 +246,7 @@ Deploy public keys via GitHub CLI (select one solution).
 
 <p align="justify">
 
-Download [sonarqube](https://www.sonarqube.org/downloads/) then extract it. In the extracted path execute the following
+Download [sonarqube](https://www.sonarqube.org/downloads/) and execute the following
 command.
 
 </p>
@@ -253,10 +254,27 @@ command.
 ##### Windows
 
 ```shell
+mkdir C:\sdk\sonarqube
+tar -xvf %HOMEPATH%\Downloads\sonarqube-*.zip --directory C:\sdk\sonarqube --strip-components=1
+set SONARQUBE_HOME=C:\sdk\sonarqube
+setx /M SONARQUBE_HOME C:\sdk\sonarqube
+```
+
+```shell
 %SONARQUBE_HOME%/bin/windows-x86-64/StartSonar.bat
 ```
 
 ##### Linux
+
+```shell
+sudo chown ${USER} -R /opt/
+sudo chmod 765 -R /opt/
+mkdir /opt/sonarqube
+tar -xvf ./sonarqube-*.tar.gz --directory /opt/sonarqube --strip-components=1
+sudo chmod +x -R /opt/sonarqube/bin/
+echo "export SONARQUBE_HOME=/opt/sonarqube" >> ${HOME}/.bashrc
+source ~/.bashrc
+```
 
 ```shell
 $SONARQUBE_HOME/bin/linux-x86-64/sonar.sh start
@@ -287,22 +305,30 @@ echo "export SONAR_URL=sonarqube-url" >> ${HOME}/.bashrc
 
 <p align="justify">
 
-Download [sonar scanner cli](https://binaries.sonarsource.com/?prefix=Distribution/sonar-scanner-cli/) and extract it,
-then add the following environment variables.
+Download [sonar scanner cli](https://binaries.sonarsource.com/?prefix=Distribution/sonar-scanner-cli/), then execute the
+following environment variables.
 
 </p>
 
 ##### Windows
 
 ```shell
-set SONAR_SCANNER_HOME=extracted path
+mkdir C:\sdk\sonar-scanner
+tar -xvf %HOMEPATH%\Downloads\sonar-scanner-cli-*.zip --directory C:\sdk\sonar-scanner --strip-components=1
+set SONAR_SCANNER_HOME=C:\sdk\sonar-scanner
+setx /M SONAR_SCANNER_HOME=C:\sdk\sonar-scanner
 setx /M PATH "%PATH%;%SONAR_SCANNER_HOME%\bin"
 ```
 
 ##### Linux
 
 ```shell
-echo "export SONAR_SCANNER_HOME=extracted path" >> ${HOME}/.bashrc
+sudo chown ${USER} -R /opt/
+sudo chmod 765 -R /opt/
+mkdir /opt/sonar-scanner
+tar -xvf sonar-scanner-cli-*.tar --directory /opt/sonar-scanner --strip-components=1
+sudo chmod +x -R /opt/sonar-scanner/bin/
+echo "export SONAR_SCANNER_HOME=/opt/sonar-scanner" >> ${HOME}/.bashrc
 sed -i 's/$PATH/$SONAR_SCANNER_HOME\/bin:$PATH/g' .bashrc #redhat
 sed -i 's/PATH=/PATH=$SONAR_SCANNER_HOME\/bin:/' .bashrc #debian
 source ~/.bashrc
@@ -312,7 +338,19 @@ source ~/.bashrc
 
 Download [jenkins](https://www.jenkins.io/download/) as a war file and execute the following command.
 
+##### Windows
+
 ```shell
+mkdir C:\sdk\jenkins
+move %HOMEPATH%\Downloads\jenkins.war C:\sdk\jenkins
+java -jar jenkins.war --httpPort=8080
+```
+
+##### Linux
+
+```shell
+mkdir /opt/jenkins
+mv jenkins.war /opt/jenkins
 java -jar jenkins.war --httpPort=8080
 ```
 
@@ -325,7 +363,7 @@ Browse Jenkins for localhost installation at http://localhost:8080.
 
 <p align="justify">
 
-Download [Jfrog](https://jfrog.com/download-jfrog-platform/) and extract it. In the extracted path execute the following
+Download [JFrog](https://jfrog.com/community/open-source//)and execute the following
 command.
 
 </p>
@@ -333,16 +371,29 @@ command.
 ##### Windows
 
 ```shell
-set JFROG_HOME=extracted path
-setx /M JFROG_HOME "%JFROG_HOME%"
+mkdir C:\sdk\jfrog
+tar -xvf %HOMEPATH%\Downloads\jfrog-artifactory-oss-*.zip --directory C:\sdk\jfrog --strip-components=1
+set JFROG_HOME=C:\sdk\jfrog
+setx /M JFROG_HOME C:\sdk\jfrog
+```
+
+```shell
 %JFROG_HOME%\app\bin\artifactory.bat
 ```
 
 ##### Linux
 
 ```shell
-echo "export JFROG_HOME=extracted path" >> ${HOME}/.bashrc
+sudo chown ${USER} -R /opt/
+sudo chmod 765 -R /opt/
+mkdir /opt/jfrog
+tar -xvf jfrog-artifactory-oss-*.tar --directory /opt/jfrog --strip-components=1
+sudo chmod +x -R /opt/jfrog/app/bin/
+echo "export JFROG_HOME=/opt/jfrog" >> ${HOME}/.bashrc
 source ~/.bashrc
+```
+
+```shell
 $JFROG_HOME/artifactory/app/bin/artifactoryctl
 ```
 
@@ -356,6 +407,53 @@ Follow the instruction for initialization.
 - Change password at _**Administration > User Management > Users**_.
 - Get encrypted password from _**Edit Profile**_ menu.
 - Create repository by _**Quick Setup**_ menu.
+
+### <span style="color: RoyalBlue">Nexus3</span>
+
+<p align="justify">
+
+Download [Nexus3](https://help.sonatype.com/repomanager3/product-information/download). In the extracted
+path execute the following
+command.
+
+</p>
+
+##### Windows
+
+```shell
+mkdir C:\sdk\sonatype
+tar -xvf %HOMEPATH%\Downloads\nexus-3.*-win64.zip --directory C:\sdk\sonatype
+ren C:\sdk\sonatype\nexus-* nexus
+set NEXUS_HOME=C:\sdk\sonatype
+setx /M NEXUS_HOME C:\sdk\sonatype
+```
+
+```shell
+%NEXUS3_HOME%\nexus\bin\nexus.exe
+```
+
+##### Linux
+
+```shell
+sudo chown ${USER} -R /opt/
+sudo chmod 765 -R /opt/
+mkdir -p /opt/sonatype
+tar -xvf nexus-*-unix.tar.gz.tar --directory /opt/sonatype
+mv /opt/sonatype/nexus-* /opt/sonatype/nexus
+sudo chmod +x -R /opt/sonatype/nexus/bin/
+echo "export NEXUS_HOME=/opt/sonatype" >> ${HOME}/.bashrc
+source ~/.bashrc
+```
+
+```shell
+$NEXUS_HOME/nexus/bin/nexus
+```
+
+Browse JFrog for localhost installation at `http://localhost:8081`. Also, for changing the configuration you can modify
+`nexus-default.properties` under `etc` directory.
+
+- username: admin
+- password: print on the console
 
 ### <span style="color: RoyalBlue">IDE Setting</span>
 
