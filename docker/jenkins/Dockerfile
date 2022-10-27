@@ -9,7 +9,8 @@ ARG JENKINS_VERSION=latest
 
 USER root
 
-RUN apk add ca-certificates wget curl openrc openssh openjdk17 git maven github-cli groovy
+RUN apk add ca-certificates bash libstdc++ wget curl zip openrc openssh openjdk17 git maven github-cli
+RUN bin/bash -c "source /root/.sdkman/bin/sdkman-init.sh; sdk version; sdk install groovy"
 RUN wget -q -O /etc/apk/keys/sgerrand.rsa.pub https://alpine-pkgs.sgerrand.com/sgerrand.rsa.pub
 RUN wget https://github.com/sgerrand/alpine-pkg-glibc/releases/download/2.25-r0/glibc-2.25-r0.apk
 RUN wget https://github.com/sgerrand/alpine-pkg-glibc/releases/download/2.25-r0/glibc-bin-2.25-r0.apk
@@ -44,6 +45,7 @@ ENV JAVA_HOME=/usr/lib/jvm/java-17-openjdk
 # /usr/share/java/maven-3
 ENV M2_HOME=/usr/share/java/maven-3
 ENV JENKINS_PORT=8080
+#/root/.sdkman/candidates/groovy/current/bin/groovy
 
 EXPOSE $JENKINS_PORT
 
