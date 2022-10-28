@@ -175,7 +175,7 @@ services:
     command: web
     privileged: true
     depends_on: [ pine-concourse-db ]
-    ports: [ "8085:8080" ]
+    ports: [ "8083:8080" ]
     volumes:
       - ~/docker_compose/concourse/keys:/keys
     environment:
