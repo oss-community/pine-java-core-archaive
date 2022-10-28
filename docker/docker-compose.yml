@@ -190,7 +190,7 @@ services:
       CONCOURSE_CLUSTER_NAME: ${CONCOURSE_CLUSTER_NAME}
       CONCOURSE_SESSION_SIGNING_KEY: /keys/session_signing_key
       CONCOURSE_TSA_HOST_KEY: /keys/tsa_host_key
-      CONCOURSE_TSA_AUTHORIZED_KEYS: ./keys/authorized_worker_keys
+      CONCOURSE_TSA_AUTHORIZED_KEYS: ./keys/worker_key.pub
   pine-concourse-worker:
     image: concourse/concourse
     container_name: pine-concourse-worker
