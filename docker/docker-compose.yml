@@ -1,33 +1,5 @@
 version: '3.8'
 services:
-  pine-jenkins:
-    container_name: pine-jenkins
-    hostname: pine-jenkins
-    restart: always
-    build:
-      context: ./jenkins
-      dockerfile: Dockerfile
-      args:
-        GITHUB_JENKINS_TOKEN: ${GITHUB_JENKINS_TOKEN}
-        GITHUB_ARTIFACTORY_URL: ${GITHUB_ARTIFACTORY_URL}
-    environment:
-      JENKINS_PORT: 8080
-    ports:
-      - "8080:8080"
-    volumes:
-      - ~/docker_compose/jenkins:/root/.jenkins
-    deploy:
-      resources:
-        limits:
-          memory: '1024M'
-    ulimits:
-      nproc: 262144
-      memlock:
-        soft: -1
-        hard: -1
-      nofile:
-        soft: 65536
-        hard: 65536
   pine-sonarqube-db:
     image: postgres
     container_name: pine-sonarqube-db
@@ -80,12 +52,41 @@ services:
     ports:
       - "5053:5432"
     volumes:
-      - ~/docker_compose/concourse-postgresql:/var/lib/postgresql
+      - ~/docker_compose/concourse-postgresql/data:/var/lib/postgresql/data
     ulimits:
       nproc: 262144
       nofile:
         soft: 32000
         hard: 40000
+  pine-jenkins:
+    container_name: pine-jenkins
+    hostname: pine-jenkins
+    restart: always
+    image: samanalishiri/jenkins
+    build:
+      context: ./jenkins
+      dockerfile: Dockerfile
+      args:
+        GITHUB_JENKINS_TOKEN: ${GITHUB_JENKINS_TOKEN}
+        GITHUB_ARTIFACTORY_URL: ${GITHUB_ARTIFACTORY_URL}
+    environment:
+      JENKINS_PORT: 8080
+    ports:
+      - "8080:8080"
+    volumes:
+      - ~/docker_compose/jenkins:/root/.jenkins
+    deploy:
+      resources:
+        limits:
+          memory: '1024M'
+    ulimits:
+      nproc: 262144
+      memlock:
+        soft: -1
+        hard: -1
+      nofile:
+        soft: 65536
+        hard: 65536
   # wsl -d docker-desktop
   # sysctl -w vm.max_map_count=262144
   # set vm.max_map_count=262144 in /etc/sysctl.conf then execute sysctl -p
@@ -148,6 +149,7 @@ services:
   pine-nexus:
     container_name: pine-nexus
     hostname: pine-nexus
+    image: samanalishiri/nexus
     build:
       context: ./nexus
       dockerfile: Dockerfile
@@ -173,7 +175,7 @@ services:
     command: web
     privileged: true
     depends_on: [ pine-concourse-db ]
-    ports: [ "8083:8080" ]
+    ports: [ "8085:8080" ]
     volumes:
       - ~/docker_compose/concourse/keys:/keys
     environment:
