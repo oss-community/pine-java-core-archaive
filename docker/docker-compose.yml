@@ -52,7 +52,7 @@ services:
     ports:
       - "5053:5432"
     volumes:
-      - ~/docker_compose/concourse-postgresql/data:/var/lib/postgresql/data
+      - ~/docker_compose/concourse-postgresql:/var/lib/postgresql
     ulimits:
       nproc: 262144
       nofile:
