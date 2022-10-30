@@ -158,7 +158,7 @@ services:
     ports:
       - "8084:8081"
     volumes:
-      - ~/docker_compose/nexus/nexus-data:/opt/sonatype/sonatype-work/nexus3
+      - ~/docker_compose/nexus:/opt/sonatype/sonatype-work/nexus3
     ulimits:
       nproc: 262144
       memlock:
