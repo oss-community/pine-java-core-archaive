@@ -1,2 +1,2 @@
-call docker build -t samanalishiri/nexus:latest .\docker\nexus\ --no-cache
-# call docker push samanalishiri/nexus:latest
+docker build -t %DOCKER_USERNAME%/nexus:latest .\docker\nexus\ --no-cache
+docker push %DOCKER_USERNAME%/nexus:latest

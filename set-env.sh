@@ -4,6 +4,8 @@ echo "export GITHUB_JENKINS_TOKEN=not_generated" >> ${HOME}/.bashrc
 echo "export GITHUB_PACKAGE_TOKEN=not_generated" >> ${HOME}/.bashrc
 echo "export GITHUB_ARTIFACTORY_URL=saman-oss/pine-java-core" >> ${HOME}/.bashrc
 
+echo "export DOCKER_USERNAME=samanalishiri" >> ${HOME}/.bashrc
+
 echo "export SONAR_TOKEN=not_generated" >> ${HOME}/.bashrc
 echo "export SONAR_URL=pine-sonarqube" >> ${HOME}/.bashrc
 echo "export SONAR_DB=sonar" >> ${HOME}/.bashrc

@@ -4,6 +4,8 @@ call setx /M GITHUB_JENKINS_TOKEN not_generated
 call setx /M GITHUB_PACKAGE_TOKEN not_generated
 call setx /M GITHUB_ARTIFACTORY_URL saman-oss/pine-java-core
 
+call setx /M DOCKER_USERNAME samanalishiri
+
 call setx /M SONAR_TOKEN not_generated
 call setx /M SONAR_URL http://pine-sonarqube:9000
 call setx /M SONAR_DB sonar
@@ -41,6 +43,7 @@ call setx /M CONCOURSE_ADD_LOCAL_USER pine
 call setx /M CONCOURSE_ADD_LOCAL_PASSWORD pine
 call setx /M CONCOURSE_MAIN_TEAM_LOCAL_USER pine
 call setx /M CONCOURSE_TSA_HOST pine-concourse-web:2222
+
 
 
 

@@ -429,7 +429,7 @@ setx /M NEXUS_HOME C:\sdk\sonatype
 ```
 
 ```shell
-%NEXUS3_HOME%\nexus\bin\nexus.exe
+%NEXUS3_HOME%\nexus\bin\nexus /run
 ```
 
 ##### Linux
@@ -446,7 +446,7 @@ source ~/.bashrc
 ```
 
 ```shell
-$NEXUS_HOME/nexus/bin/nexus
+$NEXUS_HOME/nexus/bin/nexus run
 ```
 
 Browse JFrog for localhost installation at `http://localhost:8081`. Also, for changing the configuration you can modify

@@ -66,13 +66,15 @@ services:
       context: ./jenkins
       dockerfile: Dockerfile
     environment:
-      GITHUB_JENKINS_TOKEN: ${GITHUB_JENKINS_TOKEN}
-      GITHUB_ARTIFACTORY_URL: ${GITHUB_ARTIFACTORY_URL}
-      JENKINS_PORT: 8080
+      GITHUB_EMAIL: ${GITHUB_EMAIL}
+      GITHUB_USERNAME: ${GITHUB_USERNAME}
+      GITHUB_TOKEN: ${GITHUB_JENKINS_TOKEN}
+      GITHUB_URL: ${GITHUB_ARTIFACTORY_URL}
+      APP_PORT: 8080
     ports:
       - "8080:8080"
     volumes:
-      - ~/docker_compose/jenkins:/root/.jenkins
+      - ~/docker_compose/jenkins:/home/jenkins/.jenkins
     deploy:
       resources:
         limits:
@@ -147,16 +149,16 @@ services:
   pine-nexus:
     container_name: pine-nexus
     hostname: pine-nexus
-    image: samanalishiri/nexus
+    restart: always
     build:
       context: ./nexus
       dockerfile: Dockerfile
-    privileged: true
-    restart: always
-    volumes:
-      - ~/docker_compose/nexus/nexus-data:/nexus-data
+    environment:
+      APP_PORT: 8081
     ports:
       - "8084:8081"
+    volumes:
+      - ~/docker_compose/nexus/nexus-data:/opt/sonatype/sonatype-work/nexus3
     ulimits:
       nproc: 262144
       memlock:
