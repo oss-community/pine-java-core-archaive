@@ -23,7 +23,7 @@ echo sonar-url: $SONAR_URL >> ./ci/concourse/credentials.yml
 echo github-key-pub: >> ./ci/concourse/credentials.yml
 echo github-key: '|' >> ./ci/concourse/credentials.yml
 
-mkdir ~/pine/keys
+mkdir ~/pine/keys ~/docker_compose
 
 ssh-keygen -t rsa -C "concourse_team" -f ~/pine/keys/pipeline_pine
 gh repo deploy-key add %HOMEPATH%/pine/keys/pipeline_pine.pub -R %GITHUB_ARTIFACTORY_URL% -t concourse_team-key-pub -w
