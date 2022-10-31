@@ -66,8 +66,8 @@ jobs:
           outputs:
             - name: artifact
           params:
-            GITHUB-USER-NAME: ((github-user-name))
-            GITHUB-USER-EMAIL: ((github-user-email))
+            GITHUB-USERNAME: ((github-username))
+            GITHUB-EMAIL: ((github-email))
             PRIVKEY: ((github-key))
             PUBKEY: ((github-key-pub))
           run:
@@ -75,8 +75,8 @@ jobs:
             args:
               - -exc
               - |
-                git config --global user.email "$GITHUB-USER-NAME"
-                git config --global user.name "$GITHUB-USER-EMAIL"
+                git config --global user.email "$GITHUB-USERNAME"
+                git config --global user.name "$GITHUB-EMAIL"
                 
                 mkdir ~/.ssh
                 ls ~/.ssh/
@@ -118,8 +118,8 @@ jobs:
           params:
             PRIVKEY: ((github-key))
             PUBKEY: ((github-key-pub))
-            GITHUB-USER-NAME: ((github-user-name))
-            GITHUB-USER-EMAIL: ((github-user-email))
+            GITHUB-USERNAME: ((github-username))
+            GITHUB-EMAIL: ((github-email))
             GITHUB_PACKAGE_TOKEN: ((github-package-token))
             GITHUB_ARTIFACTORY_URL: ((github-artifactory-url))
             SONAR_TOKEN: ((sonar-token))
@@ -140,8 +140,8 @@ jobs:
             args:
               - -exc
               - |
-                git config --global user.email "$GITHUB-USER-NAME"
-                git config --global user.name "$GITHUB-USER-EMAIL"
+                git config --global user.email "$GITHUB-USERNAME"
+                git config --global user.name "$GITHUB-EMAIL"
                 
                 mkdir ~/.ssh
                 ls ~/.ssh/

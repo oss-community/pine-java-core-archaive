@@ -1,7 +1,7 @@
 echo # credentials > .\ci\concourse\credentials.yml
 
-echo github-user-name: %GITHUB_USERNAME% >> .\ci\concourse\credentials.yml
-echo github-user-email: %GITHUB_EMAIL% >> .\ci\concourse\credentials.yml
+echo github-username: %GITHUB_USERNAME% >> .\ci\concourse\credentials.yml
+echo github-email: %GITHUB_EMAIL% >> .\ci\concourse\credentials.yml
 echo github-package-token: %GITHUB_PACKAGE_TOKEN% >> .\ci\concourse\credentials.yml
 echo github-artifactory-url: %GITHUB_ARTIFACTORY_URL% >> .\ci\concourse\credentials.yml
 
