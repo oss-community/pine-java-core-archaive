@@ -4,11 +4,11 @@
     <parent>
         <artifactId>pine-java-core</artifactId>
         <groupId>com.pineframework.core</groupId>
-        <version>1.0.1-SNAPSHOT</version>
+        <version>1.0.0-SNAPSHOT</version>
     </parent>
     <groupId>com.pineframework.core</groupId>
     <artifactId>document</artifactId>
-    <version>1.0.1-SNAPSHOT</version>
+    <version>1.0.0-SNAPSHOT</version>
     <packaging>jar</packaging>
     <name>Document</name>
     <description>
