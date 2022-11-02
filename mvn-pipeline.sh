@@ -1,13 +1,3 @@
-# install sonarqube, jfrog and setup github for maven site
-# export SONAR_TOKEN=
-# export SONAR_URL=http://localhost:9000
-#
-# export JFROG_ARTIFACTORY_USERNAME=admin
-# export JFROG_ARTIFACTORY_PASSWORD=
-# export JFROG_ARTIFACTORY_SNAPSHOT_URL=http://localhost:8081/artifactory/pine-libs-snapshot
-# export JFROG_ARTIFACTORY_CONTEXT_URL=http://localhost:8082/artifactory
-# export JFROG_ARTIFACTORY_REPOSITORY_PREFIX=pine
-
 clear
 
 echo 'step [validate] begin'
